@@ -15,9 +15,9 @@
 创建一个空maven项目，
 在项目根目录下创建三个模块分别为**web**、**dao**、**common**。
 创建web模块时 选择`Spring Initializr` ，在Initial Service Url 中输入`https://start.spring.io`
-++详情参考：http://www.spring4all.com/article/247++
+_详情参考：http://www.spring4all.com/article/247_
 
-**1.3 项目基本目录结构：**
+### 1.3 项目基本目录结构
 ```java
 ksp
   common
@@ -82,7 +82,7 @@ logging:
 
 启动类添加注解 扫描mapper接口所在位置
 `@MapperScan({"cn.kspshare.mapper","cn.kspshare.dao"})`
-++详情参考：http://www.spring4all.com/article/145  运行 springboot-mybatis 工程++
+_详情参考：http://www.spring4all.com/article/145  运行 springboot-mybatis 工程_
 
 ### 1.5 整合通用Mapper4 + Mybatis-Generator
 ```html
@@ -208,7 +208,7 @@ public Object saveUser(TestUserDto userDto) {
 }
 ```
 
-++使用方法及文档：https://github.com/abel533/Mapper/wiki++
+_使用方法及文档：https://github.com/abel533/Mapper/wiki_
 
 ### 1.6 集成PageHelper
 ```html
@@ -221,7 +221,7 @@ public Object saveUser(TestUserDto userDto) {
     <version>1.2.10</version>
 </dependency>
 ```
-++使用方法及文档：https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/HowToUse.md++
+_使用方法及文档：https://github.com/pagehelper/Mybatis-PageHelper/blob/master/wikis/zh/HowToUse.md_
 
 ### 1.7 整合swagger2
 ```html
@@ -296,8 +296,6 @@ Controller类使用注解  `@Api(description = "用户管理")`；
 Controller方法使用注解 `@ApiOperation("根据主键查找")`；
 Get请求参数注解  `@RequestParam(name = "用户名", required = false)`；
 请求参数为实体，实体类注解 `@ApiModel`, 字段注解 `@ApiModelProperty("用户名")`。
-
-***
 
 ### 1.8 主键生成策略：推特雪花 Twitter_Snowflake
 ```java
