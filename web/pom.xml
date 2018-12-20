@@ -27,6 +27,8 @@
 
 
     <build>
+        <!--指定打包后的名称-->
+        <finalName>ksp-test</finalName>
         <plugins>
             <!--jdk编译版本-->
             <!--<plugin>-->
