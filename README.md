@@ -310,17 +310,12 @@ TestUser user = new TestUser();
 user.setTid(IDGenerator.id());
 ```
 
+### 1.9 整合freemarker
+获取上下文路径 `${springMacroRequestContext.contextPath}`
 
-
-
-
-
-
-
-
-
-
-
+### 2.0 整合 spring security 
+默认是开启 csrf 的 ，对于post请求需要带上csrf的token ，如: 
+`<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>`
 
 
 

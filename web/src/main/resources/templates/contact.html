@@ -1,0 +1,485 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900&amp;subset=latin-ext" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="plugin/slicknav/slicknav.min.css" rel="stylesheet">
+    <link href="../static/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+
+    <!-- Header -->
+    <header id="header" class="header clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-4 col-lg-3">
+                    <div class="site-branding">
+                        <div class="wrap">
+                            <h1 class="site-title"><a href="index.html" rel="home"><img src="images/logo.png" alt="Antarctica"></a></h1>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-8 col-lg-9">
+                    <div class="navigation-top clearfix">
+                        <div class="search-form-wrap">
+                            <div id="search-toggle" class="search-toggle"><i class="fa fa-search" aria-hidden="true"></i></div>
+                            <form action="#" class="header-search-form">
+                               <input type="text" name="s" id="s" value="" placeholder="Search">
+                               <input type="submit" id="search-submit" value="Go">
+                            </form>
+                        </div>
+                        <nav id="site-navigation" class="main-navigation">
+                            <div class="menu-primary-container">
+                                <ul class="menu-primary clearfix">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li><a href="services.html">Services</a></li>
+                                    <li><a href="portfolio.html">Portfolio</a></li>
+                                    <li><a href="blog.html">Blog</a></li>
+                                    <li><a href="contact.html">Contact</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="sub-header small">
+        <div class="bg-overlay"></div>
+        <div class="container">
+            <h1 class="title">contact us</h1>
+        </div>
+    </div>
+
+    <!-- Google Map -->
+    <div id="google-map"></div>
+
+    <!-- Container -->
+    <div class="container main-container contact-page">
+
+        <!-- Main Content -->
+        <main id="main" class="main">
+            <div class="row">
+                <div class="col-md-5">
+                    <h3 class="section-title">Get in touch</h3>
+                    <p class="section-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id felis consec fermentum lectus sit amet sollicitudin neque.</p>
+                    <ul class="list-unstyled contacts">
+                        <li>
+                            <span class="title">Address:</span>
+                            <div class="content">
+                                <address>
+                                    709 Davis Lane  Denver, CO 80216, Shingleton Road Three Rivers, MI 49093
+                                </address>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="title">Phone:</span>
+                            <div class="content">
+                                <p>+11 9195825883 - <span>Office</span></p>
+                                <p>+11 9195825883 - <span>Fax</span></p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="title">Email:</span>
+                            <div class="content ">
+                                <p><a href="mailto:info@antarctica.com">info@antarctica.com</a></p>
+                                <p><a href="mailto:hello@antarctica.com">hello@antarctica.com</a></p>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="title">Follow on:</span>
+                            <div class="content">
+                               <span class="follow-us">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-vimeo"></i></a>
+                                    <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-7">
+                    <h3 class="section-title">Feedback</h3>
+                    <form id="contact-form" class="contact-form" method="post" action="php/contact_form.php">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p><input type="text" name="name" placeholder="Name*" class="required" title="*Please provide your name"></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><input type="email" name="email" placeholder="Email*" class="required email" title="*Please provide your Email Address"></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><input type="text" name="phone" placeholder="Phone"></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p><input type="text" name="website" placeholder="Website"></p>
+                            </div>
+                            <div class="col-xs-12">
+                                <p><textarea name="message" placeholder="Message"></textarea></p>
+                            </div>
+                            <div class="col-xs-12">
+                                <input type="submit" class="submit-button" value="Send Message">
+                                <img id="progress-loader" src="images/ajax-loader.gif" alt="Sending....">
+                            </div>
+                            <div class="col-xs-12">
+                                <div class="status"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="call-to-action">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>Like what you see? Buy this theme now and try everything.</p>
+                </div>
+                <div class="col-md-4">
+                    <a class="btn" href="#">Buy Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="footer">
+        <div class="container">
+            <aside class="row footer-widgets">
+                <div class="widget-column col-sm-6 col-md-3">
+                    <section class="widget widget_text">
+                        <h2 class="widget-title">&nbsp;</h2>
+                        <div class="textwidget">
+                            <div class="footer-logo-widget">
+                                <a href="index.html"><img src="images/footer-logo.png" alt=""></a>
+                                <p>Integer fermentum trique velit a lacinia.</p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <div class="widget-column col-sm-6 col-md-3">
+                    <section class="widget widget_nav_menu">
+                        <h2 class="widget-title">Quick Links</h2>
+                        <ul>
+                            <li><a href="#">Speciality Services</a></li>
+                            <li><a href="#">Sredit Cars</a></li>
+                            <li><a href="#">Support Forums</a></li>
+                            <li><a href="#">Faqs</a></li>
+                            <li><a href="#">Terms and Conditions</a></li>
+                            <li><a href="#">Financial Planner</a></li>
+                            <li><a href="#">Tax Helper</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </section>
+                </div>
+
+                <div class="clearfix visible-sm"></div>
+
+                <div class="widget-column col-sm-6 col-md-3">
+                    <section class="widget widget_featured_posts">
+                        <h2 class="widget-title">Feature Blogs</h2>
+                        <ul>
+                            <li>
+                                <div class="post-thumb">
+                                    <a href="#"><img src="images/widget/f-1.jpg" alt="#"></a>
+                                </div>
+                                <div class="post-content">
+                                    <h3 class="post-title"><a href="#">Women Work in Office</a></h3>
+                                    <span class="post-date">18 Dec 2017</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="post-thumb">
+                                    <a href="#"><img src="images/widget/f-2.jpg" alt="#"></a>
+                                </div>
+                                <div class="post-content">
+                                    <h3 class="post-title"><a href="#">Women Work in Office</a></h3>
+                                    <span class="post-date">18 Dec 2017</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="post-thumb">
+                                    <a href="#"><img src="images/widget/f-3.jpg" alt="#"></a>
+                                </div>
+                                <div class="post-content">
+                                    <h3 class="post-title"><a href="#">Women Work in Office</a></h3>
+                                    <span class="post-date">18 Dec 2017</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+
+                <div class="widget-column col-sm-6 col-md-3">
+                    <section class="widget widget_twitter">
+                        <h2 class="widget-title">Latest Tweets</h2>
+                        <ul>
+                            <li>
+                                <p>
+                                    <a href="#">@Antarctica,</a> Lorem ipsum dolor Sit amet consectetur
+                                    <span class="tweet-time">2 hours ago</span>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <a href="#">@Antarctica,</a> Lorem ipsum dolor Sit amet consectetur
+                                    <span class="tweet-time">2 hours ago</span>
+                                </p>
+                            </li>
+                            <li>
+                                <p>
+                                    <a href="#">@Antarctica,</a> Lorem ipsum dolor Sit amet consectetur
+                                    <span class="tweet-time">2 hours ago</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </section>
+                </div>
+            </aside>
+        </div>
+
+        <div class="sub-footer text-center">
+            <div class="container">
+                <p>Copyright &copy; 2017.Company name All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- Required Plugins and Scripts -->
+<!---<script src="https://maps.googleapis.com/maps/api/js"></script>
+<script>
+    function initialize() {
+        var mapCanvas = document.getElementById('google-map'),
+            latlang = new google.maps.LatLng(40.7033127, -73.979681);
+
+        var options = {
+            center: latlang,
+            scrollwheel: false,
+            zoom: 12,
+            zoomControl: true,
+            zoomControlOptions: {
+                style: google.maps.ZoomControlStyle.SMALL
+            },
+            panControl: false,
+            mapTypeControl: true,
+            styles: [
+                {
+                    "featureType": "water",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#e9e9e9"
+                        },
+                        {
+                            "lightness": 17
+                        }
+                    ]
+                },
+                {
+                    "featureType": "landscape",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        },
+                        {
+                            "lightness": 20
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 17
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.highway",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 29
+                        },
+                        {
+                            "weight": 0.2
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.arterial",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 18
+                        }
+                    ]
+                },
+                {
+                    "featureType": "road.local",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 16
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f5f5f5"
+                        },
+                        {
+                            "lightness": 21
+                        }
+                    ]
+                },
+                {
+                    "featureType": "poi.park",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#dedede"
+                        },
+                        {
+                            "lightness": 21
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.stroke",
+                    "stylers": [
+                        {
+                            "visibility": "on"
+                        },
+                        {
+                            "color": "#ffffff"
+                        },
+                        {
+                            "lightness": 16
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.text.fill",
+                    "stylers": [
+                        {
+                            "saturation": 36
+                        },
+                        {
+                            "color": "#333333"
+                        },
+                        {
+                            "lightness": 40
+                        }
+                    ]
+                },
+                {
+                    "elementType": "labels.icon",
+                    "stylers": [
+                        {
+                            "visibility": "off"
+                        }
+                    ]
+                },
+                {
+                    "featureType": "transit",
+                    "elementType": "geometry",
+                    "stylers": [
+                        {
+                            "color": "#f2f2f2"
+                        },
+                        {
+                            "lightness": 19
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry.fill",
+                    "stylers": [
+                        {
+                            "color": "#fefefe"
+                        },
+                        {
+                            "lightness": 20
+                        }
+                    ]
+                },
+                {
+                    "featureType": "administrative",
+                    "elementType": "geometry.stroke",
+                    "stylers": [
+                        {
+                            "color": "#fefefe"
+                        },
+                        {
+                            "lightness": 17
+                        },
+                        {
+                            "weight": 1.2
+                        }
+                    ]
+                }
+            ]
+        };
+        var map = new google.maps.Map(mapCanvas, options);
+        var marker = new google.maps.Marker({
+            position: latlang,
+            map: map,
+            icon: 'images/marker.png',
+            animation:google.maps.Animation.BOUNCE
+        });
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>--->
+
+<!-- Required Plugins and Scripts -->
+<script src="../static/plugin/jquery-3.1.1.min.js"></script>
+<script src="../static/plugin/jquery-migrate.min.js"></script>
+<script src="plugin/bootstrap/bootstrap.min.js"></script>
+<script src="plugin/slicknav/jquery.slicknav.min.js"></script>
+<script src="../static/plugin/jquery.form.min.js"></script>
+<script src="../static/plugin/jquery.validate.min.js"></script>
+<script src="../static/js/common.js"></script>
+</body>
+</html>
