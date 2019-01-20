@@ -3,12 +3,14 @@ package cn.kspshare.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@EnableWebSecurity
+@EnableWebSecurity()
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     private MyUserDetailService myUserDetailsService;
 
@@ -33,9 +35,30 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
                 //.anyRequest().authenticated() //其它访问都拦截
                 .antMatchers("/user/**").hasRole("USER")
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/user")
+                    .formLogin()
+                        .loginPage("/login").defaultSuccessUrl("/user")
                 .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/login");
+                    .logout()
+                        .logoutUrl("/logout").logoutSuccessUrl("/login")
+
+                //登录记住我
+                .and()
+                    .rememberMe()
+                        .key("unique-and-secret")
+                        .rememberMeCookieName("remember-me-cookie-name")
+                        .tokenValiditySeconds(24 * 60 * 60);
+        /*
+            可添加过滤器
+            HttpSecurity 有三个常用方法来配置：
+            addFilterBefore(Filter filter, Class<? extends Filter> beforeFilter)
+                在 beforeFilter 之前添加 filter
+            addFilterAfter(Filter filter, Class<? extends Filter> afterFilter)
+                在 afterFilter 之后添加 filter
+            addFilterAt(Filter filter, Class<? extends Filter> atFilter)
+                在 atFilter 相同位置添加 filter， 此 filter 不覆盖 filter
+         */
+        //http.addFilterBefore(new BeforeLoginFilter(), UsernamePasswordAuthenticationFilter.class);
+
     }
 
 
@@ -71,5 +94,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         return new BCryptPasswordEncoder();
     }
 
+    //@Bean
+    //public AuthenticationManager getAuthenticationManager(AuthenticationManager auth){
+    //    return auth;
+    //}
 
 }

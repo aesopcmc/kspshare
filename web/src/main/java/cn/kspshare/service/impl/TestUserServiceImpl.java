@@ -6,14 +6,9 @@ import cn.kspshare.domain.TestUser;
 import cn.kspshare.dto.request.TestUserDto;
 import cn.kspshare.mapper.TestUserMapper;
 import cn.kspshare.service.TestUserService;
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
-import tk.mybatis.mapper.entity.Example;
-import tk.mybatis.mapper.weekend.WeekendSqls;
 
 import java.util.List;
 import java.util.Map;
@@ -43,10 +38,10 @@ public class TestUserServiceImpl implements TestUserService {
         //List<TestUser> userList = userMapper.selectByExample(exp);
 
         //方式二,推荐使用，这样，以后更改实体字段名称也容易发现位置
-        Example example = new Example.Builder(TestUser.class).andWhere(WeekendSqls.<TestUser>custom()
-                .andGreaterThan(TestUser::getAge, 20)
-                .andLessThan(TestUser::getAge, 40))
-                .build();
+        //Example example = new Example.Builder(TestUser.class).andWhere(WeekendSqls.<TestUser>custom()
+        //        .andGreaterThan(TestUser::getAge, 20)
+        //        .andLessThan(TestUser::getAge, 40))
+        //        .build();
         /*
         参考更多方式
         .select("countryname")
@@ -56,34 +51,39 @@ public class TestUserServiceImpl implements TestUserService {
         .build();
 
          */
-        return userMapper.selectByExample(example);
+        //return userMapper.selectByExample(example);
+        return null;
     }
 
     @Override
     public Object listByPage(Integer pageNum, Integer pageSize) {
-        PageHelper.startPage(pageNum, pageSize);
-        List<TestUser> userList = userMapper.selectAll();
-        PageInfo pageInfo = new PageInfo(userList);
-        return pageInfo;
+        //PageHelper.startPage(pageNum, pageSize);
+        //List<TestUser> userList = userMapper.selectAll();
+        //PageInfo pageInfo = new PageInfo(userList);
+        //return pageInfo;
+
+        return null;
 
     }
 
     @Override
     public List<TestUser> findByName(String userName) {
-        Example example = new Example(TestUser.class);
+        //Example example = new Example(TestUser.class);
+        //
+        ////example.selectProperties("tid", "userName","age");//设置查询的列
+        //
+        //Example.Criteria criteria = example.createCriteria();
+        //if(!StringUtils.isEmpty(userName)){
+        //    //模糊查询
+        //    criteria.andLike("userName", "%"+userName+"%");
+        //}
+        ////排序
+        //example.orderBy("age").desc().orderBy("tid").asc();
+        //
+        //List<TestUser> testUsers = userMapper.selectByExample(example);
+        //return testUsers;
 
-        //example.selectProperties("tid", "userName","age");//设置查询的列
-
-        Example.Criteria criteria = example.createCriteria();
-        if(!StringUtils.isEmpty(userName)){
-            //模糊查询
-            criteria.andLike("userName", "%"+userName+"%");
-        }
-        //排序
-        example.orderBy("age").desc().orderBy("tid").asc();
-
-        List<TestUser> testUsers = userMapper.selectByExample(example);
-        return testUsers;
+        return null;
     }
 
     @Override

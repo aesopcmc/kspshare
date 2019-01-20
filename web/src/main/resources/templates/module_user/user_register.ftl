@@ -39,34 +39,70 @@
                         <div class="row">
 							<div class="input-line">
 								<div class="form-group">
-									<input type="text" name="username" id="first-name" placeholder="你的账号名" required="required">
+									<input type="text" name="username" id="first-name" value="${(user.username)!''}" placeholder="账号名称" required="required">
 									<i class="fa fa-user"></i>
 								</div>
 								<div class="formMsg">
-									<i class="tri"></i>
-									<span class="message">而后弄死你</span>
+									<#if errors??>
+										<#list errors as err>
+											<#if err.field?? && err.field=="username">
+												<i class="tri"></i>
+												<span class="message">${err.defaultMessage}</span>
+											</#if>
+										</#list>
+									</#if>
 								</div>
 							</div>
 							<div class="input-line">
 								<div class="form-group">
-									<input type="email" name="email" id="email" placeholder="邮箱" required="required">
+									<input type="email" name="email" id="email" value="${(user.email)!''}" placeholder="邮箱" required="required">
 									<i class="fa fa-envelope-o"></i>
 								</div>
-								<div class="formMsg">
-									<i class="fa fa-check-circle successIcon"></i>
-								</div>
+                                <div class="formMsg">
+									<#if errors??>
+										<#list errors as err>
+											<#if err.field?? && err.field=="email">
+												<i class="tri"></i>
+												<span class="message">${err.defaultMessage}</span>
+											</#if>
+										</#list>
+									</#if>
+                                </div>
+								<#--<div class="formMsg">-->
+									<#--<i class="fa fa-check-circle successIcon"></i>-->
+								<#--</div>-->
 							</div>
 							<div class="input-line">
 								<div class="form-group">
-									<input type="password" name="password" id="password" placeholder="密码" required="required">
+									<input type="password" name="password" id="password" value="${(user.password)!''}" placeholder="密码" required="required">
 									<i class="fa fa-lock"></i>
 								</div>
+                                <div class="formMsg">
+									<#if errors??>
+										<#list errors as err>
+											<#if err.field?? && err.field=="password">
+												<i class="tri"></i>
+												<span class="message">${err.defaultMessage}</span>
+											</#if>
+										</#list>
+									</#if>
+                                </div>
 							</div>
 							<div class="input-line">
 								<div class="form-group">
-									<input type="password" name="password2" id="password2" placeholder="再次输入密码" required="required">
+									<input type="password" name="matchingPassword" id="matchingPassword" value="${(user.matchingPassword)!''}" placeholder="再次输入密码" required="required">
 									<i class="fa fa-lock"></i>
 								</div>
+                                <div class="formMsg">
+									<#if errors??>
+										<#list errors as err>
+											<#if !err.field??>
+												<i class="tri"></i>
+												<span class="message">${err.defaultMessage}</span>
+											</#if>
+										</#list>
+									</#if>
+                                </div>
 							</div>
                             <div style="color:#f75544">
 								<#if RequestParameters['error']??>

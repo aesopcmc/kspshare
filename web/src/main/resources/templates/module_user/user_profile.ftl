@@ -22,6 +22,7 @@
 	<link href="${ctx.contextPath}/css/main.css" rel="stylesheet">
 	<link href="${ctx.contextPath}/css/forum.css" rel="stylesheet">
 
+	<#--jq需要放在顶部-->
     <script src="${ctx.contextPath}/plugin/jquery-3.1.1.min.js"></script>
 </head>
 

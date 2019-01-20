@@ -449,7 +449,7 @@
 /*用户模块*/
 
 .profile-head-panel {
-	background: #5CB85C url(../../templates/images/profile_bg.png) no-repeat ;
+	background: #5CB85C url(../images/profile_bg.png) no-repeat ;
 	height: 280px;
 	position: relative;
 }

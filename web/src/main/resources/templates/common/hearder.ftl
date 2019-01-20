@@ -101,7 +101,7 @@
                             <li style="overflow: visible">
                                 <a href="" class="top-head"><img src="${ctx.contextPath}/images/headx-default.png" alt="" width="30" height="30"></a>
                                 <div class="top-username black noselect" unselectable="on">
-                                    <apan>箭镞大师</apan>
+                                    <apan>${nickname}</apan>
                                     <i class="fa fa-caret-down"></i>
                                 </div>
                                 <!--弹出层-->

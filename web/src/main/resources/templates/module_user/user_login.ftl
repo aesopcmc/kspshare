@@ -58,6 +58,12 @@
 									<input type="submit" value="登 录" id="subscribe-submit" class="btn-submit">
 								</div>
 							</div>
+							<div class="input-line">
+								<div class="form-group">
+                                    <input type="checkbox" name="remember-me" id="remember-me" />自动登录
+								</div>
+							</div>
+
 						</div>
 					</form>
 					<p><a href="" class="now-regist">忘记密码</a> | <a href="${ctx.contextPath}/register" class="now-regist">立即注册</a></p>

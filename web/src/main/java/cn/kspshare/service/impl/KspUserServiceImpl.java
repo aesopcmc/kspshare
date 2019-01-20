@@ -3,18 +3,19 @@ package cn.kspshare.service.impl;
 import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.constant.BaseConstant;
 import cn.kspshare.domain.KspUser;
+import cn.kspshare.dto.request.KspUserDto;
+import cn.kspshare.mapper.KspUserDynamicSqlSupport;
 import cn.kspshare.mapper.KspUserMapper;
-import cn.kspshare.selectUtil.SelectBuilder;
 import cn.kspshare.service.KspUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
-import tk.mybatis.mapper.entity.Example;
-import tk.mybatis.mapper.weekend.WeekendSqls;
 
 import java.util.List;
+
+import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 
 @Service
 public class KspUserServiceImpl implements KspUserService {
@@ -25,29 +26,40 @@ public class KspUserServiceImpl implements KspUserService {
 
     @Override
     public KspUser findByUserName(String username) {
-        WeekendSqls<KspUser> custom = SelectBuilder.getCustom();
-        custom.andEqualTo(KspUser::getUsername, username);
-        Example example = SelectBuilder.getExample(custom, KspUser.class);
-        List<KspUser> kspUsers = userMapper.selectByExample(example);
-        return CollectionUtils.isEmpty(kspUsers) ? null : kspUsers.get(0);
+        List<KspUser> list = userMapper.selectByExample().where(KspUserDynamicSqlSupport.username, isEqualTo(username)).build().execute();
+        return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }
 
     @Override
-    public boolean doRegister(KspUser kspUser) {
-        if(StringUtils.isEmpty(kspUser.getUsername()) || StringUtils.isEmpty(kspUser.getPassword())){
-            return false;
-        }
-        if(this.findByUserName(kspUser.getUsername())!=null){
-            return false;
-        }
-        //使用spring security密码加密
-        String password = new BCryptPasswordEncoder().encode(kspUser.getPassword());
-        kspUser.setPassword(password);
+    public KspUser findByEmail(String email) {
+        List<KspUser> list = userMapper.selectByExample().where(KspUserDynamicSqlSupport.email, isEqualTo(email)).build().execute();
+        return CollectionUtils.isEmpty(list) ? null : list.get(0);
+    }
+
+    @Override
+    public KspUser findByUserNameOrEmail(String nameOrEmail) {
+        List<KspUser> list = userMapper.selectByExample()
+                .where(KspUserDynamicSqlSupport.username, isEqualTo(nameOrEmail))
+                .or(KspUserDynamicSqlSupport.email, isEqualTo(nameOrEmail))
+                .build()
+                .execute();
+        return CollectionUtils.isEmpty(list) ? null : list.get(0);
+    }
+
+    @Override
+    @Transactional
+    public boolean doRegister(KspUserDto dto) {
+        KspUser kspUser = new KspUser();
+        kspUser.setUsername(dto.getUsername());
         kspUser.setOid(IDGenerator.id());
-        kspUser.setNickname(kspUser.getUsername());
+        //使用spring security密码加密
+        String password = new BCryptPasswordEncoder().encode(dto.getPassword());
+        kspUser.setPassword(password);
+        kspUser.setNickname(dto.getUsername());
+        kspUser.setEmail(dto.getEmail());
         kspUser.setRoles(baseConstant.ROLE_USER);
         int i = userMapper.insertSelective(kspUser);
-        return i==1;
+        return i>=1;
     }
 
 }

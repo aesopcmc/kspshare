@@ -4,7 +4,6 @@ import cn.kspshare.domain.KspUser;
 import cn.kspshare.service.KspUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,12 +23,18 @@ public class MyUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        KspUser userEntity = userService.findByUserName(username);
+        KspUser userEntity = userService.findByUserNameOrEmail(username);
         if (userEntity == null){
             throw new UsernameNotFoundException("用户不存在！");
         }
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = createAuthorities(userEntity.getRoles());
-        return new User(userEntity.getUsername(), userEntity.getPassword(), simpleGrantedAuthorities);
+
+        UserInfo userInfo = new UserInfo(userEntity.getUsername(), userEntity.getPassword(), simpleGrantedAuthorities);
+        userInfo.setUserId(userEntity.getOid());
+        userInfo.setNickname(userEntity.getNickname());
+        return userInfo;
+
+        //return new User(userEntity.getUsername(), userEntity.getPassword(), simpleGrantedAuthorities);
     }
 
     /**
