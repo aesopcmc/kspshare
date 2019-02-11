@@ -1,5 +1,5 @@
 .forum-head-bg {
-	background: url(../../templates/images/fourm-bg.jpg);
+	background: url(../../images/fourm-bg.jpg);
 	filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";
 	-moz-background-size: 100% 100%;
 	background-size: 100% 100%;
@@ -423,16 +423,7 @@
 	left: -14px;
 	font-size: 18px;
 }
-.top-head{
-	float: left;
-	padding: 0 !important;
-	margin-top: 7px;
-	display: inline-block !important;
-}
-.top-line{
-	height: 32px;
-	margin-top: 6px;
-}
+
 
 .regist{
 	color: #5CB85C;
@@ -452,6 +443,7 @@
 	background: #5CB85C url(../images/profile_bg.png) no-repeat ;
 	height: 280px;
 	position: relative;
+	margin-top: 16px;
 }
 .info-black{
 	height: 70px;
@@ -497,9 +489,9 @@
 	font-size: 16px;
 }
 .user-btn-group{
-	position: relative;
-	left: 182px;
-	bottom: 60px;
+	position: absolute;
+	left: 197px;
+	bottom: 98px;
 }
 .user-btn-group .user-name{
 	color: #fff;

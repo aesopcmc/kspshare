@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class BaseConstant {
     public String ROLE_USER;
     public String ROLE_ADMIN;
+    public String siteName;
 
     public String getROLE_USER() {
         return ROLE_USER;
@@ -23,5 +24,13 @@ public class BaseConstant {
 
     public void setROLE_ADMIN(String ROLE_ADMIN) {
         this.ROLE_ADMIN = ROLE_ADMIN;
+    }
+
+    public String getSiteName() {
+        return siteName;
+    }
+
+    public void setSiteName(String siteName) {
+        this.siteName = siteName;
     }
 }

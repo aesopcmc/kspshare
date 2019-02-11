@@ -147,7 +147,6 @@
 	<script src="${ctx.contextPath}/plugin/flexslider/jquery.flexslider-min.js"></script>
 	<script src="${ctx.contextPath}/plugin/slicknav/jquery.slicknav.min.js"></script>
 	<script src="${ctx.contextPath}/js/common.js"></script>
-	<script src="${ctx.contextPath}/js/nav.js"></script>
 </body>
 
 </html>

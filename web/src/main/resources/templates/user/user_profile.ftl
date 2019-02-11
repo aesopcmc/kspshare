@@ -24,18 +24,16 @@
 
 	<#--jq需要放在顶部-->
     <script src="${ctx.contextPath}/plugin/jquery-3.1.1.min.js"></script>
+    <script src="${ctx.contextPath}/plugin/jquery-migrate.min.js"></script>
+
+
 </head>
 
 <body>
-
+	<!-- Header -->
+	<#include "/common/hearder.ftl">
 	<!-- Page Wrapper -->
 	<div class="page-wrapper">
-
-		<!-- Header -->
-		<#include "/common/hearder.ftl">
-		<!-- Header end -->
-
-
 		<div class="services-page">
 			<!-- Main Content -->
 			<main id="main" class="main container">
@@ -46,7 +44,7 @@
 							<a href="" class="user-head"><img src="${ctx.contextPath}/images/headx-profile.png" width="120px" height="120px"></a>
 							<a href="" class="fa fa-photo head-upload"></a>
 							<div class="user-btn-group">
-								<span class="user-name">${username}</span>
+								<span class="user-name">名字</span>
 								<a href="" class="fa fa-plus follow"> 关注</a>
 								<!--<a href="" class="fa fa-check following"> 已关注</a>-->
 							</div>
@@ -129,13 +127,12 @@
 			</main>
 		</div>
 
-		<!-- Footer -->
-		<#include "/common/footer.ftl">
-
 	</div>
 
+    <!-- Footer -->
+	<#include "/common/footer.ftl">
+
 	<!-- Required Plugins and Scripts -->
-	<script src="${ctx.contextPath}/plugin/jquery-migrate.min.js"></script>
 	<script src="${ctx.contextPath}/plugin/bootstrap/bootstrap.min.js"></script>
 	<script src="${ctx.contextPath}/plugin/flexslider/jquery.flexslider-min.js"></script>
 	<script src="${ctx.contextPath}/plugin/slicknav/jquery.slicknav.min.js"></script>

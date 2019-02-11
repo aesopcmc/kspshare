@@ -1,3 +1,4 @@
+<#assign security=JspTaglibs["http://www.springframework.org/security/tags"] />
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,121 +24,15 @@
 	<link href="${ctx.contextPath}/css/main.css" rel="stylesheet">
 	<link href="${ctx.contextPath}/css/forum.css" rel="stylesheet">
 
-
+    <script src="${ctx.contextPath}/plugin/jquery-3.1.1.min.js"></script>
+    <script src="${ctx.contextPath}/plugin/jquery-migrate.min.js"></script>
 </head>
 
 <body>
-
+	<!-- Header -->
+	<#include "/common/hearder.ftl">
 	<!-- Page Wrapper -->
 	<div class="page-wrapper">
-
-		<!-- Header -->
-		<header id="header" class="header header-one clearfix">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-6 col-sm-4 col-lg-3">
-						<div class="site-branding">
-							<div class="wrap">
-								<h1 class="site-title">
-									<a href="index.html" rel="home">
-										<img src="${ctx.contextPath}/images/logo1s.png" alt="Antarctica">
-									</a>
-								</h1>
-							</div>
-						</div>
-					</div>
-					<div class="col-xs-6 col-sm-8 col-lg-9">
-						<div class="navigation-top clearfix">
-							<nav id="site-navigation" class="main-navigation nv1">
-								<ul class="menu-primary clearfix">
-									<li>
-										<a href="index.html">首页</a>
-									</li>
-									<li>
-										<a href="forum.html">论坛</a>
-									</li>
-									<li>
-										<a href="portfolio.html">MOD搬运</a>
-									</li>
-									<!-- <li><a href="blog.html">Blog</a></li> -->
-									<li>
-										<a href="about-us.html">关于我们</a>
-									</li>
-									<li>
-										<a href="contact.html">反馈</a>
-									</li>
-								</ul>
-							</nav>
-
-
-							<nav class="main-navigation nv2">
-								<ul class="menu-primary clearfix">
-									<li class="login-li">
-										<button type="button" class="login-btn btn btn-success btn-sm">登陆</button>
-									</li>
-									<li>
-										<a href="module_user/user_regist.html" class="theme-color regist">注册</a>
-									</li>
-									<li>
-										<div class="top-line line-r"></div>
-									</li>
-									<li>
-										<form action="#" class="header-search-form">
-											<input type="text" name="s" id="s" value="" class="search-input" placeholder="Search">
-										</form>
-									</li>
-									<li>
-										<a href="">发帖</a>
-									</li>
-									<li style="overflow: visible">
-										<!--消息提醒-->
-										<div class="top-message black fa fa-bell-o noselect" unselectable="on">
-										<span class="stamp">50</span>
-										</div>
-										<!--弹出层-->
-										<section class="message-panel" style="display: none">
-										<div class="triangle1"></div>
-										<div class="title">新消息</div>
-										<p>
-										<i class="fa fa-circle news"></i>
-										<span class="message-li1">坎星人 赞了你</span>
-										<span class="message-li2">建议发展讨论</span>
-										</p>
-										<p>
-										<i class="fa fa-circle news"></i>
-										<span class="message-li1">多巴胺安抚 回复了你：打开mod文件...</span>
-										<span class="message-li2">在ksp中如何安装Mod</span>
-										</p>
-										<a href="" class="bottom">查看更多→</a>
-										</section>
-									</li>
-
-									<li style="overflow: visible">
-										<a href="module_user/user_profile.html" class="top-head"><img src="images/headx-default.png" alt="" width="30" height="30"></a>
-										<div class="top-username black noselect" unselectable="on">
-											<apan>箭镞大师</apan>
-											<i class="fa fa-caret-down"></i>
-										</div>
-										<!--弹出层-->
-										<section class="user-panel" style="display: none">
-										<div class="triangle2"></div>
-										<p>哈哈打</p>
-										<p>纷纷嘎</p>
-										<p>牛逼啦</p>
-										<p>朝野</p>
-										<p class="split-line"></p>
-										<p><a href="/logout">退出</a></p>
-										</section>
-									</li>
-								</ul>
-							</nav>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</header>
-		<!-- Header end -->
 
  <!-- style="background-image: url('images/services-sub-header-bg.jpg');" -->
 		<div class="sub-header forum-head-bg">
@@ -173,7 +68,7 @@
 									<a href=""><img class="pub-head" src="${ctx.contextPath}/images/headx.jpg"	width="50px" height="50px" alt=""></a>
 								</div>	
 								<div class="col-md-6 module-item" style="width: auto;">
-									<div class="digest1"><a href="module_forum/topic_list.html"> 建议与发展讨论</a></div>
+									<div class="digest1"><a href="forum/topic_list.html"> 建议与发展讨论</a></div>
 									<div class="digest2">关注并讨论开发。建议和发展讨论就在这里。</div>
 								</div>
 								<div class="col-md-3 module-item person-info">
@@ -199,7 +94,7 @@
 									<a href=""><img class="pub-head" src="${ctx.contextPath}/images/headx.jpg"	width="50px" height="50px" alt=""></a>
 								</div>
 								<div class="col-md-6 module-item" style="width: auto;">
-									<div class="digest1"><a href="module_forum/topic_list.html"> 建议与发展讨论</a></div>
+									<div class="digest1"><a href="forum/topic_list.html"> 建议与发展讨论</a></div>
 									<div class="digest2">关注并讨论开发。建议和发展讨论就在这里。</div>
 								</div>
 								<div class="col-md-3 module-item person-info">
@@ -332,150 +227,16 @@
 		</div>
 
 		<!-- Call to Action -->
-
-		<!-- Footer -->
-		<footer id="footer" class="footer">
-			<!--<div class="container">
-				<aside class="row footer-widgets">
-					<div class="widget-column col-sm-6 col-md-3">
-						<section class="widget widget_text">
-							<h2 class="widget-title">&nbsp;</h2>
-							<div class="textwidget">
-								<div class="footer-logo-widget">
-									<a href="index.html">
-										<img src="images/footer-logo.png" alt="">
-									</a>
-									<p>Integer fermentum trique velit a lacinia.</p>
-								</div>
-							</div>
-						</section>
-					</div>
-
-					<div class="widget-column col-sm-6 col-md-3">
-						<section class="widget widget_nav_menu">
-							<h2 class="widget-title">Quick Links</h2>
-							<ul>
-								<li>
-									<a href="#">Speciality Services</a>
-								</li>
-								<li>
-									<a href="#">Sredit Cars</a>
-								</li>
-								<li>
-									<a href="#">Support Forums</a>
-								</li>
-								<li>
-									<a href="#">Faqs</a>
-								</li>
-								<li>
-									<a href="#">Terms and Conditions</a>
-								</li>
-								<li>
-									<a href="#">Financial Planner</a>
-								</li>
-								<li>
-									<a href="#">Tax Helper</a>
-								</li>
-								<li>
-									<a href="#">Contact Us</a>
-								</li>
-							</ul>
-						</section>
-					</div>
-
-					<div class="clearfix visible-sm"></div>
-
-					<div class="widget-column col-sm-6 col-md-3">
-						<section class="widget widget_featured_posts">
-							<h2 class="widget-title">Feature Blogs</h2>
-							<ul>
-								<li>
-									<div class="post-thumb">
-										<a href="#">
-											<img src="images/widget/f-1.jpg" alt="#">
-										</a>
-									</div>
-									<div class="post-content">
-										<h3 class="post-title">
-											<a href="#">Women Work in Office</a>
-										</h3>
-										<span class="post-date">18 Dec 2017</span>
-									</div>
-								</li>
-								<li>
-									<div class="post-thumb">
-										<a href="#">
-											<img src="images/widget/f-2.jpg" alt="#">
-										</a>
-									</div>
-									<div class="post-content">
-										<h3 class="post-title">
-											<a href="#">Women Work in Office</a>
-										</h3>
-										<span class="post-date">18 Dec 2017</span>
-									</div>
-								</li>
-								<li>
-									<div class="post-thumb">
-										<a href="#">
-											<img src="images/widget/f-3.jpg" alt="#">
-										</a>
-									</div>
-									<div class="post-content">
-										<h3 class="post-title">
-											<a href="#">Women Work in Office</a>
-										</h3>
-										<span class="post-date">18 Dec 2017</span>
-									</div>
-								</li>
-							</ul>
-						</section>
-					</div>
-
-					<div class="widget-column col-sm-6 col-md-3">
-						<section class="widget widget_twitter">
-							<h2 class="widget-title">Latest Tweets</h2>
-							<ul>
-								<li>
-									<p>
-										<a href="#">@Antarctica,</a> Lorem ipsum dolor Sit amet consectetur
-										<span class="tweet-time">2 hours ago</span>
-									</p>
-								</li>
-								<li>
-									<p>
-										<a href="#">@Antarctica,</a> Lorem ipsum dolor Sit amet consectetur
-										<span class="tweet-time">2 hours ago</span>
-									</p>
-								</li>
-								<li>
-									<p>
-										<a href="#">@Antarctica,</a> Lorem ipsum dolor Sit amet consectetur
-										<span class="tweet-time">2 hours ago</span>
-									</p>
-								</li>
-							</ul>
-						</section>
-					</div>
-				</aside>
-			</div>
--->
-			<div class="sub-footer text-center">
-				<div class="container">
-					<p>Copyright &copy; 2017.aesop All rights reserved.</p>
-				</div>
-			</div>
-		</footer>
 	</div>
 
-	<!-- Required Plugins and Scripts -->
-	<script src="${ctx.contextPath}/plugin/jquery-3.1.1.min.js"></script>
-	<script src="${ctx.contextPath}/plugin/jquery-migrate.min.js"></script>
+    <!-- Footer -->
+	<#include "/common/footer.ftl">
+
+    <!-- Required Plugins and Scripts -->
 	<script src="${ctx.contextPath}/plugin/bootstrap/bootstrap.min.js"></script>
 	<script src="${ctx.contextPath}/plugin/flexslider/jquery.flexslider-min.js"></script>
 	<script src="${ctx.contextPath}/plugin/slicknav/jquery.slicknav.min.js"></script>
 	<script src="${ctx.contextPath}/js/common.js"></script>
-	<script src="${ctx.contextPath}/js/nav.js"></script>
 </body>
 
 </html>

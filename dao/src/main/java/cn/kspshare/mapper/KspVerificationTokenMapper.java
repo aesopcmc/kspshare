@@ -55,7 +55,8 @@ public interface KspVerificationTokenMapper {
         @Result(column="oid", property="oid", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT),
         @Result(column="token", property="token", jdbcType=JdbcType.VARCHAR),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="expiry_date", property="expiryDate", jdbcType=JdbcType.TIMESTAMP)
     })
     List<KspVerificationToken> selectMany(SelectStatementProvider selectStatement);
 
@@ -90,6 +91,7 @@ public interface KspVerificationTokenMapper {
                 .map(userId).toProperty("userId")
                 .map(token).toProperty("token")
                 .map(createTime).toProperty("createTime")
+                .map(expiryDate).toProperty("expiryDate")
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
@@ -102,25 +104,26 @@ public interface KspVerificationTokenMapper {
                 .map(userId).toPropertyWhenPresent("userId", record::getUserId)
                 .map(token).toPropertyWhenPresent("token", record::getToken)
                 .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
+                .map(expiryDate).toPropertyWhenPresent("expiryDate", record::getExpiryDate)
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_verification_token")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspVerificationToken>>> selectByExample() {
-        return SelectDSL.selectWithMapper(this::selectMany, oid, userId, token, createTime)
+        return SelectDSL.selectWithMapper(this::selectMany, oid, userId, token, createTime, expiryDate)
                 .from(kspVerificationToken);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_verification_token")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspVerificationToken>>> selectDistinctByExample() {
-        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, userId, token, createTime)
+        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, userId, token, createTime, expiryDate)
                 .from(kspVerificationToken);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_verification_token")
     default KspVerificationToken selectByPrimaryKey(Long oid_) {
-        return SelectDSL.selectWithMapper(this::selectOne, oid, userId, token, createTime)
+        return SelectDSL.selectWithMapper(this::selectOne, oid, userId, token, createTime, expiryDate)
                 .from(kspVerificationToken)
                 .where(oid, isEqualTo(oid_))
                 .build()
@@ -133,7 +136,8 @@ public interface KspVerificationTokenMapper {
                 .set(oid).equalTo(record::getOid)
                 .set(userId).equalTo(record::getUserId)
                 .set(token).equalTo(record::getToken)
-                .set(createTime).equalTo(record::getCreateTime);
+                .set(createTime).equalTo(record::getCreateTime)
+                .set(expiryDate).equalTo(record::getExpiryDate);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_verification_token")
@@ -142,7 +146,8 @@ public interface KspVerificationTokenMapper {
                 .set(oid).equalToWhenPresent(record::getOid)
                 .set(userId).equalToWhenPresent(record::getUserId)
                 .set(token).equalToWhenPresent(record::getToken)
-                .set(createTime).equalToWhenPresent(record::getCreateTime);
+                .set(createTime).equalToWhenPresent(record::getCreateTime)
+                .set(expiryDate).equalToWhenPresent(record::getExpiryDate);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_verification_token")
@@ -151,6 +156,7 @@ public interface KspVerificationTokenMapper {
                 .set(userId).equalTo(record::getUserId)
                 .set(token).equalTo(record::getToken)
                 .set(createTime).equalTo(record::getCreateTime)
+                .set(expiryDate).equalTo(record::getExpiryDate)
                 .where(oid, isEqualTo(record::getOid))
                 .build()
                 .execute();
@@ -162,6 +168,7 @@ public interface KspVerificationTokenMapper {
                 .set(userId).equalToWhenPresent(record::getUserId)
                 .set(token).equalToWhenPresent(record::getToken)
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
+                .set(expiryDate).equalToWhenPresent(record::getExpiryDate)
                 .where(oid, isEqualTo(record::getOid))
                 .build()
                 .execute();

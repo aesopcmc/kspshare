@@ -1,7 +1,7 @@
 package cn.kspshare.domain;
 
-import java.time.LocalDateTime;
 import javax.annotation.Generated;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -30,8 +30,19 @@ public class KspVerificationToken {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.token")
     private String token;
 
+    /**
+     * Database Column Remarks:
+     *   创建时间
+     */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.create_time")
     private LocalDateTime createTime;
+
+    /**
+     * Database Column Remarks:
+     *   失效时间
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.expiry_date")
+    private LocalDateTime expiryDate;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.oid")
     public Long getOid() {
@@ -71,5 +82,15 @@ public class KspVerificationToken {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.create_time")
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.expiry_date")
+    public LocalDateTime getExpiryDate() {
+        return expiryDate;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.expiry_date")
+    public void setExpiryDate(LocalDateTime expiryDate) {
+        this.expiryDate = expiryDate;
     }
 }

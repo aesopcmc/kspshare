@@ -1,10 +1,11 @@
 package cn.kspshare.mapper;
 
-import java.sql.JDBCType;
-import java.time.LocalDateTime;
-import javax.annotation.Generated;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
+
+import javax.annotation.Generated;
+import java.sql.JDBCType;
+import java.time.LocalDateTime;
 
 public final class KspVerificationTokenDynamicSqlSupport {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_verification_token")
@@ -31,8 +32,19 @@ public final class KspVerificationTokenDynamicSqlSupport {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.token")
     public static final SqlColumn<String> token = kspVerificationToken.token;
 
+    /**
+     * Database Column Remarks:
+     *   创建时间
+     */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.create_time")
     public static final SqlColumn<LocalDateTime> createTime = kspVerificationToken.createTime;
+
+    /**
+     * Database Column Remarks:
+     *   失效时间
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.expiry_date")
+    public static final SqlColumn<LocalDateTime> expiryDate = kspVerificationToken.expiryDate;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_verification_token")
     public static final class KspVerificationToken extends SqlTable {
@@ -43,6 +55,8 @@ public final class KspVerificationTokenDynamicSqlSupport {
         public final SqlColumn<String> token = column("token", JDBCType.VARCHAR);
 
         public final SqlColumn<LocalDateTime> createTime = column("create_time", JDBCType.TIMESTAMP);
+
+        public final SqlColumn<LocalDateTime> expiryDate = column("expiry_date", JDBCType.TIMESTAMP);
 
         public KspVerificationToken() {
             super("ksp_verification_token");

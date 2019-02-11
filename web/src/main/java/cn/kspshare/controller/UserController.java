@@ -1,5 +1,6 @@
 package cn.kspshare.controller;
 
+import cn.kspshare.common.JsonUtils;
 import cn.kspshare.config.UserInfo;
 import cn.kspshare.service.KspUserService;
 import io.swagger.annotations.Api;
@@ -10,6 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @Api(description = "用户管理")
@@ -25,10 +29,10 @@ public class UserController {
      */
     @GetMapping("/user")
     public String user(@AuthenticationPrincipal UserInfo userInfo, Model model) {
-        model.addAttribute("username", userInfo.getUsername());
-        model.addAttribute("nickname", userInfo.getNickname());
-        System.out.println("获取到userInfo 扩展信息（userId)："+userInfo.getUserId());
-        System.out.println("获取到userInfo 扩展信息（nickname)："+userInfo.getNickname());
+        Map<String, Object> mapInfo = new HashMap<>();
+        mapInfo.put("username", userInfo.getUsername());
+        mapInfo.put("nickname", userInfo.getNickname());
+        model.addAttribute("userInfo", JsonUtils.encodeObject(mapInfo));
         return "user_profile";
     }
 

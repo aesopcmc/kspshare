@@ -46,7 +46,7 @@
                             <div class="menu-primary-container">
                                 <ul class="menu-primary clearfix">
                                     <li><a href="index.html"> 首页</a></li>
-                                    <li><a href="forum.html">论坛</a></li>
+                                    <li><a href="/forum">论坛</a></li>
                                     <li><a href="portfolio.html">MOD搬运</a></li>
                                     <li><a href="about-us.html">关于我们</a></li>
                                     <li><a href="contact.html">反馈</a></li>
@@ -624,15 +624,9 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer id="footer" class="footer">
-        <div class="sub-footer text-center">
-            <div class="container">
-                <p>Copyright &copy; 2017.aesop All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
 </div>
+	<#include "/common/footer.ftl">
+
 
 <!-- Required Plugins and Scripts -->
 <script src="${ctx.contextPath}/plugin/jquery-3.1.1.min.js"></script>

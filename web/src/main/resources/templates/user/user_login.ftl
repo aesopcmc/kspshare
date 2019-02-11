@@ -28,7 +28,7 @@
 	<!-- Page Wrapper -->
 	<div class="page-wrapper">
 		<section class="subscribe sections section-padding login-bg">
-			<a href="../index.html" class="home-logo"><img src="${ctx.contextPath}/images/logo1.png" alt="Antarctica"></a>
+			<a href="index" class="home-logo"><img src="${ctx.contextPath}/images/logo1.png" alt="Antarctica"></a>
 
 			<div class="container">
 				<div class="input-bg">
@@ -90,7 +90,6 @@
 	<script src="${ctx.contextPath}/plugin/flexslider/jquery.flexslider-min.js"></script>
 	<script src="${ctx.contextPath}/plugin/slicknav/jquery.slicknav.min.js"></script>
 	<script src="${ctx.contextPath}/js/common.js"></script>
-	<script src="${ctx.contextPath}/js/nav.js"></script>
 </body>
 
 </html>

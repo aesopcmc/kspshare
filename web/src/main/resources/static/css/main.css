@@ -54,6 +54,10 @@ body {
 	background: #f7f7f7;
 	/*background:url(../images/web-bg.jpg) no-repeat;*/
 	/*background-size:100% 100%;*/
+	display: flex;
+	display: -webkit-flex; /* Safari */
+	min-height: 100vh;
+	flex-direction: column;
 }
 
 article,
@@ -4427,10 +4431,6 @@ textarea {
 
 /* 16 Footer */
 
-.footer {
-	background-color: #181819;
-}
-
 .footer-widgets {
 	padding-top: 50px;
 	color: #999;
@@ -4548,6 +4548,9 @@ textarea {
 
 .header-one {
 	/*background-color: #fff;*/
+    background: url(../images/nav/nav-bg.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
 }
 
 .header-two,
@@ -4875,6 +4878,7 @@ textarea {
 
 .menu-primary>li>a {
 	padding: 12px 15px 10px;
+	color:#fff;
 }
 
 .menu-primary li {
@@ -8123,7 +8127,9 @@ textarea {
 	transition: transform .3s ease;
 	transition: transform .3s ease, -webkit-transform .3s ease;
 }
-
+.page-wrapper{
+	flex: 1;
+}
 .page-wrapper.show-slide-header .page-content {
 	height: 100%;
 }
@@ -9542,6 +9548,7 @@ textarea {
 	margin-top: 12px;
 	margin-left: 4px;
 	cursor: pointer;
+	color:#fff;
 }
 .user-panel{
 	width: 180px;
@@ -9641,10 +9648,44 @@ textarea {
 	margin-top: 14px;
 	font-size: 18px !important;
 	cursor: pointer;
+	color:#fff;
 }
 .search-input{
 	border-radius: 5px;
 	padding: 4px 7px !important;
 	width: 200px !important;
 	margin-top: 6px;
+}
+.nav-logo{
+	display: table-cell;
+	vertical-align: middle;
+	height: 44px;
+}
+.top-line{
+	height: 32px;
+	margin-top: 6px;
+}
+.top-head{
+	float: left;
+	padding: 0 !important;
+	margin-top: 7px;
+	display: inline-block !important;
+}
+.container-message{
+	height: 416px;
+	width: 800px;
+	background: #fff;
+	margin: 25px auto;
+	padding: 20px;
+}
+.big-container{
+	/*height: 100%;*/
+}
+.messageType-info{
+	text-align: center;
+	color:#FF9933;
+}
+.messageType-success{
+	text-align: center;
+	color:#5CB85C;
 }

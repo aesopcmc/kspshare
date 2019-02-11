@@ -27,6 +27,10 @@ public class MyUserDetailService implements UserDetailsService {
         if (userEntity == null){
             throw new UsernameNotFoundException("用户不存在！");
         }
+        if(Boolean.FALSE==userEntity.getEnabled()){
+            throw new UsernameNotFoundException("账号未激活！");
+        }
+
         List<SimpleGrantedAuthority> simpleGrantedAuthorities = createAuthorities(userEntity.getRoles());
 
         UserInfo userInfo = new UserInfo(userEntity.getUsername(), userEntity.getPassword(), simpleGrantedAuthorities);

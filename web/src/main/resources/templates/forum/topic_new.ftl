@@ -5,23 +5,26 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>帖子列表</title>
+	<title>发帖</title>
 
 	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i&amp;subset=latin-ext"
-	    rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
-	    rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
-	    rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900&amp;subset=latin-ext" rel="stylesheet">
-	<link rel="stylesheet" href="../plugin/tooltips/darktooltip.min.css"><!--提示工具-->
-	<link rel="stylesheet" href="../../static/plugin/pagination/jquery.pagination.css"><!--分页工具-->
-	<link href="../../static/css/font-awesome.min.css" rel="stylesheet">
-	<link href="../../static/plugin/flexslider/flexslider.css" rel="stylesheet">
-	<link href="../plugin/slicknav/slicknav.min.css" rel="stylesheet">
-	<link href="../../static/css/main.css" rel="stylesheet">
-	<link href="../../static/css/forum.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i&amp;subset=latin-ext">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900&amp;subset=latin-ext">
+
+	<link rel="stylesheet" href="../../static/plugin/pagination/jquery.pagination.css" />
+	<link rel="stylesheet" href="../plugin/jqueryUi/jquery-ui.min.css" />
+	<link rel="stylesheet" href="../../static/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../static/plugin/flexslider/flexslider.css">
+	<link rel="stylesheet" href="../plugin/slicknav/slicknav.min.css">
+	<link rel="stylesheet" href="../plugin/editor/wangEditor.css" />
+	<link rel="stylesheet" href="../plugin/tagInput/jquery.tagsinput-revisited.min.css" />
+	<link rel="stylesheet" href="../plugin/switch/titatoggle-dist.css">
+
+	<!--自定义样式-->
+	<link rel="stylesheet" href="../../static/css/main.css" >
+	<link rel="stylesheet" href="../../static/css/forum.css">
 
 </head>
 
@@ -151,86 +154,46 @@
 			<main id="main" class="main container">
 				<!--导航 -->
 				<div class="row forum-nav">
-					<i class="fa fa-home fa-lg"></i>
-					<a href="">论坛</a>&gt;
-					<a href="">灵感交流</a>
+					<i class="fa fa-home fa-lg normal-color"></i>
+					<a href="" class="normal-color">论坛</a>
+					&nbsp;<i class="normal-color">&gt;</i>&nbsp;
+					<a href="" class="normal-color">综合</a>
+					&nbsp;<i class="normal-color">&gt;</i>&nbsp;
+					<a href="" class="normal-color">论坛公告</a>
 				</div>
 
 				<div class="top-title">
-					<button type="button" style="border-radius: 3px;" class="btn btn-warning" onclick="javascript:location.href='/html/module_forum/topic_new.html'">发布新帖子</button>
+					<h3 class="new-subject">发表帖子</h3>
 				</div>
 
 
-				<!--顶部分页-->
-				<div class="page-box subleft">
-					<div id="pagination4" class="page fl"></div>
-				</div>
-				<div class="row module-container">
-					<!--<div class="module-title" style="border-left: none;">-->
-						<!--&lt;!&ndash;顶部分页&ndash;&gt;-->
-						<!--<div class="box">-->
-							<!--<div id="pagination4" class="page fl"></div>-->
-						<!--</div>-->
-					<!--</div>-->
-					<div class="row-topic">
-						<div class="col-dot">
-							<span><i class="fa fa-circle"></i></span>
+				<div class="row module-container topic-container">
+					<!--<div class="module-title">创建新主题</div>-->
+					<main>
+						<div class="input-group">
+							<label for="topicTitle" class="in-title">标题</label>&nbsp;&nbsp;&nbsp;<span class="must-input">必填</span>
+							<input type="text" id="topicTitle" class="form-control" style="width: 500px;" placeholder="请输入标题">
 						</div>
-						<div class="col-topic">
-							<span class="top"><i class="fa fa-thumb-tack"></i></span>
-							<a href="topic_detail.html">建议与发展讨论</a><br>
-							<span class="gray">
-								<a href="" class="gray">冬日里的温情</a>&nbsp;&nbsp;&nbsp;1小时前 &nbsp;
-								<!--标签-->
-								<a href="#" class="ipsTag" title="按标签搜索">
-									<span style="position: absolute;left: -3px;">●</span><span>组件</span>
-								</a>
-							</span>
-						</div>
-						<div class="col-info">
-							<div class="replies-views1">
-								<span data-tooltip="被回复">999&nbsp;<i class="fa fa-paper-plane"></i></span><br>
-								<span class="gray" data-tooltip="被查看">2700&nbsp;<i class="fa fa-eye"></i></span>
-							</div>
-							<div class="replies-views2">
-								<a href="#"><img src="../images/headx-default.png" width="40px" height="40px" alt=""></a>
-							</div>
-							<div class="replies-views3">
-								<span>玫瑰花的葬礼</span>
-								<span class="gray">2017年08月09日</span>
-							</div>
-						</div>
-					</div>
 
-					<div class="row-topic led">
-						<div class="col-dot">
-							<span><i class="fa fa-circle"></i></span>
+						<div class="input-group">
+							<label for="topicTag" class="in-title">标签</label>
+							<input type="text" value="鱼,猫咪" id="topicTag" class="form-control">
 						</div>
-						<div class="col-topic">
-							<a href="topic_detail.html"> 建议与发展讨论</a><br>
-							<span class="gray">关注并讨论开发。建议和发展讨论就在这里。</span>
-						</div>
-						<div class="col-info">
-							<div class="replies-views1">
-								<span data-tooltip="被回复">999+&nbsp;<i class="fa fa-paper-plane"></i></span><br>
-								<span class="gray" data-tooltip="被查看">2700&nbsp;<i class="fa fa-eye"></i></span>
-							</div>
-							<div class="replies-views2">
-								<a href="#"><img src="../images/headx-default.png" width="40px" height="40px" alt=""></a>
-							</div>
-							<div class="replies-views3">
-								<span>玫瑰花的葬礼</span>
-								<span class="gray">2017年08月09日</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--底部分页-->
-				<div class="page-box subleft">
-					<div id="pagination3" class="page fl"></div>
-					<span class="total-page">共101页</span>
-				</div>
 
+						<div class="input-group">
+							<span class="must-input">必填</span>
+							<div class="replay-area myEditor"></div>
+						</div>
+						<div class="input-group">
+							<button type="button" style="border-radius: 3px;" class="btn btn-warning topic-opr-item"><i class="fa fa-paper-plane-o"></i> 发表帖子</button>
+							<div class="checkbox checkbox-slider--b-flat topic-opr-item">
+								<label>
+									<input type="checkbox"><span>转播给听众</span>
+								</label>
+							</div>
+						</div>
+					</main>
+				</div>
 			</main>
 		</div>
 
@@ -246,16 +209,19 @@
 
 	<!-- Required Plugins and Scripts -->
 	<script src="../../static/plugin/jquery-3.1.1.min.js"></script>
+	<script src="../plugin/jqueryUi/jquery-ui.min.js"></script>
 	<script src="../../static/plugin/jquery-migrate.min.js"></script>
 	<script src="../plugin/bootstrap/bootstrap.min.js"></script>
-	<script src="../plugin/pagination/jquery.pagination.min.js"></script> <!--分页工具-->
+	<script src="../plugin/pagination/jquery.pagination.min.js"></script>
 	<script src="../../static/plugin/flexslider/jquery.flexslider-min.js"></script>
 	<script src="../plugin/slicknav/jquery.slicknav.min.js"></script>
-	<script src="../plugin/tooltips/jquery.darktooltip.min.js"></script><!--提示工具-->
+	<script src="../plugin/editor/wangEditor.js"></script>
+	<script src="../plugin/tagInput/jquery.tagsinput-revisited.min.js"></script>
 
+	<!--自定义Js-->
 	<script src="../../static/js/common.js"></script>
 	<script src="../../static/js/nav.js"></script>
-	<script src="js/topic_list.js"></script>
+	<script src="../../static/js/forum/topic_new.js"></script>
 
 </body>
 

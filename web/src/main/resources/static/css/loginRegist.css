@@ -1,11 +1,7 @@
 html,body,.page-wrapper,.sections{
     height: 100% !important;
 }
-#footer{
-    position: absolute;
-    bottom: 0px;
-    width: 100%;
-}
+
 
 .input-line{
     width: 230px;
