@@ -9681,6 +9681,11 @@ textarea {
 .big-container{
 	/*height: 100%;*/
 }
+.message-container{
+	margin-top: 30px;
+	/*68*/
+}
+
 .messageType-info{
 	text-align: center;
 	color:#FF9933;
@@ -9688,4 +9693,14 @@ textarea {
 .messageType-success{
 	text-align: center;
 	color:#5CB85C;
+}
+.messageType-error{
+	text-align: center;
+	color:#ea4848;
+	margin-bottom: 0px;
+}
+.error-code {
+	font-size: 40px;
+	font-weight: bold;
+	color: #da3f3f;
 }

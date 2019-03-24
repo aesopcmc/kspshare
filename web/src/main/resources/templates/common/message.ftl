@@ -35,7 +35,7 @@
 	<!-- main-->
 	<div class="page-wrapper">
 		<main class="container-message">
-			<div class="row module-container">
+			<div class="row module-container message-container">
 				<#if RequestParameters['type']?? && RequestParameters['type']=="info">
 					<p class="messageType-info">
 						<i class="fa fa-info-circle fa-4x" ></i>
@@ -45,6 +45,11 @@
 					<p class="messageType-success">
 						<i class="fa fa-check-circle fa-4x" ></i>
 					</p>
+				</#if>
+				<#if RequestParameters['type']?? && RequestParameters['type']=="error">
+					<p class="messageType-error">
+                        <i class="fa fa-exclamation-triangle fa-4x" ></i>
+                    </p>
 				</#if>
 				<p style="text-align: center">
 					${RequestParameters['message']!''}

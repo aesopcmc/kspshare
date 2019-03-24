@@ -119,6 +119,9 @@ public class HomeController {
 
     @GetMapping(value = "/test")
     public String test(Model model) throws UnsupportedEncodingException {
-        return "redirect:/message?type=info&message="+URLEncoder.encode("邮箱验证失败<a href='/register'>注册</a>", "UTF-8");
+        int a = 1/0;
+
+        return "";
+        //return "redirect:/message?type=info&message="+URLEncoder.encode("邮箱验证失败<a href='/register'>注册</a>", "UTF-8");
     }
 }
