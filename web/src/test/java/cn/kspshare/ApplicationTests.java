@@ -16,6 +16,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import static org.mybatis.dynamic.sql.SqlBuilder.isLike;
 
@@ -73,9 +76,30 @@ public class ApplicationTests {
                 .build()
                 .execute();
         conditionList.forEach(po-> System.out.println(po.toString()));
-
-
     }
+
+    @Test
+    public void testAsync() throws ExecutionException, InterruptedException {
+        CompletableFuture<Void> future = CompletableFuture.runAsync(()->{
+            try {
+                System.out.println("doing...");
+                TimeUnit.SECONDS.sleep(2000);
+                System.out.println("doing end");
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+        });
+
+        //future.get();
+        if(future.isDone()){
+            System.out.println("结束1");
+        }
+
+        System.out.println("结束2");
+    }
+
 
 
 }

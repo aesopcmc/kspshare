@@ -2,3 +2,11 @@
 server:
   port: 8082
 
+spring:
+  ## 数据源配置
+  datasource:
+    url: jdbc:mysql://mysql5.7:3306/ksp?useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+

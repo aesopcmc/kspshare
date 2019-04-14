@@ -3,13 +3,6 @@ spring:
   profiles:
     active: dev
 
-  ## 数据源配置
-  datasource:
-    url: jdbc:mysql://localhost:3306/ksp?useSSL=false&useUnicode=true&characterEncoding=utf8
-    username: root
-    password: root
-    driver-class-name: com.mysql.jdbc.Driver
-
   ## Freemarker 配置
   ## 文件配置路径
   freemarker:
@@ -27,15 +20,6 @@ spring:
   #静态资源配置
   resources:
     static-locations: classpath:/static/
-
-  #热部署生效
-  devtools:
-    restart:
-      enabled: true
-      #设置重启的目录
-      additional-paths: src/main/java
-      #classpath目录下的WEB-INF文件夹内容修改不重启
-      #exclude: WEB-INF/**
 
   #邮件配置
   mail:

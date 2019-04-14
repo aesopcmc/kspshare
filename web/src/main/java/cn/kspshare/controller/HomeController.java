@@ -18,6 +18,8 @@ import javax.validation.Valid;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.time.LocalDateTime;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @Controller
 public class HomeController {
@@ -115,13 +117,33 @@ public class HomeController {
         return "message";
     }
 
+    //int a = 1/0;
+    //
+    //return "redirect:/message?type=info&message="+URLEncoder.encode("邮箱验证失败<a href='/register'>注册</a>", "UTF-8");
+
     //TODO 邮件验证失败跳转页面 已过期 处理邮箱重复校验的问题  处理登录提示问题
 
     @GetMapping(value = "/test")
-    public String test(Model model) throws UnsupportedEncodingException {
-        int a = 1/0;
+    public String test(Model model) throws ExecutionException, InterruptedException {
+        CompletableFuture<String> future = CompletableFuture.supplyAsync(()->{
+            try {
+                System.out.println("doing...");
+                Thread.sleep(5000);
+                System.out.println("doing end");
 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return "返回字符串结果";
+
+        });
+
+        //阻塞等待返回结果
+        String res = future.get();
+        System.out.println(res);
+
+        System.out.println("结束");
         return "";
-        //return "redirect:/message?type=info&message="+URLEncoder.encode("邮箱验证失败<a href='/register'>注册</a>", "UTF-8");
     }
 }
