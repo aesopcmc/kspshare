@@ -6,12 +6,12 @@
 mvn clean package -pl web -am -Dmaven.test.skip=true
 
 
-2.创建Dockerfile文件打包镜像
+2.打包镜像命令，创建成Dockerfile文件
 FROM java:8-alpine
-ENV KSP_VERSION ksp-prod
-COPY $KSP_VERSION.jar /usr/local/app/
+ENV JAR_NAME ksp-prod
+COPY $JAR_NAME.jar /usr/local/app/
 WORKDIR /usr/local/app/
-CMD java -jar $KSP_VERSION.jar --spring.profiles.active=prod
+CMD java -jar $JAR_NAME.jar --spring.profiles.active=prod
 
 3.加入镜像
 docker build -t aesopcmc/ksp-prod:1.0 .

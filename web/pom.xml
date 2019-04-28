@@ -33,7 +33,7 @@
 
     <build>
         <!--指定打包后的名称-->
-        <finalName>ksp-prod</finalName>
+        <finalName>ksp-web-prod</finalName>
         <plugins>
             <!--jdk编译版本-->
             <!--<plugin>-->
