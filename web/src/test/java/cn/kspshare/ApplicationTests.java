@@ -53,9 +53,12 @@ public class ApplicationTests {
         }
     }
 
+    /**
+     * 密码加密
+     */
     @Test
     public void getPasswordEncoder(){
-        String password = new BCryptPasswordEncoder().encode("123");
+        String password = new BCryptPasswordEncoder().encode("123123");
         System.out.println(password);
 
     }

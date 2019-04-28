@@ -1,3 +1,20 @@
 打包maven项目指令  清理、打包、跳过测试
-mvn clean package -Dmaven.test.skip=true
+-am --also-make 同时构建所列模块的依赖模块；
+-pl --projects <arg> 构建制定的模块，模块间用逗号分隔；
 
+1.打包web页面模块成jar
+mvn clean package -pl web -am -Dmaven.test.skip=true
+
+
+2.创建Dockerfile文件打包镜像
+FROM java:8-alpine
+ENV KSP_VERSION ksp-prod
+COPY $KSP_VERSION.jar /usr/local/app/
+WORKDIR /usr/local/app/
+CMD java -jar $KSP_VERSION.jar --spring.profiles.active=prod
+
+3.加入镜像
+docker build -t aesopcmc/ksp-prod:1.0 .
+
+4.启动容器
+docker stop ksp-prod && docker rm ksp-prod && docker run -d -p 8082:8080 --name ksp-prod aesopcmc/ksp-prod:1.0
