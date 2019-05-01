@@ -11,5 +11,5 @@ CMD java -jar ${jarName}.jar --spring.profiles.active=prod" > Dockerfile
 version=$(date +%s%N)
 docker build -t aesopcmc/ksp-web-prod:${version} .
 
-#docker run -d -p 8082:8080 --network kspnet --name ${jarName} aesopcmc/${jarName}:${version}
-docker stop ${jarName} && docker rm ${jarName} && docker run -d -p 8082:8080 --network kspnet --name ${jarName} aesopcmc/${jarName}:${version}
+#docker run -d --network kspnet --name ${jarName} aesopcmc/${jarName}:${version}
+docker stop ${jarName} && docker rm ${jarName} && docker run -d --network kspnet --name ${jarName} aesopcmc/${jarName}:${version}
