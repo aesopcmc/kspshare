@@ -12,4 +12,4 @@ version=$(date +%s%N)
 docker build -t aesopcmc/ksp-web-prod:${version} .
 
 docker run -d -p 8082:8080 --name ksp-prod aesopcmc/ksp-web-prod:${version}
-#docker stop ksp-web-prod && docker rm ksp-web-prod && docker run -d -p 8082:8080 --name ksp-prod aesopcmc/ksp-web-prod:${version}
+#docker stop ksp-web-prod && docker rm ksp-web-prod && docker run -d -p 8082:8080 --name ksp-web-prod aesopcmc/ksp-web-prod:${version}
