@@ -3,7 +3,7 @@
 
 jarName="ksp-web-prod"
 
-echo "FROM java:8-alpine
+echo "FROM openjdk:8-jdk-alpine
 COPY web/target/${jarName}.jar /usr/local/app/
 WORKDIR /usr/local/app/
 CMD java -jar ${jarName}.jar --spring.profiles.active=prod" > Dockerfile

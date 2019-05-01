@@ -17,15 +17,5 @@ CMD java -jar web/target/$JAR_NAME.jar --spring.profiles.active=prod
 docker build -t aesopcmc/ksp-prod:1.0 .
 
 4.启动容器
-docker stop ksp-prod && docker rm ksp-prod && docker run -d -p 8082:8080 --name ksp-prod aesopcmc/ksp-prod:1.0
+docker stop ksp-web-prod && docker rm ksp-prod && docker run -d -p 8082:8080 --name ksp-web-prod aesopcmc/ksp-prod:1.0
 
-
-
-【jenkins shell】
-echo "FROM java:8-alpine
-ENV JAR_NAME ksp-web-prod
-COPY $JAR_NAME.jar /usr/local/app/
-WORKDIR /usr/local/app/
-CMD java -jar web/target/$JAR_NAME.jar --spring.profiles.active=prod" > Dockerfile
-
-docker build -t aesopcmc/ksp-prod:1.1111 .
