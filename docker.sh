@@ -8,9 +8,7 @@ COPY web/target/${jarName}.jar /usr/local/app/
 WORKDIR /usr/local/app/
 CMD java -jar ${jarName}.jar --spring.profiles.active=prod" > Dockerfile
 
-cat Dockerfile
-
-version=date +%s%N
+version=$(date +%s%N)
 docker build -t aesopcmc/ksp-web-prod:${version} .
 
 docker run -d -p 8082:8080 --name ksp-prod aesopcmc/ksp-web-prod:${version}
