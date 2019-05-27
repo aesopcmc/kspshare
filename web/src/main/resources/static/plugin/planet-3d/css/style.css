@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: 0;
+}
+html, body {
+  width: 100%;
+  height: 100%;
+  /*background: radial-gradient(#1A5970 0%, #000 100%);*/
+  background:transparent;
+  /*background:#66677c;*/
+
+}
+#planet3d-container {
+  width: 100%;
+  height: 100%;
+}

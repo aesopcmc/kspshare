@@ -2,8 +2,11 @@
 -am --also-make 同时构建所列模块的依赖模块；
 -pl --projects <arg> 构建制定的模块，模块间用逗号分隔；
 
-1.打包web页面模块成jar
+1.打包模块成jar
+页面模块
 mvn clean package -pl web -am -Dmaven.test.skip=true
+后台模块
+mvn clean package -pl backstage -am -Dmaven.test.skip=true
 
 
 2.打包镜像命令，创建成Dockerfile文件

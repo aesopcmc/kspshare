@@ -68,7 +68,7 @@
 									<a href=""><img class="pub-head" src="${ctx.contextPath}/images/headx.jpg"	width="50px" height="50px" alt=""></a>
 								</div>	
 								<div class="col-md-6 module-item" style="width: auto;">
-									<div class="digest1"><a href="forum/topic_list.html"> 建议与发展讨论</a></div>
+									<div class="digest1"><a href="/forum/list"> 建议与发展讨论</a></div>
 									<div class="digest2">关注并讨论开发。建议和发展讨论就在这里。</div>
 								</div>
 								<div class="col-md-3 module-item person-info">
@@ -94,7 +94,7 @@
 									<a href=""><img class="pub-head" src="${ctx.contextPath}/images/headx.jpg"	width="50px" height="50px" alt=""></a>
 								</div>
 								<div class="col-md-6 module-item" style="width: auto;">
-									<div class="digest1"><a href="forum/topic_list.html"> 建议与发展讨论</a></div>
+									<div class="digest1"><a href="/forum/list"> 建议与发展讨论</a></div>
 									<div class="digest2">关注并讨论开发。建议和发展讨论就在这里。</div>
 								</div>
 								<div class="col-md-3 module-item person-info">

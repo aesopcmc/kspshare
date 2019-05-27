@@ -30,6 +30,7 @@
     </dependencies>
 
     <build>
+        <finalName>ksp-back-prod</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

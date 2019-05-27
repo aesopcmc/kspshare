@@ -33,7 +33,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-6 col-sm-4 col-lg-3">
-                <a href="index" rel="home" class="nav-logo">
+                <a href="/index" rel="home" class="nav-logo">
                     <img src="${ctx.contextPath}/images/nav/nav-logo.png" alt="Antarctica">
                 </a>
             </div>

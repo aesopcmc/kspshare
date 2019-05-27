@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Home</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i&amp;subset=latin-ext" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900&amp;subset=latin-ext" rel="stylesheet">
+    <#--<link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i&amp;subset=latin-ext" rel="stylesheet">-->
+    <#--<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese" rel="stylesheet">-->
+    <#--<link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900&amp;subset=latin-ext" rel="stylesheet">-->
 
     <!-- Stylesheet -->
     <link href="${ctx.contextPath}/css/font-awesome.min.css" rel="stylesheet">
@@ -17,12 +17,14 @@
     <link href="${ctx.contextPath}/plugin/owl.carousel/assets/owl.theme.default.min.css" rel="stylesheet">
     <link href="${ctx.contextPath}/plugin/slicknav/slicknav.min.css" rel="stylesheet">
     <link href="${ctx.contextPath}/plugin/lightcase/css/lightcase.css" rel="stylesheet">
-    <link href="${ctx.contextPath}/plugin/fakeLoader/fakeLoader.css" rel="stylesheet">
+<#--<link href="${ctx.contextPath}/plugin/fakeLoader/fakeLoader.css" rel="stylesheet">-->
+    <#--<link href="${ctx.contextPath}/plugin/planet-3d/css/style.css" rel="stylesheet" >-->
     <link href="${ctx.contextPath}/css/main.css" rel="stylesheet">
+    <link href="${ctx.contextPath}/css/index.css" rel="stylesheet">
 </head>
 <body class="home">
 
-<div id="fakeLoader" class="fakeLoader"></div>
+<#--<div id="fakeLoader" class="fakeLoader"></div>-->
 
 <!-- Page Wrapper -->
 <div class="page-wrapper">
@@ -34,7 +36,7 @@
                 <div class="col-xs-6 col-md-3">
                     <div class="site-branding">
                         <div class="wrap">
-                            <h1 class="site-title"><a href="index.html" rel="home"><img src="images/logo1.png" alt="Antarctica"></a></h1>
+                            <h1 class="site-title"><a href="index" rel="home"><img src="images/logo1.png" alt="Antarctica"></a></h1>
                             <!--<h1 class="site-title"><a href="index.html" rel="home">Antarctica</a></h1>-->
                             <p class="site-description"></p>
                         </div>
@@ -60,7 +62,7 @@
         </div>
     </header>
 
-	<!-- Slider One -->
+	<!-- 滑动 -->
     <div class="flexslider sliders slider-one">
         <ul class="slides">
             <li>
@@ -111,151 +113,270 @@
         </ul>
     </div>
 
-    <!-- About -->
-    <section class="about-us sections section-padding">
+    <!-- 3D星球 -->
+    <iframe align="center" src="${ctx.contextPath}/plugin/planet-3d/index.html" frameborder="no" width="100%" height="600px" scrolling="no"></iframe>
+
+    <#--<section class="planet-section sections section-padding">-->
+    <#--</section>-->
+
+    <!-- 关于坎巴拉 -->
+    <section class="sections section-padding">
         <div class="container">
-            <header class="section-header text-center">
-                <h3 class="section-sub-title">Best Busines</h3>
-                <h2 class="section-title">Who we are</h2>
-                <span class="line"></span>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium
-                    rutrum, ante dolor consectetur nisi
-                </p>
-            </header>
-
-            <div class="our-services-carousel owl-carousel owl-theme">
-                <div class="service-item">
-                    <h3 class="title">Social Marketing</h3>
-                    <p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-                <div class="service-item">
-                    <h3 class="title">Web Development</h3>
-                    <p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-                <div class="service-item">
-                    <h3 class="title">Beanding & Packing</h3>
-                    <p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-                <div class="service-item">
-                    <h3 class="title">Beanding & Packing</h3>
-                    <p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-                <div class="service-item">
-                    <h3 class="title">Beanding & Packing</h3>
-                    <p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-                <div class="service-item">
-                    <h3 class="title">Beanding & Packing</h3>
-                    <p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-                <div class="service-item">
-                    <h3 class="title">Beanding & Packing</h3>
-                    <p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-                <div class="service-item">
-                    <h3 class="title">Beanding & Packing</h3>
-                    <p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-                <div class="service-item">
-                    <h3 class="title">Beanding & Packing</h3>
-                    <p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-                <div class="service-item">
-                    <h3 class="title">Beanding & Packing</h3>
-                    <p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-                <div class="service-item">
-                    <h3 class="title">Beanding & Packing</h3>
-                    <p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>
-                    <a href="#" class="btn btn-primary">Read More</a>
-                </div>
-            </div>
-
-            <div class="our-team our-team-1">
-                <div class="row">
-                    <div class="col-xs-6 col-md-3 col-team-member">
-                        <div class="team-member">
-                            <img src="images/team/1.jpg" alt="Member">
-                            <div class="overlay">
-                                <div class="member-info">
-                                    <h3 class="title">Maria Luise</h3>
-                                    <p>Ceo Founder</p>
-                                </div>
-                                <div class="social-media">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-behance"></i></a>
-                                    <a href="#"><i class="fa fa-flickr"></i></a>
-                                </div>
-                            </div>
-                        </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="feature-box">
+                        <h3 class="title text-uppercase title-underline">介绍坎巴拉太空计划 </h3>
+                        <p>创建和管理自己的太空计划.</p>
+                        <p>
+                            建造宇宙飞船，飞行它们，并试图帮助Kerbals完成征服太空的最终任务。通过以下教程，你将有了解到这款游戏的玩法、目标、甚至能学到一些基础的空间、轨道知识。。小额付费发分无法
+                            费发分无法
+                            费发分无法费发分无法费发分无法费发分无法费发分无法费发分无法费发分无法
+                        </p>
+                        <a href="#" class="btn btn-primary btn-wide btn-icon">详细介绍<i class="fa fa-angle-right" aria-hidden="true"></i></a>
                     </div>
-                    <div class="col-xs-6 col-md-3 col-team-member">
-                        <div class="team-member">
-                            <img src="images/team/2.jpg" alt="Member">
-                            <div class="overlay">
-                                <div class="member-info">
-                                    <h3 class="title">Maria Luise</h3>
-                                    <p>Ceo Founder</p>
-                                </div>
-                                <div class="social-media">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-behance"></i></a>
-                                    <a href="#"><i class="fa fa-flickr"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-md-3 col-team-member">
-                        <div class="team-member">
-                            <img src="images/team/3.jpg" alt="Member">
-                            <div class="overlay">
-                                <div class="member-info">
-                                    <h3 class="title">Maria Luise</h3>
-                                    <p>Ceo Founder</p>
-                                </div>
-                                <div class="social-media">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-behance"></i></a>
-                                    <a href="#"><i class="fa fa-flickr"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-6 col-md-3 col-team-member">
-                        <div class="team-member">
-                            <img src="images/team/4.jpg" alt="Member">
-                            <div class="overlay">
-                                <div class="member-info">
-                                    <h3 class="title">Maria Luise</h3>
-                                    <p>Ceo Founder</p>
-                                </div>
-                                <div class="social-media">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-behance"></i></a>
-                                    <a href="#"><i class="fa fa-flickr"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+                <div class="col-md-6 about-img">
+                    <a href="#"><img class="img-responsive" src="images/features/2.jpg" alt="Feature Image"></a>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- 视频教程 -->
+    <section class="video-section sections section-padding">
+        <div class="container">
+            <header class="section-header text-center">
+                <#--<h3 class="section-sub-title">Best Busines</h3>-->
+                <h2 class="section-title">初学者生涯模式指南</h2>
+                <span class="line"></span>
+                <p>
+                    本人斯科特·曼利（Scott Manley）为你们所有人制作了一系列训练视频，以便学习如何使你的宇宙飞船充满优雅......有时甚至可以将它带到Mun及其他地方。查看他的YouTube频道，了解Kerbal太空系统中的一些疯狂（但是科学支持的）Kerbal宇宙飞船和大胆的任务。
+                </p>
+            </header>
+
+            <#--初学者教程视频-->
+            <div class="our-team our-team-1">
+                <div class="row">
+                <div class="col-xs-6 col-md-3 col-team-member">
+                    <div class="team-member">
+                        <a href="">
+                            <img src="images/team/1.jpg" alt="Member">
+                        </a>
+                        <div class="overlay">
+                            <div class="member-info">
+                                <h3 class="title">Maria Luise</h3>
+                                <p>Ceo Founder</p>
+                            </div>
+                            <div class="social-media">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-behance"></i></a>
+                                <a href="#"><i class="fa fa-flickr"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3 col-team-member">
+                    <div class="team-member">
+                        <a href="">
+                            <img src="images/team/1.jpg" alt="Member">
+                        </a>
+                        <div class="overlay">
+                            <div class="member-info">
+                                <h3 class="title">Maria Luise</h3>
+                                <p>Ceo Founder</p>
+                            </div>
+                            <div class="social-media">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-behance"></i></a>
+                                <a href="#"><i class="fa fa-flickr"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3 col-team-member">
+                    <div class="team-member">
+                        <a href="">
+                            <img src="images/team/1.jpg" alt="Member">
+                        </a>
+                        <div class="overlay">
+                            <div class="member-info">
+                                <h3 class="title">Maria Luise</h3>
+                                <p>Ceo Founder</p>
+                            </div>
+                            <div class="social-media">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-behance"></i></a>
+                                <a href="#"><i class="fa fa-flickr"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-md-3 col-team-member">
+                    <div class="team-member">
+                        <a href="">
+                            <img src="images/team/1.jpg" alt="Member">
+                        </a>
+                        <div class="overlay">
+                            <div class="member-info">
+                                <h3 class="title">Maria Luise</h3>
+                                <p>Ceo Founder</p>
+                            </div>
+                            <div class="social-media">
+                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href="#"><i class="fa fa-twitter"></i></a>
+                                <a href="#"><i class="fa fa-behance"></i></a>
+                                <a href="#"><i class="fa fa-flickr"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div style="height: 30px;"></div>
+                <div class="row">
+                    <div class="col-xs-6 col-md-3 col-team-member">
+                        <div class="team-member">
+                            <a href="">
+                                <img src="images/team/1.jpg" alt="Member">
+                            </a>
+                            <div class="overlay">
+                                <div class="member-info">
+                                    <h3 class="title">Maria Luise</h3>
+                                    <p>Ceo Founder</p>
+                                </div>
+                                <div class="social-media">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-behance"></i></a>
+                                    <a href="#"><i class="fa fa-flickr"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-team-member">
+                        <div class="team-member">
+                            <a href="">
+                                <img src="images/team/1.jpg" alt="Member">
+                            </a>
+                            <div class="overlay">
+                                <div class="member-info">
+                                    <h3 class="title">Maria Luise</h3>
+                                    <p>Ceo Founder</p>
+                                </div>
+                                <div class="social-media">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-behance"></i></a>
+                                    <a href="#"><i class="fa fa-flickr"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-team-member">
+                        <div class="team-member">
+                            <a href="">
+                                <img src="images/team/1.jpg" alt="Member">
+                            </a>
+                            <div class="overlay">
+                                <div class="member-info">
+                                    <h3 class="title">Maria Luise</h3>
+                                    <p>Ceo Founder</p>
+                                </div>
+                                <div class="social-media">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-behance"></i></a>
+                                    <a href="#"><i class="fa fa-flickr"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-6 col-md-3 col-team-member">
+                        <div class="team-member">
+                            <a href="">
+                                <img src="images/team/1.jpg" alt="Member">
+                            </a>
+                            <div class="overlay">
+                                <div class="member-info">
+                                    <h3 class="title">Maria Luise</h3>
+                                    <p>Ceo Founder</p>
+                                </div>
+                                <div class="social-media">
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                    <a href="#"><i class="fa fa-behance"></i></a>
+                                    <a href="#"><i class="fa fa-flickr"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <#--<div class="our-services-carousel owl-carousel owl-theme">-->
+                <#--<div class="service-item">-->
+                    <#--<h3 class="title">Social Marketing</h3>-->
+                    <#--<p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>-->
+                    <#--<a href="#" class="btn btn-primary">Read More</a>-->
+                <#--</div>-->
+                <#--<div class="service-item">-->
+                    <#--<h3 class="title">Web Development</h3>-->
+                    <#--<p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>-->
+                    <#--<a href="#" class="btn btn-primary">Read More</a>-->
+                <#--</div>-->
+                <#--<div class="service-item">-->
+                    <#--<h3 class="title">Beanding & Packing</h3>-->
+                    <#--<p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>-->
+                    <#--<a href="#" class="btn btn-primary">Read More</a>-->
+                <#--</div>-->
+                <#--<div class="service-item">-->
+                    <#--<h3 class="title">Beanding & Packing</h3>-->
+                    <#--<p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>-->
+                    <#--<a href="#" class="btn btn-primary">Read More</a>-->
+                <#--</div>-->
+                <#--<div class="service-item">-->
+                    <#--<h3 class="title">Beanding & Packing</h3>-->
+                    <#--<p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>-->
+                    <#--<a href="#" class="btn btn-primary">Read More</a>-->
+                <#--</div>-->
+                <#--<div class="service-item">-->
+                    <#--<h3 class="title">Beanding & Packing</h3>-->
+                    <#--<p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>-->
+                    <#--<a href="#" class="btn btn-primary">Read More</a>-->
+                <#--</div>-->
+                <#--<div class="service-item">-->
+                    <#--<h3 class="title">Beanding & Packing</h3>-->
+                    <#--<p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>-->
+                    <#--<a href="#" class="btn btn-primary">Read More</a>-->
+                <#--</div>-->
+                <#--<div class="service-item">-->
+                    <#--<h3 class="title">Beanding & Packing</h3>-->
+                    <#--<p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>-->
+                    <#--<a href="#" class="btn btn-primary">Read More</a>-->
+                <#--</div>-->
+                <#--<div class="service-item">-->
+                    <#--<h3 class="title">Beanding & Packing</h3>-->
+                    <#--<p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>-->
+                    <#--<a href="#" class="btn btn-primary">Read More</a>-->
+                <#--</div>-->
+                <#--<div class="service-item">-->
+                    <#--<h3 class="title">Beanding & Packing</h3>-->
+                    <#--<p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>-->
+                    <#--<a href="#" class="btn btn-primary">Read More</a>-->
+                <#--</div>-->
+                <#--<div class="service-item">-->
+                    <#--<h3 class="title">Beanding & Packing</h3>-->
+                    <#--<p>Vestibulum facilisis ex eget ipsum congue, vel accumsan sapien dapibus Pellentesque ut quam id massa aliquet sodales.</p>-->
+                    <#--<a href="#" class="btn btn-primary">Read More</a>-->
+                <#--</div>-->
+            <#--</div>-->
+
+        </div>
+    </section>
+
 
     <!-- Portfolio -->
     <section class="our-portfolio our-portfolio-1 sections">
@@ -346,111 +467,6 @@
         </div>
     </section>
 
-    <!-- Features -->
-    <section class="our-features our-features-1 sections section-padding">
-        <div class="container">
-            <header class="section-header text-center">
-                <h3 class="section-sub-title">About us</h3>
-                <h2 class="section-title">Our Features</h2>
-                <span class="line"></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium rutrum, ante dolor consectetur nisi</p>
-            </header>
-
-            <div class="row">
-                <div class="col-md-5">
-                    <div class="wide-image">
-                        <img class="img-responsive aligncenter" src="images/features/1.png" alt="Feature Image">
-                    </div>
-                </div>
-                <div class="col-md-7">
-                    <ul class="features-list list-unstyled clearfix">
-                        <li>
-                            <div class="feature-item feature-item-1 clearfix">
-                                <div class="feature-img">
-                                    <img class="img-responsive" src="images/features/2.png" alt="Image">
-                                </div>
-                                <div class="feature-content">
-                                    <h3 class="title">Branding & Packing</h3>
-                                    <span class="line"></span>
-                                    <p>Nam scelerisque velit et neque tin Morbi mollis eu mauris.</p>
-                                </div>
-                            </div>
-                            <div class="feature-item feature-item-1 clearfix">
-                                <div class="feature-img">
-                                    <img class="img-responsive" src="images/features/3.png" alt="Image">
-                                </div>
-                                <div class="feature-content">
-                                    <h3 class="title">Web development</h3>
-                                    <span class="line"></span>
-                                    <p>Nam scelerisque velit et neque tin Morbi mollis eu mauris.</p>
-                                </div>
-                            </div>
-                            <div class="feature-item feature-item-1 clearfix">
-                                <div class="feature-img">
-                                    <img class="img-responsive" src="images/features/4.png" alt="Image">
-                                </div>
-                                <div class="feature-content">
-                                    <h3 class="title">Strategy Design</h3>
-                                    <span class="line"></span>
-                                    <p>Nam scelerisque velit et neque tin Morbi mollis eu mauris.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="feature-item feature-item-1 clearfix">
-                                <div class="feature-img">
-                                    <img class="img-responsive" src="images/features/5.png" alt="Image">
-                                </div>
-                                <div class="feature-content">
-                                    <h3 class="title">Web Development</h3>
-                                    <span class="line"></span>
-                                    <p>Nam scelerisque velit et neque tin Morbi mollis eu mauris.</p>
-                                </div>
-                            </div>
-                            <div class="feature-item feature-item-1 clearfix">
-                                <div class="feature-img">
-                                    <img class="img-responsive" src="images/features/6.png" alt="Image">
-                                </div>
-                                <div class="feature-content">
-                                    <h3 class="title">Clean Design</h3>
-                                    <span class="line"></span>
-                                    <p>Nam scelerisque velit et neque tin Morbi mollis eu mauris.</p>
-                                </div>
-                            </div>
-                            <div class="feature-item feature-item-1 clearfix">
-                                <div class="feature-img">
-                                    <img class="img-responsive" src="images/features/7.png" alt="Image">
-                                </div>
-                                <div class="feature-content">
-                                    <h3 class="title">Analytics Code</h3>
-                                    <span class="line"></span>
-                                    <p>Nam scelerisque velit et neque tin Morbi mollis eu mauris.</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="feature-box">
-                        <h3 class="title text-uppercase title-underline">A new theme made for creative </h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Viva pharetra rutrum, ante dolor consectetur nisi nec.</p>
-                        <p>
-                            Proin sit amet turpis et urna scelerisque dapibus at vitae nunc. Aenean sit amet faucib
-                            us. Etiam sollicitudin facilisis velit, sed iaculis felis tristique nec. In tristique nunc ut arcu
-                            scelerisque. Proin vitae elit vitae libero sagittis laoreet.
-                        </p>
-                        <a href="#" class="btn btn-primary btn-wide btn-icon">Purchase now <i class="fa fa-angle-right" aria-hidden="true"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <a href="#"><img class="img-responsive aligncenter" src="images/features/2.jpg" alt="Feature Image"></a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Video -->
     <section class="our-video our-video-1 sections section-padding">
@@ -640,6 +656,20 @@
 <script src="${ctx.contextPath}/plugin/lightcase/vendor/jQuery/jquery.events.touch.js"></script>
 <script src="${ctx.contextPath}/plugin/lightcase/js/lightcase.js"></script>
 <script src="${ctx.contextPath}/plugin/fakeLoader/fakeLoader.min.js"></script>
+
+<#--3D星球-->
+<#--<script src="${ctx.contextPath}/plugin/planet-3d/js/three.min.js"></script>-->
+<#--<script src="${ctx.contextPath}/plugin/planet-3d/js/CopyShader.js"></script>-->
+<#--<script src="${ctx.contextPath}/plugin/planet-3d/js/EffectComposer.js"></script>-->
+<#--<script src="${ctx.contextPath}/plugin/planet-3d/js/FilmPass.js"></script>-->
+<#--<script src="${ctx.contextPath}/plugin/planet-3d/js/FilmShader.js"></script>-->
+<#--<script src="${ctx.contextPath}/plugin/planet-3d/js/ShaderPass.js"></script>-->
+<#--<script src="${ctx.contextPath}/plugin/planet-3d/js/RenderPass.js"></script>-->
+<#--<script src="${ctx.contextPath}/plugin/planet-3d/js/index.js"></script>-->
+<#--3D星球end-->
+
 <script src="${ctx.contextPath}/js/common.js"></script>
+
+
 </body>
 </html>
