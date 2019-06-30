@@ -1,0 +1,8 @@
+cn\kspshare\backstage\controller\TestController.class
+cn\kspshare\backstage\service\TestService.class
+cn\kspshare\backstage\BackstageApplication.class
+cn\kspshare\backstage\restful\ResultBean.class
+cn\kspshare\backstage\service\impl\TestServiceImpl.class
+cn\kspshare\backstage\config\GlobalDefultExceptionHandler.class
+cn\kspshare\backstage\config\Swagger2.class
+cn\kspshare\backstage\restful\ResultEnum.class

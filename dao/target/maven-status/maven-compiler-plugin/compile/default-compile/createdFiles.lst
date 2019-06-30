@@ -1,0 +1,17 @@
+cn\kspshare\mapper\TestUserDynamicSqlSupport$TestUser.class
+cn\kspshare\mapper\KspUserDynamicSqlSupport.class
+cn\kspshare\mapper\TestGradeDynamicSqlSupport$TestGrade.class
+cn\kspshare\mapper\TestGradeDynamicSqlSupport.class
+cn\kspshare\domain\TestGrade.class
+cn\kspshare\domain\TestUser.class
+cn\kspshare\mapper\KspVerificationTokenMapper.class
+cn\kspshare\domain\KspUser.class
+cn\kspshare\mapper\KspUserMapper.class
+cn\kspshare\mapper\TestUserDynamicSqlSupport.class
+cn\kspshare\mapper\KspVerificationTokenDynamicSqlSupport.class
+cn\kspshare\mapper\KspUserDynamicSqlSupport$KspUser.class
+cn\kspshare\dao\TestUserDao.class
+cn\kspshare\domain\KspVerificationToken.class
+cn\kspshare\mapper\TestUserMapper.class
+cn\kspshare\mapper\KspVerificationTokenDynamicSqlSupport$KspVerificationToken.class
+cn\kspshare\mapper\TestGradeMapper.class

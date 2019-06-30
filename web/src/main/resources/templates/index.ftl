@@ -113,8 +113,6 @@
         </ul>
     </div>
 
-    <!-- 3D星球 -->
-    <iframe align="center" src="${ctx.contextPath}/plugin/planet-3d/index.html" frameborder="no" width="100%" height="600px" scrolling="no"></iframe>
 
     <#--<section class="planet-section sections section-padding">-->
     <#--</section>-->
@@ -378,62 +376,66 @@
     </section>
 
 
-    <!-- Portfolio -->
-    <section class="our-portfolio our-portfolio-1 sections">
-        <div class="container">
-            <header class="section-header text-center">
-                <h3 class="section-sub-title">Recent works</h3>
-                <h2 class="section-title">Our portfolio</h2>
-                <span class="line"></span> 
-            </header>
-        </div>
-        <div class="portfolio-items-container row no-padding">
-            <div class="col-xs-6 col-lg-3 portfolio-post web-design branding">
-                <article class="portfolio-post-item">
-                    <img src="images/portfolio/p1.jpg" alt="">
-                    <div class="portfolio-content-wrapper">
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title"><a href="portfolio-single.html">Portfolio Item Name</a></h3>
-                            <span class="portfolio-cat">Branding / UX Design</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-xs-6 col-lg-3 portfolio-post logo creative">
-                <article class="portfolio-post-item">
-                    <img src="images/portfolio/p4.jpg" alt="">
-                    <div class="portfolio-content-wrapper">
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title"><a href="portfolio-single.html">Portfolio Item Name</a></h3>
-                            <span class="portfolio-cat">Branding / UX Design</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-xs-6 col-lg-3 portfolio-post web-design branding">
-                <article class="portfolio-post-item">
-                    <img src="images/portfolio/p2.jpg" alt="">
-                    <div class="portfolio-content-wrapper">
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title"><a href="portfolio-single.html">Portfolio Item Name</a></h3>
-                            <span class="portfolio-cat">Branding / UX Design</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-            <div class="col-xs-6 col-lg-3 portfolio-post logo creative">
-                <article class="portfolio-post-item">
-                    <img src="images/portfolio/p3.jpg" alt="">
-                    <div class="portfolio-content-wrapper">
-                        <div class="portfolio-content">
-                            <h3 class="portfolio-title"><a href="portfolio-single.html">Portfolio Item Name</a></h3>
-                            <span class="portfolio-cat">Branding / UX Design</span>
-                        </div>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
+    <!-- 3D星球 -->
+    <iframe align="center" src="${ctx.contextPath}/plugin/planet-3d/index.html" frameborder="no" width="100%" height="600px" scrolling="no"></iframe>
+
+
+    <#--<!-- Portfolio &ndash;&gt;-->
+    <#--<section class="our-portfolio our-portfolio-1 sections">-->
+        <#--<div class="container">-->
+            <#--<header class="section-header text-center">-->
+                <#--<h3 class="section-sub-title">Recent works</h3>-->
+                <#--<h2 class="section-title">Our portfolio</h2>-->
+                <#--<span class="line"></span>-->
+            <#--</header>-->
+        <#--</div>-->
+        <#--<div class="portfolio-items-container row no-padding">-->
+            <#--<div class="col-xs-6 col-lg-3 portfolio-post web-design branding">-->
+                <#--<article class="portfolio-post-item">-->
+                    <#--<img src="images/portfolio/p1.jpg" alt="">-->
+                    <#--<div class="portfolio-content-wrapper">-->
+                        <#--<div class="portfolio-content">-->
+                            <#--<h3 class="portfolio-title"><a href="portfolio-single.html">Portfolio Item Name</a></h3>-->
+                            <#--<span class="portfolio-cat">Branding / UX Design</span>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</article>-->
+            <#--</div>-->
+            <#--<div class="col-xs-6 col-lg-3 portfolio-post logo creative">-->
+                <#--<article class="portfolio-post-item">-->
+                    <#--<img src="images/portfolio/p4.jpg" alt="">-->
+                    <#--<div class="portfolio-content-wrapper">-->
+                        <#--<div class="portfolio-content">-->
+                            <#--<h3 class="portfolio-title"><a href="portfolio-single.html">Portfolio Item Name</a></h3>-->
+                            <#--<span class="portfolio-cat">Branding / UX Design</span>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</article>-->
+            <#--</div>-->
+            <#--<div class="col-xs-6 col-lg-3 portfolio-post web-design branding">-->
+                <#--<article class="portfolio-post-item">-->
+                    <#--<img src="images/portfolio/p2.jpg" alt="">-->
+                    <#--<div class="portfolio-content-wrapper">-->
+                        <#--<div class="portfolio-content">-->
+                            <#--<h3 class="portfolio-title"><a href="portfolio-single.html">Portfolio Item Name</a></h3>-->
+                            <#--<span class="portfolio-cat">Branding / UX Design</span>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</article>-->
+            <#--</div>-->
+            <#--<div class="col-xs-6 col-lg-3 portfolio-post logo creative">-->
+                <#--<article class="portfolio-post-item">-->
+                    <#--<img src="images/portfolio/p3.jpg" alt="">-->
+                    <#--<div class="portfolio-content-wrapper">-->
+                        <#--<div class="portfolio-content">-->
+                            <#--<h3 class="portfolio-title"><a href="portfolio-single.html">Portfolio Item Name</a></h3>-->
+                            <#--<span class="portfolio-cat">Branding / UX Design</span>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</article>-->
+            <#--</div>-->
+        <#--</div>-->
+    <#--</section>-->
 
     <!-- Counter -->
     <section class="counter counter-1 sections">
@@ -468,177 +470,177 @@
     </section>
 
 
-    <!-- Video -->
-    <section class="our-video our-video-1 sections section-padding">
-        <div class="container">
-            <a class="play-video" data-rel="lightcase" href="#"></a>
-            <h3 class="title">Complete design for your business agency!</h3>
-            <span class="line"></span>
-            <p class="author">Anthony Perkins</p>
-        </div>
-    </section>
+    <#--<!-- Video &ndash;&gt;-->
+    <#--<section class="our-video our-video-1 sections section-padding">-->
+        <#--<div class="container">-->
+            <#--<a class="play-video" data-rel="lightcase" href="#"></a>-->
+            <#--<h3 class="title">Complete design for your business agency!</h3>-->
+            <#--<span class="line"></span>-->
+            <#--<p class="author">Anthony Perkins</p>-->
+        <#--</div>-->
+    <#--</section>-->
 
-    <!-- Blog -->
-    <section class="our-blog our-blog-1 sections section-padding">
-        <div class="container">
-            <header class="section-header text-center">
-                <h3 class="section-sub-title">Latest news</h3>
-                <h2 class="section-title">Latest from Blog</h2>
-                <span class="line"></span>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium rutrum, ante dolor consectetur nisi</p>
-            </header>
-            <div class="row">
-                <div class="col-xs-6 col-sm-4">
-                    <div class="blog-post">
-                        <div class="post-feature-img">
-                            <a href="single.html" class="img-hover"><img class="img-responsive" src="images/home/b1.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-header">
-                            <h3 class="post-title"><a href="#">Talking about architectures</a></h3>
-                            <p class="post-meta">Novemeber 18, 2017, posted in <a href="#">Post Business</a></p>
-                        </div>
-                        <p>Pellentesque venenatis, justo at blandit commodo, mi nibh rhoncus urna sit amet tinci dolor.</p>
-                        <div class="entry-footer">
-                            <a href="#" class="post-comments"><i class="fa fa-envelope-o" aria-hidden="true"></i> 2 comments</a>
-                            <a href="#" class="read-more"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-4">
-                    <div class="blog-post">
-                        <div class="post-feature-img">
-                            <a href="single.html" class="img-hover"><img class="img-responsive" src="images/home/b2.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-header">
-                            <h3 class="post-title"><a href="#">Women work in office</a></h3>
-                            <p class="post-meta">Novemeber 18, 2017, posted in <a href="#">Post Business</a></p>
-                        </div>
-                        <p>Pellentesque venenatis, justo at blandit commodo, mi nibh rhoncus urna sit amet tinci dolor.</p>
-                        <div class="entry-footer">
-                            <a href="#" class="post-comments"><i class="fa fa-envelope-o" aria-hidden="true"></i> 2 comments</a>
-                            <a href="#" class="read-more"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-4">
-                    <div class="blog-post">
-                        <div class="post-feature-img">
-                            <a href="single.html" class="img-hover"><img class="img-responsive" src="images/home/b3.jpg" alt="Image"></a>
-                        </div>
-                        <div class="entry-header">
-                            <h3 class="post-title"><a href="#">Man drawing</a></h3>
-                            <p class="post-meta">Novemeber 18, 2017, posted in <a href="#">Post Business</a></p>
-                        </div>
-                        <p>Pellentesque venenatis, justo at blandit commodo, mi nibh rhoncus urna sit amet tinci dolor.</p>
-                        <div class="entry-footer">
-                            <a href="#" class="post-comments"><i class="fa fa-envelope-o" aria-hidden="true"></i> 2 comments</a>
-                            <a href="#" class="read-more"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <#--<!-- Blog &ndash;&gt;-->
+    <#--<section class="our-blog our-blog-1 sections section-padding">-->
+        <#--<div class="container">-->
+            <#--<header class="section-header text-center">-->
+                <#--<h3 class="section-sub-title">Latest news</h3>-->
+                <#--<h2 class="section-title">Latest from Blog</h2>-->
+                <#--<span class="line"></span>-->
+                <#--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus pretium rutrum, ante dolor consectetur nisi</p>-->
+            <#--</header>-->
+            <#--<div class="row">-->
+                <#--<div class="col-xs-6 col-sm-4">-->
+                    <#--<div class="blog-post">-->
+                        <#--<div class="post-feature-img">-->
+                            <#--<a href="single.html" class="img-hover"><img class="img-responsive" src="images/home/b1.jpg" alt="Image"></a>-->
+                        <#--</div>-->
+                        <#--<div class="entry-header">-->
+                            <#--<h3 class="post-title"><a href="#">Talking about architectures</a></h3>-->
+                            <#--<p class="post-meta">Novemeber 18, 2017, posted in <a href="#">Post Business</a></p>-->
+                        <#--</div>-->
+                        <#--<p>Pellentesque venenatis, justo at blandit commodo, mi nibh rhoncus urna sit amet tinci dolor.</p>-->
+                        <#--<div class="entry-footer">-->
+                            <#--<a href="#" class="post-comments"><i class="fa fa-envelope-o" aria-hidden="true"></i> 2 comments</a>-->
+                            <#--<a href="#" class="read-more"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="col-xs-6 col-sm-4">-->
+                    <#--<div class="blog-post">-->
+                        <#--<div class="post-feature-img">-->
+                            <#--<a href="single.html" class="img-hover"><img class="img-responsive" src="images/home/b2.jpg" alt="Image"></a>-->
+                        <#--</div>-->
+                        <#--<div class="entry-header">-->
+                            <#--<h3 class="post-title"><a href="#">Women work in office</a></h3>-->
+                            <#--<p class="post-meta">Novemeber 18, 2017, posted in <a href="#">Post Business</a></p>-->
+                        <#--</div>-->
+                        <#--<p>Pellentesque venenatis, justo at blandit commodo, mi nibh rhoncus urna sit amet tinci dolor.</p>-->
+                        <#--<div class="entry-footer">-->
+                            <#--<a href="#" class="post-comments"><i class="fa fa-envelope-o" aria-hidden="true"></i> 2 comments</a>-->
+                            <#--<a href="#" class="read-more"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="col-xs-6 col-sm-4">-->
+                    <#--<div class="blog-post">-->
+                        <#--<div class="post-feature-img">-->
+                            <#--<a href="single.html" class="img-hover"><img class="img-responsive" src="images/home/b3.jpg" alt="Image"></a>-->
+                        <#--</div>-->
+                        <#--<div class="entry-header">-->
+                            <#--<h3 class="post-title"><a href="#">Man drawing</a></h3>-->
+                            <#--<p class="post-meta">Novemeber 18, 2017, posted in <a href="#">Post Business</a></p>-->
+                        <#--</div>-->
+                        <#--<p>Pellentesque venenatis, justo at blandit commodo, mi nibh rhoncus urna sit amet tinci dolor.</p>-->
+                        <#--<div class="entry-footer">-->
+                            <#--<a href="#" class="post-comments"><i class="fa fa-envelope-o" aria-hidden="true"></i> 2 comments</a>-->
+                            <#--<a href="#" class="read-more"><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
+            <#--</div>-->
+        <#--</div>-->
+    <#--</section>-->
 
-    <!-- Subscription -->
-    <section class="subscribe sections section-padding">
-        <div class="container">
-            <h3 class="title">Subscribe to Our Newsletter</h3>
-            <form action="#" method="post" class="subscribe-form" novalidate="novalidate">
-                <div class="row">
-                    <div class="col-md-6 col-lg-3">
-                        <div class="form-group">
-                            <input type="text" name="name" id="first-name" placeholder="Your Name" required="required">
-                            <i class="fa fa-user"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6">
-                        <div class="form-group">
-                            <input type="email" name="email" id="email" placeholder="Email Address" required="required">
-                            <i class="fa fa-envelope-o"></i>
-                        </div>
-                    </div>
-                    <div class="col-md-12 col-lg-3">
-                        <div class="form-group">
-                            <input type="submit" value="Subscribe" id="subscribe-submit" class="btn-submit">
-                            <i class="fa fa-paper-plane-o"></i>
-                        </div>
-                    </div>
-                </div>
-            </form>
-            <p>Nam scelerisque velit et neque tin hendrerit morbi mollis eu mauris placer.</p>
-            <p><strong>We dont do spam.</strong></p>
-        </div>
-    </section>
+    <#--<!-- Subscription &ndash;&gt;-->
+    <#--<section class="subscribe sections section-padding">-->
+        <#--<div class="container">-->
+            <#--<h3 class="title">Subscribe to Our Newsletter</h3>-->
+            <#--<form action="#" method="post" class="subscribe-form" novalidate="novalidate">-->
+                <#--<div class="row">-->
+                    <#--<div class="col-md-6 col-lg-3">-->
+                        <#--<div class="form-group">-->
+                            <#--<input type="text" name="name" id="first-name" placeholder="Your Name" required="required">-->
+                            <#--<i class="fa fa-user"></i>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                    <#--<div class="col-md-6 col-lg-6">-->
+                        <#--<div class="form-group">-->
+                            <#--<input type="email" name="email" id="email" placeholder="Email Address" required="required">-->
+                            <#--<i class="fa fa-envelope-o"></i>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                    <#--<div class="col-md-12 col-lg-3">-->
+                        <#--<div class="form-group">-->
+                            <#--<input type="submit" value="Subscribe" id="subscribe-submit" class="btn-submit">-->
+                            <#--<i class="fa fa-paper-plane-o"></i>-->
+                        <#--</div>-->
+                    <#--</div>-->
+                <#--</div>-->
+            <#--</form>-->
+            <#--<p>Nam scelerisque velit et neque tin hendrerit morbi mollis eu mauris placer.</p>-->
+            <#--<p><strong>We dont do spam.</strong></p>-->
+        <#--</div>-->
+    <#--</section>-->
 
-    <!-- Clients -->
-    <section class="our-clients sections section-padding">
-        <div class="container">
-            <header class="section-header text-center">
-                <h3 class="section-sub-title">Best Clients</h3>
-                <h2 class="section-title">Our Partners</h2>
-                <span class="line"></span>
-            </header>
-            <div class="row">
-                <div class="col-xs-6 col-sm-3">
-                    <div class="single-client">
-                        <a href="#"><img src="images/partners/1.jpg" alt="Client"></a>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                    <div class="single-client">
-                        <a href="#"><img src="images/partners/2.jpg" alt="Client"></a>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                    <div class="single-client">
-                        <a href="#"><img src="images/partners/3.jpg" alt="Client"></a>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                    <div class="single-client">
-                        <a href="#"><img src="images/partners/4.jpg" alt="Client"></a>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-6 col-sm-3">
-                    <div class="single-client">
-                        <a href="#"><img src="images/partners/5.jpg" alt="Client"></a>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                    <div class="single-client">
-                        <a href="#"><img src="images/partners/6.jpg" alt="Client"></a>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                    <div class="single-client">
-                        <a href="#"><img src="images/partners/7.jpg" alt="Client"></a>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-sm-3">
-                    <div class="single-client">
-                        <a href="#"><img src="images/partners/8.jpg" alt="Client"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <#--<!-- Clients &ndash;&gt;-->
+    <#--<section class="our-clients sections section-padding">-->
+        <#--<div class="container">-->
+            <#--<header class="section-header text-center">-->
+                <#--<h3 class="section-sub-title">Best Clients</h3>-->
+                <#--<h2 class="section-title">Our Partners</h2>-->
+                <#--<span class="line"></span>-->
+            <#--</header>-->
+            <#--<div class="row">-->
+                <#--<div class="col-xs-6 col-sm-3">-->
+                    <#--<div class="single-client">-->
+                        <#--<a href="#"><img src="images/partners/1.jpg" alt="Client"></a>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="col-xs-6 col-sm-3">-->
+                    <#--<div class="single-client">-->
+                        <#--<a href="#"><img src="images/partners/2.jpg" alt="Client"></a>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="col-xs-6 col-sm-3">-->
+                    <#--<div class="single-client">-->
+                        <#--<a href="#"><img src="images/partners/3.jpg" alt="Client"></a>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="col-xs-6 col-sm-3">-->
+                    <#--<div class="single-client">-->
+                        <#--<a href="#"><img src="images/partners/4.jpg" alt="Client"></a>-->
+                    <#--</div>-->
+                <#--</div>-->
+            <#--</div>-->
+            <#--<div class="row">-->
+                <#--<div class="col-xs-6 col-sm-3">-->
+                    <#--<div class="single-client">-->
+                        <#--<a href="#"><img src="images/partners/5.jpg" alt="Client"></a>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="col-xs-6 col-sm-3">-->
+                    <#--<div class="single-client">-->
+                        <#--<a href="#"><img src="images/partners/6.jpg" alt="Client"></a>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="col-xs-6 col-sm-3">-->
+                    <#--<div class="single-client">-->
+                        <#--<a href="#"><img src="images/partners/7.jpg" alt="Client"></a>-->
+                    <#--</div>-->
+                <#--</div>-->
+                <#--<div class="col-xs-6 col-sm-3">-->
+                    <#--<div class="single-client">-->
+                        <#--<a href="#"><img src="images/partners/8.jpg" alt="Client"></a>-->
+                    <#--</div>-->
+                <#--</div>-->
+            <#--</div>-->
+        <#--</div>-->
+    <#--</section>-->
 
-    <!-- Call to Action -->
-    <div class="call-to-action">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <p>Like what you see? Buy this theme now and try everything.</p>
-                </div>
-                <div class="col-md-4">
-                    <a class="btn" href="#">Buy Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <#--<!-- Call to Action &ndash;&gt;-->
+    <#--<div class="call-to-action">-->
+        <#--<div class="container">-->
+            <#--<div class="row">-->
+                <#--<div class="col-md-8">-->
+                    <#--<p>Like what you see? Buy this theme now and try everything.</p>-->
+                <#--</div>-->
+                <#--<div class="col-md-4">-->
+                    <#--<a class="btn" href="#">Buy Now</a>-->
+                <#--</div>-->
+            <#--</div>-->
+        <#--</div>-->
+    <#--</div>-->
 
 </div>
 	<#include "/common/footer.ftl">
