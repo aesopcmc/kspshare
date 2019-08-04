@@ -4,5 +4,4 @@ import cn.kspshare.backstage.restful.ResultBean;
 
 public interface TestService {
     ResultBean list();
-
 }

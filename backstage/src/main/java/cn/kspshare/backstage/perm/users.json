@@ -1,0 +1,11 @@
+[
+  {
+    "username":"admin",
+    "realName":"超超超级管理员",
+    "password":"$2a$10$GhI1umKcTHysip4iSFXPXOQG1x9U.4eCWMEFwF/h3LBAt98K4o1B.",
+    "number":"admin",
+    "type":"system",
+    "activated":true,
+    "roles":["ROLE_ADMINISTRATOR"]
+  }
+]

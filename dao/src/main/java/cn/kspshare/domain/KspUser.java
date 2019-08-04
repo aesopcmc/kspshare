@@ -1,7 +1,7 @@
 package cn.kspshare.domain;
 
-import javax.annotation.Generated;
 import java.time.LocalDateTime;
+import javax.annotation.Generated;
 
 /**
  *

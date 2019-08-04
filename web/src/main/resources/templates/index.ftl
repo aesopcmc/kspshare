@@ -17,7 +17,7 @@
     <link href="${ctx.contextPath}/plugin/owl.carousel/assets/owl.theme.default.min.css" rel="stylesheet">
     <link href="${ctx.contextPath}/plugin/slicknav/slicknav.min.css" rel="stylesheet">
     <link href="${ctx.contextPath}/plugin/lightcase/css/lightcase.css" rel="stylesheet">
-<#--<link href="${ctx.contextPath}/plugin/fakeLoader/fakeLoader.css" rel="stylesheet">-->
+    <#--<link href="${ctx.contextPath}/plugin/fakeLoader/fakeLoader.css" rel="stylesheet">-->
     <#--<link href="${ctx.contextPath}/plugin/planet-3d/css/style.css" rel="stylesheet" >-->
     <link href="${ctx.contextPath}/css/main.css" rel="stylesheet">
     <link href="${ctx.contextPath}/css/index.css" rel="stylesheet">
@@ -130,7 +130,7 @@
                             费发分无法
                             费发分无法费发分无法费发分无法费发分无法费发分无法费发分无法费发分无法
                         </p>
-                        <a href="#" class="btn btn-primary btn-wide btn-icon">详细介绍<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        <a href="#" class="btn btn-primary btn-wide btn-icon" style="border-radius: unset;">详细介绍<i class="fa fa-angle-right" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="col-md-6 about-img">

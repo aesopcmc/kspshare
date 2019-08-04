@@ -60,7 +60,6 @@ public class ApplicationTests {
     public void getPasswordEncoder(){
         String password = new BCryptPasswordEncoder().encode("123123");
         System.out.println(password);
-
     }
 
     @Test

@@ -11,12 +11,13 @@
 }
 
 .module-title {
-	border-left: 4px solid #5CB85C;
-	border-radius: 2px;
+	/*border-left: 4px solid #5CB85C;*/
+	/*border-radius: 2px;*/
 	line-height: 38px;
 	padding-left: 12px;
 	background-color: #dff0d8;
-	color: #3c763d;
+	/*color: #5a5a5a;*/
+	color: #4caf50;
 	font-weight: bold;
 	font-size: 17px;
 	height: 40px;
@@ -140,13 +141,10 @@
 
 .replay-tag {
 	float: right;
-	
 	padding:2px 15px;
-	    /* width: 52px; */
-    /* height: 28px;		 */
-	background: #333;
+	background: #FF9933;
 	text-align: center;
-	border-radius: 4px;
+	/*border-radius: 4px;*/
 	position: relative;
 }
 
@@ -154,7 +152,7 @@
 	position: absolute;
 	left: -9px;
 	   top: 1px;
-	color: #333;
+	color: #FF9933;
 }
 
 .replay-tag span {
@@ -168,14 +166,7 @@
     margin: 0px 8px;
     border-bottom: 1px solid #dcd6d6;
 }
-.hot-item-container{
-	border-left: 1px solid #ebebeb;
-	border-right: 1px solid #ebebeb;
-	border-bottom: 1px solid #ebebeb;
-	margin-bottom: 20px;
-	background-color:#fff;
-	box-shadow: 4px 4px 18px -12px #333333;
-}
+
 .act-user{
 	margin-top: 10px;
 }
@@ -334,6 +325,7 @@
 .detail-container{
 	overflow: hidden;
 	margin-bottom: 0px !important;
+	border-bottom: 1px solid #d6d6d6;
 }
 .detail-container .replay-left{
 	float: left;
@@ -597,8 +589,8 @@
 /*底部回复*/
 .reply-panel{
 	margin: 30px auto;
-	margin-left: -15px;
-	margin-right: -15px;
+	margin-left: -35px;
+	margin-right: -34px;
 	padding: 20px;
 	background: #eaeaea;
 }
@@ -606,7 +598,8 @@
 	background: #fff;
 }
 .replay-oper{
-	padding: 10px;
+	padding-top: 10px;
+	/*padding: 10px;*/
 }
 .in-title{
 	/*color:#222;*/
@@ -649,3 +642,18 @@
 	float:left;
 	margin-right: 22px;
 }
+.plate{
+	margin-bottom: 20px;
+	border: 1px solid #d6d6d6;
+	/*-moz-box-shadow:-3px 8px 6px #BFBFBF; -webkit-box-shadow:-3px 8px 6px #BFBFBF; box-shadow:0px 2px 9px #c1c1c1;*/
+	-moz-box-shadow:-2px 2px 11px #BFBFBF; -webkit-box-shadow:-2px 2px 11px #BFBFBF; box-shadow:-2px 2px 11px #BFBFBF;
+}
+
+/*.hot-item-container{*/
+	/*border-left: 1px solid #ebebeb;*/
+	/*border-right: 1px solid #ebebeb;*/
+	/*border-bottom: 1px solid #ebebeb;*/
+	/*margin-bottom: 20px;*/
+	/*background-color:#fff;*/
+	/*box-shadow: 4px 4px 18px -12px #333333;*/
+/*}*/

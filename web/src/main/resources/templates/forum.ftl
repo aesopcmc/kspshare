@@ -35,13 +35,13 @@
 	<div class="page-wrapper">
 
  <!-- style="background-image: url('images/services-sub-header-bg.jpg');" -->
-		<div class="sub-header forum-head-bg">
-			<div class="bg-overlay"></div>
-			<div class="container">
-				<h2 class="title">大自然的秩序，证明了宇宙确有它的建筑家。</h2>
-				<p class="description">——〔德〕康德：《康德文集》</p>
-			</div>
-		</div>
+		<#--<div class="sub-header forum-head-bg">-->
+			<#--<div class="bg-overlay"></div>-->
+			<#--<div class="container">-->
+				<#--<h2 class="title">大自然的秩序，证明了宇宙确有它的建筑家。</h2>-->
+				<#--<p class="description">——〔德〕康德：《康德文集》</p>-->
+			<#--</div>-->
+		<#--</div>-->
 
 		<div class="services-page">
 			<!-- Main Content -->
@@ -54,15 +54,14 @@
 					
 				 <!-- 版块 -->
 				<div class="row">
-					<div class="col-md-9">
+					<div class="col-md-8">
 						<!--<div class="top-title">-->
 							<!--<button type="button" style="border-radius: 3px;" class="btn btn-warning">发布新帖子</button>-->
 						<!--</div>-->
 
 						 <!--板块begin -->
-						<div class="row module-container panel panel-success" style="margin-bottom: 20px;">
+						<div class="row plate">
 							<div class="module-title">板块一</div>
-
 							<div class="module-row">
 								<div class="col-md-1 module-item" style="text-align: center;">
 									<a href=""><img class="pub-head" src="${ctx.contextPath}/images/headx.jpg"	width="50px" height="50px" alt=""></a>
@@ -88,8 +87,7 @@
 									<div class="gray">帖子</div>
 								</div>
 							</div>
-
-							<div class="module-row led">
+							<div class="module-row">
 								<div class="col-md-1 module-item" style="text-align: center;">
 									<a href=""><img class="pub-head" src="${ctx.contextPath}/images/headx.jpg"	width="50px" height="50px" alt=""></a>
 								</div>
@@ -114,12 +112,10 @@
 									<div class="gray">帖子</div>
 								</div>
 							</div>
-
-
 						</div>
 							
 						 <!--帖子统计 -->
-						<div class="row module-container" style="margin-bottom: 20px;">
+						<div class="row plate" style="margin-bottom: 20px;">
 							<div class="module-title">论坛总计</div>
 							<div class="col-md-6 module-item" style="text-align: center;">
 								<div class="count1">
@@ -136,7 +132,7 @@
 						</div>
 						
 						<!-- 会员统计 -->
-						<div class="row module-container" style="margin-bottom: 20px;">
+						<div class="row plate" style="margin-bottom: 20px;">
 							<div class="module-title">会员总计</div>
 							<div class="col-md-4 module-item" style="text-align: center;">
 								<div class="count1">
@@ -169,9 +165,11 @@
 						
 						
 					</div>
+					<div class="col-md-1">
+					</div>
 					<div class="col-md-3">
 						<!-- <h3>最近热帖</h3> -->
-						<div class="hot-item-container">
+						<div class="row plate">
 							<div class="module-title">最近热帖</div>
 							<div class="hot-item">
 								<div class="col-md-8 ">
@@ -188,7 +186,6 @@
 									</div>
 								</div>
 							</div>
-							
 							<div class="hot-item">
 								<div class="col-md-8 ">
 									<div class="hot-title"><a href="">谁还需要一个水平跑道呢？</a></div>
@@ -206,7 +203,7 @@
 							</div>
 						</div>
 
-						<div class="hot-item-container">
+						<div class="row plate">
 							<div class="module-title">活跃用户</div>
 							<ol class="act-user">
 								<li>
@@ -221,8 +218,6 @@
 						</div>
 					</div>
 				</div>
-				<!-- Our Services -->
-
 			</main>
 		</div>
 

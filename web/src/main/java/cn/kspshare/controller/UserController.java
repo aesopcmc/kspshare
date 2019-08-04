@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-@Api(description = "用户管理")
+@Api(tags = "用户管理")
 public class UserController {
     @Autowired
     private KspUserService userService;

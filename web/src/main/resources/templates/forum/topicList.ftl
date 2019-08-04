@@ -40,13 +40,13 @@
 		<#include "/common/hearder.ftl">
 		<!-- Header end -->
 
-		<div class="sub-header forum-head-bg">
-			<div class="bg-overlay"></div>
-			<div class="container">
-				<h2 class="title">大自然的秩序，证明了宇宙确有它的建筑家。</h2>
-				<p class="description">——〔德〕康德：《康德文集》</p>
-			</div>
-		</div>
+		<#--<div class="sub-header forum-head-bg">-->
+			<#--<div class="bg-overlay"></div>-->
+			<#--<div class="container">-->
+				<#--<h2 class="title">大自然的秩序，证明了宇宙确有它的建筑家。</h2>-->
+				<#--<p class="description">——〔德〕康德：《康德文集》</p>-->
+			<#--</div>-->
+		<#--</div>-->
 
 		<div class="services-page">
 			<!-- Main Content -->
@@ -59,92 +59,86 @@
 				</div>
 
 				<div class="top-title">
-					<button type="button" style="border-radius: 3px;" class="btn btn-warning" onclick="javascript:location.href='/forum/new'">发布新帖子</button>
+					<button type="button" style="border-radius: unset" class="btn btn-warning" onclick="javascript:location.href='/forum/new'">发布新帖子</button>
 				</div>
 
+				<#--板块-->
+				<div class="row">
+					<div class="col-md-12">
+						<div class="row plate">
+							<#--顶部分页-->
+                            <div class="module-title">
+								<div id="pagination4" class="page fl"></div>
+							</div>
 
-				<!--顶部分页-->
-				<div class="page-box subleft">
-					<div id="pagination4" class="page fl"></div>
-				</div>
-				<div class="row module-container">
-					<!--<div class="module-title" style="border-left: none;">-->
-						<!--&lt;!&ndash;顶部分页&ndash;&gt;-->
-						<!--<div class="box">-->
-							<!--<div id="pagination4" class="page fl"></div>-->
-						<!--</div>-->
-					<!--</div>-->
-					<div class="row-topic">
-						<div class="col-dot">
-							<span><i class="fa fa-circle"></i></span>
-						</div>
-						<div class="col-topic">
-							<span class="top"><i class="fa fa-thumb-tack"></i></span>
-							<a href="/forum/detail">建议与发展讨论</a><br>
-							<span class="gray">
+							<#--条目-->
+                            <div class="row-topic">
+                                <div class="col-dot">
+                                    <span><i class="fa fa-circle"></i></span>
+                                </div>
+                                <div class="col-topic">
+                                    <span class="top"><i class="fa fa-thumb-tack"></i></span>
+                                    <a href="/forum/detail">建议与发展讨论</a><br>
+                                    <span class="gray">
 								<a href="" class="gray">冬日里的温情</a>&nbsp;&nbsp;&nbsp;1小时前 &nbsp;
-								<!--标签-->
+                                        <!--标签-->
 								<a href="#" class="ipsTag" title="按标签搜索">
 									<span style="position: absolute;left: -3px;">●</span><span>组件</span>
 								</a>
 							</span>
-						</div>
-						<div class="col-info">
-							<div class="replies-views1">
-								<span data-tooltip="被回复">999&nbsp;<i class="fa fa-paper-plane"></i></span><br>
-								<span class="gray" data-tooltip="被查看">2700&nbsp;<i class="fa fa-eye"></i></span>
-							</div>
-							<div class="replies-views2">
-								<a href="#"><img src="../images/headx-default.png" width="40px" height="40px" alt=""></a>
-							</div>
-							<div class="replies-views3">
-								<span>玫瑰花的葬礼</span>
-								<span class="gray">2017年08月09日</span>
-							</div>
-						</div>
-					</div>
+                                </div>
+                                <div class="col-info">
+                                    <div class="replies-views1">
+                                        <span data-tooltip="被回复">999&nbsp;<i class="fa fa-paper-plane"></i></span><br>
+                                        <span class="gray" data-tooltip="被查看">2700&nbsp;<i class="fa fa-eye"></i></span>
+                                    </div>
+                                    <div class="replies-views2">
+                                        <a href="#"><img src="../images/headx-default.png" width="40px" height="40px" alt=""></a>
+                                    </div>
+                                    <div class="replies-views3">
+                                        <span>玫瑰花的葬礼</span>
+                                        <span class="gray">2017年08月09日</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-topic">
+                                <div class="col-dot">
+                                    <span><i class="fa fa-circle"></i></span>
+                                </div>
+                                <div class="col-topic">
+                                    <a href="/forum/detail"> 建议与发展讨论</a><br>
+                                    <span class="gray">关注并讨论开发。建议和发展讨论就在这里。</span>
+                                </div>
+                                <div class="col-info">
+                                    <div class="replies-views1">
+                                        <span data-tooltip="被回复">999+&nbsp;<i class="fa fa-paper-plane"></i></span><br>
+                                        <span class="gray" data-tooltip="被查看">2700&nbsp;<i class="fa fa-eye"></i></span>
+                                    </div>
+                                    <div class="replies-views2">
+                                        <a href="#"><img src="../images/headx-default.png" width="40px" height="40px" alt=""></a>
+                                    </div>
+                                    <div class="replies-views3">
+                                        <span>玫瑰花的葬礼</span>
+                                        <span class="gray">2017年08月09日</span>
+                                    </div>
+                                </div>
+                            </div>
 
-					<div class="row-topic led">
-						<div class="col-dot">
-							<span><i class="fa fa-circle"></i></span>
-						</div>
-						<div class="col-topic">
-							<a href="/forum/detail"> 建议与发展讨论</a><br>
-							<span class="gray">关注并讨论开发。建议和发展讨论就在这里。</span>
-						</div>
-						<div class="col-info">
-							<div class="replies-views1">
-								<span data-tooltip="被回复">999+&nbsp;<i class="fa fa-paper-plane"></i></span><br>
-								<span class="gray" data-tooltip="被查看">2700&nbsp;<i class="fa fa-eye"></i></span>
-							</div>
-							<div class="replies-views2">
-								<a href="#"><img src="../images/headx-default.png" width="40px" height="40px" alt=""></a>
-							</div>
-							<div class="replies-views3">
-								<span>玫瑰花的葬礼</span>
-								<span class="gray">2017年08月09日</span>
-							</div>
+							<#--底部分页-->
+                            <div class="module-title">
+								<div id="pagination3" class="page fl"></div>
+								<span class="total-page">共101页</span>
+                            </div>
 						</div>
 					</div>
 				</div>
-				<!--底部分页-->
-				<div class="page-box subleft">
-					<div id="pagination3" class="page fl"></div>
-					<span class="total-page">共101页</span>
-				</div>
-
 			</main>
 		</div>
 
-		<!-- Footer -->
-		<footer id="footer" class="footer">
-			<div class="sub-footer text-center">
-				<div class="container">
-					<p>Copyright &copy; 2017.aesop All rights reserved.</p>
-				</div>
-			</div>
-		</footer>
 	</div>
+
+	<!-- Footer -->
+	<#include "/common/footer.ftl">
 
 	<!-- Required Plugins and Scripts -->
 	<script src="${ctx.contextPath}/plugin/bootstrap/bootstrap.min.js"></script>

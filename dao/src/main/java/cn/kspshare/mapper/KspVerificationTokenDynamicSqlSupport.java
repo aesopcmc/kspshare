@@ -1,11 +1,10 @@
 package cn.kspshare.mapper;
 
-import org.mybatis.dynamic.sql.SqlColumn;
-import org.mybatis.dynamic.sql.SqlTable;
-
-import javax.annotation.Generated;
 import java.sql.JDBCType;
 import java.time.LocalDateTime;
+import javax.annotation.Generated;
+import org.mybatis.dynamic.sql.SqlColumn;
+import org.mybatis.dynamic.sql.SqlTable;
 
 public final class KspVerificationTokenDynamicSqlSupport {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_verification_token")
@@ -41,7 +40,7 @@ public final class KspVerificationTokenDynamicSqlSupport {
 
     /**
      * Database Column Remarks:
-     *   失效时间
+     *   失效日期
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.expiry_date")
     public static final SqlColumn<LocalDateTime> expiryDate = kspVerificationToken.expiryDate;

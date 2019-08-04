@@ -37,6 +37,7 @@
 .our-team-1 .team-member {
     position: relative;
     overflow: hidden;
+    border: 1px solid #d6d6d6;
 }
 
 /*.our-team-1 .team-member:hover .overlay {*/

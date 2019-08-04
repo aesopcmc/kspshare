@@ -1,0 +1,32 @@
+[
+  {
+    "name":"ROLE_ADMINISTRATOR",
+    "nickname":"管理员",
+    "description":"系统超级管理员，不允许用户更改",
+    "banned":0,
+    "state":"normal",
+    "permissions":[
+      {
+        "resourceId":"permission",
+        "resourceName":"权限",
+        "privileges": {
+          "read":"查看",
+          "write":"新增",
+          "update":"更新",
+          "delete":"删除"
+        }
+      },
+      {
+        "resourceId":"user",
+        "resourceName":"用户",
+        "privileges": {
+          "read":"查看用户列表",
+          "write":"新增用户",
+          "import":"导入用户",
+          "update":"修改用户信息",
+          "delete":"删除用户"
+        }
+      }
+    ]
+  }
+]

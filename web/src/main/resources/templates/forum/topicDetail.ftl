@@ -41,14 +41,6 @@
 		<#include "/common/hearder.ftl">
 		<!-- Header end -->
 
-		<div class="sub-header forum-head-bg">
-			<div class="bg-overlay"></div>
-			<div class="container">
-				<h2 class="title">大自然的秩序，证明了宇宙确有它的建筑家。</h2>
-				<p class="description">——〔德〕康德：《康德文集》</p>
-			</div>
-		</div>
-
 		<div class="services-page">
 			<!-- Main Content -->
 			<main id="main" class="main container">
@@ -75,89 +67,246 @@
 				</div>
 
 				<div class="top-title">
-					<button type="button" style="border-radius: 3px;" class="btn btn-warning" onclick="javascript:document.getElementById('anchor1').scrollIntoView()">回复帖子</button>
+					<button type="button" style="border-radius: unset" class="btn btn-warning" onclick="javascript:document.getElementById('anchor1').scrollIntoView()">回复帖子</button>
 					<!--<a href="" >回复帖子</a>-->
 					<!--<a href="" class="top-tonew">发布新帖子</a>-->
 				</div>
 
-				<!--顶部分页-->
-				<div class="page-box subleft">
-					<div id="pagination4" class="page fl"></div>
-				</div>
-				<div class="row module-container detail-container">
-					<div class="replay-left">
-						<ul>
-							<li class="title">陨落星辰</li>
-							<li>等级：星系</li>
-							<li>
-								<i class="fa fa-certificate yellow"></i>
-								<i class="fa fa-certificate yellow"></i>
-								<i class="fa fa-certificate yellow"></i>
-								<i class="fa fa-certificate yellow"></i>
-							</li>
-							<li>
-								<a href="#"><img src="../images/headx-default.png" width="100px" height="100px" alt=""></a>
-							</li>
-							<li style="margin-top: 8px">
-								<i class="fa fa-pencil-square-o"></i> <span>50</span>
-							</li>
-							<li>
-								<i class="fa fa-database"></i> <span>9995</span>
-							</li>
-							<!--<li class="count-col">-->
-								<!--<div class="cols line-r">-->
-									<!--<span>215</span><br>-->
-									<!--发帖数-->
-								<!--</div>-->
-								<!--<div class="cols line-r">-->
-									<!--<span>65</span><br>-->
-									<!--回复数-->
-								<!--</div>-->
-								<!--<div class="cols">-->
-									<!--<span>65</span><br>-->
-									<!--站排名-->
-								<!--</div>-->
-								<!--<div></div>-->
-							<!--</li>-->
-							<li></li>
-						</ul>
-					</div>
-					<div class="replay-right">
-						<div class="content-top gray">
-							发布于 <span>2017-08-09 22:10</span>
-							<span class="black bold">#1</span>
-						</div>
-						<div class="content-middle">
-							那一年我也变成了光啊！
+				<#--板块-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row plate">
+						<#--顶部分页-->
+                            <div class="module-title">
+                                <div id="pagination4" class="page fl"></div>
+                            </div>
 
-						</div>
-						<div class="content-bottom">
-							<div class="cb1">
-								<!--回复多个-->
-								<a href="" class="fa fa-plus multi normal-color"></a>&nbsp;&nbsp;
-								<a href="" class="theme-color">回复</a>
-							</div>
-							<div class="cb2">
-								<!--<div class="good-area">-->
-									<!--<i class="fa fa-thumbs-up good"></i>-->
-									<!--<span>40</span class=good-area">-->
-								<!--</div>-->
-								<div class="grid__item">
-									<button class="icobutton icobutton--thumbs-up">
-										<span class="fa fa-thumbs-up zan"></span>
-									</button>
-									<span class="like-count">150</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+							<#--条目-->
+                            <div class="detail-container">
+                                <div class="replay-left">
+                                    <ul>
+                                        <li class="title">陨落星辰</li>
+                                        <li>等级：星系</li>
+                                        <li>
+                                            <i class="fa fa-certificate yellow"></i>
+                                            <i class="fa fa-certificate yellow"></i>
+                                            <i class="fa fa-certificate yellow"></i>
+                                            <i class="fa fa-certificate yellow"></i>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="../images/headx-default.png" width="100px" height="100px" alt=""></a>
+                                        </li>
+                                        <li style="margin-top: 8px">
+                                            <i class="fa fa-pencil-square-o"></i> <span>50</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-database"></i> <span>9995</span>
+                                        </li>
+                                        <!--<li class="count-col">-->
+                                        <!--<div class="cols line-r">-->
+                                        <!--<span>215</span><br>-->
+                                        <!--发帖数-->
+                                        <!--</div>-->
+                                        <!--<div class="cols line-r">-->
+                                        <!--<span>65</span><br>-->
+                                        <!--回复数-->
+                                        <!--</div>-->
+                                        <!--<div class="cols">-->
+                                        <!--<span>65</span><br>-->
+                                        <!--站排名-->
+                                        <!--</div>-->
+                                        <!--<div></div>-->
+                                        <!--</li>-->
+                                        <li></li>
+                                    </ul>
+                                </div>
+                                <div class="replay-right">
+                                    <div class="content-top gray">
+                                        发布于 <span>2017-08-09 22:10</span>
+                                        <span class="black bold">#1</span>
+                                    </div>
+                                    <div class="content-middle">
+                                        那一年我也变成了光啊！
+
+                                    </div>
+                                    <div class="content-bottom">
+                                        <div class="cb1">
+                                            <!--回复多个-->
+                                            <a href="" class="fa fa-plus multi normal-color"></a>&nbsp;&nbsp;
+                                            <a href="" class="theme-color">回复</a>
+                                        </div>
+                                        <div class="cb2">
+                                            <!--<div class="good-area">-->
+                                            <!--<i class="fa fa-thumbs-up good"></i>-->
+                                            <!--<span>40</span class=good-area">-->
+                                            <!--</div>-->
+                                            <div class="grid__item">
+                                                <button class="icobutton icobutton--thumbs-up">
+                                                    <span class="fa fa-thumbs-up zan"></span>
+                                                </button>
+                                                <span class="like-count">150</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="detail-container">
+                                <div class="replay-left">
+                                    <ul>
+                                        <li class="title">陨落星辰</li>
+                                        <li>等级：星系</li>
+                                        <li>
+                                            <i class="fa fa-certificate yellow"></i>
+                                            <i class="fa fa-certificate yellow"></i>
+                                            <i class="fa fa-certificate yellow"></i>
+                                            <i class="fa fa-certificate yellow"></i>
+                                        </li>
+                                        <li>
+                                            <a href="#"><img src="../images/headx-default.png" width="100px" height="100px" alt=""></a>
+                                        </li>
+                                        <li style="margin-top: 8px">
+                                            <i class="fa fa-pencil-square-o"></i> <span>50</span>
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-database"></i> <span>9995</span>
+                                        </li>
+                                        <!--<li class="count-col">-->
+                                        <!--<div class="cols line-r">-->
+                                        <!--<span>215</span><br>-->
+                                        <!--发帖数-->
+                                        <!--</div>-->
+                                        <!--<div class="cols line-r">-->
+                                        <!--<span>65</span><br>-->
+                                        <!--回复数-->
+                                        <!--</div>-->
+                                        <!--<div class="cols">-->
+                                        <!--<span>65</span><br>-->
+                                        <!--站排名-->
+                                        <!--</div>-->
+                                        <!--<div></div>-->
+                                        <!--</li>-->
+                                        <li></li>
+                                    </ul>
+                                </div>
+                                <div class="replay-right">
+                                    <div class="content-top gray">
+                                        发布于 <span>2017-08-09 22:10</span>
+                                        <#--<span class="black bold">#1</span>-->
+                                    </div>
+                                    <div class="content-middle">
+                                        那一年我也变成了光啊！
+
+                                    </div>
+                                    <div class="content-bottom">
+                                        <div class="cb1">
+                                            <!--回复多个-->
+                                            <a href="" class="fa fa-plus multi normal-color"></a>&nbsp;&nbsp;
+                                            <a href="" class="theme-color">回复</a>
+                                        </div>
+                                        <div class="cb2">
+                                            <!--<div class="good-area">-->
+                                            <!--<i class="fa fa-thumbs-up good"></i>-->
+                                            <!--<span>40</span class=good-area">-->
+                                            <!--</div>-->
+                                            <div class="grid__item">
+                                                <button class="icobutton icobutton--thumbs-up">
+                                                    <span class="fa fa-thumbs-up zan"></span>
+                                                </button>
+                                                <span class="like-count">150</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+							<#--底部分页-->
+                            <div class="module-title">
+                                <div id="pagination3" class="page fl"></div>
+                                <span class="total-page">共101页</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+				<!--顶部分页-->
+				<#--<div class="page-box subleft">-->
+					<#--<div id="pagination4" class="page fl"></div>-->
+				<#--</div>-->
+				<#--<div class="row module-container detail-container">-->
+					<#--<div class="replay-left">-->
+						<#--<ul>-->
+							<#--<li class="title">陨落星辰</li>-->
+							<#--<li>等级：星系</li>-->
+							<#--<li>-->
+								<#--<i class="fa fa-certificate yellow"></i>-->
+								<#--<i class="fa fa-certificate yellow"></i>-->
+								<#--<i class="fa fa-certificate yellow"></i>-->
+								<#--<i class="fa fa-certificate yellow"></i>-->
+							<#--</li>-->
+							<#--<li>-->
+								<#--<a href="#"><img src="../images/headx-default.png" width="100px" height="100px" alt=""></a>-->
+							<#--</li>-->
+							<#--<li style="margin-top: 8px">-->
+								<#--<i class="fa fa-pencil-square-o"></i> <span>50</span>-->
+							<#--</li>-->
+							<#--<li>-->
+								<#--<i class="fa fa-database"></i> <span>9995</span>-->
+							<#--</li>-->
+							<#--<!--<li class="count-col">&ndash;&gt;-->
+								<#--<!--<div class="cols line-r">&ndash;&gt;-->
+									<#--<!--<span>215</span><br>&ndash;&gt;-->
+									<#--<!--发帖数&ndash;&gt;-->
+								<#--<!--</div>&ndash;&gt;-->
+								<#--<!--<div class="cols line-r">&ndash;&gt;-->
+									<#--<!--<span>65</span><br>&ndash;&gt;-->
+									<#--<!--回复数&ndash;&gt;-->
+								<#--<!--</div>&ndash;&gt;-->
+								<#--<!--<div class="cols">&ndash;&gt;-->
+									<#--<!--<span>65</span><br>&ndash;&gt;-->
+									<#--<!--站排名&ndash;&gt;-->
+								<#--<!--</div>&ndash;&gt;-->
+								<#--<!--<div></div>&ndash;&gt;-->
+							<#--<!--</li>&ndash;&gt;-->
+							<#--<li></li>-->
+						<#--</ul>-->
+					<#--</div>-->
+					<#--<div class="replay-right">-->
+						<#--<div class="content-top gray">-->
+							<#--发布于 <span>2017-08-09 22:10</span>-->
+							<#--<span class="black bold">#1</span>-->
+						<#--</div>-->
+						<#--<div class="content-middle">-->
+							<#--那一年我也变成了光啊！-->
+
+						<#--</div>-->
+						<#--<div class="content-bottom">-->
+							<#--<div class="cb1">-->
+								<#--<!--回复多个&ndash;&gt;-->
+								<#--<a href="" class="fa fa-plus multi normal-color"></a>&nbsp;&nbsp;-->
+								<#--<a href="" class="theme-color">回复</a>-->
+							<#--</div>-->
+							<#--<div class="cb2">-->
+								<#--<!--<div class="good-area">&ndash;&gt;-->
+									<#--<!--<i class="fa fa-thumbs-up good"></i>&ndash;&gt;-->
+									<#--<!--<span>40</span class=good-area">&ndash;&gt;-->
+								<#--<!--</div>&ndash;&gt;-->
+								<#--<div class="grid__item">-->
+									<#--<button class="icobutton icobutton--thumbs-up">-->
+										<#--<span class="fa fa-thumbs-up zan"></span>-->
+									<#--</button>-->
+									<#--<span class="like-count">150</span>-->
+								<#--</div>-->
+							<#--</div>-->
+						<#--</div>-->
+					<#--</div>-->
+				<#--</div>-->
 
 				<!--底部分页-->
-				<div class="page-box subleft">
-					<div id="pagination3" class="page fl"></div>
-					<span class="total-page">共101页</span>
-				</div>
+				<#--<div class="page-box subleft">-->
+					<#--<div id="pagination3" class="page fl"></div>-->
+					<#--<span class="total-page">共101页</span>-->
+				<#--</div>-->
 
 				<!--回复-->
 				<div class="reply-panel" id="anchor1">
@@ -166,7 +315,7 @@
 					</div>
 					<div class="replay-area myEditor"></div>
 					<div class="replay-oper">
-						<button type="button" style="border-radius: 3px;" class="btn btn-warning"><i class="fa fa-paper-plane-o"></i> 发表回复</button>
+						<button type="button" style="border-radius: unset;" class="btn btn-warning"><i class="fa fa-paper-plane-o"></i> 发表回复</button>
 					</div>
 				</div>
 			</main>

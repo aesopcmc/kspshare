@@ -1,7 +1,7 @@
 package cn.kspshare.domain;
 
-import javax.annotation.Generated;
 import java.time.LocalDateTime;
+import javax.annotation.Generated;
 
 /**
  *
@@ -39,7 +39,7 @@ public class KspVerificationToken {
 
     /**
      * Database Column Remarks:
-     *   失效时间
+     *   失效日期
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_verification_token.expiry_date")
     private LocalDateTime expiryDate;
