@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @MapperScan({"cn.kspshare.mapper","cn.kspshare.dao"})
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 @SpringBootApplication
-public class BackstageApplication extends SpringBootServletInitializer {
+public class BackstageApplication  extends SpringBootServletInitializer{
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder) {

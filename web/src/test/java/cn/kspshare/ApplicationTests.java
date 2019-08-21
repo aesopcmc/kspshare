@@ -55,10 +55,12 @@ public class ApplicationTests {
 
     /**
      * 密码加密
+     * chao 123
+     * admin 000
      */
     @Test
     public void getPasswordEncoder(){
-        String password = new BCryptPasswordEncoder().encode("123123");
+        String password = new BCryptPasswordEncoder().encode("123456");
         System.out.println(password);
     }
 

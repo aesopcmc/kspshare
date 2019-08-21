@@ -19,17 +19,17 @@ public final class KspPermDynamicSqlSupport {
 
     /**
      * Database Column Remarks:
-     *   资源id
+     *   权限值
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.resourceId")
-    public static final SqlColumn<String> resourceid = kspPerm.resourceid;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.perm_value")
+    public static final SqlColumn<String> permValue = kspPerm.permValue;
 
     /**
      * Database Column Remarks:
-     *   资源名
+     *   权限名称
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.resourceName")
-    public static final SqlColumn<String> resourcename = kspPerm.resourcename;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.perm_name")
+    public static final SqlColumn<String> permName = kspPerm.permName;
 
     /**
      * Database Column Remarks:
@@ -49,9 +49,9 @@ public final class KspPermDynamicSqlSupport {
     public static final class KspPerm extends SqlTable {
         public final SqlColumn<Long> oid = column("oid", JDBCType.BIGINT);
 
-        public final SqlColumn<String> resourceid = column("resourceId", JDBCType.VARCHAR);
+        public final SqlColumn<String> permValue = column("perm_value", JDBCType.VARCHAR);
 
-        public final SqlColumn<String> resourcename = column("resourceName", JDBCType.VARCHAR);
+        public final SqlColumn<String> permName = column("perm_name", JDBCType.VARCHAR);
 
         public final SqlColumn<Long> parentId = column("parent_id", JDBCType.BIGINT);
 

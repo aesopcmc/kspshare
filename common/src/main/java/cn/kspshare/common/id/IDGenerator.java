@@ -12,5 +12,9 @@ public class IDGenerator {
 
     public static void main(String[] args) {
         System.out.println(worker.nextId());
+        System.out.println(worker.nextId());
+        System.out.println(worker.nextId());
+        System.out.println(worker.nextId());
+        System.out.println(worker.nextId());
     }
 }

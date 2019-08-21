@@ -1,7 +1,7 @@
 package cn.kspshare.service.impl;
 
 import cn.kspshare.common.id.IDGenerator;
-import cn.kspshare.constant.BaseConstant;
+import cn.kspshare.constant.KspConstants;
 import cn.kspshare.domain.KspUser;
 import cn.kspshare.domain.KspVerificationToken;
 import cn.kspshare.dto.request.KspUserDto;
@@ -24,7 +24,7 @@ import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 @Service
 public class KspUserServiceImpl implements KspUserService {
     @Autowired
-    private BaseConstant baseConstant;
+    private KspConstants kspConstants;
     @Autowired
     private KspUserMapper userMapper;
     @Autowired
@@ -67,7 +67,7 @@ public class KspUserServiceImpl implements KspUserService {
         kspUser.setPassword(password);
         kspUser.setNickname(dto.getUsername());
         kspUser.setEmail(dto.getEmail());
-        kspUser.setRoles(baseConstant.ROLE_USER);
+        kspUser.setRoles(kspConstants.ROLE_USER);
         int i = userMapper.insertSelective(kspUser);
         return i>=1 ? kspUser : null;
     }

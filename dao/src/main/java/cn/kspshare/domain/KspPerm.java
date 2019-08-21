@@ -18,17 +18,17 @@ public class KspPerm {
 
     /**
      * Database Column Remarks:
-     *   资源id
+     *   权限值
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.resourceId")
-    private String resourceid;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.perm_value")
+    private String permValue;
 
     /**
      * Database Column Remarks:
-     *   资源名
+     *   权限名称
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.resourceName")
-    private String resourcename;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.perm_name")
+    private String permName;
 
     /**
      * Database Column Remarks:
@@ -54,24 +54,24 @@ public class KspPerm {
         this.oid = oid;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.resourceId")
-    public String getResourceid() {
-        return resourceid;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.perm_value")
+    public String getPermValue() {
+        return permValue;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.resourceId")
-    public void setResourceid(String resourceid) {
-        this.resourceid = resourceid;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.perm_value")
+    public void setPermValue(String permValue) {
+        this.permValue = permValue;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.resourceName")
-    public String getResourcename() {
-        return resourcename;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.perm_name")
+    public String getPermName() {
+        return permName;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.resourceName")
-    public void setResourcename(String resourcename) {
-        this.resourcename = resourcename;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.perm_name")
+    public void setPermName(String permName) {
+        this.permName = permName;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.parent_id")

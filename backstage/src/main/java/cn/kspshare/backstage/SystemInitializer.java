@@ -1,22 +1,11 @@
 package cn.kspshare.backstage;
-import cn.kspshare.backstage.perm.Role;
-import cn.kspshare.backstage.perm.User;
-import cn.kspshare.domain.KspAdminUser;
 import cn.kspshare.mapper.KspAdminUserMapper;
 import cn.kspshare.mapper.KspRoleMapper;
-import com.google.common.reflect.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.dao.AbstractUserDetailsAuthenticationProvider;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
 
 import javax.annotation.PostConstruct;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-
 /**
  * 系统初始化配置类，主要用于加载内置数据到目标数据库上
  */
@@ -35,11 +24,11 @@ public class SystemInitializer {
     // @Autowired
     // private RoleRepository roleRepository;
 
-    @Autowired
-    private KspAdminUserMapper adminUserMapper;
-
-    @Autowired
-    private KspRoleMapper roleMapper;
+    // @Autowired
+    // private KspAdminUserMapper adminUserMapper;
+    //
+    // @Autowired
+    // private KspRoleMapper roleMapper;
 
     @PostConstruct
     public boolean initialize() throws Exception {

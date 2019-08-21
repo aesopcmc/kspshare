@@ -53,8 +53,8 @@ public interface KspPermMapper {
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="KspPermResult", value = {
         @Result(column="oid", property="oid", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="resourceId", property="resourceid", jdbcType=JdbcType.VARCHAR),
-        @Result(column="resourceName", property="resourcename", jdbcType=JdbcType.VARCHAR),
+        @Result(column="perm_value", property="permValue", jdbcType=JdbcType.VARCHAR),
+        @Result(column="perm_name", property="permName", jdbcType=JdbcType.VARCHAR),
         @Result(column="parent_id", property="parentId", jdbcType=JdbcType.BIGINT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP)
     })
@@ -88,8 +88,8 @@ public interface KspPermMapper {
         return insert(SqlBuilder.insert(record)
                 .into(kspPerm)
                 .map(oid).toProperty("oid")
-                .map(resourceid).toProperty("resourceid")
-                .map(resourcename).toProperty("resourcename")
+                .map(permValue).toProperty("permValue")
+                .map(permName).toProperty("permName")
                 .map(parentId).toProperty("parentId")
                 .map(createTime).toProperty("createTime")
                 .build()
@@ -101,8 +101,8 @@ public interface KspPermMapper {
         return insert(SqlBuilder.insert(record)
                 .into(kspPerm)
                 .map(oid).toPropertyWhenPresent("oid", record::getOid)
-                .map(resourceid).toPropertyWhenPresent("resourceid", record::getResourceid)
-                .map(resourcename).toPropertyWhenPresent("resourcename", record::getResourcename)
+                .map(permValue).toPropertyWhenPresent("permValue", record::getPermValue)
+                .map(permName).toPropertyWhenPresent("permName", record::getPermName)
                 .map(parentId).toPropertyWhenPresent("parentId", record::getParentId)
                 .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
                 .build()
@@ -111,19 +111,19 @@ public interface KspPermMapper {
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspPerm>>> selectByExample() {
-        return SelectDSL.selectWithMapper(this::selectMany, oid, resourceid, resourcename, parentId, createTime)
+        return SelectDSL.selectWithMapper(this::selectMany, oid, permValue, permName, parentId, createTime)
                 .from(kspPerm);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspPerm>>> selectDistinctByExample() {
-        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, resourceid, resourcename, parentId, createTime)
+        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, permValue, permName, parentId, createTime)
                 .from(kspPerm);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     default KspPerm selectByPrimaryKey(Long oid_) {
-        return SelectDSL.selectWithMapper(this::selectOne, oid, resourceid, resourcename, parentId, createTime)
+        return SelectDSL.selectWithMapper(this::selectOne, oid, permValue, permName, parentId, createTime)
                 .from(kspPerm)
                 .where(oid, isEqualTo(oid_))
                 .build()
@@ -134,8 +134,8 @@ public interface KspPermMapper {
     default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExample(KspPerm record) {
         return UpdateDSL.updateWithMapper(this::update, kspPerm)
                 .set(oid).equalTo(record::getOid)
-                .set(resourceid).equalTo(record::getResourceid)
-                .set(resourcename).equalTo(record::getResourcename)
+                .set(permValue).equalTo(record::getPermValue)
+                .set(permName).equalTo(record::getPermName)
                 .set(parentId).equalTo(record::getParentId)
                 .set(createTime).equalTo(record::getCreateTime);
     }
@@ -144,8 +144,8 @@ public interface KspPermMapper {
     default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExampleSelective(KspPerm record) {
         return UpdateDSL.updateWithMapper(this::update, kspPerm)
                 .set(oid).equalToWhenPresent(record::getOid)
-                .set(resourceid).equalToWhenPresent(record::getResourceid)
-                .set(resourcename).equalToWhenPresent(record::getResourcename)
+                .set(permValue).equalToWhenPresent(record::getPermValue)
+                .set(permName).equalToWhenPresent(record::getPermName)
                 .set(parentId).equalToWhenPresent(record::getParentId)
                 .set(createTime).equalToWhenPresent(record::getCreateTime);
     }
@@ -153,8 +153,8 @@ public interface KspPermMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     default int updateByPrimaryKey(KspPerm record) {
         return UpdateDSL.updateWithMapper(this::update, kspPerm)
-                .set(resourceid).equalTo(record::getResourceid)
-                .set(resourcename).equalTo(record::getResourcename)
+                .set(permValue).equalTo(record::getPermValue)
+                .set(permName).equalTo(record::getPermName)
                 .set(parentId).equalTo(record::getParentId)
                 .set(createTime).equalTo(record::getCreateTime)
                 .where(oid, isEqualTo(record::getOid))
@@ -165,8 +165,8 @@ public interface KspPermMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     default int updateByPrimaryKeySelective(KspPerm record) {
         return UpdateDSL.updateWithMapper(this::update, kspPerm)
-                .set(resourceid).equalToWhenPresent(record::getResourceid)
-                .set(resourcename).equalToWhenPresent(record::getResourcename)
+                .set(permValue).equalToWhenPresent(record::getPermValue)
+                .set(permName).equalToWhenPresent(record::getPermName)
                 .set(parentId).equalToWhenPresent(record::getParentId)
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
                 .where(oid, isEqualTo(record::getOid))

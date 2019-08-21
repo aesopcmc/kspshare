@@ -1,8 +1,8 @@
 package cn.kspshare.controller;
 
-import cn.kspshare.common.JsonUtils;
 import cn.kspshare.config.UserInfo;
 import cn.kspshare.service.KspUserService;
+import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -32,7 +32,7 @@ public class UserController {
         Map<String, Object> mapInfo = new HashMap<>();
         mapInfo.put("username", userInfo.getUsername());
         mapInfo.put("nickname", userInfo.getNickname());
-        model.addAttribute("userInfo", JsonUtils.encodeObject(mapInfo));
+        model.addAttribute("userInfo", JSON.toJSONString(mapInfo));
         return "user_profile";
     }
 

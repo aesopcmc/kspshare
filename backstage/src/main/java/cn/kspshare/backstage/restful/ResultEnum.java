@@ -4,7 +4,8 @@ public enum ResultEnum {
     FAIL(-1, "失败"),
     SUCCESS(0, "成功"),
     MISSING_PARAMETERS(1, "参数不全"),
-    SERVER_EXCEPTION(2, "服务器异常");
+    SERVER_EXCEPTION(2, "服务器异常"),
+    NO_PERMISSION(3, "权限不足");
 
     private Integer code;
     private String msg;

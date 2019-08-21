@@ -10,7 +10,9 @@ import cn.kspshare.mapper.KspUserRoleReMapper;
 import org.mybatis.dynamic.sql.SqlBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +31,9 @@ public class KspRoleServiceImpl implements KspRoleService {
                 .where(KspUserRoleReDynamicSqlSupport.userId, SqlBuilder.isEqualTo(userId))
                 .build()
                 .execute();
-
+        if(CollectionUtils.isEmpty(userRoleReList)) {
+            return new ArrayList<>();
+        }
         List<Long> roleIds = userRoleReList.stream().map(KspUserRoleRe::getRoleId).collect(Collectors.toList());
         List<KspRole> roleList = kspRoleMapper.selectByExample().where(KspRoleDynamicSqlSupport.oid, SqlBuilder.isIn(roleIds))
                 .build()

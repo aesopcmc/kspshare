@@ -1,7 +1,7 @@
 package cn.kspshare.mail;
 
 
-import cn.kspshare.constant.BaseConstant;
+import cn.kspshare.constant.KspConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class EmailServiceImp implements EmailService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
-    private BaseConstant baseConstant;
+    private KspConstants kspConstants;
 
     @Autowired
     private JavaMailSender mailSender;//spring 提供的邮件发送类
@@ -35,7 +35,7 @@ public class EmailServiceImp implements EmailService {
     @Override
     public void sendSimpleEmail(String to, String subject, String content) {
         SimpleMailMessage message = new SimpleMailMessage();//创建简单邮件消息
-        message.setFrom(baseConstant.siteName+"<"+from+">");//设置发送人
+        message.setFrom(kspConstants.siteName+"<"+from+">");//设置发送人
         message.setTo(to);//设置收件人
 
         /* String[] adds = {"xxx@qq.com","yyy@qq.com"}; //同时发送给多人
@@ -58,7 +58,7 @@ public class EmailServiceImp implements EmailService {
         try {
             //true表示需要创建一个multipart message
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom(baseConstant.siteName+"<"+from+">");
+            helper.setFrom(kspConstants.siteName+"<"+from+">");
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(content, true);
@@ -77,7 +77,7 @@ public class EmailServiceImp implements EmailService {
 
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom(baseConstant.siteName+"<"+from+">");
+            helper.setFrom(kspConstants.siteName+"<"+from+">");
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(content, true);// true表示这个邮件是有附件的
@@ -100,7 +100,7 @@ public class EmailServiceImp implements EmailService {
 
         try {
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
-            helper.setFrom(baseConstant.siteName+"<"+from+">");
+            helper.setFrom(kspConstants.siteName+"<"+from+">");
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setText(content, true);
