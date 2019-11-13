@@ -1,8 +1,10 @@
 package cn.kspshare.backstage.jwt;
 
 import cn.kspshare.backstage.config.KspConstants;
+import cn.kspshare.backstage.restful.ResultBean;
 import cn.kspshare.backstage.service.KspAdminUserService;
 import cn.kspshare.backstage.service.KspPermService;
+import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +33,6 @@ public class ApplicationConfigurerAdapter extends WebSecurityConfigurerAdapter {
     private RsaSigner signer;
     @Autowired
     private JwtUserDetailServiceImpl jwtUserDetailService;
-
     @Autowired
     private KspAdminUserService kspAdminUserService;
     @Autowired
@@ -82,14 +83,14 @@ public class ApplicationConfigurerAdapter extends WebSecurityConfigurerAdapter {
                 //这也是JwtHeadFilter发现请求头中没有jwtToken不作处理而直接进入下一个过滤器的原因
             .exceptionHandling().authenticationEntryPoint((request, response, authException) -> {
             response.setContentType("application/json;charset=UTF-8");
-            response.getWriter().write("需要登陆");
+            response.getWriter().write(JSON.toJSONString(ResultBean.FAIL("需要登陆")));
         })
 
             //拒绝访问处理,当已登录,但权限不足时调用
             //抛出AccessDeniedException异常时且当不是匿名用户时调用
             .accessDeniedHandler((request, response, accessDeniedException) -> {
                 response.setContentType("application/json;charset=UTF-8");
-                response.getWriter().write("没有权限");
+                response.getWriter().write(JSON.toJSONString(ResultBean.NO_PERMISSION()));
             })
             .and()
             .authorizeRequests()
@@ -108,7 +109,10 @@ public class ApplicationConfigurerAdapter extends WebSecurityConfigurerAdapter {
             .csrf().disable();
     }
 
-
+    /**
+     * 密码加密方式：BCryptPasswordEncoder
+     * @return
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();

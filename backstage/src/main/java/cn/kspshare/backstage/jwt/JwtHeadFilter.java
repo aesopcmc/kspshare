@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,7 +41,7 @@ public class JwtHeadFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String token = request.getHeader("Authorization");//Authentication
+        String token = request.getHeader("Authorization");
         if (token==null || token.isEmpty()){
             filterChain.doFilter(request,response);
             return;
@@ -49,7 +50,7 @@ public class JwtHeadFilter extends OncePerRequestFilter {
         JwtUserInfo user;
         try {
             //
-            Jwt jwt = JwtHelper.decodeAndVerify(token.replace("Bearer ", ""), verifier);
+            Jwt jwt = JwtHelper.decodeAndVerify(token.replace("Bearer ", ""), verifier);//token.replace("Bearer ", "")
             String claims = jwt.getClaims();
             user = JSON.parseObject(claims, JwtUserInfo.class);
 

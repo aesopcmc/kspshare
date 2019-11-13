@@ -36,7 +36,7 @@ public class GlobalDefultExceptionHandler {
     @ResponseBody
     public ResultBean handleException(Exception ex) {
         log.error("捕获到全局异常", ex);
-        return new ResultBean(ResultEnum.SERVER_EXCEPTION);
+        return ResultBean.SERVER_EXCEPTION();
     }
 
     /**
@@ -48,7 +48,7 @@ public class GlobalDefultExceptionHandler {
     @ResponseBody
     public ResultBean handleException(AccessDeniedException ex) {
         log.warn("没有访问权限");
-        return new ResultBean(ResultEnum.NO_PERMISSION);
+        return ResultBean.NO_PERMISSION();
     }
 
 }

@@ -19,35 +19,71 @@ public class ResultBean<T> implements Serializable {
 
     private T data;
 
-    /**
-     * 返回成功的构造函数
-     */
-    public ResultBean(T data) {
+    private ResultBean(T data) {
         this.data = data;
     }
 
-    ///**
-    // * 返回错误（获取数据错误）的构造函数
-    // */
-    //public ResultBean(BaseRuntimeException e) {
-    //    this.msg = e.getMessage();
-    //    this.code = e.getCode();
-    //}
-
-    /**
-     * 自定义代码和消息
-     */
-    public ResultBean(ResultEnum resultEnum, String msg) {
-        this.code = resultEnum.getCode();
+    private ResultBean(int code, String msg) {
+        this.code = code;
         this.msg = msg;
     }
 
     /**
-     * 自定义代码
+     * 成功
+     * @return
      */
-    public ResultBean(ResultEnum resultEnum) {
-        this.code = resultEnum.getCode();
-        this.msg = resultEnum.getMsg();
+    public static ResultBean SUCCESS() {
+        return new ResultBean(ResultEnum.SUCCESS.getCode(), ResultEnum.SUCCESS.getMsg());
+    }
+
+    /**
+     * 成功，返回数据
+     * @param data
+     * @return
+     */
+    public static ResultBean SUCCESS(Object data) {
+        return new ResultBean<>(data);
+    }
+
+    /**
+     * 失败
+     * @return
+     */
+    public static ResultBean FAIL() {
+        return new ResultBean(ResultEnum.FAIL.getCode(), ResultEnum.FAIL.getMsg());
+    }
+
+    /**
+     * 失败，返回自定义消息
+     * @param msg
+     * @return
+     */
+    public static ResultBean FAIL(String msg) {
+        return new ResultBean(ResultEnum.FAIL.getCode(), msg);
+    }
+
+    /**
+     * 参数不全
+     * @return
+     */
+    public static ResultBean MISSING_PARAMETERS() {
+        return new ResultBean(ResultEnum.MISSING_PARAMETERS.getCode(), ResultEnum.MISSING_PARAMETERS.getMsg());
+    }
+
+    /**
+     * 服务器异常
+     * @return
+     */
+    public static ResultBean SERVER_EXCEPTION() {
+        return new ResultBean(ResultEnum.SERVER_EXCEPTION.getCode(), ResultEnum.SERVER_EXCEPTION.getMsg());
+    }
+
+    /**
+     * 权限不足
+     * @return
+     */
+    public static ResultBean NO_PERMISSION() {
+        return new ResultBean(ResultEnum.NO_PERMISSION.getCode(), ResultEnum.NO_PERMISSION.getMsg());
     }
 
     public int getCode() {

@@ -1,6 +1,7 @@
 package cn.kspshare.backstage.jwt;
 
 import cn.kspshare.backstage.config.KspConstants;
+import cn.kspshare.backstage.restful.ResultBean;
 import com.alibaba.fastjson.JSON;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.jwt.JwtHelper;
@@ -12,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,10 +35,12 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
         tokeInfo.put("username", principal.getUsername());
         tokeInfo.put("expiredSecond", kspConstants.jwtExpiredSecend);
         tokeInfo.put("tokenCreateTime", LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        //签发token
         String token = JwtHelper.encode(JSON.toJSONString(tokeInfo), signer).getEncoded();
         // String token = JwtHelper.encode(JSON.toJSONString(authentication.getPrincipal()), signer).getEncoded();
-        //签发token
-        response.getWriter().write("token="+token);
+        Map<String, Object> data = new HashMap<>();
+        data.put("token", token);
+        response.getWriter().write(JSON.toJSONString(ResultBean.SUCCESS(data)));
     }
 
     public void setSigner(RsaSigner signer) {
@@ -47,5 +49,10 @@ public class LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     public void setKspConstants(KspConstants kspConstants) {
         this.kspConstants = kspConstants;
+    }
+
+    public static void main(String[] args) {
+        String format = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println(format);
     }
 }

@@ -1,7 +1,7 @@
 package cn.kspshare.backstage.restful;
 
 public enum ResultEnum {
-    FAIL(-1, "失败"),
+    FAIL(-1, "操作失败"),
     SUCCESS(0, "成功"),
     MISSING_PARAMETERS(1, "参数不全"),
     SERVER_EXCEPTION(2, "服务器异常"),

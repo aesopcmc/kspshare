@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
 @RestController
 @ResponseBody
 @Api(tags = "测试接口")
@@ -88,5 +89,6 @@ public class TestController {
     public String secret(){
         return "you get the message!";
     }
+
 
 }
