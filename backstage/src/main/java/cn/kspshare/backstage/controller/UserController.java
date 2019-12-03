@@ -29,7 +29,7 @@ public class UserController {
      */
     @GetMapping("/user/info")
     public ResultBean getUserInfo() {
-        JwtUserInfo userInfo = (JwtUserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+         JwtUserInfo userInfo = (JwtUserInfo) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         String userStr = JSON.toJSONString(userInfo);
         log.info("userinfo", userStr);

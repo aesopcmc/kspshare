@@ -60,7 +60,7 @@ public class JwtHeadFilter extends OncePerRequestFilter {
             }
 
             //根据用户名判断是否是超级管理员
-            if("admin".equalsIgnoreCase(user.getUsername())) {
+            if("super".equalsIgnoreCase(user.getUsername())) {
                 user.setAdminFlag(true);
             }
 
