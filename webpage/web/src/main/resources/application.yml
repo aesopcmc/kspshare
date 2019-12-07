@@ -1,0 +1,73 @@
+
+spring:
+  profiles:
+    active: dev
+
+  ## Freemarker 配置
+  ## 文件配置路径
+  freemarker:
+    template-loader-path: classpath:/templates/,classpath:/templates/common/,classpath:/templates/user/,classpath:/templates/forum/
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: ctx #模板文件支持 ${ctx.contextPath}获取项目路径
+    suffix: .ftl
+    expose-spring-macro-helpers: true
+
+  #静态资源配置
+  resources:
+    static-locations: classpath:/static/
+
+  #邮件配置
+  mail:
+    host: smtp.163.com
+    username: chao_c_c@163.com
+    password: chao123
+    port: 465
+    protocol: smtp
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+
+
+## mybatis配置
+mybatis:
+  typeAliasesPackage: cn.kspshare.domain #实体类包路径
+  mapperLocations: classpath:mapper/*.xml
+
+#SQL打印 level下面指定mybatis对应的方法接口所在的包
+logging:
+  level:
+     cn.kspshare.dao : debug
+     cn.kspshare.mapper : debug
+
+
+
+#更多freemarker配置
+#spring.freemarker.allow-request-override=false # Set whether HttpServletRequest attributes are allowed to override (hide) controller generated model attributes of the same name.
+#spring.freemarker.allow-session-override=false # Set whether HttpSession attributes are allowed to override (hide) controller generated model attributes of the same name.
+#spring.freemarker.cache=false # Enable template caching.
+#spring.freemarker.charset=UTF-8 # Template encoding.
+#spring.freemarker.check-template-location=true # Check that the templates location exists.
+#spring.freemarker.content-type=text/html # Content-Type value.
+#spring.freemarker.enabled=true # Enable MVC view resolution for this technology.
+#spring.freemarker.expose-request-attributes=false # Set whether all request attributes should be added to the model prior to merging with the template.
+#spring.freemarker.expose-session-attributes=false # Set whether all HttpSession attributes should be added to the model prior to merging with the template.
+#spring.freemarker.expose-spring-macro-helpers=true # Set whether to expose a RequestContext for use by Spring's macro library, under the name "springMacroRequestContext".
+#spring.freemarker.prefer-file-system-access=true # Prefer file system access for template loading. File system access enables hot detection of template changes.
+#spring.freemarker.prefix= # Prefix that gets prepended to view names when building a URL.
+#spring.freemarker.request-context-attribute= # Name of the RequestContext attribute for all views.
+#spring.freemarker.settings.*= # Well-known FreeMarker keys which will be passed to FreeMarker's Configuration.
+#spring.freemarker.suffix= # Suffix that gets appended to view names when building a URL.
+#spring.freemarker.template-loader-path=classpath:/templates/ # Comma-separated list of template paths.
+#spring.freemarker.view-names= # White list of view names that can be resolved.
+
+#自定义项目配置
+ksp:
+  ROLE_USER: ROLE_USER
+  ROLE_ADMIN: ROLE_ADMIN
+  siteName: 坎巴拉分享站 #站点名称
+  siteHost: http://localhost:8083 #站点地址

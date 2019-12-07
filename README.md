@@ -180,8 +180,8 @@ jdbc.password = root
 </generatorConfiguration>
 ```
 运行maven插件，反向生成实体类、mapper接口、实体xml
-![1](zmd/1.png)
-![2](zmd/2.png)
+![1](zdoc/zmd/1.png)
+![2](zdoc/zmd/2.png)
 
 
 
@@ -239,10 +239,10 @@ _使用方法及文档：https://github.com/pagehelper/Mybatis-PageHelper/blob/m
     <version>2.2.2</version>
 </dependency>
 ```
- 
+
 
 ```java
-//位置：web模块->cn.kspshare.config.Swagger2
+//位置：web模块->Swagger2
 
 package cn.kspshare.config;   
 import org.springframework.context.annotation.Bean; 
@@ -300,8 +300,8 @@ Get请求参数注解  `@RequestParam(name = "用户名", required = false)`；
 ### 1.8 主键生成策略：推特雪花 Twitter_Snowflake
 ```java
 //位置 common模块
-cn.kspshare.common.id.IDGenerator
-cn.kspshare.common.id.SnowflakeIdWorker
+IDGenerator
+SnowflakeIdWorker
 ```
 
 ```java
@@ -320,6 +320,12 @@ user.setTid(IDGenerator.id());
 
 
 
+
+## Idea设置
+
+### 控制台日志颜色
+
+有时IDEA运行SpringBoot项目，控制台`Console`输出的日志颜色为白色的，配置启动类`application`的相关参数，添加VM option参数：`-Dspring.output.ansi.enabled=ALWAYS`
 
 
 

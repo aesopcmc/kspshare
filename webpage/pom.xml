@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>ksp</artifactId>
+        <groupId>cn.kspshare</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>webpage</artifactId>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>web</module>
+        <module>web-dao</module>
+    </modules>
+
+    <properties>
+        <mybatis-spring-boot>1.2.0</mybatis-spring-boot>
+        <mysql-connector>5.1.39</mysql-connector>
+        <mapper.version>2.0.0</mapper.version>
+        <swagger.version>2.2.2</swagger.version>
+        <pagehelper.version>1.2.10</pagehelper.version>
+        <mybatis-dynamic-sql>1.1.0</mybatis-dynamic-sql>
+        <mybatis-typehandlers-jsr310>1.0.2</mybatis-typehandlers-jsr310>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.kspshare</groupId>
+            <artifactId>common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <!--mybatis 核心 -->
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+            <version>${mybatis-spring-boot}</version>
+        </dependency>
+        <!-- mybatis JSR 310支持 -->
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-typehandlers-jsr310</artifactId>
+            <version>${mybatis-typehandlers-jsr310}</version>
+        </dependency>
+        <!--mybatis dynamic sql-->
+        <dependency>
+            <groupId>org.mybatis.dynamic-sql</groupId>
+            <artifactId>mybatis-dynamic-sql</artifactId>
+            <version>${mybatis-dynamic-sql}</version>
+        </dependency>
+        <!-- MySQL 连接驱动依赖 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector}</version>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--    <groupId>org.projectlombok</groupId>-->
+        <!--    <artifactId>lombok</artifactId>-->
+        <!--    <version>1.18.4</version>-->
+        <!--    <scope>provided</scope>-->
+        <!--</dependency>-->
+    </dependencies>
+
+</project>
