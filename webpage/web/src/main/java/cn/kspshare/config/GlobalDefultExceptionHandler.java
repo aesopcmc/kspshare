@@ -1,13 +1,12 @@
 package cn.kspshare.config;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
+@Slf4j
 public class GlobalDefultExceptionHandler {
-
-    private static final Logger logger = LoggerFactory.getLogger(GlobalDefultExceptionHandler.class);
     /**
      * 处理参数异常，一般用于校验body参数
      *
@@ -22,15 +21,16 @@ public class GlobalDefultExceptionHandler {
     //    return new ErrorMessage("Invalid_Request_Parameter", "未知参数错误");
     //}
 
-    ///**
-    // * 统一异常处理
-    // * @param ex
-    // * @return
-    // */
-    //@ExceptionHandler(Exception.class)
-    //public String handleException(Exception ex) {
-    //    logger.error("捕获到全局异常",ex);
-    //    return "500";
-    //}
+    /**
+     * 统一异常处理
+     *
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(Exception.class)
+    public String handleException(Exception ex) {
+        log.error("捕获到全局异常", ex);
+        return "500";
+    }
 
 }

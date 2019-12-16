@@ -5,9 +5,10 @@ server:
 spring:
   ## 数据源配置
   datasource:
-    url: jdbc:mysql://localhost:3306/ksp?useSSL=false&useUnicode=true&characterEncoding=utf8
-    username: root
-    password: root
+    url: jdbc:mysql://mysql57.rdsmz60przasm9w.rds.bj.baidubce.com:3306/ksp?useSSL=false&useUnicode=true&characterEncoding=utf8
+#    url: jdbc:mysql://localhost:3306/ksp?useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: aesop
+    password: aesop_123
     driver-class-name: com.mysql.jdbc.Driver
 
   #热部署生效
