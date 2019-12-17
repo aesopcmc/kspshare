@@ -56,10 +56,16 @@ public interface KspMemberMapper {
         @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR),
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
         @Result(column="nickname", property="nickname", jdbcType=JdbcType.VARCHAR),
-        @Result(column="roles", property="roles", jdbcType=JdbcType.VARCHAR),
         @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
+        @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
+        @Result(column="user_status", property="userStatus", jdbcType=JdbcType.BIT),
+        @Result(column="avatar", property="avatar", jdbcType=JdbcType.VARCHAR),
+        @Result(column="gender", property="gender", jdbcType=JdbcType.BIT),
+        @Result(column="location", property="location", jdbcType=JdbcType.VARCHAR),
+        @Result(column="hobbies", property="hobbies", jdbcType=JdbcType.VARCHAR),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT)
+        @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT),
+        @Result(column="roles", property="roles", jdbcType=JdbcType.VARCHAR)
     })
     List<KspMember> selectMany(SelectStatementProvider selectStatement);
 
@@ -94,10 +100,16 @@ public interface KspMemberMapper {
                 .map(username).toProperty("username")
                 .map(password).toProperty("password")
                 .map(nickname).toProperty("nickname")
-                .map(roles).toProperty("roles")
                 .map(email).toProperty("email")
-                .map(createTime).toProperty("createTime")
                 .map(enabled).toProperty("enabled")
+                .map(userStatus).toProperty("userStatus")
+                .map(avatar).toProperty("avatar")
+                .map(gender).toProperty("gender")
+                .map(location).toProperty("location")
+                .map(hobbies).toProperty("hobbies")
+                .map(createTime).toProperty("createTime")
+                .map(createUser).toProperty("createUser")
+                .map(roles).toProperty("roles")
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
@@ -110,29 +122,35 @@ public interface KspMemberMapper {
                 .map(username).toPropertyWhenPresent("username", record::getUsername)
                 .map(password).toPropertyWhenPresent("password", record::getPassword)
                 .map(nickname).toPropertyWhenPresent("nickname", record::getNickname)
-                .map(roles).toPropertyWhenPresent("roles", record::getRoles)
                 .map(email).toPropertyWhenPresent("email", record::getEmail)
-                .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
                 .map(enabled).toPropertyWhenPresent("enabled", record::getEnabled)
+                .map(userStatus).toPropertyWhenPresent("userStatus", record::getUserStatus)
+                .map(avatar).toPropertyWhenPresent("avatar", record::getAvatar)
+                .map(gender).toPropertyWhenPresent("gender", record::getGender)
+                .map(location).toPropertyWhenPresent("location", record::getLocation)
+                .map(hobbies).toPropertyWhenPresent("hobbies", record::getHobbies)
+                .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
+                .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
+                .map(roles).toPropertyWhenPresent("roles", record::getRoles)
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_member")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspMember>>> selectByExample() {
-        return SelectDSL.selectWithMapper(this::selectMany, oid, username, password, nickname, roles, email, createTime, enabled)
+        return SelectDSL.selectWithMapper(this::selectMany, oid, username, password, nickname, email, enabled, userStatus, avatar, gender, location, hobbies, createTime, createUser, roles)
                 .from(kspMember);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_member")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspMember>>> selectDistinctByExample() {
-        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, username, password, nickname, roles, email, createTime, enabled)
+        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, username, password, nickname, email, enabled, userStatus, avatar, gender, location, hobbies, createTime, createUser, roles)
                 .from(kspMember);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_member")
     default KspMember selectByPrimaryKey(Long oid_) {
-        return SelectDSL.selectWithMapper(this::selectOne, oid, username, password, nickname, roles, email, createTime, enabled)
+        return SelectDSL.selectWithMapper(this::selectOne, oid, username, password, nickname, email, enabled, userStatus, avatar, gender, location, hobbies, createTime, createUser, roles)
                 .from(kspMember)
                 .where(oid, isEqualTo(oid_))
                 .build()
@@ -146,10 +164,16 @@ public interface KspMemberMapper {
                 .set(username).equalTo(record::getUsername)
                 .set(password).equalTo(record::getPassword)
                 .set(nickname).equalTo(record::getNickname)
-                .set(roles).equalTo(record::getRoles)
                 .set(email).equalTo(record::getEmail)
+                .set(enabled).equalTo(record::getEnabled)
+                .set(userStatus).equalTo(record::getUserStatus)
+                .set(avatar).equalTo(record::getAvatar)
+                .set(gender).equalTo(record::getGender)
+                .set(location).equalTo(record::getLocation)
+                .set(hobbies).equalTo(record::getHobbies)
                 .set(createTime).equalTo(record::getCreateTime)
-                .set(enabled).equalTo(record::getEnabled);
+                .set(createUser).equalTo(record::getCreateUser)
+                .set(roles).equalTo(record::getRoles);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_member")
@@ -159,10 +183,16 @@ public interface KspMemberMapper {
                 .set(username).equalToWhenPresent(record::getUsername)
                 .set(password).equalToWhenPresent(record::getPassword)
                 .set(nickname).equalToWhenPresent(record::getNickname)
-                .set(roles).equalToWhenPresent(record::getRoles)
                 .set(email).equalToWhenPresent(record::getEmail)
+                .set(enabled).equalToWhenPresent(record::getEnabled)
+                .set(userStatus).equalToWhenPresent(record::getUserStatus)
+                .set(avatar).equalToWhenPresent(record::getAvatar)
+                .set(gender).equalToWhenPresent(record::getGender)
+                .set(location).equalToWhenPresent(record::getLocation)
+                .set(hobbies).equalToWhenPresent(record::getHobbies)
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
-                .set(enabled).equalToWhenPresent(record::getEnabled);
+                .set(createUser).equalToWhenPresent(record::getCreateUser)
+                .set(roles).equalToWhenPresent(record::getRoles);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_member")
@@ -171,10 +201,16 @@ public interface KspMemberMapper {
                 .set(username).equalTo(record::getUsername)
                 .set(password).equalTo(record::getPassword)
                 .set(nickname).equalTo(record::getNickname)
-                .set(roles).equalTo(record::getRoles)
                 .set(email).equalTo(record::getEmail)
-                .set(createTime).equalTo(record::getCreateTime)
                 .set(enabled).equalTo(record::getEnabled)
+                .set(userStatus).equalTo(record::getUserStatus)
+                .set(avatar).equalTo(record::getAvatar)
+                .set(gender).equalTo(record::getGender)
+                .set(location).equalTo(record::getLocation)
+                .set(hobbies).equalTo(record::getHobbies)
+                .set(createTime).equalTo(record::getCreateTime)
+                .set(createUser).equalTo(record::getCreateUser)
+                .set(roles).equalTo(record::getRoles)
                 .where(oid, isEqualTo(record::getOid))
                 .build()
                 .execute();
@@ -186,10 +222,16 @@ public interface KspMemberMapper {
                 .set(username).equalToWhenPresent(record::getUsername)
                 .set(password).equalToWhenPresent(record::getPassword)
                 .set(nickname).equalToWhenPresent(record::getNickname)
-                .set(roles).equalToWhenPresent(record::getRoles)
                 .set(email).equalToWhenPresent(record::getEmail)
-                .set(createTime).equalToWhenPresent(record::getCreateTime)
                 .set(enabled).equalToWhenPresent(record::getEnabled)
+                .set(userStatus).equalToWhenPresent(record::getUserStatus)
+                .set(avatar).equalToWhenPresent(record::getAvatar)
+                .set(gender).equalToWhenPresent(record::getGender)
+                .set(location).equalToWhenPresent(record::getLocation)
+                .set(hobbies).equalToWhenPresent(record::getHobbies)
+                .set(createTime).equalToWhenPresent(record::getCreateTime)
+                .set(createUser).equalToWhenPresent(record::getCreateUser)
+                .set(roles).equalToWhenPresent(record::getRoles)
                 .where(oid, isEqualTo(record::getOid))
                 .build()
                 .execute();

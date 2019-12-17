@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kspshare.dao.TestUserDao">
+
+    <resultMap id="TestUserResultMap" type="cn.kspshare.domain.TestUser">
+        <id column="id" jdbcType="INTEGER" property="tid" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="age" jdbcType="INT" property="age" />
+        <result column="grade_id" jdbcType="BIGINT" property="gradeId" />
+
+    </resultMap>
+    <select id="getByCondition" resultMap="TestUserResultMap">
+        select
+        `tid`,
+        `user_name`,
+        `age`,
+        `grade_id`
+        from `test_user`
+        where user_name=#{userName}
+    </select>
+    <!--<select id="findUserAndGradeGreaterAge" resultType="java.util.Map">-->
+
+
+    <!--</select>-->
+
+</mapper>

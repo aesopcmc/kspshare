@@ -4,28 +4,32 @@ import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.dao.TestUserDao;
 import cn.kspshare.domain.TestUser;
 import cn.kspshare.dto.request.TestUserDto;
+import cn.kspshare.mapper.TestUserDynamicSqlSupport;
 import cn.kspshare.mapper.TestUserMapper;
 import cn.kspshare.service.TestUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.xml.namespace.QName;
 import java.util.List;
 import java.util.Map;
 
 @Service
 public class TestUserServiceImpl implements TestUserService {
     @Autowired
-    private TestUserMapper userMapper;
+    private TestUserMapper testUserMapper;
     @Autowired
     private TestUserDao testUserDao;
 
     public TestUser findById(Long id){
-        return userMapper.selectByPrimaryKey(id);
+        return testUserMapper.selectByPrimaryKey(id);
     }
 
     @Override
     public List<TestUser> list() {
+        List<TestUser> list = testUserMapper.selectByExample().build().execute();
+        return list;
         /*
         多条件查询
          */
@@ -35,7 +39,7 @@ public class TestUserServiceImpl implements TestUserService {
         //exp.createCriteria()
         //        .andGreaterThan("age", 20)
         //        .andLessThan("age", 40);
-        //List<TestUser> userList = userMapper.selectByExample(exp);
+        //List<TestUser> userList = testUserMapper.selectByExample(exp);
 
         //方式二,推荐使用，这样，以后更改实体字段名称也容易发现位置
         //Example example = new Example.Builder(TestUser.class).andWhere(WeekendSqls.<TestUser>custom()
@@ -51,14 +55,13 @@ public class TestUserServiceImpl implements TestUserService {
         .build();
 
          */
-        //return userMapper.selectByExample(example);
-        return null;
+        //return testUserMapper.selectByExample(example);
     }
 
     @Override
     public Object listByPage(Integer pageNum, Integer pageSize) {
         //PageHelper.startPage(pageNum, pageSize);
-        //List<TestUser> userList = userMapper.selectAll();
+        //List<TestUser> userList = testUserMapper.selectAll();
         //PageInfo pageInfo = new PageInfo(userList);
         //return pageInfo;
 
@@ -79,7 +82,7 @@ public class TestUserServiceImpl implements TestUserService {
         ////排序
         //example.orderBy("age").desc().orderBy("tid").asc();
         //
-        //List<TestUser> testUsers = userMapper.selectByExample(example);
+        //List<TestUser> testUsers = testUserMapper.selectByExample(example);
         //return testUsers;
 
         return null;
@@ -98,7 +101,7 @@ public class TestUserServiceImpl implements TestUserService {
         user.setUserName(userDto.getUserName());
         user.setAge(userDto.getAge());
         user.setGradeId(userDto.getGradeId());
-        userMapper.insertSelective(user);
+        testUserMapper.insertSelective(user);
         return "success";
     }
 }

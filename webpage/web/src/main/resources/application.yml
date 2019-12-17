@@ -40,7 +40,7 @@ mybatis:
 #SQL打印 level下面指定mybatis对应的方法接口所在的包
 logging:
   level:
-    root: debug
+#    root: debug
     cn.kspshare.dao: debug
     cn.kspshare.mapper: debug
 

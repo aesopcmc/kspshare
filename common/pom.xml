@@ -2,16 +2,25 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <parent>
-        <!--指向根模块-->
-        <artifactId>ksp</artifactId>
-        <groupId>cn.kspshare</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-    </parent>
+    <!--<parent>-->
+    <!--    &lt;!&ndash;指向根模块&ndash;&gt;-->
+    <!--    <artifactId>ksp</artifactId>-->
+    <!--    <groupId>cn.kspshare</groupId>-->
+    <!--    <version>0.0.1-SNAPSHOT</version>-->
+    <!--</parent>-->
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>common</artifactId>
+    <artifactId>ksp-common</artifactId>
+    <groupId>cn.kspshare.common</groupId>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.compilerVersion>1.8</maven.compiler.compilerVersion>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    </properties>
     <dependencies>
       <!--  <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

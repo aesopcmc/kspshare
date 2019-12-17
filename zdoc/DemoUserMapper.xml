@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.issuetracker.user_login.mapper.UserMapper">
+
+  <resultMap id="BaseResultMap" type="cn.issuetracker.user_login.model.User">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="last_time" jdbcType="TIMESTAMP" property="lastTime" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="email_confirmed" jdbcType="BIT" property="emailConfirmed" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="mobile_confirmed" jdbcType="BIT" property="mobileConfirmed" />
+    <result column="security_question" jdbcType="VARCHAR" property="securityQuestion" />
+    <result column="security_answer" jdbcType="VARCHAR" property="securityAnswer" />
+    <result column="last_ipv4" jdbcType="VARCHAR" property="lastIpv4" />
+    <result column="last_ipv6" jdbcType="VARCHAR" property="lastIpv6" />
+    <result column="login_times" jdbcType="INTEGER" property="loginTimes" />
+    <result column="create_user" jdbcType="INTEGER" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="INTEGER" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <resultMap id="DtoBaseResultMap" extends="BaseResultMap" type="cn.issuetracker.user_login.dto.UserDto">
+    <result column="flag" jdbcType="BIT" property="flag" />
+    <result column="is_default" jdbcType="BIT" property="isDefault" />
+    <result column="originName" jdbcType="VARCHAR" property="originName" />
+    <result column="groupIds" jdbcType="VARCHAR" property="groupIds" />
+    <result column="groupNames" jdbcType="VARCHAR" property="groupNames" />
+    <result column="company_name" jdbcType="VARCHAR" property="companyName" />
+      <result column="user_id" jdbcType="INTEGER" property="userId"></result>
+      <result column="group_id" jdbcType="INTEGER" property="groupId"></result>
+  </resultMap>
+
+  <sql id="Base_Column_List">
+    id, nick_name, user_name, password, last_time, email, email_confirmed, mobile, mobile_confirmed,
+    security_question, security_answer, last_ipv4, last_ipv6, login_times, create_user,
+    create_time, update_user, update_time
+  </sql>
+
+  <select id="queryUser" resultMap="DtoBaseResultMap">
+    select u.*, group_concat(distinct g.id) groupIds, group_concat(distinct g.`name` separator '&lt;br/&gt;') groupNames
+    from user u
+    left join user_group ug on ug.user_id = u.id
+    left join `group` g on g.id = ug.group_id and (g.id in (1, 2) or g.root_id = 3)
+    where 1=1 and ug.group_id = #{groupId,jdbcType=INTEGER}
+    <if test="userName != null and userName != ''">
+      and user_name like "%"#{userName}"%"
+    </if>
+    <if test="mobile != null and mobile != ''">
+      and mobile like "%"#{mobile}"%"
+    </if>
+    <if test="email != null and email != ''">
+      and email like "%"#{email}"%"
+    </if>
+    group by u.id
+    <if test="firstResult != null and maxResult != null">
+      limit #{firstResult},#{maxResult}
+    </if>
+  </select>
+
+  <select id="queryUserByConut" resultType="java.lang.Integer">
+    select count(*)  from user u
+    left join user_group ug on ug.user_id = u.id
+    where 1=1 and ug.group_id = #{groupId,jdbcType=INTEGER}
+    <if test="userName != null and userName != ''">
+      and user_name like "%"#{userName}"%"
+    </if>
+    <if test="mobile != null and mobile != ''">
+      and mobile like "%"#{mobile}"%"
+    </if>
+    <if test="email != null and email != ''">
+      and email like "%"#{email}"%"
+    </if>
+  </select>
+
+  <select id="queryCountByUsername" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(*) from user where user_name= #{userName,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryUserByUserIds" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from user where 1=1
+    <if test="userIds != null and userIds.size() > 0">
+      and id in
+      <foreach collection="userIds" item="userId" separator="," open="(" close=")" >
+        #{userId}
+      </foreach>
+    </if>
+    <if test="userIds == null or userIds.size() == 0">
+       and id in(null)
+    </if>
+  </select>
+
+  <select id="queryByUserName" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" /> from user where 1=1 and user_name = #{userName}
+  </select>
+
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+
+  <insert id="insert" parameterType="cn.issuetracker.user_login.model.User" useGeneratedKeys="true" keyProperty="id">
+    insert into user (id, nick_name, user_name, 
+      password, last_time, email, 
+      email_confirmed, mobile, mobile_confirmed,
+      security_question, security_answer, last_ipv4,
+      last_ipv6, login_times, create_user,
+      create_time, update_user, update_time)
+    values (#{id,jdbcType=INTEGER}, #{nickName,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
+      #{password,jdbcType=VARCHAR}, #{lastTime,jdbcType=TIMESTAMP}, #{email,jdbcType=VARCHAR},
+      #{emailConfirmed,jdbcType=BIT}, #{mobile,jdbcType=VARCHAR}, #{mobileConfirmed,jdbcType=BIT},
+      #{securityQuestion,jdbcType=VARCHAR}, #{securityAnswer,jdbcType=VARCHAR}, #{lastIpv4,jdbcType=VARCHAR},
+      #{lastIpv6,jdbcType=VARCHAR}, #{loginTimes,jdbcType=INTEGER}, #{createUser,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+
+  <insert id="insertSelective" parameterType="cn.issuetracker.user_login.model.User" useGeneratedKeys="true" keyProperty="id">
+    insert into user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="lastTime != null">
+        last_time,
+      </if>
+      <if test="email != null">
+        email,
+      </if>
+      <if test="emailConfirmed != null">
+        email_confirmed,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+      <if test="mobileConfirmed != null">
+        mobile_confirmed,
+      </if>
+      <if test="securityQuestion != null">
+        security_question,
+      </if>
+      <if test="securityAnswer != null">
+        security_answer,
+      </if>
+      <if test="lastIpv4 != null">
+        last_ipv4,
+      </if>
+      <if test="lastIpv6 != null">
+        last_ipv6,
+      </if>
+      <if test="loginTimes != null">
+        login_times,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null">
+        #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null">
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailConfirmed != null">
+        #{emailConfirmed,jdbcType=BIT},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileConfirmed != null">
+        #{mobileConfirmed,jdbcType=BIT},
+      </if>
+      <if test="securityQuestion != null">
+        #{securityQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="securityAnswer != null">
+        #{securityAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIpv4 != null">
+        #{lastIpv4,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIpv6 != null">
+        #{lastIpv6,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTimes != null">
+        #{loginTimes,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="cn.issuetracker.user_login.model.User">
+    update user
+    <set>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="lastTime != null">
+        last_time = #{lastTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="email != null">
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="emailConfirmed != null">
+        email_confirmed = #{emailConfirmed,jdbcType=BIT},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileConfirmed != null">
+        mobile_confirmed = #{mobileConfirmed,jdbcType=BIT},
+      </if>
+      <if test="securityQuestion != null">
+        security_question = #{securityQuestion,jdbcType=VARCHAR},
+      </if>
+      <if test="securityAnswer != null">
+        security_answer = #{securityAnswer,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIpv4 != null">
+        last_ipv4 = #{lastIpv4,jdbcType=VARCHAR},
+      </if>
+      <if test="lastIpv6 != null">
+        last_ipv6 = #{lastIpv6,jdbcType=VARCHAR},
+      </if>
+      <if test="loginTimes != null">
+        login_times = #{loginTimes,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="updateByPrimaryKey" parameterType="cn.issuetracker.user_login.model.User">
+    update user
+    set nick_name = #{nickName,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      last_time = #{lastTime,jdbcType=TIMESTAMP},
+      email = #{email,jdbcType=VARCHAR},
+      email_confirmed = #{emailConfirmed,jdbcType=BIT},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      mobile_confirmed = #{mobileConfirmed,jdbcType=BIT},
+      security_question = #{securityQuestion,jdbcType=VARCHAR},
+      security_answer = #{securityAnswer,jdbcType=VARCHAR},
+      last_ipv4 = #{lastIpv4,jdbcType=VARCHAR},
+      last_ipv6 = #{lastIpv6,jdbcType=VARCHAR},
+      login_times = #{loginTimes,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <select id="queryByUserEmail" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where email_confirmed = true and  email = #{email}
+  </select>
+
+  <select id="queryByUserMobile" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from user
+    where mobile_confirmed = true and mobile = #{mobile}
+  </select>
+
+  <select id="queryAll" resultMap="DtoBaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user
+  </select>
+
+  <select id="queryAllByGroupId" resultMap="DtoBaseResultMap">
+    select u.*
+    from user u
+    left join user_group ug on ug.user_id = u.id
+    where 1=1 and ug.group_id = #{groupId,jdbcType=INTEGER}
+    group by u.id
+  </select>
+
+  <select id="selectUserDefaultGroup" parameterType="java.lang.Integer" resultMap="DtoBaseResultMap">
+      select
+        ug.user_id,
+        ug.group_id,
+        ug.is_default,
+        g.name as company_name
+      from user_group ug
+      left join `group` g on ug.group_id = g.id
+      where g.parent_id =3 and g.root_id = 3
+        and ug.user_id = #{userId, jdbcType=INTEGER}
+    </select>
+
+  <select id="getPrincipals" resultMap="BaseResultMap">
+    select u.id AS id, u.nick_name AS nickName, u.user_name AS userName
+    from `user` AS u left join user_group ug on u.id=ug.user_id
+    where ug.group_id = #{groupId}
+  </select>
+
+  <select id="getUserByGroups" resultType="cn.issuetracker.user_login.dto.GroupUserDto" parameterType="java.lang.Integer">
+    select u.id as userId, u.nick_name as nickName, u.user_name as userName
+    from `user` as u WHERE u.id in
+    (
+      SELECT DISTINCT(ug.user_id) FROM `user_group` as ug WHERE ug.group_id in
+      <foreach collection="groupIds" index="index" item="item" separator="," open="(" close=")">
+        #{item}
+      </foreach>
+    )
+  </select>
+
+  <select id="getNotIn" resultMap="BaseResultMap">
+    select u.* from user u
+    left join user_group ug on ug.user_id = u.id
+    where ug.group_id = #{groupId}
+    and u.id not in
+    <foreach collection="userIdList" index="index" item="item" separator="," open="(" close=")">
+      #{item}
+    </foreach>
+  </select>
+
+</mapper>

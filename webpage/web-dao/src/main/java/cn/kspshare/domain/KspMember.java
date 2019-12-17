@@ -39,27 +39,69 @@ public class KspMember {
 
     /**
      * Database Column Remarks:
-     *   身份权限
-     */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.roles")
-    private String roles;
-
-    /**
-     * Database Column Remarks:
-     *   邮箱
+     *   唯一邮箱
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.email")
     private String email;
+
+    /**
+     * Database Column Remarks:
+     *   邮箱验证： 0未验证 1已验证 ， 默认0
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.enabled")
+    private Boolean enabled;
+
+    /**
+     * Database Column Remarks:
+     *   用户状态：1允许登录 0禁止登录 ， 默认1
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.user_status")
+    private Boolean userStatus;
+
+    /**
+     * Database Column Remarks:
+     *   头像url路径
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.avatar")
+    private String avatar;
+
+    /**
+     * Database Column Remarks:
+     *   0保密 1男 2女，默认0
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.gender")
+    private Boolean gender;
+
+    /**
+     * Database Column Remarks:
+     *   简单地址信息
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.location")
+    private String location;
+
+    /**
+     * Database Column Remarks:
+     *   兴趣爱好
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.hobbies")
+    private String hobbies;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.create_time")
     private LocalDateTime createTime;
 
     /**
      * Database Column Remarks:
-     *   是可以登录 true1启用 false0禁用
+     *   创建人ID
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.enabled")
-    private Boolean enabled;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.create_user")
+    private Long createUser;
+
+    /**
+     * Database Column Remarks:
+     *   身份权限
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.roles")
+    private String roles;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.oid")
     public Long getOid() {
@@ -101,16 +143,6 @@ public class KspMember {
         this.nickname = nickname;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.roles")
-    public String getRoles() {
-        return roles;
-    }
-
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.roles")
-    public void setRoles(String roles) {
-        this.roles = roles;
-    }
-
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.email")
     public String getEmail() {
         return email;
@@ -119,6 +151,66 @@ public class KspMember {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.email")
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.enabled")
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.enabled")
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.user_status")
+    public Boolean getUserStatus() {
+        return userStatus;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.user_status")
+    public void setUserStatus(Boolean userStatus) {
+        this.userStatus = userStatus;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.avatar")
+    public String getAvatar() {
+        return avatar;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.avatar")
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.gender")
+    public Boolean getGender() {
+        return gender;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.gender")
+    public void setGender(Boolean gender) {
+        this.gender = gender;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.location")
+    public String getLocation() {
+        return location;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.location")
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.hobbies")
+    public String getHobbies() {
+        return hobbies;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.hobbies")
+    public void setHobbies(String hobbies) {
+        this.hobbies = hobbies;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.create_time")
@@ -131,13 +223,23 @@ public class KspMember {
         this.createTime = createTime;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.enabled")
-    public Boolean getEnabled() {
-        return enabled;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.create_user")
+    public Long getCreateUser() {
+        return createUser;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.enabled")
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.create_user")
+    public void setCreateUser(Long createUser) {
+        this.createUser = createUser;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.roles")
+    public String getRoles() {
+        return roles;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.roles")
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 }

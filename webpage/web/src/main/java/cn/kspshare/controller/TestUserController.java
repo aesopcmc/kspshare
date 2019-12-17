@@ -1,5 +1,6 @@
 package cn.kspshare.controller;
 
+import cn.kspshare.dao.TestUserDao;
 import cn.kspshare.domain.TestUser;
 import cn.kspshare.dto.request.TestUserDto;
 import cn.kspshare.service.TestUserService;
@@ -16,6 +17,13 @@ import javax.validation.Valid;
 public class TestUserController {
     @Autowired
     private TestUserService userService;
+    @Autowired
+    private TestUserDao testUserDao;
+
+    @GetMapping("/test/user/condition")
+    public Object getByCondition(String userName) {
+        return testUserDao.getByCondition(userName);
+    }
 
     @ApiOperation("根据主键查找")
     @GetMapping("/test/user/{id}")

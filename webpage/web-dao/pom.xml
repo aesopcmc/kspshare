@@ -12,7 +12,24 @@
     <artifactId>web-dao</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <!--<dependencies>-->
+    <!--    <dependency>-->
+    <!--        <groupId>cn.kspshare</groupId>-->
+    <!--        <artifactId>common</artifactId>-->
+    <!--        <version>0.0.1-SNAPSHOT</version>-->
+    <!--    </dependency>-->
+    <!--</dependencies>-->
     <build>
+
+        <resources>
+            <!-- 先指定 src/main/resources下所有文件及文件夹为资源文件 -->
+            <resource>
+                <directory>cn/kspshare/dao</directory>
+                <includes>
+                    <include>*.xml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <!--Mybatis实体自动生成-->
             <plugin>
