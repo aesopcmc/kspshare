@@ -49,14 +49,14 @@ public class KspMember {
      *   邮箱验证： 0未验证 1已验证 ， 默认0
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.enabled")
-    private Boolean enabled;
+    private Byte enabled;
 
     /**
      * Database Column Remarks:
      *   用户状态：1允许登录 0禁止登录 ， 默认1
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.user_status")
-    private Boolean userStatus;
+    private Byte userStatus;
 
     /**
      * Database Column Remarks:
@@ -70,7 +70,7 @@ public class KspMember {
      *   0保密 1男 2女，默认0
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.gender")
-    private Boolean gender;
+    private Byte gender;
 
     /**
      * Database Column Remarks:
@@ -154,22 +154,22 @@ public class KspMember {
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.enabled")
-    public Boolean getEnabled() {
+    public Byte getEnabled() {
         return enabled;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.enabled")
-    public void setEnabled(Boolean enabled) {
+    public void setEnabled(Byte enabled) {
         this.enabled = enabled;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.user_status")
-    public Boolean getUserStatus() {
+    public Byte getUserStatus() {
         return userStatus;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.user_status")
-    public void setUserStatus(Boolean userStatus) {
+    public void setUserStatus(Byte userStatus) {
         this.userStatus = userStatus;
     }
 
@@ -184,12 +184,12 @@ public class KspMember {
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.gender")
-    public Boolean getGender() {
+    public Byte getGender() {
         return gender;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.gender")
-    public void setGender(Boolean gender) {
+    public void setGender(Byte gender) {
         this.gender = gender;
     }
 

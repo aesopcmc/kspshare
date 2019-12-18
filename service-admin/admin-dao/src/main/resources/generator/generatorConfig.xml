@@ -3,6 +3,7 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
+    <!--最全配置和说明请参考（简书）：https://www.jianshu.com/p/e09d2370b796 -->
     <!--<properties resource="generator/generator.properties"/>-->
 
     <!--targetRuntime: MyBatis3Simple-->
@@ -23,6 +24,7 @@
         <commentGenerator>
             <property name="addRemarkComments" value="true"/>
             <property name="suppressDate" value="true"/>
+
         </commentGenerator>
 
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 ，注意参数：tinyInt1isBit=false表示tinyint类型的字段会对应生成Byte-->
@@ -53,14 +55,7 @@
         </javaClientGenerator>
 
         <!-- 指定数据库表 -->
-        <table tableName="test_%"
-               enableCountByExample="true"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true"></table>
-
-        <table tableName="ksp_member"
+        <table tableName="ksp_admin_user"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
@@ -68,9 +63,48 @@
                selectByExampleQueryId="true">
             <!--<generatedKey column="tbId" sqlStatement="JDBC"/>-->
         </table>
-        <!--<table tableName="test_%">-->
-            <!--&lt;!&ndash;原样匹配数据库字段，不使用驼峰&ndash;&gt;-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
+        <table tableName="ksp_perm"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="ksp_resource"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+
+        <table tableName="ksp_role"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="ksp_role_perm_re"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="ksp_user_role_re"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+        <table tableName="ksp_user_perm_re"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
     </context>
 </generatorConfiguration>

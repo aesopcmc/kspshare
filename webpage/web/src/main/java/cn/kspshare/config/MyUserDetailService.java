@@ -27,7 +27,7 @@ public class MyUserDetailService implements UserDetailsService {
         if (userEntity == null){
             throw new UsernameNotFoundException("用户不存在！");
         }
-        if(Boolean.FALSE==userEntity.getEnabled()){
+        if(userEntity.getEnabled()==0){
             //TODO 需要把该消息抛出
             throw new UsernameNotFoundException("账号未激活！");
         }

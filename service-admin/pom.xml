@@ -12,8 +12,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>backstage</module>
-        <module>backstage-dao</module>
+        <module>admin</module>
+        <module>admin-dao</module>
     </modules>
 
     <properties>

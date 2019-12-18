@@ -50,14 +50,14 @@ public final class KspMemberDynamicSqlSupport {
      *   邮箱验证： 0未验证 1已验证 ， 默认0
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.enabled")
-    public static final SqlColumn<Boolean> enabled = kspMember.enabled;
+    public static final SqlColumn<Byte> enabled = kspMember.enabled;
 
     /**
      * Database Column Remarks:
      *   用户状态：1允许登录 0禁止登录 ， 默认1
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.user_status")
-    public static final SqlColumn<Boolean> userStatus = kspMember.userStatus;
+    public static final SqlColumn<Byte> userStatus = kspMember.userStatus;
 
     /**
      * Database Column Remarks:
@@ -71,7 +71,7 @@ public final class KspMemberDynamicSqlSupport {
      *   0保密 1男 2女，默认0
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.gender")
-    public static final SqlColumn<Boolean> gender = kspMember.gender;
+    public static final SqlColumn<Byte> gender = kspMember.gender;
 
     /**
      * Database Column Remarks:
@@ -116,13 +116,13 @@ public final class KspMemberDynamicSqlSupport {
 
         public final SqlColumn<String> email = column("email", JDBCType.VARCHAR);
 
-        public final SqlColumn<Boolean> enabled = column("enabled", JDBCType.BIT);
+        public final SqlColumn<Byte> enabled = column("enabled", JDBCType.TINYINT);
 
-        public final SqlColumn<Boolean> userStatus = column("user_status", JDBCType.BIT);
+        public final SqlColumn<Byte> userStatus = column("user_status", JDBCType.TINYINT);
 
         public final SqlColumn<String> avatar = column("avatar", JDBCType.VARCHAR);
 
-        public final SqlColumn<Boolean> gender = column("gender", JDBCType.BIT);
+        public final SqlColumn<Byte> gender = column("gender", JDBCType.TINYINT);
 
         public final SqlColumn<String> location = column("location", JDBCType.VARCHAR);
 
