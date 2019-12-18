@@ -19,14 +19,14 @@ public final class KspUserRoleReDynamicSqlSupport {
 
     /**
      * Database Column Remarks:
-     *   用户主键
+     *   用户ID
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.user_id")
     public static final SqlColumn<Long> userId = kspUserRoleRe.userId;
 
     /**
      * Database Column Remarks:
-     *   角色主键
+     *   角色ID
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.role_id")
     public static final SqlColumn<Long> roleId = kspUserRoleRe.roleId;
@@ -38,6 +38,13 @@ public final class KspUserRoleReDynamicSqlSupport {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.create_time")
     public static final SqlColumn<LocalDateTime> createTime = kspUserRoleRe.createTime;
 
+    /**
+     * Database Column Remarks:
+     *   创建人ID
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.create_user")
+    public static final SqlColumn<Long> createUser = kspUserRoleRe.createUser;
+
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     public static final class KspUserRoleRe extends SqlTable {
         public final SqlColumn<Long> oid = column("oid", JDBCType.BIGINT);
@@ -47,6 +54,8 @@ public final class KspUserRoleReDynamicSqlSupport {
         public final SqlColumn<Long> roleId = column("role_id", JDBCType.BIGINT);
 
         public final SqlColumn<LocalDateTime> createTime = column("create_time", JDBCType.TIMESTAMP);
+
+        public final SqlColumn<Long> createUser = column("create_user", JDBCType.BIGINT);
 
         public KspUserRoleRe() {
             super("ksp_user_role_re");

@@ -19,10 +19,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class KspPermServiceImpl implements KspPermService {
-
     @Autowired
     private KspRolePermReMapper rolePermReMapper;
-
     @Autowired
     private KspPermMapper permMapper;
     @Autowired
@@ -31,7 +29,7 @@ public class KspPermServiceImpl implements KspPermService {
     private KspPermService permService;
 
     @Override
-    public List<KspPerm> listByRoleId(Long roleId) {
+    public List<KspPerm> listByRole(Long roleId) {
         List<KspRolePermRe> rolePermReList = rolePermReMapper.selectByExample()
                 .where(KspRolePermReDynamicSqlSupport.roleId, SqlBuilder.isEqualTo(roleId))
                 .build()
@@ -47,16 +45,16 @@ public class KspPermServiceImpl implements KspPermService {
     }
 
     @Override
-    public List<String> listResourceIdByUser(Long userId) {
+    public List<String> listByUser(Long userId) {
         List<String> perm = new ArrayList<>();
         //查找角色
         List<KspRole> roleList = roleService.listByAdminUserId(userId);
         //TODO 此处查询可能会有重复的权限
         for (KspRole kspRole : roleList) {
             //查找权限
-            List<KspPerm> permList = permService.listByRoleId(kspRole.getOid());
+            List<KspPerm> permList = permService.listByRole(kspRole.getOid());
             for (KspPerm kspPerm : permList) {
-                perm.add(kspPerm.getPermValue());
+                perm.add(kspPerm.getCode());
             }
         }
         return perm;

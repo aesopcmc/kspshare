@@ -10,12 +10,12 @@ public interface KspPermService {
      * @param roleId
      * @return
      */
-    List<KspPerm> listByRoleId(Long roleId);
+    List<KspPerm> listByRole(Long roleId);
 
     /**
-     * 根据用户id查找权限值
+     * 根据用户id查找权限列表 TODO 未完善
      * @param userId
      * @return
      */
-    List<String> listResourceIdByUser(Long userId);
+    List<String> listByUser(Long userId);
 }

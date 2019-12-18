@@ -1,11 +1,11 @@
 package cn.kspshare.mapper;
 
+import static cn.kspshare.mapper.KspUserRoleReDynamicSqlSupport.*;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
 import cn.kspshare.domain.KspUserRoleRe;
 import java.util.List;
 import javax.annotation.Generated;
-
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
@@ -55,7 +55,8 @@ public interface KspUserRoleReMapper {
         @Result(column="oid", property="oid", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT),
         @Result(column="role_id", property="roleId", jdbcType=JdbcType.BIGINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT)
     })
     List<KspUserRoleRe> selectMany(SelectStatementProvider selectStatement);
 
@@ -66,18 +67,18 @@ public interface KspUserRoleReMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<Long>> countByExample() {
         return SelectDSL.selectWithMapper(this::count, SqlBuilder.count())
-                .from(KspUserRoleReDynamicSqlSupport.kspUserRoleRe);
+                .from(kspUserRoleRe);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default DeleteDSL<MyBatis3DeleteModelAdapter<Integer>> deleteByExample() {
-        return DeleteDSL.deleteFromWithMapper(this::delete, KspUserRoleReDynamicSqlSupport.kspUserRoleRe);
+        return DeleteDSL.deleteFromWithMapper(this::delete, kspUserRoleRe);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int deleteByPrimaryKey(Long oid_) {
-        return DeleteDSL.deleteFromWithMapper(this::delete, KspUserRoleReDynamicSqlSupport.kspUserRoleRe)
-                .where(KspUserRoleReDynamicSqlSupport.oid, isEqualTo(oid_))
+        return DeleteDSL.deleteFromWithMapper(this::delete, kspUserRoleRe)
+                .where(oid, isEqualTo(oid_))
                 .build()
                 .execute();
     }
@@ -85,11 +86,12 @@ public interface KspUserRoleReMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int insert(KspUserRoleRe record) {
         return insert(SqlBuilder.insert(record)
-                .into(KspUserRoleReDynamicSqlSupport.kspUserRoleRe)
-                .map(KspUserRoleReDynamicSqlSupport.oid).toProperty("oid")
-                .map(KspUserRoleReDynamicSqlSupport.userId).toProperty("userId")
-                .map(KspUserRoleReDynamicSqlSupport.roleId).toProperty("roleId")
-                .map(KspUserRoleReDynamicSqlSupport.createTime).toProperty("createTime")
+                .into(kspUserRoleRe)
+                .map(oid).toProperty("oid")
+                .map(userId).toProperty("userId")
+                .map(roleId).toProperty("roleId")
+                .map(createTime).toProperty("createTime")
+                .map(createUser).toProperty("createUser")
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
@@ -97,72 +99,77 @@ public interface KspUserRoleReMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int insertSelective(KspUserRoleRe record) {
         return insert(SqlBuilder.insert(record)
-                .into(KspUserRoleReDynamicSqlSupport.kspUserRoleRe)
-                .map(KspUserRoleReDynamicSqlSupport.oid).toPropertyWhenPresent("oid", record::getOid)
-                .map(KspUserRoleReDynamicSqlSupport.userId).toPropertyWhenPresent("userId", record::getUserId)
-                .map(KspUserRoleReDynamicSqlSupport.roleId).toPropertyWhenPresent("roleId", record::getRoleId)
-                .map(KspUserRoleReDynamicSqlSupport.createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
+                .into(kspUserRoleRe)
+                .map(oid).toPropertyWhenPresent("oid", record::getOid)
+                .map(userId).toPropertyWhenPresent("userId", record::getUserId)
+                .map(roleId).toPropertyWhenPresent("roleId", record::getRoleId)
+                .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
+                .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspUserRoleRe>>> selectByExample() {
-        return SelectDSL.selectWithMapper(this::selectMany, KspUserRoleReDynamicSqlSupport.oid, KspUserRoleReDynamicSqlSupport.userId, KspUserRoleReDynamicSqlSupport.roleId, KspUserRoleReDynamicSqlSupport.createTime)
-                .from(KspUserRoleReDynamicSqlSupport.kspUserRoleRe);
+        return SelectDSL.selectWithMapper(this::selectMany, oid, userId, roleId, createTime, createUser)
+                .from(kspUserRoleRe);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspUserRoleRe>>> selectDistinctByExample() {
-        return SelectDSL.selectDistinctWithMapper(this::selectMany, KspUserRoleReDynamicSqlSupport.oid, KspUserRoleReDynamicSqlSupport.userId, KspUserRoleReDynamicSqlSupport.roleId, KspUserRoleReDynamicSqlSupport.createTime)
-                .from(KspUserRoleReDynamicSqlSupport.kspUserRoleRe);
+        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, userId, roleId, createTime, createUser)
+                .from(kspUserRoleRe);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default KspUserRoleRe selectByPrimaryKey(Long oid_) {
-        return SelectDSL.selectWithMapper(this::selectOne, KspUserRoleReDynamicSqlSupport.oid, KspUserRoleReDynamicSqlSupport.userId, KspUserRoleReDynamicSqlSupport.roleId, KspUserRoleReDynamicSqlSupport.createTime)
-                .from(KspUserRoleReDynamicSqlSupport.kspUserRoleRe)
-                .where(KspUserRoleReDynamicSqlSupport.oid, isEqualTo(oid_))
+        return SelectDSL.selectWithMapper(this::selectOne, oid, userId, roleId, createTime, createUser)
+                .from(kspUserRoleRe)
+                .where(oid, isEqualTo(oid_))
                 .build()
                 .execute();
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExample(KspUserRoleRe record) {
-        return UpdateDSL.updateWithMapper(this::update, KspUserRoleReDynamicSqlSupport.kspUserRoleRe)
-                .set(KspUserRoleReDynamicSqlSupport.oid).equalTo(record::getOid)
-                .set(KspUserRoleReDynamicSqlSupport.userId).equalTo(record::getUserId)
-                .set(KspUserRoleReDynamicSqlSupport.roleId).equalTo(record::getRoleId)
-                .set(KspUserRoleReDynamicSqlSupport.createTime).equalTo(record::getCreateTime);
+        return UpdateDSL.updateWithMapper(this::update, kspUserRoleRe)
+                .set(oid).equalTo(record::getOid)
+                .set(userId).equalTo(record::getUserId)
+                .set(roleId).equalTo(record::getRoleId)
+                .set(createTime).equalTo(record::getCreateTime)
+                .set(createUser).equalTo(record::getCreateUser);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExampleSelective(KspUserRoleRe record) {
-        return UpdateDSL.updateWithMapper(this::update, KspUserRoleReDynamicSqlSupport.kspUserRoleRe)
-                .set(KspUserRoleReDynamicSqlSupport.oid).equalToWhenPresent(record::getOid)
-                .set(KspUserRoleReDynamicSqlSupport.userId).equalToWhenPresent(record::getUserId)
-                .set(KspUserRoleReDynamicSqlSupport.roleId).equalToWhenPresent(record::getRoleId)
-                .set(KspUserRoleReDynamicSqlSupport.createTime).equalToWhenPresent(record::getCreateTime);
+        return UpdateDSL.updateWithMapper(this::update, kspUserRoleRe)
+                .set(oid).equalToWhenPresent(record::getOid)
+                .set(userId).equalToWhenPresent(record::getUserId)
+                .set(roleId).equalToWhenPresent(record::getRoleId)
+                .set(createTime).equalToWhenPresent(record::getCreateTime)
+                .set(createUser).equalToWhenPresent(record::getCreateUser);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int updateByPrimaryKey(KspUserRoleRe record) {
-        return UpdateDSL.updateWithMapper(this::update, KspUserRoleReDynamicSqlSupport.kspUserRoleRe)
-                .set(KspUserRoleReDynamicSqlSupport.userId).equalTo(record::getUserId)
-                .set(KspUserRoleReDynamicSqlSupport.roleId).equalTo(record::getRoleId)
-                .set(KspUserRoleReDynamicSqlSupport.createTime).equalTo(record::getCreateTime)
-                .where(KspUserRoleReDynamicSqlSupport.oid, isEqualTo(record::getOid))
+        return UpdateDSL.updateWithMapper(this::update, kspUserRoleRe)
+                .set(userId).equalTo(record::getUserId)
+                .set(roleId).equalTo(record::getRoleId)
+                .set(createTime).equalTo(record::getCreateTime)
+                .set(createUser).equalTo(record::getCreateUser)
+                .where(oid, isEqualTo(record::getOid))
                 .build()
                 .execute();
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int updateByPrimaryKeySelective(KspUserRoleRe record) {
-        return UpdateDSL.updateWithMapper(this::update, KspUserRoleReDynamicSqlSupport.kspUserRoleRe)
-                .set(KspUserRoleReDynamicSqlSupport.userId).equalToWhenPresent(record::getUserId)
-                .set(KspUserRoleReDynamicSqlSupport.roleId).equalToWhenPresent(record::getRoleId)
-                .set(KspUserRoleReDynamicSqlSupport.createTime).equalToWhenPresent(record::getCreateTime)
-                .where(KspUserRoleReDynamicSqlSupport.oid, isEqualTo(record::getOid))
+        return UpdateDSL.updateWithMapper(this::update, kspUserRoleRe)
+                .set(userId).equalToWhenPresent(record::getUserId)
+                .set(roleId).equalToWhenPresent(record::getRoleId)
+                .set(createTime).equalToWhenPresent(record::getCreateTime)
+                .set(createUser).equalToWhenPresent(record::getCreateUser)
+                .where(oid, isEqualTo(record::getOid))
                 .build()
                 .execute();
     }

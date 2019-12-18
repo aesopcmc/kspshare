@@ -18,17 +18,24 @@ public class KspRolePermRe {
 
     /**
      * Database Column Remarks:
-     *   角色主键
+     *   角色ID
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.role_id")
     private Long roleId;
 
     /**
      * Database Column Remarks:
-     *   权限主键
+     *   权限ID
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.perm_id")
     private Long permId;
+
+    /**
+     * Database Column Remarks:
+     *   0可访问 1可授权
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.perm_type")
+    private Boolean permType;
 
     /**
      * Database Column Remarks:
@@ -36,6 +43,13 @@ public class KspRolePermRe {
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.create_time")
     private LocalDateTime createTime;
+
+    /**
+     * Database Column Remarks:
+     *   创建人ID
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.create_user")
+    private Long createUser;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.oid")
     public Long getOid() {
@@ -67,6 +81,16 @@ public class KspRolePermRe {
         this.permId = permId;
     }
 
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.perm_type")
+    public Boolean getPermType() {
+        return permType;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.perm_type")
+    public void setPermType(Boolean permType) {
+        this.permType = permType;
+    }
+
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.create_time")
     public LocalDateTime getCreateTime() {
         return createTime;
@@ -75,5 +99,15 @@ public class KspRolePermRe {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.create_time")
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.create_user")
+    public Long getCreateUser() {
+        return createUser;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.create_user")
+    public void setCreateUser(Long createUser) {
+        this.createUser = createUser;
     }
 }

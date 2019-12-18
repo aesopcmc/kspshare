@@ -68,15 +68,21 @@
                enableDeleteByExample="true"
                enableSelectByExample="true"
                selectByExampleQueryId="true">
-            <!--<generatedKey column="tbId" sqlStatement="JDBC"/>-->
         </table>
+        <table tableName="ksp_resource"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
+
         <table tableName="ksp_role"
                enableCountByExample="true"
                enableUpdateByExample="true"
                enableDeleteByExample="true"
                enableSelectByExample="true"
                selectByExampleQueryId="true">
-            <!--<generatedKey column="tbId" sqlStatement="JDBC"/>-->
         </table>
         <table tableName="ksp_role_perm_re"
                enableCountByExample="true"
@@ -84,7 +90,6 @@
                enableDeleteByExample="true"
                enableSelectByExample="true"
                selectByExampleQueryId="true">
-            <!--<generatedKey column="tbId" sqlStatement="JDBC"/>-->
         </table>
         <table tableName="ksp_user_role_re"
                enableCountByExample="true"
@@ -92,11 +97,13 @@
                enableDeleteByExample="true"
                enableSelectByExample="true"
                selectByExampleQueryId="true">
-            <!--<generatedKey column="tbId" sqlStatement="JDBC"/>-->
         </table>
-        <!--<table tableName="test_%">-->
-            <!--&lt;!&ndash;原样匹配数据库字段，不使用驼峰&ndash;&gt;-->
-            <!--<property name="useActualColumnNames" value="true"/>-->
-        <!--</table>-->
+        <table tableName="ksp_user_perm_re"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true">
+        </table>
     </context>
 </generatorConfiguration>

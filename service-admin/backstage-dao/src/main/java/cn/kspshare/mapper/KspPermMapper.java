@@ -6,7 +6,6 @@ import static org.mybatis.dynamic.sql.SqlBuilder.*;
 import cn.kspshare.domain.KspPerm;
 import java.util.List;
 import javax.annotation.Generated;
-
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
@@ -54,10 +53,11 @@ public interface KspPermMapper {
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="KspPermResult", value = {
         @Result(column="oid", property="oid", jdbcType=JdbcType.BIGINT, id=true),
-        @Result(column="perm_value", property="permValue", jdbcType=JdbcType.VARCHAR),
-        @Result(column="perm_name", property="permName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="parent_id", property="parentId", jdbcType=JdbcType.BIGINT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
+        @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
+        @Result(column="resource_id", property="resourceId", jdbcType=JdbcType.BIGINT),
+        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT)
     })
     List<KspPerm> selectMany(SelectStatementProvider selectStatement);
 
@@ -89,10 +89,11 @@ public interface KspPermMapper {
         return insert(SqlBuilder.insert(record)
                 .into(kspPerm)
                 .map(oid).toProperty("oid")
-                .map(permValue).toProperty("permValue")
-                .map(permName).toProperty("permName")
-                .map(parentId).toProperty("parentId")
+                .map(name).toProperty("name")
+                .map(code).toProperty("code")
+                .map(resourceId).toProperty("resourceId")
                 .map(createTime).toProperty("createTime")
+                .map(createUser).toProperty("createUser")
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
@@ -102,29 +103,30 @@ public interface KspPermMapper {
         return insert(SqlBuilder.insert(record)
                 .into(kspPerm)
                 .map(oid).toPropertyWhenPresent("oid", record::getOid)
-                .map(permValue).toPropertyWhenPresent("permValue", record::getPermValue)
-                .map(permName).toPropertyWhenPresent("permName", record::getPermName)
-                .map(parentId).toPropertyWhenPresent("parentId", record::getParentId)
+                .map(name).toPropertyWhenPresent("name", record::getName)
+                .map(code).toPropertyWhenPresent("code", record::getCode)
+                .map(resourceId).toPropertyWhenPresent("resourceId", record::getResourceId)
                 .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
+                .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspPerm>>> selectByExample() {
-        return SelectDSL.selectWithMapper(this::selectMany, oid, permValue, permName, parentId, createTime)
+        return SelectDSL.selectWithMapper(this::selectMany, oid, name, code, resourceId, createTime, createUser)
                 .from(kspPerm);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspPerm>>> selectDistinctByExample() {
-        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, permValue, permName, parentId, createTime)
+        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, name, code, resourceId, createTime, createUser)
                 .from(kspPerm);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     default KspPerm selectByPrimaryKey(Long oid_) {
-        return SelectDSL.selectWithMapper(this::selectOne, oid, permValue, permName, parentId, createTime)
+        return SelectDSL.selectWithMapper(this::selectOne, oid, name, code, resourceId, createTime, createUser)
                 .from(kspPerm)
                 .where(oid, isEqualTo(oid_))
                 .build()
@@ -135,29 +137,32 @@ public interface KspPermMapper {
     default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExample(KspPerm record) {
         return UpdateDSL.updateWithMapper(this::update, kspPerm)
                 .set(oid).equalTo(record::getOid)
-                .set(permValue).equalTo(record::getPermValue)
-                .set(permName).equalTo(record::getPermName)
-                .set(parentId).equalTo(record::getParentId)
-                .set(createTime).equalTo(record::getCreateTime);
+                .set(name).equalTo(record::getName)
+                .set(code).equalTo(record::getCode)
+                .set(resourceId).equalTo(record::getResourceId)
+                .set(createTime).equalTo(record::getCreateTime)
+                .set(createUser).equalTo(record::getCreateUser);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExampleSelective(KspPerm record) {
         return UpdateDSL.updateWithMapper(this::update, kspPerm)
                 .set(oid).equalToWhenPresent(record::getOid)
-                .set(permValue).equalToWhenPresent(record::getPermValue)
-                .set(permName).equalToWhenPresent(record::getPermName)
-                .set(parentId).equalToWhenPresent(record::getParentId)
-                .set(createTime).equalToWhenPresent(record::getCreateTime);
+                .set(name).equalToWhenPresent(record::getName)
+                .set(code).equalToWhenPresent(record::getCode)
+                .set(resourceId).equalToWhenPresent(record::getResourceId)
+                .set(createTime).equalToWhenPresent(record::getCreateTime)
+                .set(createUser).equalToWhenPresent(record::getCreateUser);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     default int updateByPrimaryKey(KspPerm record) {
         return UpdateDSL.updateWithMapper(this::update, kspPerm)
-                .set(permValue).equalTo(record::getPermValue)
-                .set(permName).equalTo(record::getPermName)
-                .set(parentId).equalTo(record::getParentId)
+                .set(name).equalTo(record::getName)
+                .set(code).equalTo(record::getCode)
+                .set(resourceId).equalTo(record::getResourceId)
                 .set(createTime).equalTo(record::getCreateTime)
+                .set(createUser).equalTo(record::getCreateUser)
                 .where(oid, isEqualTo(record::getOid))
                 .build()
                 .execute();
@@ -166,10 +171,11 @@ public interface KspPermMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     default int updateByPrimaryKeySelective(KspPerm record) {
         return UpdateDSL.updateWithMapper(this::update, kspPerm)
-                .set(permValue).equalToWhenPresent(record::getPermValue)
-                .set(permName).equalToWhenPresent(record::getPermName)
-                .set(parentId).equalToWhenPresent(record::getParentId)
+                .set(name).equalToWhenPresent(record::getName)
+                .set(code).equalToWhenPresent(record::getCode)
+                .set(resourceId).equalToWhenPresent(record::getResourceId)
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
+                .set(createUser).equalToWhenPresent(record::getCreateUser)
                 .where(oid, isEqualTo(record::getOid))
                 .build()
                 .execute();

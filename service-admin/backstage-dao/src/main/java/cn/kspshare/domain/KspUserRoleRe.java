@@ -18,14 +18,14 @@ public class KspUserRoleRe {
 
     /**
      * Database Column Remarks:
-     *   用户主键
+     *   用户ID
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.user_id")
     private Long userId;
 
     /**
      * Database Column Remarks:
-     *   角色主键
+     *   角色ID
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.role_id")
     private Long roleId;
@@ -36,6 +36,13 @@ public class KspUserRoleRe {
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.create_time")
     private LocalDateTime createTime;
+
+    /**
+     * Database Column Remarks:
+     *   创建人ID
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.create_user")
+    private Long createUser;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.oid")
     public Long getOid() {
@@ -75,5 +82,15 @@ public class KspUserRoleRe {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.create_time")
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.create_user")
+    public Long getCreateUser() {
+        return createUser;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_role_re.create_user")
+    public void setCreateUser(Long createUser) {
+        this.createUser = createUser;
     }
 }

@@ -59,4 +59,15 @@
         <!--    <scope>provided</scope>-->
         <!--</dependency>-->
     </dependencies>
+
+
+    <build>
+        <finalName>ksp-back-prod</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

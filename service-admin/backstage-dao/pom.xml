@@ -15,6 +15,22 @@
     </dependencies>
 
     <build>
+        <resources>
+            <!-- 指定xml资源文件（为了加载mybatis 自定义的xml） -->
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
             <!--Mybatis实体自动生成-->
             <plugin>

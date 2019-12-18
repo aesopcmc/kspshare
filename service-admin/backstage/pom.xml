@@ -17,7 +17,6 @@
             <artifactId>backstage-dao</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -36,16 +35,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <!--<scope>test</scope>-->
         </dependency>
-
-
         <!--分页插件-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>${pagehelper.version}</version>
         </dependency>
-
-
         <!--添加Swagger2依赖-->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -59,15 +54,5 @@
         </dependency>
 
     </dependencies>
-
-    <build>
-        <finalName>ksp-back-prod</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>

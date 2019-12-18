@@ -60,4 +60,44 @@
         <!--</dependency>-->
     </dependencies>
 
+    <build>
+        <!--指定打包后的名称-->
+        <finalName>ksp-web-prod</finalName>
+        <!--<resources>-->
+        <!--    &lt;!&ndash; 先指定 src/main/resources下所有文件及文件夹为资源文件 &ndash;&gt;-->
+        <!--    <resource>-->
+        <!--        <directory>src/main/java</directory>-->
+        <!--        <includes>-->
+        <!--            <include>**/*.xml</include>-->
+        <!--        </includes>-->
+        <!--    </resource>-->
+        <!--    <resource>-->
+        <!--        <directory>${basedir}/src/main/resources</directory>-->
+        <!--        <includes>-->
+        <!--            <include>**/*</include>-->
+        <!--        </includes>-->
+        <!--    </resource>-->
+        <!--</resources>-->
+        <plugins>
+            <!--jdk编译版本-->
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-compiler-plugin</artifactId>-->
+            <!--<version>3.6.1</version>-->
+            <!--<configuration>-->
+            <!--<source>${java.version}</source>-->
+            <!--<target>${java.version}</target>-->
+            <!--</configuration>-->
+            <!--</plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!--<configuration>-->
+                <!--&lt;!&ndash; 指定该Main Class为全局的唯一入口 &ndash;&gt;-->
+                <!--<mainClass>WebApplication</mainClass>-->
+                <!--<layout>ZIP</layout>-->
+                <!--</configuration>-->
+            </plugin>
+        </plugins>
+    </build>
 </project>

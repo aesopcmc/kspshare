@@ -18,17 +18,24 @@ public class KspRole {
 
     /**
      * Database Column Remarks:
-     *   角色名，用于权限校验
+     *   角色名称
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.name")
     private String name;
 
     /**
      * Database Column Remarks:
-     *   角色中文名，用于显示
+     *   角色编码，唯一编码
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.nickname")
-    private String nickname;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.code")
+    private String code;
+
+    /**
+     * Database Column Remarks:
+     *   父ID, 默认顶级父级为0
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.parent_id")
+    private Long parentId;
 
     /**
      * Database Column Remarks:
@@ -39,17 +46,17 @@ public class KspRole {
 
     /**
      * Database Column Remarks:
-     *   角色状态，是否已禁用 0启用 1禁用
-     */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.banned")
-    private Boolean banned;
-
-    /**
-     * Database Column Remarks:
      *   创建时间
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.create_time")
     private LocalDateTime createTime;
+
+    /**
+     * Database Column Remarks:
+     *   创建人ID
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.create_user")
+    private Long createUser;
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.oid")
     public Long getOid() {
@@ -71,14 +78,24 @@ public class KspRole {
         this.name = name;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.nickname")
-    public String getNickname() {
-        return nickname;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.code")
+    public String getCode() {
+        return code;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.nickname")
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.code")
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.parent_id")
+    public Long getParentId() {
+        return parentId;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.parent_id")
+    public void setParentId(Long parentId) {
+        this.parentId = parentId;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.description")
@@ -91,16 +108,6 @@ public class KspRole {
         this.description = description;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.banned")
-    public Boolean getBanned() {
-        return banned;
-    }
-
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.banned")
-    public void setBanned(Boolean banned) {
-        this.banned = banned;
-    }
-
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.create_time")
     public LocalDateTime getCreateTime() {
         return createTime;
@@ -109,5 +116,15 @@ public class KspRole {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.create_time")
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.create_user")
+    public Long getCreateUser() {
+        return createUser;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.create_user")
+    public void setCreateUser(Long createUser) {
+        this.createUser = createUser;
     }
 }

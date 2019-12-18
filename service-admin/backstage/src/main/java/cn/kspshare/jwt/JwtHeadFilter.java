@@ -69,7 +69,7 @@ public class JwtHeadFilter extends OncePerRequestFilter {
             if(!kspUser.getEnabled()) {
                 throw new KspException("当前用户被冻结，禁止登录");
             }
-            List<String> permValues = kspPermService.listResourceIdByUser(kspUser.getOid());
+            List<String> permValues = kspPermService.listByUser(kspUser.getOid());
             List<SimpleGrantedAuthority> authorities = permValues.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
             user.setAuthorities(authorities);
         } catch (KspException e) {

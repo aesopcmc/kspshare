@@ -2,21 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.kspshare.dao.TestUserDao">
 
-    <resultMap id="TestUserResultMap" type="cn.kspshare.domain.TestUser">
-        <id column="id" jdbcType="INTEGER" property="tid" />
-        <result column="user_name" jdbcType="VARCHAR" property="userName" />
-        <result column="age" jdbcType="INT" property="age" />
-        <result column="grade_id" jdbcType="BIGINT" property="gradeId" />
-
-    </resultMap>
-    <select id="getByCondition" resultMap="TestUserResultMap">
+    <!--<resultMap id="TestUserResultMap" type="cn.kspshare.domain.TestUser">-->
+    <!--    <id column="id" jdbcType="INTEGER" property="tid" />-->
+    <!--    <result column="user_name" jdbcType="VARCHAR" property="userName" />-->
+    <!--    <result column="age" jdbcType="INTEGER" property="age" />-->
+    <!--    <result column="grade_id" jdbcType="BIGINT" property="gradeId" />-->
+    <!--</resultMap>-->
+    <select id="getByCondition" resultType="cn.kspshare.domain.TestUser">
         select
         `tid`,
-        `user_name`,
+        `user_name` as userName,
         `age`,
-        `grade_id`
+        `grade_id` as gradeId
         from `test_user`
-        where user_name=#{userName}
+        where user_name like #{userName}
     </select>
     <!--<select id="findUserAndGradeGreaterAge" resultType="java.util.Map">-->
 

@@ -116,7 +116,7 @@ CREATE TABLE `ksp_user_perm_re`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户-权限关系表' ROW_FORMAT = Dynamic;
 
 
-DROP TABLE IF EXISTS `ksp_user_perm_re`;
+DROP TABLE IF EXISTS `ksp_user_role_re`;
 CREATE TABLE `ksp_user_role_re`  (
   `oid` bigint(20) NOT NULL COMMENT '主键',
 	`user_id` bigint(20) NOT NULL COMMENT '用户ID',

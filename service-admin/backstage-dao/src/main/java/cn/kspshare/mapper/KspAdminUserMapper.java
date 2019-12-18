@@ -6,7 +6,6 @@ import static org.mybatis.dynamic.sql.SqlBuilder.*;
 import cn.kspshare.domain.KspAdminUser;
 import java.util.List;
 import javax.annotation.Generated;
-
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
@@ -57,8 +56,11 @@ public interface KspAdminUserMapper {
         @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR),
         @Result(column="realname", property="realname", jdbcType=JdbcType.VARCHAR),
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
+        @Result(column="gender", property="gender", jdbcType=JdbcType.BIT),
+        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
         @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
-        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT)
     })
     List<KspAdminUser> selectMany(SelectStatementProvider selectStatement);
 
@@ -93,8 +95,11 @@ public interface KspAdminUserMapper {
                 .map(username).toProperty("username")
                 .map(realname).toProperty("realname")
                 .map(password).toProperty("password")
+                .map(gender).toProperty("gender")
+                .map(email).toProperty("email")
                 .map(enabled).toProperty("enabled")
                 .map(createTime).toProperty("createTime")
+                .map(createUser).toProperty("createUser")
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
@@ -107,27 +112,30 @@ public interface KspAdminUserMapper {
                 .map(username).toPropertyWhenPresent("username", record::getUsername)
                 .map(realname).toPropertyWhenPresent("realname", record::getRealname)
                 .map(password).toPropertyWhenPresent("password", record::getPassword)
+                .map(gender).toPropertyWhenPresent("gender", record::getGender)
+                .map(email).toPropertyWhenPresent("email", record::getEmail)
                 .map(enabled).toPropertyWhenPresent("enabled", record::getEnabled)
                 .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
+                .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspAdminUser>>> selectByExample() {
-        return SelectDSL.selectWithMapper(this::selectMany, oid, username, realname, password, enabled, createTime)
+        return SelectDSL.selectWithMapper(this::selectMany, oid, username, realname, password, gender, email, enabled, createTime, createUser)
                 .from(kspAdminUser);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspAdminUser>>> selectDistinctByExample() {
-        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, username, realname, password, enabled, createTime)
+        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, username, realname, password, gender, email, enabled, createTime, createUser)
                 .from(kspAdminUser);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
     default KspAdminUser selectByPrimaryKey(Long oid_) {
-        return SelectDSL.selectWithMapper(this::selectOne, oid, username, realname, password, enabled, createTime)
+        return SelectDSL.selectWithMapper(this::selectOne, oid, username, realname, password, gender, email, enabled, createTime, createUser)
                 .from(kspAdminUser)
                 .where(oid, isEqualTo(oid_))
                 .build()
@@ -141,8 +149,11 @@ public interface KspAdminUserMapper {
                 .set(username).equalTo(record::getUsername)
                 .set(realname).equalTo(record::getRealname)
                 .set(password).equalTo(record::getPassword)
+                .set(gender).equalTo(record::getGender)
+                .set(email).equalTo(record::getEmail)
                 .set(enabled).equalTo(record::getEnabled)
-                .set(createTime).equalTo(record::getCreateTime);
+                .set(createTime).equalTo(record::getCreateTime)
+                .set(createUser).equalTo(record::getCreateUser);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
@@ -152,8 +163,11 @@ public interface KspAdminUserMapper {
                 .set(username).equalToWhenPresent(record::getUsername)
                 .set(realname).equalToWhenPresent(record::getRealname)
                 .set(password).equalToWhenPresent(record::getPassword)
+                .set(gender).equalToWhenPresent(record::getGender)
+                .set(email).equalToWhenPresent(record::getEmail)
                 .set(enabled).equalToWhenPresent(record::getEnabled)
-                .set(createTime).equalToWhenPresent(record::getCreateTime);
+                .set(createTime).equalToWhenPresent(record::getCreateTime)
+                .set(createUser).equalToWhenPresent(record::getCreateUser);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
@@ -162,8 +176,11 @@ public interface KspAdminUserMapper {
                 .set(username).equalTo(record::getUsername)
                 .set(realname).equalTo(record::getRealname)
                 .set(password).equalTo(record::getPassword)
+                .set(gender).equalTo(record::getGender)
+                .set(email).equalTo(record::getEmail)
                 .set(enabled).equalTo(record::getEnabled)
                 .set(createTime).equalTo(record::getCreateTime)
+                .set(createUser).equalTo(record::getCreateUser)
                 .where(oid, isEqualTo(record::getOid))
                 .build()
                 .execute();
@@ -175,8 +192,11 @@ public interface KspAdminUserMapper {
                 .set(username).equalToWhenPresent(record::getUsername)
                 .set(realname).equalToWhenPresent(record::getRealname)
                 .set(password).equalToWhenPresent(record::getPassword)
+                .set(gender).equalToWhenPresent(record::getGender)
+                .set(email).equalToWhenPresent(record::getEmail)
                 .set(enabled).equalToWhenPresent(record::getEnabled)
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
+                .set(createUser).equalToWhenPresent(record::getCreateUser)
                 .where(oid, isEqualTo(record::getOid))
                 .build()
                 .execute();
