@@ -9,7 +9,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class KspAdminUserListConditionDto {
+public class KspAdminUserListConditionDto extends BasePage{
     /**
      * 用户、姓名、邮箱模糊查询
      */

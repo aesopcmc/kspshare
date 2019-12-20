@@ -16,7 +16,7 @@ public class TestServiceImpl implements TestService {
 
     @Override
     public ResultBean list() {
-        List<KspAdminUser> kspUserList = userMapper.selectByExample().build().execute();
+        List<KspAdminUser> kspUserList = userMapper.select(c -> c);
         return ResultBean.SUCCESS(kspUserList);
     }
 }

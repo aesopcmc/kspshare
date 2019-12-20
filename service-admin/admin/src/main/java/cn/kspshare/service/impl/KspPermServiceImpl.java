@@ -9,13 +9,14 @@ import cn.kspshare.mapper.KspPermDynamicSqlSupport;
 import cn.kspshare.mapper.KspPermMapper;
 import cn.kspshare.mapper.KspRolePermReDynamicSqlSupport;
 import cn.kspshare.mapper.KspRolePermReMapper;
-import org.mybatis.dynamic.sql.SqlBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
 @Service
 public class KspPermServiceImpl implements KspPermService {
@@ -30,17 +31,12 @@ public class KspPermServiceImpl implements KspPermService {
 
     @Override
     public List<KspPerm> listByRole(Long roleId) {
-        List<KspRolePermRe> rolePermReList = rolePermReMapper.selectByExample()
-                .where(KspRolePermReDynamicSqlSupport.roleId, SqlBuilder.isEqualTo(roleId))
-                .build()
-                .execute();
+        List<KspRolePermRe> rolePermReList = rolePermReMapper.select( c ->
+                c.where(KspRolePermReDynamicSqlSupport.roleId, isEqualTo(roleId)));
 
         List<Long> permIds = rolePermReList.stream().map(KspRolePermRe::getPermId).collect(Collectors.toList());
-        List<KspPerm> permList = permMapper.selectByExample()
-                .where(KspPermDynamicSqlSupport.oid, SqlBuilder.isIn(permIds))
-                .build()
-                .execute();
-
+        List<KspPerm> permList = permMapper.select(c ->
+                c.where(KspPermDynamicSqlSupport.oid, isIn(permIds)));
         return permList;
     }
 

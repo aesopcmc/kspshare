@@ -1,12 +1,13 @@
 package cn.kspshare.service;
 
 import cn.kspshare.domain.KspAdminUser;
+import cn.kspshare.dto.KspAdminUserDto;
 import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.restful.ResultBean;
 
-import java.util.List;
-
 public interface KspAdminUserService {
+
+    KspAdminUser findByUsername(String username);
     /*
     1.	用户列表
     2.	添加用户
@@ -15,6 +16,5 @@ public interface KspAdminUserService {
     5.	查看编辑
      */
     ResultBean listCondition(KspAdminUserListConditionDto dto);
-
-    KspAdminUser findByUsername(String username);
+    ResultBean add(KspAdminUserDto dto);
 }

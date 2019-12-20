@@ -105,7 +105,7 @@ public class HomeController {
             return "redirect:/message?type=info&message="+URLEncoder.encode("邮箱验证失败，链接已失效，请重新 <a href='/register'>注册</a>", "UTF-8");
         }
 
-        user.setEnabled(true);
+        user.setEnabled((byte)1);
         userService.updateUser(user);
         return "redirect:/message?type=success&message="+URLEncoder.encode("激活成功，立即 <a href='/login'>登陆</a>", "UTF-8");
 

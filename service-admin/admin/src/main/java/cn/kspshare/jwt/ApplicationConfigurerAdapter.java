@@ -71,7 +71,8 @@ public class ApplicationConfigurerAdapter extends WebSecurityConfigurerAdapter {
                 "/css/**",
                 "/img/**",
                 "/login/**",
-                "/anyMsg/**"
+                "/anyMsg/**",
+                "/test/**"
         };
 
         http

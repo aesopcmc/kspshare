@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@ResponseBody
 @Api(tags = "测试接口")
 public class TestController {
     @Autowired

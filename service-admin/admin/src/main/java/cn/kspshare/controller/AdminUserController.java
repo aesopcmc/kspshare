@@ -1,5 +1,6 @@
 package cn.kspshare.controller;
 
+import cn.kspshare.dto.KspAdminUserDto;
 import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.jwt.JwtUserInfo;
 import cn.kspshare.restful.ResultBean;
@@ -10,11 +11,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -67,5 +66,15 @@ public class AdminUserController {
     @GetMapping("/user/listCondition")
     public ResultBean listCondition(KspAdminUserListConditionDto dto) {
         return kspAdminUserService.listCondition(dto);
+    }
+
+    /**
+     * 添加用户
+     * @param dto
+     * @return
+     */
+    @PostMapping("/user/add")
+    public ResultBean add(@RequestBody @Valid KspAdminUserDto dto) {
+        return kspAdminUserService.add(dto);
     }
 }

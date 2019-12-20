@@ -4,7 +4,9 @@ import static cn.kspshare.mapper.KspUserPermReDynamicSqlSupport.*;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
 import cn.kspshare.domain.KspUserPermRe;
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import javax.annotation.Generated;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
@@ -15,23 +17,26 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
-import org.mybatis.dynamic.sql.SqlBuilder;
-import org.mybatis.dynamic.sql.delete.DeleteDSL;
-import org.mybatis.dynamic.sql.delete.MyBatis3DeleteModelAdapter;
+import org.mybatis.dynamic.sql.BasicColumn;
+import org.mybatis.dynamic.sql.delete.DeleteDSLCompleter;
 import org.mybatis.dynamic.sql.delete.render.DeleteStatementProvider;
 import org.mybatis.dynamic.sql.insert.render.InsertStatementProvider;
-import org.mybatis.dynamic.sql.render.RenderingStrategy;
-import org.mybatis.dynamic.sql.select.MyBatis3SelectModelAdapter;
-import org.mybatis.dynamic.sql.select.QueryExpressionDSL;
-import org.mybatis.dynamic.sql.select.SelectDSL;
+import org.mybatis.dynamic.sql.insert.render.MultiRowInsertStatementProvider;
+import org.mybatis.dynamic.sql.select.CountDSLCompleter;
+import org.mybatis.dynamic.sql.select.SelectDSLCompleter;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
-import org.mybatis.dynamic.sql.update.MyBatis3UpdateModelAdapter;
 import org.mybatis.dynamic.sql.update.UpdateDSL;
+import org.mybatis.dynamic.sql.update.UpdateDSLCompleter;
+import org.mybatis.dynamic.sql.update.UpdateModel;
 import org.mybatis.dynamic.sql.update.render.UpdateStatementProvider;
 import org.mybatis.dynamic.sql.util.SqlProviderAdapter;
+import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface KspUserPermReMapper {
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
+    BasicColumn[] selectList = BasicColumn.columnList(oid, userId, permId, permType, createTime, createUser);
+
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     long count(SelectStatementProvider selectStatement);
@@ -45,9 +50,13 @@ public interface KspUserPermReMapper {
     int insert(InsertStatementProvider<KspUserPermRe> insertStatement);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
+    @InsertProvider(type=SqlProviderAdapter.class, method="insertMultiple")
+    int insertMultiple(MultiRowInsertStatementProvider<KspUserPermRe> multipleInsertStatement);
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("KspUserPermReResult")
-    KspUserPermRe selectOne(SelectStatementProvider selectStatement);
+    Optional<KspUserPermRe> selectOne(SelectStatementProvider selectStatement);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
@@ -66,77 +75,88 @@ public interface KspUserPermReMapper {
     int update(UpdateStatementProvider updateStatement);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
-    default QueryExpressionDSL<MyBatis3SelectModelAdapter<Long>> countByExample() {
-        return SelectDSL.selectWithMapper(this::count, SqlBuilder.count())
-                .from(kspUserPermRe);
+    default long count(CountDSLCompleter completer) {
+        return MyBatis3Utils.countFrom(this::count, kspUserPermRe, completer);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
-    default DeleteDSL<MyBatis3DeleteModelAdapter<Integer>> deleteByExample() {
-        return DeleteDSL.deleteFromWithMapper(this::delete, kspUserPermRe);
+    default int delete(DeleteDSLCompleter completer) {
+        return MyBatis3Utils.deleteFrom(this::delete, kspUserPermRe, completer);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
     default int deleteByPrimaryKey(Long oid_) {
-        return DeleteDSL.deleteFromWithMapper(this::delete, kspUserPermRe)
-                .where(oid, isEqualTo(oid_))
-                .build()
-                .execute();
+        return delete(c -> 
+            c.where(oid, isEqualTo(oid_))
+        );
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
     default int insert(KspUserPermRe record) {
-        return insert(SqlBuilder.insert(record)
-                .into(kspUserPermRe)
-                .map(oid).toProperty("oid")
-                .map(userId).toProperty("userId")
-                .map(permId).toProperty("permId")
-                .map(permType).toProperty("permType")
-                .map(createTime).toProperty("createTime")
-                .map(createUser).toProperty("createUser")
-                .build()
-                .render(RenderingStrategy.MYBATIS3));
+        return MyBatis3Utils.insert(this::insert, record, kspUserPermRe, c ->
+            c.map(oid).toProperty("oid")
+            .map(userId).toProperty("userId")
+            .map(permId).toProperty("permId")
+            .map(permType).toProperty("permType")
+            .map(createTime).toProperty("createTime")
+            .map(createUser).toProperty("createUser")
+        );
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
+    default int insertMultiple(Collection<KspUserPermRe> records) {
+        return MyBatis3Utils.insertMultiple(this::insertMultiple, records, kspUserPermRe, c ->
+            c.map(oid).toProperty("oid")
+            .map(userId).toProperty("userId")
+            .map(permId).toProperty("permId")
+            .map(permType).toProperty("permType")
+            .map(createTime).toProperty("createTime")
+            .map(createUser).toProperty("createUser")
+        );
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
     default int insertSelective(KspUserPermRe record) {
-        return insert(SqlBuilder.insert(record)
-                .into(kspUserPermRe)
-                .map(oid).toPropertyWhenPresent("oid", record::getOid)
-                .map(userId).toPropertyWhenPresent("userId", record::getUserId)
-                .map(permId).toPropertyWhenPresent("permId", record::getPermId)
-                .map(permType).toPropertyWhenPresent("permType", record::getPermType)
-                .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
-                .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
-                .build()
-                .render(RenderingStrategy.MYBATIS3));
+        return MyBatis3Utils.insert(this::insert, record, kspUserPermRe, c ->
+            c.map(oid).toPropertyWhenPresent("oid", record::getOid)
+            .map(userId).toPropertyWhenPresent("userId", record::getUserId)
+            .map(permId).toPropertyWhenPresent("permId", record::getPermId)
+            .map(permType).toPropertyWhenPresent("permType", record::getPermType)
+            .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
+            .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
+        );
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
-    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspUserPermRe>>> selectByExample() {
-        return SelectDSL.selectWithMapper(this::selectMany, oid, userId, permId, permType, createTime, createUser)
-                .from(kspUserPermRe);
+    default Optional<KspUserPermRe> selectOne(SelectDSLCompleter completer) {
+        return MyBatis3Utils.selectOne(this::selectOne, selectList, kspUserPermRe, completer);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
-    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<KspUserPermRe>>> selectDistinctByExample() {
-        return SelectDSL.selectDistinctWithMapper(this::selectMany, oid, userId, permId, permType, createTime, createUser)
-                .from(kspUserPermRe);
+    default List<KspUserPermRe> select(SelectDSLCompleter completer) {
+        return MyBatis3Utils.selectList(this::selectMany, selectList, kspUserPermRe, completer);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
-    default KspUserPermRe selectByPrimaryKey(Long oid_) {
-        return SelectDSL.selectWithMapper(this::selectOne, oid, userId, permId, permType, createTime, createUser)
-                .from(kspUserPermRe)
-                .where(oid, isEqualTo(oid_))
-                .build()
-                .execute();
+    default List<KspUserPermRe> selectDistinct(SelectDSLCompleter completer) {
+        return MyBatis3Utils.selectDistinct(this::selectMany, selectList, kspUserPermRe, completer);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
-    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExample(KspUserPermRe record) {
-        return UpdateDSL.updateWithMapper(this::update, kspUserPermRe)
-                .set(oid).equalTo(record::getOid)
+    default Optional<KspUserPermRe> selectByPrimaryKey(Long oid_) {
+        return selectOne(c ->
+            c.where(oid, isEqualTo(oid_))
+        );
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
+    default int update(UpdateDSLCompleter completer) {
+        return MyBatis3Utils.update(this::update, kspUserPermRe, completer);
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
+    static UpdateDSL<UpdateModel> updateAllColumns(KspUserPermRe record, UpdateDSL<UpdateModel> dsl) {
+        return dsl.set(oid).equalTo(record::getOid)
                 .set(userId).equalTo(record::getUserId)
                 .set(permId).equalTo(record::getPermId)
                 .set(permType).equalTo(record::getPermType)
@@ -145,9 +165,8 @@ public interface KspUserPermReMapper {
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
-    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExampleSelective(KspUserPermRe record) {
-        return UpdateDSL.updateWithMapper(this::update, kspUserPermRe)
-                .set(oid).equalToWhenPresent(record::getOid)
+    static UpdateDSL<UpdateModel> updateSelectiveColumns(KspUserPermRe record, UpdateDSL<UpdateModel> dsl) {
+        return dsl.set(oid).equalToWhenPresent(record::getOid)
                 .set(userId).equalToWhenPresent(record::getUserId)
                 .set(permId).equalToWhenPresent(record::getPermId)
                 .set(permType).equalToWhenPresent(record::getPermType)
@@ -157,27 +176,25 @@ public interface KspUserPermReMapper {
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
     default int updateByPrimaryKey(KspUserPermRe record) {
-        return UpdateDSL.updateWithMapper(this::update, kspUserPermRe)
-                .set(userId).equalTo(record::getUserId)
-                .set(permId).equalTo(record::getPermId)
-                .set(permType).equalTo(record::getPermType)
-                .set(createTime).equalTo(record::getCreateTime)
-                .set(createUser).equalTo(record::getCreateUser)
-                .where(oid, isEqualTo(record::getOid))
-                .build()
-                .execute();
+        return update(c ->
+            c.set(userId).equalTo(record::getUserId)
+            .set(permId).equalTo(record::getPermId)
+            .set(permType).equalTo(record::getPermType)
+            .set(createTime).equalTo(record::getCreateTime)
+            .set(createUser).equalTo(record::getCreateUser)
+            .where(oid, isEqualTo(record::getOid))
+        );
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
     default int updateByPrimaryKeySelective(KspUserPermRe record) {
-        return UpdateDSL.updateWithMapper(this::update, kspUserPermRe)
-                .set(userId).equalToWhenPresent(record::getUserId)
-                .set(permId).equalToWhenPresent(record::getPermId)
-                .set(permType).equalToWhenPresent(record::getPermType)
-                .set(createTime).equalToWhenPresent(record::getCreateTime)
-                .set(createUser).equalToWhenPresent(record::getCreateUser)
-                .where(oid, isEqualTo(record::getOid))
-                .build()
-                .execute();
+        return update(c ->
+            c.set(userId).equalToWhenPresent(record::getUserId)
+            .set(permId).equalToWhenPresent(record::getPermId)
+            .set(permType).equalToWhenPresent(record::getPermType)
+            .set(createTime).equalToWhenPresent(record::getCreateTime)
+            .set(createUser).equalToWhenPresent(record::getCreateUser)
+            .where(oid, isEqualTo(record::getOid))
+        );
     }
 }

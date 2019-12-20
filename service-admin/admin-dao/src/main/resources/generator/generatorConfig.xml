@@ -55,56 +55,20 @@
         </javaClientGenerator>
 
         <!-- 指定数据库表 -->
-        <table tableName="ksp_admin_user"
-               enableCountByExample="true"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
+        <table tableName="ksp_admin_user">
             <!--<generatedKey column="tbId" sqlStatement="JDBC"/>-->
         </table>
-        <table tableName="ksp_perm"
-               enableCountByExample="true"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
+        <table tableName="ksp_perm">
         </table>
-        <table tableName="ksp_resource"
-               enableCountByExample="true"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
+        <table tableName="ksp_resource">
         </table>
-
-        <table tableName="ksp_role"
-               enableCountByExample="true"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
+        <table tableName="ksp_role">
         </table>
-        <table tableName="ksp_role_perm_re"
-               enableCountByExample="true"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
+        <table tableName="ksp_role_perm_re">
         </table>
-        <table tableName="ksp_user_role_re"
-               enableCountByExample="true"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
+        <table tableName="ksp_user_role_re">
         </table>
-        <table tableName="ksp_user_perm_re"
-               enableCountByExample="true"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
+        <table tableName="ksp_user_perm_re">
         </table>
     </context>
 </generatorConfiguration>
