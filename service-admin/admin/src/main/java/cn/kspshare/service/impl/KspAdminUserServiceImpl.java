@@ -31,6 +31,32 @@ public class KspAdminUserServiceImpl implements KspAdminUserService {
     private KspAdminUserMapper adminUserMapper;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
+    public ResultBean add(KspAdminUserDto dto) {
+        KspAdminUser domain = new KspAdminUser();
+        BeanUtils.copyProperties(dto, domain);
+        domain.setOid(IDGenerator.id());
+        adminUserMapper.insertSelective(domain);
+        return ResultBean.SUCCESS();
+    }
+
+    @Override
+    public ResultBean update(KspAdminUserDto dto) {
+        //TODO 验证用户名不能重复
+
+
+        KspAdminUser updateRecord = new KspAdminUser();
+        BeanUtils.copyProperties(updateRecord, dto);
+        adminUserMapper.updateByPrimaryKeySelective(updateRecord);
+        return ResultBean.SUCCESS();
+    }
+
+    @Override
+    public ResultBean delete(KspAdminUserDto dto) {
+        return null;
+    }
+
+    @Override
     public ResultBean listCondition(KspAdminUserListConditionDto dto) {
 
         //复杂组合条件查询
@@ -63,16 +89,6 @@ public class KspAdminUserServiceImpl implements KspAdminUserService {
         PageInfo<KspAdminUser> pageInfo = new PageInfo<>(list);
 
         return ResultBean.SUCCESS(pageInfo);
-    }
-
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public ResultBean add(KspAdminUserDto dto) {
-        KspAdminUser domain = new KspAdminUser();
-        BeanUtils.copyProperties(dto, domain);
-        domain.setOid(IDGenerator.id());
-        adminUserMapper.insertSelective(domain);
-        return ResultBean.SUCCESS();
     }
 
     @Override

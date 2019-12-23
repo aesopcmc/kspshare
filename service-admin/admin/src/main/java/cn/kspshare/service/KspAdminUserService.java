@@ -6,8 +6,6 @@ import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.restful.ResultBean;
 
 public interface KspAdminUserService {
-
-    KspAdminUser findByUsername(String username);
     /*
     1.	用户列表
     2.	添加用户
@@ -15,6 +13,11 @@ public interface KspAdminUserService {
     4.	禁用/启用
     5.	查看编辑
      */
-    ResultBean listCondition(KspAdminUserListConditionDto dto);
     ResultBean add(KspAdminUserDto dto);
+    ResultBean update(KspAdminUserDto dto);
+    ResultBean delete(KspAdminUserDto dto);
+    ResultBean listCondition(KspAdminUserListConditionDto dto);
+    KspAdminUser findByUsername(String username);
+
+
 }
