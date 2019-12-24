@@ -1,4 +1,4 @@
-package cn.kspshare.restful;
+package cn.kspshare.common.restful;
 
 import java.io.Serializable;
 
@@ -84,6 +84,14 @@ public class ResultBean<T> implements Serializable {
      */
     public static ResultBean NO_PERMISSION() {
         return new ResultBean(ResultEnum.NO_PERMISSION.getCode(), ResultEnum.NO_PERMISSION.getMsg());
+    }
+
+    /**
+     * 无效的请求参数
+     * @return
+     */
+    public static ResultBean INVALID_REQUEST_PARAMETER(String msg) {
+        return new ResultBean(ResultEnum.INVALID_REQUEST_PARAMETER.getCode(), msg);
     }
 
     public int getCode() {

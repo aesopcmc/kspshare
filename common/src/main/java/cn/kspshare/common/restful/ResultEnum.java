@@ -1,10 +1,15 @@
-package cn.kspshare.restful;
+package cn.kspshare.common.restful;
 
+/**
+ * 结果状态枚举
+ */
 public enum ResultEnum {
-    FAIL(-1, "失败"),
+    FAIL(-1, "操作失败"),
     SUCCESS(0, "成功"),
     MISSING_PARAMETERS(1, "参数不全"),
-    SERVER_EXCEPTION(2, "服务器异常");
+    SERVER_EXCEPTION(2, "服务器异常"),
+    NO_PERMISSION(3, "权限不足"),
+    INVALID_REQUEST_PARAMETER(4, "无效的请求参数");
 
     private Integer code;
     private String msg;

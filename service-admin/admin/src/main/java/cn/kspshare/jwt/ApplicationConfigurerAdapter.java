@@ -1,6 +1,6 @@
 package cn.kspshare.jwt;
 
-import cn.kspshare.restful.ResultBean;
+import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.service.KspAdminUserService;
 import cn.kspshare.service.KspPermService;
 import cn.kspshare.config.KspConstants;

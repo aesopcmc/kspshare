@@ -1,7 +1,7 @@
 package cn.kspshare.dto.request;
 
 import cn.kspshare.validation.PasswordMatches;
-import cn.kspshare.validation.ValidEmail;
+import cn.kspshare.validation.Email;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -38,7 +38,7 @@ public class KspUserDto {
      */
     @NotNull
     @NotEmpty(message = "邮箱不能为空")
-    @ValidEmail(message = "邮箱不合法")
+    @Email(message = "邮箱不合法")
     private String email;
 
     public String getUsername() {

@@ -73,6 +73,13 @@ public final class KspAdminUserDynamicSqlSupport {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.create_user")
     public static final SqlColumn<Long> createUser = kspAdminUser.createUser;
 
+    /**
+     * Database Column Remarks:
+     *   创建时间
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.update_time")
+    public static final SqlColumn<LocalDateTime> updateTime = kspAdminUser.updateTime;
+
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
     public static final class KspAdminUser extends SqlTable {
         public final SqlColumn<Long> oid = column("oid", JDBCType.BIGINT);
@@ -92,6 +99,8 @@ public final class KspAdminUserDynamicSqlSupport {
         public final SqlColumn<LocalDateTime> createTime = column("create_time", JDBCType.TIMESTAMP);
 
         public final SqlColumn<Long> createUser = column("create_user", JDBCType.BIGINT);
+
+        public final SqlColumn<LocalDateTime> updateTime = column("update_time", JDBCType.TIMESTAMP);
 
         public KspAdminUser() {
             super("ksp_admin_user");

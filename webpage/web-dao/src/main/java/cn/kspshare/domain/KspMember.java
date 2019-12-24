@@ -103,6 +103,13 @@ public class KspMember {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.roles")
     private String roles;
 
+    /**
+     * Database Column Remarks:
+     *   创建时间
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.update_time")
+    private LocalDateTime updateTime;
+
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.oid")
     public Long getOid() {
         return oid;
@@ -241,5 +248,15 @@ public class KspMember {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.roles")
     public void setRoles(String roles) {
         this.roles = roles;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.update_time")
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.update_time")
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
     }
 }

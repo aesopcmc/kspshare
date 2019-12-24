@@ -17,7 +17,7 @@
         from `test_user`
         where user_name like #{userName}
     </select>
-    <!--<select id="findUserAndGradeGreaterAge" resultType="java.util.Map">-->
+    <!--<select id="findUserAndGradeGreaterAge" resultType="java.utils.Map">-->
 
 
     <!--</select>-->

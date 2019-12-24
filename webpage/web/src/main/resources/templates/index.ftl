@@ -556,7 +556,7 @@
                     <#--</div>-->
                     <#--<div class="col-md-6 col-lg-6">-->
                         <#--<div class="form-group">-->
-                            <#--<input type="email" name="email" id="email" placeholder="Email Address" required="required">-->
+                            <#--<input type="email" name="email" id="email" placeholder="EmailValidator Address" required="required">-->
                             <#--<i class="fa fa-envelope-o"></i>-->
                         <#--</div>-->
                     <#--</div>-->

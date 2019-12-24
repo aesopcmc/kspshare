@@ -1,19 +1,21 @@
 package cn.kspshare.controller;
 
+import cn.kspshare.dto.KspAdminUserDto;
 import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.jwt.JwtUserInfo;
-import cn.kspshare.restful.ResultBean;
+import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.service.KspAdminUserService;
 import cn.kspshare.service.TestService;
+import cn.kspshare.validation.Add;
+import cn.kspshare.validation.Update;
 import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -23,6 +25,25 @@ public class TestController {
     private TestService testService;
     @Autowired
     private KspAdminUserService kspAdminUserService;
+    /**
+     * 更新用户
+     * @param dto
+     * @return
+     */
+    @PostMapping("/test/user/update")
+    public ResultBean update(@RequestBody @Validated({Update.class}) KspAdminUserDto dto) {
+        return kspAdminUserService.update(dto);
+    }
+
+    /**
+     * 添加用户
+     * @param dto
+     * @return
+     */
+    @PostMapping("/test/user/add")
+    public ResultBean add(@RequestBody @Validated({Add.class}) KspAdminUserDto dto) {
+        return kspAdminUserService.add(dto);
+    }
 
     @ApiOperation("查找所有")
     @GetMapping("/test/list")

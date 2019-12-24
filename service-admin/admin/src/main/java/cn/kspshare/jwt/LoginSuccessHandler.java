@@ -1,7 +1,7 @@
 package cn.kspshare.jwt;
 
 import cn.kspshare.config.KspConstants;
-import cn.kspshare.restful.ResultBean;
+import cn.kspshare.common.restful.ResultBean;
 import com.alibaba.fastjson.JSON;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.jwt.JwtHelper;

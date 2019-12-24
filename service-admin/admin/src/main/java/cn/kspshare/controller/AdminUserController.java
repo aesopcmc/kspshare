@@ -3,17 +3,19 @@ package cn.kspshare.controller;
 import cn.kspshare.dto.KspAdminUserDto;
 import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.jwt.JwtUserInfo;
-import cn.kspshare.restful.ResultBean;
+import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.service.KspAdminUserService;
+import cn.kspshare.validation.Add;
+import cn.kspshare.validation.Update;
 import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
@@ -59,6 +61,36 @@ public class AdminUserController {
     }
 
     /**
+     * 添加用户
+     * @param dto
+     * @return
+     */
+    @PostMapping("/user/add")
+    public ResultBean add(@RequestBody @Validated({Add.class}) KspAdminUserDto dto) {
+        return kspAdminUserService.add(dto);
+    }
+
+    /**
+     * 更新用户
+     * @param dto
+     * @return
+     */
+    @PostMapping("/user/update")
+    public ResultBean update(@RequestBody @Validated({Update.class}) KspAdminUserDto dto) {
+        return kspAdminUserService.update(dto);
+    }
+
+    /**
+     * 删除用户
+     * @param oid
+     * @return
+     */
+    @PostMapping("/user/delete")
+    public ResultBean delete(Long oid) {
+        return kspAdminUserService.delete(oid);
+    }
+
+    /**
      * 条件查询
      * @param dto
      * @return
@@ -69,12 +101,14 @@ public class AdminUserController {
     }
 
     /**
-     * 添加用户
-     * @param dto
+     * 更改状态
+     * @param oid 主键
+     * @param enable 状态，是否可以登 0禁止 1允许
      * @return
      */
-    @PostMapping("/user/add")
-    public ResultBean add(@RequestBody @Valid KspAdminUserDto dto) {
-        return kspAdminUserService.add(dto);
+    @PostMapping("/user/enabled")
+    public ResultBean enabled(Long oid, Byte enable) {
+        return kspAdminUserService.enabled(oid, enable);
     }
+
 }

@@ -1,5 +1,7 @@
 package cn.kspshare.dto;
 
+import cn.kspshare.validation.Add;
+import cn.kspshare.validation.Update;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,13 +17,14 @@ public class KspAdminUserDto {
     /**
      *   主键
      */
+    @NotNull(groups = Update.class)
     private Long oid;
 
     /**
      *   用户登录名
      */
-    @NotNull
-    @NotBlank
+    @NotNull(groups = Add.class)
+    @NotBlank(groups = Add.class)
     private String username;
 
     /**
@@ -32,8 +35,8 @@ public class KspAdminUserDto {
     /**
      *   0保密 1男 2女，默认0
      */
-    @Min(value = 0, message = "性别选择有误0")
-    @Max(value = 2,message = "性别选择有误2")
+    @Min(groups = Add.class, value = 0, message = "性别选择有误0")
+    @Max(groups = Add.class, value = 2,message = "性别选择有误2")
     private Byte gender;
 
     /**
@@ -44,8 +47,8 @@ public class KspAdminUserDto {
     /**
      *   enabled	是否可以登录	 0禁止 1允许
      */
-    @Min(0)
-    @Max(1)
+    @Min(groups = Add.class, value=0)
+    @Max(groups = Add.class, value=1)
     private Byte enabled;
 
 }

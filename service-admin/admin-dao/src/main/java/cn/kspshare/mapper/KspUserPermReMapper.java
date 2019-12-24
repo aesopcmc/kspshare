@@ -35,7 +35,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 @Mapper
 public interface KspUserPermReMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
-    BasicColumn[] selectList = BasicColumn.columnList(oid, userId, permId, permType, createTime, createUser);
+    BasicColumn[] selectList = BasicColumn.columnList(oid, userId, permId, permType, createTime, createUser, updateTime);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
@@ -66,7 +66,8 @@ public interface KspUserPermReMapper {
         @Result(column="perm_id", property="permId", jdbcType=JdbcType.BIGINT),
         @Result(column="perm_type", property="permType", jdbcType=JdbcType.TINYINT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT)
+        @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT),
+        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP)
     })
     List<KspUserPermRe> selectMany(SelectStatementProvider selectStatement);
 
@@ -100,6 +101,7 @@ public interface KspUserPermReMapper {
             .map(permType).toProperty("permType")
             .map(createTime).toProperty("createTime")
             .map(createUser).toProperty("createUser")
+            .map(updateTime).toProperty("updateTime")
         );
     }
 
@@ -112,6 +114,7 @@ public interface KspUserPermReMapper {
             .map(permType).toProperty("permType")
             .map(createTime).toProperty("createTime")
             .map(createUser).toProperty("createUser")
+            .map(updateTime).toProperty("updateTime")
         );
     }
 
@@ -124,6 +127,7 @@ public interface KspUserPermReMapper {
             .map(permType).toPropertyWhenPresent("permType", record::getPermType)
             .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
             .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
+            .map(updateTime).toPropertyWhenPresent("updateTime", record::getUpdateTime)
         );
     }
 
@@ -161,7 +165,8 @@ public interface KspUserPermReMapper {
                 .set(permId).equalTo(record::getPermId)
                 .set(permType).equalTo(record::getPermType)
                 .set(createTime).equalTo(record::getCreateTime)
-                .set(createUser).equalTo(record::getCreateUser);
+                .set(createUser).equalTo(record::getCreateUser)
+                .set(updateTime).equalTo(record::getUpdateTime);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
@@ -171,7 +176,8 @@ public interface KspUserPermReMapper {
                 .set(permId).equalToWhenPresent(record::getPermId)
                 .set(permType).equalToWhenPresent(record::getPermType)
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
-                .set(createUser).equalToWhenPresent(record::getCreateUser);
+                .set(createUser).equalToWhenPresent(record::getCreateUser)
+                .set(updateTime).equalToWhenPresent(record::getUpdateTime);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
@@ -182,6 +188,7 @@ public interface KspUserPermReMapper {
             .set(permType).equalTo(record::getPermType)
             .set(createTime).equalTo(record::getCreateTime)
             .set(createUser).equalTo(record::getCreateUser)
+            .set(updateTime).equalTo(record::getUpdateTime)
             .where(oid, isEqualTo(record::getOid))
         );
     }
@@ -194,6 +201,7 @@ public interface KspUserPermReMapper {
             .set(permType).equalToWhenPresent(record::getPermType)
             .set(createTime).equalToWhenPresent(record::getCreateTime)
             .set(createUser).equalToWhenPresent(record::getCreateUser)
+            .set(updateTime).equalToWhenPresent(record::getUpdateTime)
             .where(oid, isEqualTo(record::getOid))
         );
     }

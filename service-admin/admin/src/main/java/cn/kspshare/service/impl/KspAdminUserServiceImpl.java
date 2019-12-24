@@ -5,10 +5,11 @@ import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.dto.KspAdminUserDto;
 import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.mapper.KspAdminUserDynamicSqlSupport;
-import cn.kspshare.restful.ResultBean;
+import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.service.KspAdminUserService;
 import cn.kspshare.domain.KspAdminUser;
 import cn.kspshare.mapper.KspAdminUserMapper;
+import cn.kspshare.utils.AdminUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.mybatis.dynamic.sql.render.RenderingStrategies;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
@@ -31,29 +33,44 @@ public class KspAdminUserServiceImpl implements KspAdminUserService {
     private KspAdminUserMapper adminUserMapper;
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
+    @Transactional(rollbackFor = Exception.class )
     public ResultBean add(KspAdminUserDto dto) {
+        KspAdminUser exist = this.findByUsername(dto.getUsername());
+        if(exist!=null) {
+            return ResultBean.FAIL("用户名已存在！");
+        }
+
         KspAdminUser domain = new KspAdminUser();
         BeanUtils.copyProperties(dto, domain);
         domain.setOid(IDGenerator.id());
+        //设置初始密码
+        domain.setPassword(AdminUtils.passwordEncode("123456"));
         adminUserMapper.insertSelective(domain);
         return ResultBean.SUCCESS();
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class )
     public ResultBean update(KspAdminUserDto dto) {
-        //TODO 验证用户名不能重复
-
+        KspAdminUser exist = this.findByUsername(dto.getUsername());
+        if(exist!=null && !exist.getOid().equals(dto.getOid())) {
+            return ResultBean.FAIL("用户名已存在！");
+        }
 
         KspAdminUser updateRecord = new KspAdminUser();
-        BeanUtils.copyProperties(updateRecord, dto);
+        BeanUtils.copyProperties(dto, updateRecord);
+        updateRecord.setUpdateTime(LocalDateTime.now());
         adminUserMapper.updateByPrimaryKeySelective(updateRecord);
         return ResultBean.SUCCESS();
     }
 
     @Override
-    public ResultBean delete(KspAdminUserDto dto) {
-        return null;
+    @Transactional(rollbackFor = Exception.class )
+    public ResultBean delete(Long oid) {
+        adminUserMapper.deleteByPrimaryKey(oid);
+
+        //todo 删除权限关系
+        return ResultBean.SUCCESS();
     }
 
     @Override
@@ -95,5 +112,15 @@ public class KspAdminUserServiceImpl implements KspAdminUserService {
     public KspAdminUser findByUsername(String username) {
         List<KspAdminUser> list = adminUserMapper.select(c -> c.where(KspAdminUserDynamicSqlSupport.username, isEqualTo(username)));
         return CollectionUtils.isEmpty(list) ? null : list.get(0);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class )
+    public ResultBean enabled(Long oid, Byte enabled) {
+        if(oid!=null && enabled!=null) {
+            return ResultBean.SUCCESS();
+        }else {
+            return ResultBean.FAIL();
+        }
     }
 }

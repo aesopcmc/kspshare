@@ -1,8 +1,11 @@
 package cn.kspshare.config;
 
-import cn.kspshare.restful.ResultBean;
+import cn.kspshare.common.restful.ResultBean;
+import cn.kspshare.common.restful.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,13 +19,16 @@ public class GlobalDefultExceptionHandler {
      * @param e
      * @return
      */
-    //@ExceptionHandler(MethodArgumentNotValidException.class)
-    //public ErrorMessage handleValidationBodyException(MethodArgumentNotValidException e) {
-    //    for (ObjectError s : e.getBindingResult().getAllErrors()) {
-    //        return new ErrorMessage("Invalid_Request_Parameter", s.getObjectName() + ": " + s.getDefaultMessage());
-    //    }
-    //    return new ErrorMessage("Invalid_Request_Parameter", "未知参数错误");
-    //}
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseBody
+    public ResultBean handleValidationBodyException(MethodArgumentNotValidException e) {
+        String fieldName = e.getBindingResult().getFieldError().getField();
+        String msg = "";
+        for (ObjectError s : e.getBindingResult().getAllErrors()) {
+            msg += s.getDefaultMessage() + " ";
+        }
+        return ResultBean.INVALID_REQUEST_PARAMETER(ResultEnum.INVALID_REQUEST_PARAMETER.getMsg()+":"+fieldName+"["+msg+"]");
+    }
 
     /**
      * 统一异常处理

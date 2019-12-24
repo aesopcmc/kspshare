@@ -1,6 +1,6 @@
 package cn.kspshare.service;
 
-import cn.kspshare.restful.ResultBean;
+import cn.kspshare.common.restful.ResultBean;
 
 public interface TestService {
     ResultBean list();

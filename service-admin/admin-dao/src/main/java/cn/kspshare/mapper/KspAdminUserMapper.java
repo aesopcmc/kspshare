@@ -35,7 +35,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 @Mapper
 public interface KspAdminUserMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
-    BasicColumn[] selectList = BasicColumn.columnList(oid, username, realname, password, gender, email, enabled, createTime, createUser);
+    BasicColumn[] selectList = BasicColumn.columnList(oid, username, realname, password, gender, email, enabled, createTime, createUser, updateTime);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
@@ -69,7 +69,8 @@ public interface KspAdminUserMapper {
         @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
         @Result(column="enabled", property="enabled", jdbcType=JdbcType.TINYINT),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT)
+        @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT),
+        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP)
     })
     List<KspAdminUser> selectMany(SelectStatementProvider selectStatement);
 
@@ -106,6 +107,7 @@ public interface KspAdminUserMapper {
             .map(enabled).toProperty("enabled")
             .map(createTime).toProperty("createTime")
             .map(createUser).toProperty("createUser")
+            .map(updateTime).toProperty("updateTime")
         );
     }
 
@@ -121,6 +123,7 @@ public interface KspAdminUserMapper {
             .map(enabled).toProperty("enabled")
             .map(createTime).toProperty("createTime")
             .map(createUser).toProperty("createUser")
+            .map(updateTime).toProperty("updateTime")
         );
     }
 
@@ -136,6 +139,7 @@ public interface KspAdminUserMapper {
             .map(enabled).toPropertyWhenPresent("enabled", record::getEnabled)
             .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
             .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
+            .map(updateTime).toPropertyWhenPresent("updateTime", record::getUpdateTime)
         );
     }
 
@@ -176,7 +180,8 @@ public interface KspAdminUserMapper {
                 .set(email).equalTo(record::getEmail)
                 .set(enabled).equalTo(record::getEnabled)
                 .set(createTime).equalTo(record::getCreateTime)
-                .set(createUser).equalTo(record::getCreateUser);
+                .set(createUser).equalTo(record::getCreateUser)
+                .set(updateTime).equalTo(record::getUpdateTime);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
@@ -189,7 +194,8 @@ public interface KspAdminUserMapper {
                 .set(email).equalToWhenPresent(record::getEmail)
                 .set(enabled).equalToWhenPresent(record::getEnabled)
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
-                .set(createUser).equalToWhenPresent(record::getCreateUser);
+                .set(createUser).equalToWhenPresent(record::getCreateUser)
+                .set(updateTime).equalToWhenPresent(record::getUpdateTime);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
@@ -203,6 +209,7 @@ public interface KspAdminUserMapper {
             .set(enabled).equalTo(record::getEnabled)
             .set(createTime).equalTo(record::getCreateTime)
             .set(createUser).equalTo(record::getCreateUser)
+            .set(updateTime).equalTo(record::getUpdateTime)
             .where(oid, isEqualTo(record::getOid))
         );
     }
@@ -218,6 +225,7 @@ public interface KspAdminUserMapper {
             .set(enabled).equalToWhenPresent(record::getEnabled)
             .set(createTime).equalToWhenPresent(record::getCreateTime)
             .set(createUser).equalToWhenPresent(record::getCreateUser)
+            .set(updateTime).equalToWhenPresent(record::getUpdateTime)
             .where(oid, isEqualTo(record::getOid))
         );
     }

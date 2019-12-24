@@ -52,6 +52,13 @@ public final class KspUserPermReDynamicSqlSupport {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_perm_re.create_user")
     public static final SqlColumn<Long> createUser = kspUserPermRe.createUser;
 
+    /**
+     * Database Column Remarks:
+     *   创建时间
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_user_perm_re.update_time")
+    public static final SqlColumn<LocalDateTime> updateTime = kspUserPermRe.updateTime;
+
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_perm_re")
     public static final class KspUserPermRe extends SqlTable {
         public final SqlColumn<Long> oid = column("oid", JDBCType.BIGINT);
@@ -65,6 +72,8 @@ public final class KspUserPermReDynamicSqlSupport {
         public final SqlColumn<LocalDateTime> createTime = column("create_time", JDBCType.TIMESTAMP);
 
         public final SqlColumn<Long> createUser = column("create_user", JDBCType.BIGINT);
+
+        public final SqlColumn<LocalDateTime> updateTime = column("update_time", JDBCType.TIMESTAMP);
 
         public KspUserPermRe() {
             super("ksp_user_perm_re");

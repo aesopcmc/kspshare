@@ -37,7 +37,7 @@
             NUMERIC 类型解析为java.math.BigDecimal -->
         <javaTypeResolver>
             <property name="forceBigDecimals" value="true"/>
-            <!-- 当useJSR310Types为true时，就会jdbc对应的日期类型会转成java8中的LocateDateTime类型，如果useJSR310Types为false，则还是转成java.util.Date类型 -->
+            <!-- 当useJSR310Types为true时，就会jdbc对应的日期类型会转成java8中的LocateDateTime类型，如果useJSR310Types为false，则还是转成java.utils.Date类型 -->
             <property name="useJSR310Types" value="true"/>
         </javaTypeResolver>
 
@@ -53,19 +53,10 @@
         </javaClientGenerator>
 
         <!-- 指定数据库表 -->
-        <table tableName="test_%"
-               enableCountByExample="true"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true"></table>
+        <table tableName="test_%">
+        </table>
 
-        <table tableName="ksp_member"
-               enableCountByExample="true"
-               enableUpdateByExample="true"
-               enableDeleteByExample="true"
-               enableSelectByExample="true"
-               selectByExampleQueryId="true">
+        <table tableName="ksp_member">
             <!--<generatedKey column="tbId" sqlStatement="JDBC"/>-->
         </table>
         <!--<table tableName="test_%">-->

@@ -104,6 +104,13 @@ public final class KspMemberDynamicSqlSupport {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.roles")
     public static final SqlColumn<String> roles = kspMember.roles;
 
+    /**
+     * Database Column Remarks:
+     *   创建时间
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_member.update_time")
+    public static final SqlColumn<LocalDateTime> updateTime = kspMember.updateTime;
+
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_member")
     public static final class KspMember extends SqlTable {
         public final SqlColumn<Long> oid = column("oid", JDBCType.BIGINT);
@@ -133,6 +140,8 @@ public final class KspMemberDynamicSqlSupport {
         public final SqlColumn<Long> createUser = column("create_user", JDBCType.BIGINT);
 
         public final SqlColumn<String> roles = column("roles", JDBCType.VARCHAR);
+
+        public final SqlColumn<LocalDateTime> updateTime = column("update_time", JDBCType.TIMESTAMP);
 
         public KspMember() {
             super("ksp_member");

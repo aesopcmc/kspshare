@@ -51,6 +51,13 @@ public class KspPerm {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.create_user")
     private Long createUser;
 
+    /**
+     * Database Column Remarks:
+     *   创建时间
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.update_time")
+    private LocalDateTime updateTime;
+
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.oid")
     public Long getOid() {
         return oid;
@@ -109,5 +116,15 @@ public class KspPerm {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.create_user")
     public void setCreateUser(Long createUser) {
         this.createUser = createUser;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.update_time")
+    public LocalDateTime getUpdateTime() {
+        return updateTime;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.update_time")
+    public void setUpdateTime(LocalDateTime updateTime) {
+        this.updateTime = updateTime;
     }
 }
