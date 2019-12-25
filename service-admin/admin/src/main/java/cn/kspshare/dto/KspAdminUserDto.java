@@ -23,8 +23,8 @@ public class KspAdminUserDto {
     /**
      *   用户登录名
      */
-    @NotNull(groups = Add.class)
-    @NotBlank(groups = Add.class)
+    @NotNull(groups = {Add.class, Update.class})
+    @NotBlank(groups = {Add.class, Update.class})
     private String username;
 
     /**
@@ -47,8 +47,8 @@ public class KspAdminUserDto {
     /**
      *   enabled	是否可以登录	 0禁止 1允许
      */
-    @Min(groups = Add.class, value=0)
-    @Max(groups = Add.class, value=1)
+    @Min(groups = {Add.class, Update.class}, value=0)
+    @Max(groups = {Add.class, Update.class}, value=1)
     private Byte enabled;
 
 }
