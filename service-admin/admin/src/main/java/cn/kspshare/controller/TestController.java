@@ -5,6 +5,7 @@ import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.jwt.JwtUserInfo;
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.service.KspAdminUserService;
+import cn.kspshare.service.KspResourceService;
 import cn.kspshare.service.TestService;
 import cn.kspshare.validation.Add;
 import cn.kspshare.validation.Update;
@@ -25,6 +26,18 @@ public class TestController {
     private TestService testService;
     @Autowired
     private KspAdminUserService kspAdminUserService;
+    @Autowired
+    private KspResourceService kspResourceService;
+
+    /**
+     * 更新用户
+     * @return
+     */
+    @GetMapping("/test/resource/treeList")
+    public ResultBean update() {
+        return kspResourceService.treeList();
+    }
+
     /**
      * 更新用户
      * @param dto

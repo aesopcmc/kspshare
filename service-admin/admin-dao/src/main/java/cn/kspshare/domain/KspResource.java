@@ -62,8 +62,8 @@ public class KspResource {
      * Database Column Remarks:
      *   vue组件名，用于路由配置
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.compone_name")
-    private String componeName;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.component_name")
+    private String componentName;
 
     /**
      * Database Column Remarks:
@@ -163,14 +163,14 @@ public class KspResource {
         this.icon = icon;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.compone_name")
-    public String getComponeName() {
-        return componeName;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.component_name")
+    public String getComponentName() {
+        return componentName;
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.compone_name")
-    public void setComponeName(String componeName) {
-        this.componeName = componeName;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.component_name")
+    public void setComponentName(String componentName) {
+        this.componentName = componentName;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.sort")

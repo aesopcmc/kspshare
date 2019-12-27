@@ -20,7 +20,7 @@ public class TreeNodeUtils {
      * @param id        要搜索对应父节点节点的id
      * @param listNodes 要处理列表集合节点数据(不是组合成树状图后的数据)
      */
-    public static <T extends BaseTreeNode> List<T> getParentList(List<T> listNodes, Long id) {
+    public static <T extends BaseTreeNode> List<T> getParentList(List<T> listNodes, Object id) {
         if (StringUtils.isEmpty(id) || CollectionUtils.isEmpty(listNodes)) {
             return null;
         }
@@ -76,7 +76,7 @@ public class TreeNodeUtils {
      * @param <T>
      * @return
      */
-    public static <T extends BaseTreeNode> List<T> getChildList(List<T> listNodes, String[] ids) {
+    public static <T extends BaseTreeNode, PK> List<T> getChildList(List<T> listNodes, Object[] ids) {
         if (ids == null || ids.length == 0 || CollectionUtils.isEmpty(listNodes)) {
             return null;
         }
@@ -87,7 +87,7 @@ public class TreeNodeUtils {
         byte[] nodeIndex = new byte[length];
         // 循环获取要获取节点
         T t;
-        for (String id : ids) {
+        for (Object id : ids) {
             for (int i = 0; i < length; i++) {
                 t = listNodes.get(i);
                 if (id.equals(t.getId())) {
@@ -96,7 +96,7 @@ public class TreeNodeUtils {
                 }
             }
         }
-        Long tempId;
+        Object tempId;
         int index = 0;
         while (index < treeNodes.size()) {
             tempId = treeNodes.get(index).getId();
@@ -120,12 +120,11 @@ public class TreeNodeUtils {
      * @param listNodes 要处理列表集合节点数据
      */
     public static <T extends BaseTreeNode> List<T> assembleTree(List<T> listNodes) {
-        List<T> newTreeNodes = new ArrayList<>();
         // 循环赋值最上面的节点数据
         // 赋值最上面节点的值
-        newTreeNodes.addAll(listNodes.stream()
-                .filter(t -> StringUtils.isEmpty(t.getParentId()) || "null".equals(t.getParentId()))
-                .collect(Collectors.toList()));
+        List<T> newTreeNodes = listNodes.stream()
+                .filter(t -> StringUtils.isEmpty(t.getParentId()) || "0".equals(t.getParentId().toString()))
+                .collect(Collectors.toList());
         // 循环处理子节点数据
         for (T t : newTreeNodes) {
             //递归

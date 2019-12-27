@@ -2,22 +2,22 @@ package cn.kspshare.service.impl;
 
 import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.common.restful.ResultBean;
-import cn.kspshare.domain.KspAdminUser;
+import cn.kspshare.common.tree.BaseTreeNode;
+import cn.kspshare.common.tree.TreeNodeUtils;
 import cn.kspshare.domain.KspResource;
 import cn.kspshare.dto.KspResourceDto;
-import cn.kspshare.mapper.KspAdminUserDynamicSqlSupport;
 import cn.kspshare.mapper.KspResourceDynamicSqlSupport;
 import cn.kspshare.mapper.KspResourceMapper;
 import cn.kspshare.service.KspResourceService;
 import org.mybatis.dynamic.sql.SqlBuilder;
-import org.mybatis.dynamic.sql.where.condition.IsEqualTo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import sun.reflect.generics.tree.Tree;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -73,8 +73,14 @@ public class KspResourceServiceImpl implements KspResourceService {
 
     @Override
     public ResultBean treeList() {
+        List<KspResource> list = kspResourceMapper.select(c -> c);
 
-        return null;
+        List<BaseTreeNode<KspResource, Long>> treenodeList = new ArrayList<>();
+        for (KspResource kspResource : list) {
+            treenodeList.add(new BaseTreeNode<>(kspResource, kspResource.getOid(), kspResource.getParentId()));
+        }
+        List<BaseTreeNode<KspResource, Long>> treeNodes = TreeNodeUtils.assembleTree(treenodeList);
+        return ResultBean.SUCCESS(treeNodes);
     }
 
     @Override
@@ -82,5 +88,14 @@ public class KspResourceServiceImpl implements KspResourceService {
         Optional<KspResource> kspResource = kspResourceMapper.selectOne(c ->
                 c.where(KspResourceDynamicSqlSupport.code, SqlBuilder.isEqualTo(code)));
         return kspResource.get();
+    }
+
+    public void test(List<KspResource> list) {
+        List<BaseTreeNode<KspResource, Long>> treenodeList = new ArrayList<>();
+
+        list.forEach(po->{
+            treenodeList.add(new BaseTreeNode<>(po, po.getOid(), po.getParentId()));
+        });
+        List<BaseTreeNode<KspResource, Long>> treeNodes = TreeNodeUtils.assembleTree(treenodeList);
     }
 }

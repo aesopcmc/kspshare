@@ -35,7 +35,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 @Mapper
 public interface KspResourceMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
-    BasicColumn[] selectList = BasicColumn.columnList(oid, name, code, parentId, resourceType, url, icon, componeName, sort, createTime, createUser, updateTime);
+    BasicColumn[] selectList = BasicColumn.columnList(oid, name, code, parentId, resourceType, url, icon, componentName, sort, createTime, createUser, updateTime);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
@@ -68,7 +68,7 @@ public interface KspResourceMapper {
         @Result(column="resource_type", property="resourceType", jdbcType=JdbcType.TINYINT),
         @Result(column="url", property="url", jdbcType=JdbcType.VARCHAR),
         @Result(column="icon", property="icon", jdbcType=JdbcType.VARCHAR),
-        @Result(column="compone_name", property="componeName", jdbcType=JdbcType.VARCHAR),
+        @Result(column="component_name", property="componentName", jdbcType=JdbcType.VARCHAR),
         @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT),
@@ -107,7 +107,7 @@ public interface KspResourceMapper {
             .map(resourceType).toProperty("resourceType")
             .map(url).toProperty("url")
             .map(icon).toProperty("icon")
-            .map(componeName).toProperty("componeName")
+            .map(componentName).toProperty("componentName")
             .map(sort).toProperty("sort")
             .map(createTime).toProperty("createTime")
             .map(createUser).toProperty("createUser")
@@ -125,7 +125,7 @@ public interface KspResourceMapper {
             .map(resourceType).toProperty("resourceType")
             .map(url).toProperty("url")
             .map(icon).toProperty("icon")
-            .map(componeName).toProperty("componeName")
+            .map(componentName).toProperty("componentName")
             .map(sort).toProperty("sort")
             .map(createTime).toProperty("createTime")
             .map(createUser).toProperty("createUser")
@@ -143,7 +143,7 @@ public interface KspResourceMapper {
             .map(resourceType).toPropertyWhenPresent("resourceType", record::getResourceType)
             .map(url).toPropertyWhenPresent("url", record::getUrl)
             .map(icon).toPropertyWhenPresent("icon", record::getIcon)
-            .map(componeName).toPropertyWhenPresent("componeName", record::getComponeName)
+            .map(componentName).toPropertyWhenPresent("componentName", record::getComponentName)
             .map(sort).toPropertyWhenPresent("sort", record::getSort)
             .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
             .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
@@ -187,7 +187,7 @@ public interface KspResourceMapper {
                 .set(resourceType).equalTo(record::getResourceType)
                 .set(url).equalTo(record::getUrl)
                 .set(icon).equalTo(record::getIcon)
-                .set(componeName).equalTo(record::getComponeName)
+                .set(componentName).equalTo(record::getComponentName)
                 .set(sort).equalTo(record::getSort)
                 .set(createTime).equalTo(record::getCreateTime)
                 .set(createUser).equalTo(record::getCreateUser)
@@ -203,7 +203,7 @@ public interface KspResourceMapper {
                 .set(resourceType).equalToWhenPresent(record::getResourceType)
                 .set(url).equalToWhenPresent(record::getUrl)
                 .set(icon).equalToWhenPresent(record::getIcon)
-                .set(componeName).equalToWhenPresent(record::getComponeName)
+                .set(componentName).equalToWhenPresent(record::getComponentName)
                 .set(sort).equalToWhenPresent(record::getSort)
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
                 .set(createUser).equalToWhenPresent(record::getCreateUser)
@@ -219,7 +219,7 @@ public interface KspResourceMapper {
             .set(resourceType).equalTo(record::getResourceType)
             .set(url).equalTo(record::getUrl)
             .set(icon).equalTo(record::getIcon)
-            .set(componeName).equalTo(record::getComponeName)
+            .set(componentName).equalTo(record::getComponentName)
             .set(sort).equalTo(record::getSort)
             .set(createTime).equalTo(record::getCreateTime)
             .set(createUser).equalTo(record::getCreateUser)
@@ -237,7 +237,7 @@ public interface KspResourceMapper {
             .set(resourceType).equalToWhenPresent(record::getResourceType)
             .set(url).equalToWhenPresent(record::getUrl)
             .set(icon).equalToWhenPresent(record::getIcon)
-            .set(componeName).equalToWhenPresent(record::getComponeName)
+            .set(componentName).equalToWhenPresent(record::getComponentName)
             .set(sort).equalToWhenPresent(record::getSort)
             .set(createTime).equalToWhenPresent(record::getCreateTime)
             .set(createUser).equalToWhenPresent(record::getCreateUser)

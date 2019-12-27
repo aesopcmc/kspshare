@@ -63,8 +63,8 @@ public final class KspResourceDynamicSqlSupport {
      * Database Column Remarks:
      *   vue组件名，用于路由配置
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.compone_name")
-    public static final SqlColumn<String> componeName = kspResource.componeName;
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.component_name")
+    public static final SqlColumn<String> componentName = kspResource.componentName;
 
     /**
      * Database Column Remarks:
@@ -110,7 +110,7 @@ public final class KspResourceDynamicSqlSupport {
 
         public final SqlColumn<String> icon = column("icon", JDBCType.VARCHAR);
 
-        public final SqlColumn<String> componeName = column("compone_name", JDBCType.VARCHAR);
+        public final SqlColumn<String> componentName = column("component_name", JDBCType.VARCHAR);
 
         public final SqlColumn<Integer> sort = column("sort", JDBCType.INTEGER);
 

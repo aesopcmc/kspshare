@@ -1,7 +1,6 @@
 package cn.kspshare.common.tree;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -14,31 +13,34 @@ import java.util.List;
  */
 @Getter
 @Setter
-@NoArgsConstructor
-public class BaseTreeNode<PO> {
+public class BaseTreeNode<PO,PK> {
     /**
      * 子Id
      */
-    private Long id;
+    private PK id;
     /**
      * 父ID
      */
-    private Long parentId;
+    private PK parentId;
+    /**
+     * 目标实体数据
+     */
+    private PO targetPo;
     /**
      * 子集合
      */
     private List<BaseTreeNode> child;
 
-    /**
-     * 目标实体
-     */
-    private PO targetPo;
+    public BaseTreeNode(PO targetPo, PK id, PK parentId) {
+        this.id = id;
+        this.parentId = parentId;
+        this.targetPo = targetPo;
+    }
 
     public void addChild(BaseTreeNode baseTreeNode) {
         if (this.child == null) {
             this.setChild(new ArrayList<>());
         }
-
         this.getChild().add(baseTreeNode);
     }
 }
