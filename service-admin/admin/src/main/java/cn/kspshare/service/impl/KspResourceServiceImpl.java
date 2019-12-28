@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,9 +62,15 @@ public class KspResourceServiceImpl implements KspResourceService {
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class )
+    @Transactional(rollbackFor = Exception.class)
     public ResultBean delete(Long oid) {
+        //删除子级
+        KspResource kspResource = kspResourceMapper.selectByPrimaryKey(oid).get();
+        kspResourceMapper.delete(c->c.where(KspResourceDynamicSqlSupport.codeLink, SqlBuilder.isLike(kspResource.getCode())));
+
+        //删除自身
         kspResourceMapper.deleteByPrimaryKey(oid);
+
         //TODO 解除关系
 
         return ResultBean.SUCCESS();
@@ -74,13 +79,9 @@ public class KspResourceServiceImpl implements KspResourceService {
     @Override
     public ResultBean treeList() {
         List<KspResource> list = kspResourceMapper.select(c -> c);
-
-        List<BaseTreeNode<KspResource, Long>> treenodeList = new ArrayList<>();
-        for (KspResource kspResource : list) {
-            treenodeList.add(new BaseTreeNode<>(kspResource, kspResource.getOid(), kspResource.getParentId()));
-        }
-        List<BaseTreeNode<KspResource, Long>> treeNodes = TreeNodeUtils.assembleTree(treenodeList);
-        return ResultBean.SUCCESS(treeNodes);
+        List<BaseTreeNode<KspResource, Long>> treeList =
+                TreeNodeUtils.getTreeList(list, po -> new BaseTreeNode<>(po, po.getOid(), po.getParentId()));
+        return ResultBean.SUCCESS(treeList);
     }
 
     @Override
@@ -90,12 +91,5 @@ public class KspResourceServiceImpl implements KspResourceService {
         return kspResource.get();
     }
 
-    public void test(List<KspResource> list) {
-        List<BaseTreeNode<KspResource, Long>> treenodeList = new ArrayList<>();
 
-        list.forEach(po->{
-            treenodeList.add(new BaseTreeNode<>(po, po.getOid(), po.getParentId()));
-        });
-        List<BaseTreeNode<KspResource, Long>> treeNodes = TreeNodeUtils.assembleTree(treenodeList);
-    }
 }

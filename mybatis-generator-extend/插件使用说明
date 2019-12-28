@@ -1,0 +1,32 @@
+该插件模块需要先运行maven指令 install打包到maven仓库后才可使用，
+并在mybatis-generator-plugin插件中加入自定义插件：
+<dependency>
+    <groupId>cn.aesop</groupId>
+    <artifactId>mybatis-generator-extend</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
+
+例如：
+<!--Mybatis实体自动生成-->
+<plugin>
+    <groupId>org.mybatis.generator</groupId>
+    <artifactId>mybatis-generator-maven-plugin</artifactId>
+    <version>1.4.0</version>
+    <configuration>
+        <overwrite>true</overwrite>
+        <verbose>true</verbose>
+        <configurationFile>${basedir}/src/main/resources/generator/generatorConfig.xml</configurationFile>
+    </configuration>
+    <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.aesop</groupId>
+            <artifactId>mybatis-generator-extend</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+</plugin>

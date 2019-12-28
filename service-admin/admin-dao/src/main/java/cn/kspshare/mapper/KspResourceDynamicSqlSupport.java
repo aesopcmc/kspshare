@@ -94,6 +94,13 @@ public final class KspResourceDynamicSqlSupport {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.update_time")
     public static final SqlColumn<LocalDateTime> updateTime = kspResource.updateTime;
 
+    /**
+     * Database Column Remarks:
+     *   编码链，通过“-”拼接，不包含自身，最顶级为NULL
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.code_link")
+    public static final SqlColumn<String> codeLink = kspResource.codeLink;
+
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
     public static final class KspResource extends SqlTable {
         public final SqlColumn<Long> oid = column("oid", JDBCType.BIGINT);
@@ -119,6 +126,8 @@ public final class KspResourceDynamicSqlSupport {
         public final SqlColumn<Long> createUser = column("create_user", JDBCType.BIGINT);
 
         public final SqlColumn<LocalDateTime> updateTime = column("update_time", JDBCType.TIMESTAMP);
+
+        public final SqlColumn<String> codeLink = column("code_link", JDBCType.VARCHAR);
 
         public KspResource() {
             super("ksp_resource");

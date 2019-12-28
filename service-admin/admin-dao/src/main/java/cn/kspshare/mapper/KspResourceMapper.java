@@ -35,7 +35,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 @Mapper
 public interface KspResourceMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
-    BasicColumn[] selectList = BasicColumn.columnList(oid, name, code, parentId, resourceType, url, icon, componentName, sort, createTime, createUser, updateTime);
+    BasicColumn[] selectList = BasicColumn.columnList(oid, name, code, parentId, resourceType, url, icon, componentName, sort, createTime, createUser, updateTime, codeLink);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
@@ -72,7 +72,8 @@ public interface KspResourceMapper {
         @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="code_link", property="codeLink", jdbcType=JdbcType.VARCHAR)
     })
     List<KspResource> selectMany(SelectStatementProvider selectStatement);
 
@@ -112,6 +113,7 @@ public interface KspResourceMapper {
             .map(createTime).toProperty("createTime")
             .map(createUser).toProperty("createUser")
             .map(updateTime).toProperty("updateTime")
+            .map(codeLink).toProperty("codeLink")
         );
     }
 
@@ -130,6 +132,7 @@ public interface KspResourceMapper {
             .map(createTime).toProperty("createTime")
             .map(createUser).toProperty("createUser")
             .map(updateTime).toProperty("updateTime")
+            .map(codeLink).toProperty("codeLink")
         );
     }
 
@@ -148,6 +151,7 @@ public interface KspResourceMapper {
             .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
             .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
             .map(updateTime).toPropertyWhenPresent("updateTime", record::getUpdateTime)
+            .map(codeLink).toPropertyWhenPresent("codeLink", record::getCodeLink)
         );
     }
 
@@ -191,7 +195,8 @@ public interface KspResourceMapper {
                 .set(sort).equalTo(record::getSort)
                 .set(createTime).equalTo(record::getCreateTime)
                 .set(createUser).equalTo(record::getCreateUser)
-                .set(updateTime).equalTo(record::getUpdateTime);
+                .set(updateTime).equalTo(record::getUpdateTime)
+                .set(codeLink).equalTo(record::getCodeLink);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
@@ -207,7 +212,8 @@ public interface KspResourceMapper {
                 .set(sort).equalToWhenPresent(record::getSort)
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
                 .set(createUser).equalToWhenPresent(record::getCreateUser)
-                .set(updateTime).equalToWhenPresent(record::getUpdateTime);
+                .set(updateTime).equalToWhenPresent(record::getUpdateTime)
+                .set(codeLink).equalToWhenPresent(record::getCodeLink);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
@@ -224,6 +230,7 @@ public interface KspResourceMapper {
             .set(createTime).equalTo(record::getCreateTime)
             .set(createUser).equalTo(record::getCreateUser)
             .set(updateTime).equalTo(record::getUpdateTime)
+            .set(codeLink).equalTo(record::getCodeLink)
             .where(oid, isEqualTo(record::getOid))
         );
     }
@@ -242,6 +249,7 @@ public interface KspResourceMapper {
             .set(createTime).equalToWhenPresent(record::getCreateTime)
             .set(createUser).equalToWhenPresent(record::getCreateUser)
             .set(updateTime).equalToWhenPresent(record::getUpdateTime)
+            .set(codeLink).equalToWhenPresent(record::getCodeLink)
             .where(oid, isEqualTo(record::getOid))
         );
     }

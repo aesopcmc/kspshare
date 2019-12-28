@@ -24,6 +24,8 @@ public class BackstageApplicationTests {
     public void getPasswordEncoder(){
         String password = new BCryptPasswordEncoder().encode("123456");
         System.out.println(password);
+        //$2a$10$x8liSDICXIz/u1N/ijZ/9.E0Penc2mwa8Hs6QUkvn/elMH6PNf4Zm
+        //539231828473544704
     }
 
 

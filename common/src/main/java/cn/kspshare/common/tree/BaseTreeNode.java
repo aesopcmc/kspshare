@@ -7,17 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 业务实体继承该类
+ *
  * @author Aesop(chao_c_c @ 163.com)
  * @date 2019/12/25 17:23
  */
 @Getter
 @Setter
-public class BaseTreeNode<PO,PK> {
+public final class BaseTreeNode<PO,PK> {
     /**
      * 子Id
      */
-    private PK id;
+    private PK oid;
     /**
      * 父ID
      */
@@ -31,8 +31,14 @@ public class BaseTreeNode<PO,PK> {
      */
     private List<BaseTreeNode> child;
 
-    public BaseTreeNode(PO targetPo, PK id, PK parentId) {
-        this.id = id;
+    /**
+     * 构造树节点类
+     * @param targetPo 实体类
+     * @param oid 实体类主键
+     * @param parentId 父主键
+     */
+    public BaseTreeNode(PO targetPo, PK oid, PK parentId) {
+        this.oid = oid;
         this.parentId = parentId;
         this.targetPo = targetPo;
     }

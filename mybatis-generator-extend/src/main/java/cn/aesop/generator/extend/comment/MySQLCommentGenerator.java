@@ -2,8 +2,7 @@ package cn.aesop.generator.extend.comment;
 
 import org.mybatis.generator.api.IntrospectedColumn;
 import org.mybatis.generator.api.IntrospectedTable;
-import org.mybatis.generator.api.dom.java.Field;
-import org.mybatis.generator.api.dom.java.TopLevelClass;
+import org.mybatis.generator.api.dom.java.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -67,4 +66,6 @@ public class MySQLCommentGenerator extends EmptyCommentGenerator {
         field.addJavaDocLine(" * " + columnName);
         field.addJavaDocLine(" */");
     }
+
+
 }
