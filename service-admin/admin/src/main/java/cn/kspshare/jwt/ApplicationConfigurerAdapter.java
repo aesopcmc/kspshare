@@ -72,7 +72,12 @@ public class ApplicationConfigurerAdapter extends WebSecurityConfigurerAdapter {
                 "/img/**",
                 "/login/**",
                 "/anyMsg/**",
-                "/test/**"
+                "/test/**",
+                "/swagger/**",
+                "/swagger-ui.html",
+                "/swagger-resources/**",
+                "/webjars/**",
+                "/v2/**",
         };
 
         http
