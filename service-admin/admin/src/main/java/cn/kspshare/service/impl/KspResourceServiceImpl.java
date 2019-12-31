@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * @author Aesop(chao_c_c @ 163.com)
@@ -37,11 +38,20 @@ public class KspResourceServiceImpl implements KspResourceService {
             return ResultBean.FAIL("该资源编码已被使用！");
         }
 
+        //获取父编码link
+        Long parentId = dto.getParentId();
+        Optional<KspResource> kspResource = kspResourceMapper.selectByPrimaryKey(parentId);
+
+        AtomicReference<String> codeLink = new AtomicReference<>(null);
+        kspResource.ifPresent(k-> codeLink.set(codeLink.get()+"-"+k.getCodeLink()));
+
         KspResource domain = new KspResource();
         BeanUtils.copyProperties(dto, domain);
         domain.setOid(IDGenerator.id());
         domain.setResourceType(dto.getResourceType().getCode());
+        domain.setCodeLink(codeLink.get());
         kspResourceMapper.insertSelective(domain);
+
         return ResultBean.SUCCESS();
     }
 
@@ -90,6 +100,5 @@ public class KspResourceServiceImpl implements KspResourceService {
                 c.where(KspResourceDynamicSqlSupport.code, SqlBuilder.isEqualTo(code)));
         return kspResource.get();
     }
-
 
 }
