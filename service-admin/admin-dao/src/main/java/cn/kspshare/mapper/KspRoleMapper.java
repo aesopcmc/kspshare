@@ -35,7 +35,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 @Mapper
 public interface KspRoleMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_role")
-    BasicColumn[] selectList = BasicColumn.columnList(oid, name, code, parentId, description, createTime, createUser, updateTime);
+    BasicColumn[] selectList = BasicColumn.columnList(oid, name, code, codeLink, parentId, description, createTime, createUser, updateTime);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_role")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
@@ -64,6 +64,7 @@ public interface KspRoleMapper {
         @Result(column="oid", property="oid", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
+        @Result(column="code_link", property="codeLink", jdbcType=JdbcType.VARCHAR),
         @Result(column="parent_id", property="parentId", jdbcType=JdbcType.BIGINT),
         @Result(column="description", property="description", jdbcType=JdbcType.VARCHAR),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
@@ -99,6 +100,7 @@ public interface KspRoleMapper {
             c.map(oid).toProperty("oid")
             .map(name).toProperty("name")
             .map(code).toProperty("code")
+            .map(codeLink).toProperty("codeLink")
             .map(parentId).toProperty("parentId")
             .map(description).toProperty("description")
             .map(createTime).toProperty("createTime")
@@ -113,6 +115,7 @@ public interface KspRoleMapper {
             c.map(oid).toProperty("oid")
             .map(name).toProperty("name")
             .map(code).toProperty("code")
+            .map(codeLink).toProperty("codeLink")
             .map(parentId).toProperty("parentId")
             .map(description).toProperty("description")
             .map(createTime).toProperty("createTime")
@@ -127,6 +130,7 @@ public interface KspRoleMapper {
             c.map(oid).toPropertyWhenPresent("oid", record::getOid)
             .map(name).toPropertyWhenPresent("name", record::getName)
             .map(code).toPropertyWhenPresent("code", record::getCode)
+            .map(codeLink).toPropertyWhenPresent("codeLink", record::getCodeLink)
             .map(parentId).toPropertyWhenPresent("parentId", record::getParentId)
             .map(description).toPropertyWhenPresent("description", record::getDescription)
             .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
@@ -167,6 +171,7 @@ public interface KspRoleMapper {
         return dsl.set(oid).equalTo(record::getOid)
                 .set(name).equalTo(record::getName)
                 .set(code).equalTo(record::getCode)
+                .set(codeLink).equalTo(record::getCodeLink)
                 .set(parentId).equalTo(record::getParentId)
                 .set(description).equalTo(record::getDescription)
                 .set(createTime).equalTo(record::getCreateTime)
@@ -179,6 +184,7 @@ public interface KspRoleMapper {
         return dsl.set(oid).equalToWhenPresent(record::getOid)
                 .set(name).equalToWhenPresent(record::getName)
                 .set(code).equalToWhenPresent(record::getCode)
+                .set(codeLink).equalToWhenPresent(record::getCodeLink)
                 .set(parentId).equalToWhenPresent(record::getParentId)
                 .set(description).equalToWhenPresent(record::getDescription)
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
@@ -191,6 +197,7 @@ public interface KspRoleMapper {
         return update(c ->
             c.set(name).equalTo(record::getName)
             .set(code).equalTo(record::getCode)
+            .set(codeLink).equalTo(record::getCodeLink)
             .set(parentId).equalTo(record::getParentId)
             .set(description).equalTo(record::getDescription)
             .set(createTime).equalTo(record::getCreateTime)
@@ -205,6 +212,7 @@ public interface KspRoleMapper {
         return update(c ->
             c.set(name).equalToWhenPresent(record::getName)
             .set(code).equalToWhenPresent(record::getCode)
+            .set(codeLink).equalToWhenPresent(record::getCodeLink)
             .set(parentId).equalToWhenPresent(record::getParentId)
             .set(description).equalToWhenPresent(record::getDescription)
             .set(createTime).equalToWhenPresent(record::getCreateTime)

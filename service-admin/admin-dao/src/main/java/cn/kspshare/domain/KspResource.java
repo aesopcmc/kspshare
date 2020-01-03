@@ -32,6 +32,13 @@ public class KspResource {
 
     /**
      * Database Column Remarks:
+     *   编码链，通过“-”拼接，不包含自身，最顶级为NULL
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.code_link")
+    private String codeLink;
+
+    /**
+     * Database Column Remarks:
      *   父资源ID
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.parent_id")
@@ -93,13 +100,6 @@ public class KspResource {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.update_time")
     private LocalDateTime updateTime;
 
-    /**
-     * Database Column Remarks:
-     *   编码链，通过“-”拼接，不包含自身，最顶级为NULL
-     */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.code_link")
-    private String codeLink;
-
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.oid")
     public Long getOid() {
         return oid;
@@ -128,6 +128,16 @@ public class KspResource {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.code")
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.code_link")
+    public String getCodeLink() {
+        return codeLink;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.code_link")
+    public void setCodeLink(String codeLink) {
+        this.codeLink = codeLink;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.parent_id")
@@ -218,15 +228,5 @@ public class KspResource {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.update_time")
     public void setUpdateTime(LocalDateTime updateTime) {
         this.updateTime = updateTime;
-    }
-
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.code_link")
-    public String getCodeLink() {
-        return codeLink;
-    }
-
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.code_link")
-    public void setCodeLink(String codeLink) {
-        this.codeLink = codeLink;
     }
 }

@@ -33,6 +33,13 @@ public final class KspRoleDynamicSqlSupport {
 
     /**
      * Database Column Remarks:
+     *   编码链，通过“-”拼接，不包含自身，最顶级为NULL
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.code_link")
+    public static final SqlColumn<String> codeLink = kspRole.codeLink;
+
+    /**
+     * Database Column Remarks:
      *   父ID, 默认顶级父级为0
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.parent_id")
@@ -73,6 +80,8 @@ public final class KspRoleDynamicSqlSupport {
         public final SqlColumn<String> name = column("name", JDBCType.VARCHAR);
 
         public final SqlColumn<String> code = column("code", JDBCType.VARCHAR);
+
+        public final SqlColumn<String> codeLink = column("code_link", JDBCType.VARCHAR);
 
         public final SqlColumn<Long> parentId = column("parent_id", JDBCType.BIGINT);
 

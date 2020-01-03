@@ -32,6 +32,13 @@ public class KspRole {
 
     /**
      * Database Column Remarks:
+     *   编码链，通过“-”拼接，不包含自身，最顶级为NULL
+     */
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.code_link")
+    private String codeLink;
+
+    /**
+     * Database Column Remarks:
      *   父ID, 默认顶级父级为0
      */
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.parent_id")
@@ -93,6 +100,16 @@ public class KspRole {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.code")
     public void setCode(String code) {
         this.code = code;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.code_link")
+    public String getCodeLink() {
+        return codeLink;
+    }
+
+    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.code_link")
+    public void setCodeLink(String codeLink) {
+        this.codeLink = codeLink;
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role.parent_id")

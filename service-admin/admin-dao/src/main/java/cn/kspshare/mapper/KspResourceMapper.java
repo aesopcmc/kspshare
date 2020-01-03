@@ -35,7 +35,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 @Mapper
 public interface KspResourceMapper {
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
-    BasicColumn[] selectList = BasicColumn.columnList(oid, name, code, parentId, resourceType, url, icon, componentName, sort, createTime, createUser, updateTime, codeLink);
+    BasicColumn[] selectList = BasicColumn.columnList(oid, name, code, codeLink, parentId, resourceType, url, icon, componentName, sort, createTime, createUser, updateTime);
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
@@ -64,6 +64,7 @@ public interface KspResourceMapper {
         @Result(column="oid", property="oid", jdbcType=JdbcType.BIGINT, id=true),
         @Result(column="name", property="name", jdbcType=JdbcType.VARCHAR),
         @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
+        @Result(column="code_link", property="codeLink", jdbcType=JdbcType.VARCHAR),
         @Result(column="parent_id", property="parentId", jdbcType=JdbcType.BIGINT),
         @Result(column="resource_type", property="resourceType", jdbcType=JdbcType.TINYINT),
         @Result(column="url", property="url", jdbcType=JdbcType.VARCHAR),
@@ -72,8 +73,7 @@ public interface KspResourceMapper {
         @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER),
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT),
-        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="code_link", property="codeLink", jdbcType=JdbcType.VARCHAR)
+        @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP)
     })
     List<KspResource> selectMany(SelectStatementProvider selectStatement);
 
@@ -104,6 +104,7 @@ public interface KspResourceMapper {
             c.map(oid).toProperty("oid")
             .map(name).toProperty("name")
             .map(code).toProperty("code")
+            .map(codeLink).toProperty("codeLink")
             .map(parentId).toProperty("parentId")
             .map(resourceType).toProperty("resourceType")
             .map(url).toProperty("url")
@@ -113,7 +114,6 @@ public interface KspResourceMapper {
             .map(createTime).toProperty("createTime")
             .map(createUser).toProperty("createUser")
             .map(updateTime).toProperty("updateTime")
-            .map(codeLink).toProperty("codeLink")
         );
     }
 
@@ -123,6 +123,7 @@ public interface KspResourceMapper {
             c.map(oid).toProperty("oid")
             .map(name).toProperty("name")
             .map(code).toProperty("code")
+            .map(codeLink).toProperty("codeLink")
             .map(parentId).toProperty("parentId")
             .map(resourceType).toProperty("resourceType")
             .map(url).toProperty("url")
@@ -132,7 +133,6 @@ public interface KspResourceMapper {
             .map(createTime).toProperty("createTime")
             .map(createUser).toProperty("createUser")
             .map(updateTime).toProperty("updateTime")
-            .map(codeLink).toProperty("codeLink")
         );
     }
 
@@ -142,6 +142,7 @@ public interface KspResourceMapper {
             c.map(oid).toPropertyWhenPresent("oid", record::getOid)
             .map(name).toPropertyWhenPresent("name", record::getName)
             .map(code).toPropertyWhenPresent("code", record::getCode)
+            .map(codeLink).toPropertyWhenPresent("codeLink", record::getCodeLink)
             .map(parentId).toPropertyWhenPresent("parentId", record::getParentId)
             .map(resourceType).toPropertyWhenPresent("resourceType", record::getResourceType)
             .map(url).toPropertyWhenPresent("url", record::getUrl)
@@ -151,7 +152,6 @@ public interface KspResourceMapper {
             .map(createTime).toPropertyWhenPresent("createTime", record::getCreateTime)
             .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
             .map(updateTime).toPropertyWhenPresent("updateTime", record::getUpdateTime)
-            .map(codeLink).toPropertyWhenPresent("codeLink", record::getCodeLink)
         );
     }
 
@@ -187,6 +187,7 @@ public interface KspResourceMapper {
         return dsl.set(oid).equalTo(record::getOid)
                 .set(name).equalTo(record::getName)
                 .set(code).equalTo(record::getCode)
+                .set(codeLink).equalTo(record::getCodeLink)
                 .set(parentId).equalTo(record::getParentId)
                 .set(resourceType).equalTo(record::getResourceType)
                 .set(url).equalTo(record::getUrl)
@@ -195,8 +196,7 @@ public interface KspResourceMapper {
                 .set(sort).equalTo(record::getSort)
                 .set(createTime).equalTo(record::getCreateTime)
                 .set(createUser).equalTo(record::getCreateUser)
-                .set(updateTime).equalTo(record::getUpdateTime)
-                .set(codeLink).equalTo(record::getCodeLink);
+                .set(updateTime).equalTo(record::getUpdateTime);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
@@ -204,6 +204,7 @@ public interface KspResourceMapper {
         return dsl.set(oid).equalToWhenPresent(record::getOid)
                 .set(name).equalToWhenPresent(record::getName)
                 .set(code).equalToWhenPresent(record::getCode)
+                .set(codeLink).equalToWhenPresent(record::getCodeLink)
                 .set(parentId).equalToWhenPresent(record::getParentId)
                 .set(resourceType).equalToWhenPresent(record::getResourceType)
                 .set(url).equalToWhenPresent(record::getUrl)
@@ -212,8 +213,7 @@ public interface KspResourceMapper {
                 .set(sort).equalToWhenPresent(record::getSort)
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
                 .set(createUser).equalToWhenPresent(record::getCreateUser)
-                .set(updateTime).equalToWhenPresent(record::getUpdateTime)
-                .set(codeLink).equalToWhenPresent(record::getCodeLink);
+                .set(updateTime).equalToWhenPresent(record::getUpdateTime);
     }
 
     @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
@@ -221,6 +221,7 @@ public interface KspResourceMapper {
         return update(c ->
             c.set(name).equalTo(record::getName)
             .set(code).equalTo(record::getCode)
+            .set(codeLink).equalTo(record::getCodeLink)
             .set(parentId).equalTo(record::getParentId)
             .set(resourceType).equalTo(record::getResourceType)
             .set(url).equalTo(record::getUrl)
@@ -230,7 +231,6 @@ public interface KspResourceMapper {
             .set(createTime).equalTo(record::getCreateTime)
             .set(createUser).equalTo(record::getCreateUser)
             .set(updateTime).equalTo(record::getUpdateTime)
-            .set(codeLink).equalTo(record::getCodeLink)
             .where(oid, isEqualTo(record::getOid))
         );
     }
@@ -240,6 +240,7 @@ public interface KspResourceMapper {
         return update(c ->
             c.set(name).equalToWhenPresent(record::getName)
             .set(code).equalToWhenPresent(record::getCode)
+            .set(codeLink).equalToWhenPresent(record::getCodeLink)
             .set(parentId).equalToWhenPresent(record::getParentId)
             .set(resourceType).equalToWhenPresent(record::getResourceType)
             .set(url).equalToWhenPresent(record::getUrl)
@@ -249,7 +250,6 @@ public interface KspResourceMapper {
             .set(createTime).equalToWhenPresent(record::getCreateTime)
             .set(createUser).equalToWhenPresent(record::getCreateUser)
             .set(updateTime).equalToWhenPresent(record::getUpdateTime)
-            .set(codeLink).equalToWhenPresent(record::getCodeLink)
             .where(oid, isEqualTo(record::getOid))
         );
     }

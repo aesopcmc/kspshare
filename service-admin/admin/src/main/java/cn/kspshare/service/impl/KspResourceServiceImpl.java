@@ -68,7 +68,6 @@ public class KspResourceServiceImpl implements KspResourceService {
         updateRecord.setUpdateTime(LocalDateTime.now());
         kspResourceMapper.updateByPrimaryKeySelective(updateRecord);
         return ResultBean.SUCCESS();
-
     }
 
     @Override
