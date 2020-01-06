@@ -3,7 +3,7 @@ package cn.kspshare.config;
 /**
  * KSP自定义异常
  */
-public class KspException extends Exception {
+public class KspException extends RuntimeException {
     public KspException() {
         super();
     }

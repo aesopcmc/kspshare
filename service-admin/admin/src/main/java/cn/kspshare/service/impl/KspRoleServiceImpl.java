@@ -2,6 +2,7 @@ package cn.kspshare.service.impl;
 
 import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.common.restful.ResultBean;
+import cn.kspshare.config.KspException;
 import cn.kspshare.domain.KspResource;
 import cn.kspshare.dto.KspRoleDto;
 import cn.kspshare.mapper.*;
@@ -38,10 +39,8 @@ public class KspRoleServiceImpl implements KspRoleService {
     @Transactional(rollbackFor = Exception.class )
     public ResultBean add(KspRoleDto dto) {
         //验证角色编码唯一性
-        KspRole exist = this.findByCode(dto.getCode());
-        if(exist!=null){
-            return ResultBean.FAIL("该资源编码已被使用！");
-        }
+        //验证角色编码唯一性
+        this.checkCode(dto.getOid(), dto.getCode());
 
         //获取父编码link
         Long parentId = dto.getParentId();
@@ -61,23 +60,26 @@ public class KspRoleServiceImpl implements KspRoleService {
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean update(KspRoleDto dto) {
-        this.checkCode(dto.getOid(), dto.getCode()).ifPresent(a->{
-            
-        });
+        //验证角色编码唯一性
+        this.checkCode(dto.getOid(), dto.getCode());
 
-        KspResource updateRecord = new KspResource();
-        BeanUtils.copyProperties(dto, updateRecord);
-        updateRecord.setUpdateTime(LocalDateTime.now());
-        kspResourceMapper.updateByPrimaryKeySelective(updateRecord);
+        KspRole kspRole = new KspRole();
+        BeanUtils.copyProperties(dto, kspRole);
+        kspRole.setUpdateTime(LocalDateTime.now());
+        kspRoleMapper.updateByPrimaryKeySelective(kspRole);
         return ResultBean.SUCCESS();
-
-        return null;
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean delete(Long oid) {
-        return null;
+        //删除子级
+        KspRole kspRole = kspRoleMapper.selectByPrimaryKey(oid).get();
+        kspRoleMapper.delete(c->c.where(KspRoleDynamicSqlSupport.codeLink, SqlBuilder.isLike(kspRole.getCode())));
+
+        //删除自身
+        kspRoleMapper.deleteByPrimaryKey(oid);
+        return ResultBean.SUCCESS();
     }
 
     @Override
@@ -102,11 +104,10 @@ public class KspRoleServiceImpl implements KspRoleService {
         return roleList;
     }
 
-    private Optional<ResultBean> checkCode(Long oid, String code) {
+    private void checkCode(Long oid, String code) {
         KspRole exist = this.findByCode(code);
         if(exist!=null && !exist.getOid().equals(oid)) {
-            return Optional.of(ResultBean.FAIL("该资源编码已被使用！"));
+            throw new KspException("该资源编码已被使用!");
         }
-        return Optional.empty();
     }
 }

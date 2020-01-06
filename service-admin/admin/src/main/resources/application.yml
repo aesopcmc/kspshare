@@ -2,6 +2,9 @@
 spring:
   profiles:
     active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
   ## 数据源配置
   datasource:
     url: jdbc:mysql://mysql57.rdsmz60przasm9w.rds.bj.baidubce.com:3306/ksp?useSSL=false&useUnicode=true&characterEncoding=utf8

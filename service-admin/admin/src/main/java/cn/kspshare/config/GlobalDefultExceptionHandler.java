@@ -54,4 +54,17 @@ public class GlobalDefultExceptionHandler {
         return ResultBean.NO_PERMISSION();
     }
 
+
+    /**
+     * ksp自定义异常
+     * @param ex
+     * @return
+     */
+    @ExceptionHandler(KspException.class)
+    @ResponseBody
+    public ResultBean handleException(KspException ex) {
+        log.error("捕获到KSP自定义异常", ex);
+        return ResultBean.FAIL(ex.getMessage());
+    }
+
 }
