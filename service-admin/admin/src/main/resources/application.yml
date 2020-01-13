@@ -41,9 +41,6 @@ mybatis:
   typeAliasesPackage: cn.kspshare.domain #实体类包路径
   mapperLocations: classpath:mapper/*.xml
 
-
-
-
 #SQL打印 level下面指定mybatis对应的方法接口所在的包
 logging:
   level:

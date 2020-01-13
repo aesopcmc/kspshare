@@ -12,6 +12,7 @@ import cn.kspshare.mapper.KspAdminUserMapper;
 import cn.kspshare.utils.AdminUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.render.RenderingStrategies;
 import org.mybatis.dynamic.sql.select.QueryExpressionDSL;
 import org.mybatis.dynamic.sql.select.SelectModel;
@@ -99,6 +100,8 @@ public class KspAdminUserServiceImpl implements KspAdminUserService {
         if(dto.getEnabled()!=null) {
             builder.and(KspAdminUserDynamicSqlSupport.enabled, isEqualTo(dto.getEnabled()));
         }
+        builder.orderBy(KspAdminUserDynamicSqlSupport.createTime.descending());//descending()降序排序，没有这个默认升序
+
         SelectStatementProvider render = builder.build().render(RenderingStrategies.MYBATIS3);
 
         PageHelper.startPage(dto.getPageNum(), dto.getPageSize());

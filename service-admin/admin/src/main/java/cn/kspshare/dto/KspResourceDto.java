@@ -1,6 +1,6 @@
 package cn.kspshare.dto;
 
-import cn.kspshare.ResourceType;
+import cn.kspshare.enums.ResourceType;
 import cn.kspshare.validation.Add;
 import cn.kspshare.validation.Update;
 import lombok.Getter;

@@ -85,8 +85,8 @@ public class AdminUserController {
      * @param oid
      * @return
      */
-    @PostMapping("/user/delete")
-    public ResultBean delete(Long oid) {
+    @DeleteMapping("/user/delete/{oid}")
+    public ResultBean delete(@PathVariable Long oid) {
         return kspAdminUserService.delete(oid);
     }
 

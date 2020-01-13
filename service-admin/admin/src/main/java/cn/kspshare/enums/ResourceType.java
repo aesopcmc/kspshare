@@ -1,4 +1,4 @@
-package cn.kspshare;
+package cn.kspshare.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import lombok.Getter;
 @AllArgsConstructor
 public enum ResourceType {
     MENU((byte)1, "菜单"),
-    BUTTON((byte)2, "菜单");
+    BUTTON((byte)2, "按钮");
     private Byte code;
     private String name;
 }
