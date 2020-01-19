@@ -19,7 +19,7 @@ public interface KspRoleService {
      * @param dto
      * @return
      */
-    ResultBean update(KspRoleDto dto);
+    ResultBean update(KspRoleDto dto, Long oid);
 
     /**
      * 删除

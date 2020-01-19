@@ -37,8 +37,10 @@ public class KspRoleServiceImpl implements KspRoleService {
     @Transactional(rollbackFor = Exception.class )
     public ResultBean add(KspRoleDto dto) {
         //验证角色编码唯一性
-        //验证角色编码唯一性
-        this.checkCode(dto.getOid(), dto.getCode());
+        KspRole exist = this.findByCode(dto.getCode());
+        if(exist!=null) {
+            return ResultBean.FAIL("该角色编码已被使用！");
+        }
 
         //获取父编码link
         Long parentId = dto.getParentId();
@@ -57,14 +59,18 @@ public class KspRoleServiceImpl implements KspRoleService {
 
     @Override
     @Transactional(rollbackFor = Exception.class )
-    public ResultBean update(KspRoleDto dto) {
+    public ResultBean update(KspRoleDto dto, Long oid) {
         //验证角色编码唯一性
-        this.checkCode(dto.getOid(), dto.getCode());
+        KspRole exist = this.findByCode(dto.getCode());
+        if(exist!=null && !exist.getCode().equals(dto.getCode())) {
+            return ResultBean.FAIL("该角色编码已被使用！");
+        }
 
-        KspRole kspRole = new KspRole();
-        BeanUtils.copyProperties(dto, kspRole);
-        kspRole.setUpdateTime(LocalDateTime.now());
-        kspRoleMapper.updateByPrimaryKeySelective(kspRole);
+        KspRole updateRecord = new KspRole();
+        BeanUtils.copyProperties(dto, updateRecord);
+        updateRecord.setOid(oid);
+        updateRecord.setUpdateTime(LocalDateTime.now());
+        kspRoleMapper.updateByPrimaryKeySelective(updateRecord);
         return ResultBean.SUCCESS();
     }
 
@@ -102,10 +108,10 @@ public class KspRoleServiceImpl implements KspRoleService {
         return roleList;
     }
 
-    private void checkCode(Long oid, String code) {
-        KspRole exist = this.findByCode(code);
-        if(exist!=null && !exist.getOid().equals(oid)) {
-            throw new KspException("该资源编码已被使用!");
-        }
-    }
+    // private void findByCode(Long oid, String code) {
+    //     KspRole exist = this.findByCode(code);
+    //     if(exist!=null && !exist.getOid().equals(oid)) {
+    //         throw new KspException("该资源编码已被使用!");
+    //     }
+    // }
 }
