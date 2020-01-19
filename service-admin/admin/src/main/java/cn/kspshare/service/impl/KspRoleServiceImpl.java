@@ -3,7 +3,6 @@ package cn.kspshare.service.impl;
 import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.config.KspException;
-import cn.kspshare.domain.KspResource;
 import cn.kspshare.dto.KspRoleDto;
 import cn.kspshare.mapper.*;
 import cn.kspshare.service.KspRoleService;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import javax.xml.transform.Result;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
