@@ -8,7 +8,7 @@ import cn.kspshare.domain.KspResource;
 import cn.kspshare.dto.KspResourceDto;
 import cn.kspshare.mapper.KspResourceDynamicSqlSupport;
 import cn.kspshare.mapper.KspResourceMapper;
-import cn.kspshare.service.KspResourceService;
+import cn.kspshare.service.ResourceService;
 import org.mybatis.dynamic.sql.SqlBuilder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import java.util.concurrent.atomic.AtomicReference;
  * @date 2019/12/24 17:51
  */
 @Service
-public class KspResourceServiceImpl implements KspResourceService {
+public class ResourceServiceImpl implements ResourceService {
     @Autowired
     private KspResourceMapper kspResourceMapper;
 
@@ -67,6 +67,7 @@ public class KspResourceServiceImpl implements KspResourceService {
         BeanUtils.copyProperties(dto, updateRecord);
         updateRecord.setUpdateTime(LocalDateTime.now());
         kspResourceMapper.updateByPrimaryKeySelective(updateRecord);
+
         return ResultBean.SUCCESS();
     }
 

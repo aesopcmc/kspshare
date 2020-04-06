@@ -4,8 +4,8 @@ import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.dto.PermDto;
 import cn.kspshare.mapper.*;
-import cn.kspshare.service.KspPermService;
-import cn.kspshare.service.KspRoleService;
+import cn.kspshare.service.PermService;
+import cn.kspshare.service.RoleService;
 import cn.kspshare.domain.KspPerm;
 import cn.kspshare.domain.KspRole;
 import cn.kspshare.domain.KspRolePermRe;
@@ -23,15 +23,15 @@ import java.util.stream.Collectors;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
 @Service
-public class KspPermServiceImpl implements KspPermService {
+public class PermServiceImpl implements PermService {
     @Autowired
     private KspRolePermReMapper rolePermReMapper;
     @Autowired
     private KspPermMapper permMapper;
     @Autowired
-    private KspRoleService roleService;
+    private RoleService roleService;
     @Autowired
-    private KspPermService permService;
+    private PermService permService;
 
     @Override
     public List<KspPerm> listByRole(Long roleId) {

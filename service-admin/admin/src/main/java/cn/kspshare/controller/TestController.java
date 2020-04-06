@@ -4,8 +4,8 @@ import cn.kspshare.dto.KspAdminUserDto;
 import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.jwt.JwtUserInfo;
 import cn.kspshare.common.restful.ResultBean;
-import cn.kspshare.service.KspAdminUserService;
-import cn.kspshare.service.KspResourceService;
+import cn.kspshare.service.AdminUserService;
+import cn.kspshare.service.ResourceService;
 import cn.kspshare.service.TestService;
 import cn.kspshare.validation.Add;
 import cn.kspshare.validation.Update;
@@ -25,9 +25,9 @@ public class TestController {
     @Autowired
     private TestService testService;
     @Autowired
-    private KspAdminUserService kspAdminUserService;
+    private AdminUserService adminUserService;
     @Autowired
-    private KspResourceService kspResourceService;
+    private ResourceService resourceService;
 
     /**
      * 更新用户
@@ -35,7 +35,7 @@ public class TestController {
      */
     @GetMapping("/test/resource/treeList")
     public ResultBean update() {
-        return kspResourceService.treeList();
+        return resourceService.treeList();
     }
 
     /**
@@ -45,7 +45,7 @@ public class TestController {
      */
     @PostMapping("/test/user/update")
     public ResultBean update(@RequestBody @Validated({Update.class}) KspAdminUserDto dto) {
-        return kspAdminUserService.update(dto);
+        return adminUserService.update(dto);
     }
 
     /**
@@ -55,7 +55,7 @@ public class TestController {
      */
     @PostMapping("/test/user/add")
     public ResultBean add(@RequestBody @Validated({Add.class}) KspAdminUserDto dto) {
-        return kspAdminUserService.add(dto);
+        return adminUserService.add(dto);
     }
 
     @ApiOperation("查找所有")
@@ -71,7 +71,7 @@ public class TestController {
      */
     @GetMapping("/test/listCondition")
     public ResultBean listCondition(KspAdminUserListConditionDto dto) {
-        return kspAdminUserService.listCondition(dto);
+        return adminUserService.listCondition(dto);
     }
     // @GetMapping(value = "/test/perm")
     // @PreAuthorize("hasPermission('user', 'read') or hasRole('ROLE_ADMINISTRATOR')")

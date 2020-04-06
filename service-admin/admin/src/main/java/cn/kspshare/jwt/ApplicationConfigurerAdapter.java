@@ -1,8 +1,8 @@
 package cn.kspshare.jwt;
 
 import cn.kspshare.common.restful.ResultBean;
-import cn.kspshare.service.KspAdminUserService;
-import cn.kspshare.service.KspPermService;
+import cn.kspshare.service.AdminUserService;
+import cn.kspshare.service.PermService;
 import cn.kspshare.config.KspConstants;
 import com.alibaba.fastjson.JSON;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,9 +34,9 @@ public class ApplicationConfigurerAdapter extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtUserDetailServiceImpl jwtUserDetailService;
     @Autowired
-    private KspAdminUserService kspAdminUserService;
+    private AdminUserService adminUserService;
     @Autowired
-    private KspPermService kspPermService;
+    private PermService permService;
     @Autowired
     private KspConstants kspConstants;
 
@@ -62,8 +62,8 @@ public class ApplicationConfigurerAdapter extends WebSecurityConfigurerAdapter {
         //JWT校验过滤器
         JwtHeadFilter headFilter = new JwtHeadFilter();
         headFilter.setVerifier(verifier);
-        headFilter.setKspPermService(kspPermService);
-        headFilter.setKspAdminUserService(kspAdminUserService);
+        headFilter.setPermService(permService);
+        headFilter.setAdminUserService(adminUserService);
 
         //添加放行的url， 放行后不用认证，没有用户状态
         String[] permAll = new String[]{

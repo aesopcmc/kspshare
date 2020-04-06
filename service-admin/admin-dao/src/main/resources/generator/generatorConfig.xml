@@ -29,9 +29,9 @@
 
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 ，注意参数：tinyInt1isBit=false表示tinyint类型的字段会对应生成Byte-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://mysql57.rdsmz60przasm9w.rds.bj.baidubce.com:3306/ksp?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;tinyInt1isBit=false"
-                        userId="aesop"
-                        password="aesop_123">
+                        connectionURL="jdbc:mysql://localhost:3306/ksp?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;tinyInt1isBit=false"
+                        userId="root"
+                        password="root">
         </jdbcConnection>
 
 
@@ -58,6 +58,8 @@
         <table tableName="ksp_admin_user">
             <!--<generatedKey column="tbId" sqlStatement="JDBC"/>-->
         </table>
+
+        <!--权限相关-->
         <table tableName="ksp_perm">
         </table>
         <table tableName="ksp_resource">
@@ -70,5 +72,11 @@
         </table>
         <table tableName="ksp_user_perm_re">
         </table>
+
+        <!--论坛相关-->
+        <table tableName="ksp_bbs_session">
+        </table>
+
+
     </context>
 </generatorConfiguration>

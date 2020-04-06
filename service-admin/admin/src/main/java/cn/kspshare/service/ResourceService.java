@@ -8,7 +8,7 @@ import cn.kspshare.dto.KspResourceDto;
  * @author Aesop(chao_c_c @ 163.com)
  * @date 2019/12/24 17:51
  */
-public interface KspResourceService {
+public interface ResourceService {
     /**
      * 添加
      * @param dto

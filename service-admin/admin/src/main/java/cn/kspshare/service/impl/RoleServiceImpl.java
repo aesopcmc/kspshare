@@ -2,10 +2,9 @@ package cn.kspshare.service.impl;
 
 import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.common.restful.ResultBean;
-import cn.kspshare.config.KspException;
 import cn.kspshare.dto.KspRoleDto;
 import cn.kspshare.mapper.*;
-import cn.kspshare.service.KspRoleService;
+import cn.kspshare.service.RoleService;
 import cn.kspshare.domain.KspRole;
 import cn.kspshare.domain.KspUserRoleRe;
 import org.mybatis.dynamic.sql.SqlBuilder;
@@ -25,7 +24,7 @@ import java.util.stream.Collectors;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
 @Service
-public class KspRoleServiceImpl implements KspRoleService {
+public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private KspRoleMapper kspRoleMapper;

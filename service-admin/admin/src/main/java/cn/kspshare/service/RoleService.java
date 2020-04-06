@@ -6,7 +6,7 @@ import cn.kspshare.dto.KspRoleDto;
 
 import java.util.List;
 
-public interface KspRoleService {
+public interface RoleService {
     /**
      * 添加
      * @param dto

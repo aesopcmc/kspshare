@@ -5,7 +5,7 @@ import cn.kspshare.dto.KspAdminUserDto;
 import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.common.restful.ResultBean;
 
-public interface KspAdminUserService {
+public interface AdminUserService {
     /**
      * 添加
      * @param dto

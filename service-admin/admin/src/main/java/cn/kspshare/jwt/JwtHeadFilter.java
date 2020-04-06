@@ -1,7 +1,7 @@
 package cn.kspshare.jwt;
 
-import cn.kspshare.service.KspAdminUserService;
-import cn.kspshare.service.KspPermService;
+import cn.kspshare.service.AdminUserService;
+import cn.kspshare.service.PermService;
 import cn.kspshare.config.KspException;
 import cn.kspshare.domain.KspAdminUser;
 import com.alibaba.fastjson.JSON;
@@ -33,9 +33,9 @@ public class JwtHeadFilter extends OncePerRequestFilter {
 
     private RsaVerifier verifier;
 
-    private KspAdminUserService kspAdminUserService;
+    private AdminUserService adminUserService;
 
-    private KspPermService kspPermService;
+    private PermService permService;
 
 
     @Override
@@ -65,11 +65,11 @@ public class JwtHeadFilter extends OncePerRequestFilter {
 
             //TODO 需要优化：通过Redis 拿用户、权限信息
             //根据用户名，从数据库拿取该用户的详细信息（密码，权限等）
-            KspAdminUser kspUser = kspAdminUserService.findByUsername(user.getUsername());
+            KspAdminUser kspUser = adminUserService.findByUsername(user.getUsername());
             if(kspUser.getEnabled()==0) {
                 throw new KspException("当前用户被冻结，禁止登录");
             }
-            List<String> permValues = kspPermService.listByUser(kspUser.getOid());
+            List<String> permValues = permService.listByUser(kspUser.getOid());
             List<SimpleGrantedAuthority> authorities = permValues.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
             user.setAuthorities(authorities);
         } catch (KspException e) {
@@ -98,11 +98,11 @@ public class JwtHeadFilter extends OncePerRequestFilter {
         this.verifier = verifier;
     }
 
-    public void setKspAdminUserService(KspAdminUserService kspAdminUserService) {
-        this.kspAdminUserService = kspAdminUserService;
+    public void setAdminUserService(AdminUserService adminUserService) {
+        this.adminUserService = adminUserService;
     }
 
-    public void setKspPermService(KspPermService kspPermService) {
-        this.kspPermService = kspPermService;
+    public void setPermService(PermService permService) {
+        this.permService = permService;
     }
 }

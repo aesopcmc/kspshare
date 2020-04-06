@@ -1,4 +1,4 @@
-package cn.kspshare.dto;
+package cn.kspshare.utils;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +10,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-abstract class BasePage {
+public class BasePage {
     /**
      * 当前页码，默认第1页
      */

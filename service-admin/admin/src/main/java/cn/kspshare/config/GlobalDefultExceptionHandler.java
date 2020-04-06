@@ -27,7 +27,7 @@ public class GlobalDefultExceptionHandler {
         for (ObjectError s : e.getBindingResult().getAllErrors()) {
             msg += s.getDefaultMessage() + " ";
         }
-        return ResultBean.INVALID_REQUEST_PARAMETER(ResultEnum.INVALID_REQUEST_PARAMETER.getMsg()+":"+fieldName+"["+msg+"]");
+        return ResultBean.FAIL(ResultEnum.INVALID_REQUEST_PARAMETER, ResultEnum.INVALID_REQUEST_PARAMETER.getMsg()+":"+fieldName+"["+msg+"]");
     }
 
     /**

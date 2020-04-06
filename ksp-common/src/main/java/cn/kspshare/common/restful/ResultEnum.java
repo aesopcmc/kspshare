@@ -9,7 +9,8 @@ public enum ResultEnum {
     MISSING_PARAMETERS(1, "参数不全"),
     SERVER_EXCEPTION(2, "服务器异常"),
     NO_PERMISSION(3, "权限不足"),
-    INVALID_REQUEST_PARAMETER(4, "无效的请求参数");
+    INVALID_REQUEST_PARAMETER(4, "无效的请求参数"),
+    PRIMARY_KEY_ONT_NULL(5, "主键不能为空");
 
     private Integer code;
     private String msg;

@@ -1,5 +1,6 @@
 package cn.kspshare.dto;
 
+import cn.kspshare.utils.BasePage;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,7 +10,7 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-public class KspAdminUserListConditionDto extends BasePage{
+public class KspAdminUserListConditionDto extends BasePage {
     /**
      * 用户、姓名、邮箱模糊查询
      */

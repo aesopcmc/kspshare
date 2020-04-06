@@ -1,6 +1,8 @@
 package cn.kspshare.jwt;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +18,10 @@ import java.util.List;
  * @date 2019/4/8 11:29.
  */
 public class JwtUserInfo implements UserDetails {
+    /**
+     * 用户主键
+     */
+    private Long oid;
     /**
      * 用户名
      */
@@ -123,5 +129,13 @@ public class JwtUserInfo implements UserDetails {
 
     public void setAdminFlag(Boolean adminFlag) {
         this.adminFlag = adminFlag;
+    }
+
+    public Long getOid() {
+        return oid;
+    }
+
+    public void setOid(Long oid) {
+        this.oid = oid;
     }
 }

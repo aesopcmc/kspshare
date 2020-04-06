@@ -62,6 +62,14 @@ public class ResultBean<T> implements Serializable {
         return new ResultBean(ResultEnum.FAIL.getCode(), msg);
     }
 
+    public static ResultBean FAIL(ResultEnum codeEnum) {
+        return new ResultBean(codeEnum.getCode(), codeEnum.getMsg());
+    }
+
+    public static ResultBean FAIL(ResultEnum codeEnum, String msg) {
+        return new ResultBean(codeEnum.getCode(), msg);
+    }
+
     /**
      * 参数不全
      * @return
@@ -90,9 +98,18 @@ public class ResultBean<T> implements Serializable {
      * 无效的请求参数
      * @return
      */
-    public static ResultBean INVALID_REQUEST_PARAMETER(String msg) {
-        return new ResultBean(ResultEnum.INVALID_REQUEST_PARAMETER.getCode(), msg);
+    public static ResultBean INVALID_REQUEST_PARAMETER() {
+        return new ResultBean(ResultEnum.INVALID_REQUEST_PARAMETER.getCode(), ResultEnum.INVALID_REQUEST_PARAMETER.getMsg());
     }
+
+    /**
+     * 主键不能为空
+     * @return
+     */
+    public static ResultBean PRIMARY_KEY_ONT_NULL() {
+        return new ResultBean(ResultEnum.PRIMARY_KEY_ONT_NULL.getCode(), ResultEnum.PRIMARY_KEY_ONT_NULL.getMsg());
+    }
+
 
     public int getCode() {
         return code;

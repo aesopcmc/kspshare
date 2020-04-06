@@ -4,7 +4,7 @@ import cn.kspshare.dto.KspAdminUserDto;
 import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.jwt.JwtUserInfo;
 import cn.kspshare.common.restful.ResultBean;
-import cn.kspshare.service.KspAdminUserService;
+import cn.kspshare.service.AdminUserService;
 import cn.kspshare.validation.Add;
 import cn.kspshare.validation.Update;
 import com.alibaba.fastjson.JSON;
@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
 @Api(tags = "用户管理")
 public class AdminUserController {
     @Autowired
-    private KspAdminUserService kspAdminUserService;
+    private AdminUserService adminUserService;
     /**
      * 获取登录用户信息
      * @return
@@ -67,7 +67,7 @@ public class AdminUserController {
      */
     @PostMapping("/user/add")
     public ResultBean add(@RequestBody @Validated({Add.class}) KspAdminUserDto dto) {
-        return kspAdminUserService.add(dto);
+        return adminUserService.add(dto);
     }
 
     /**
@@ -77,7 +77,7 @@ public class AdminUserController {
      */
     @PostMapping("/user/update")
     public ResultBean update(@RequestBody @Validated({Update.class}) KspAdminUserDto dto) {
-        return kspAdminUserService.update(dto);
+        return adminUserService.update(dto);
     }
 
     /**
@@ -87,7 +87,7 @@ public class AdminUserController {
      */
     @DeleteMapping("/user/delete/{oid}")
     public ResultBean delete(@PathVariable Long oid) {
-        return kspAdminUserService.delete(oid);
+        return adminUserService.delete(oid);
     }
 
     /**
@@ -97,7 +97,7 @@ public class AdminUserController {
      */
     @GetMapping("/user/listCondition")
     public ResultBean listCondition(KspAdminUserListConditionDto dto) {
-        return kspAdminUserService.listCondition(dto);
+        return adminUserService.listCondition(dto);
     }
 
     /**
@@ -108,7 +108,7 @@ public class AdminUserController {
      */
     @PostMapping("/user/enabled")
     public ResultBean enabled(Long oid, Byte enable) {
-        return kspAdminUserService.enabled(oid, enable);
+        return adminUserService.enabled(oid, enable);
     }
 
 }

@@ -7,7 +7,7 @@ import lombok.Data;
 
 import java.util.List;
 
-public interface KspPermService {
+public interface PermService {
     /**
      * 根据角色id查找权限列表
      * @param roleId

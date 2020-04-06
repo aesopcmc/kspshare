@@ -6,13 +6,12 @@ import cn.kspshare.dto.KspAdminUserDto;
 import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.mapper.KspAdminUserDynamicSqlSupport;
 import cn.kspshare.common.restful.ResultBean;
-import cn.kspshare.service.KspAdminUserService;
+import cn.kspshare.service.AdminUserService;
 import cn.kspshare.domain.KspAdminUser;
 import cn.kspshare.mapper.KspAdminUserMapper;
 import cn.kspshare.utils.AdminUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.render.RenderingStrategies;
 import org.mybatis.dynamic.sql.select.QueryExpressionDSL;
 import org.mybatis.dynamic.sql.select.SelectModel;
@@ -29,7 +28,7 @@ import java.util.List;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
 @Service
-public class KspAdminUserServiceImpl implements KspAdminUserService {
+public class AdminUserServiceImpl implements AdminUserService {
     @Autowired
     private KspAdminUserMapper adminUserMapper;
 

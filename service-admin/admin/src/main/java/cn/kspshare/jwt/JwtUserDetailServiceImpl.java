@@ -1,6 +1,6 @@
 package cn.kspshare.jwt;
 
-import cn.kspshare.service.KspAdminUserService;
+import cn.kspshare.service.AdminUserService;
 import cn.kspshare.domain.KspAdminUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,12 +23,13 @@ public class JwtUserDetailServiceImpl implements UserDetailsService {
     // }
 
     @Autowired
-    private KspAdminUserService userService;
+    private AdminUserService userService;
     // @Autowired
-    // private KspPermService permService;
+    // private PermService permService;
 
 
-    /** 模拟数据库查询
+    /**
+     * 查找数据库用户
      * @param username
      * @return
      * @throws UsernameNotFoundException
@@ -51,6 +52,8 @@ public class JwtUserDetailServiceImpl implements UserDetailsService {
         //查找权限值，封装到JwtUser 的authorities里
         // List<String> permValues = permService.listResourceIdByUser(user.getOid());
         // List<SimpleGrantedAuthority> authorities = permValues.stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
-        return new JwtUserInfo(user.getUsername(), user.getPassword());//authorities
+
+        JwtUserInfo jwtUserInfo = new JwtUserInfo(user.getUsername(), user.getPassword());
+        return jwtUserInfo;//authorities
     }
 }

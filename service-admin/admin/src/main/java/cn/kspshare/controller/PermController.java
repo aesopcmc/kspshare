@@ -2,7 +2,7 @@ package cn.kspshare.controller;
 
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.dto.PermDto;
-import cn.kspshare.service.KspPermService;
+import cn.kspshare.service.PermService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @Api(tags = "权限管理")
 public class PermController {
     @Autowired
-    private KspPermService kspPermService;
+    private PermService permService;
 
     /**
      * 添加权限
@@ -26,7 +26,7 @@ public class PermController {
     @ApiOperation("添加权限")
     @PostMapping("/perm")
     public ResultBean add(@RequestBody @Validated PermDto dto) {
-        return kspPermService.add(dto);
+        return permService.add(dto);
     }
 
     /**
@@ -37,7 +37,7 @@ public class PermController {
     @ApiOperation("更新权限")
     @PutMapping(value = "/perm/{oid}")
     public ResultBean update(@RequestBody @Validated PermDto dto, @PathVariable Long oid) {
-        return kspPermService.update(dto, oid);
+        return permService.update(dto, oid);
     }
 
     /**
@@ -48,7 +48,7 @@ public class PermController {
     @ApiOperation("删除权限")
     @DeleteMapping("/perm/{oid}")
     public ResultBean delete(@PathVariable Long oid) {
-        return kspPermService.delete(oid);
+        return permService.delete(oid);
     }
 
     /**
@@ -58,6 +58,7 @@ public class PermController {
     @ApiOperation("查找权限列表")
     @GetMapping("/perm/list/{resourceId}")
     public ResultBean listByResource(@PathVariable Long resourceId) {
-        return kspPermService.listByResource(resourceId);
+        return permService.listByResource(resourceId);
     }
+
 }
