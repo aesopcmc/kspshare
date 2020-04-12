@@ -7,7 +7,6 @@ import cn.kspshare.domain.KspBbsSession;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.Generated;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
@@ -34,31 +33,24 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface KspBbsSessionMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     BasicColumn[] selectList = BasicColumn.columnList(oid, name, profile, topicCount, viewCount, clickRate, sort, createTime, createUser, updateTime, updateUser);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     long count(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     @DeleteProvider(type=SqlProviderAdapter.class, method="delete")
     int delete(DeleteStatementProvider deleteStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     @InsertProvider(type=SqlProviderAdapter.class, method="insert")
     int insert(InsertStatementProvider<KspBbsSession> insertStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     @InsertProvider(type=SqlProviderAdapter.class, method="insertMultiple")
     int insertMultiple(MultiRowInsertStatementProvider<KspBbsSession> multipleInsertStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("KspBbsSessionResult")
     Optional<KspBbsSession> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="KspBbsSessionResult", value = {
         @Result(column="oid", property="oid", jdbcType=JdbcType.BIGINT, id=true),
@@ -75,28 +67,23 @@ public interface KspBbsSessionMapper {
     })
     List<KspBbsSession> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     @UpdateProvider(type=SqlProviderAdapter.class, method="update")
     int update(UpdateStatementProvider updateStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, kspBbsSession, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, kspBbsSession, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default int deleteByPrimaryKey(Long oid_) {
         return delete(c -> 
             c.where(oid, isEqualTo(oid_))
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default int insert(KspBbsSession record) {
         return MyBatis3Utils.insert(this::insert, record, kspBbsSession, c ->
             c.map(oid).toProperty("oid")
@@ -113,7 +100,6 @@ public interface KspBbsSessionMapper {
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default int insertMultiple(Collection<KspBbsSession> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, kspBbsSession, c ->
             c.map(oid).toProperty("oid")
@@ -130,7 +116,6 @@ public interface KspBbsSessionMapper {
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default int insertSelective(KspBbsSession record) {
         return MyBatis3Utils.insert(this::insert, record, kspBbsSession, c ->
             c.map(oid).toPropertyWhenPresent("oid", record::getOid)
@@ -147,34 +132,28 @@ public interface KspBbsSessionMapper {
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default Optional<KspBbsSession> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, kspBbsSession, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default List<KspBbsSession> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, kspBbsSession, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default List<KspBbsSession> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, kspBbsSession, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default Optional<KspBbsSession> selectByPrimaryKey(Long oid_) {
         return selectOne(c ->
             c.where(oid, isEqualTo(oid_))
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, kspBbsSession, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     static UpdateDSL<UpdateModel> updateAllColumns(KspBbsSession record, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(oid).equalTo(record::getOid)
                 .set(name).equalTo(record::getName)
@@ -189,7 +168,6 @@ public interface KspBbsSessionMapper {
                 .set(updateUser).equalTo(record::getUpdateUser);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(KspBbsSession record, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(oid).equalToWhenPresent(record::getOid)
                 .set(name).equalToWhenPresent(record::getName)
@@ -204,7 +182,6 @@ public interface KspBbsSessionMapper {
                 .set(updateUser).equalToWhenPresent(record::getUpdateUser);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default int updateByPrimaryKey(KspBbsSession record) {
         return update(c ->
             c.set(name).equalTo(record::getName)
@@ -221,7 +198,6 @@ public interface KspBbsSessionMapper {
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_bbs_session")
     default int updateByPrimaryKeySelective(KspBbsSession record) {
         return update(c ->
             c.set(name).equalToWhenPresent(record::getName)

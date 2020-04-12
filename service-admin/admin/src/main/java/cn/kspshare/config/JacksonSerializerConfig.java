@@ -39,8 +39,11 @@ public class JacksonSerializerConfig {
 
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jackson2ObjectMapperBuilderCustomizer() {
+        //配置序列化
         Map<Class<?>, JsonSerializer<?>> map = new HashMap<>();
+        //日期序列化
         map.put(LocalDateTime.class, localDateTimeSerializer());
+        //long类型序列化
         map.put(Long.class, ToStringSerializer.instance);
         return builder -> builder.serializersByType(map);
     }

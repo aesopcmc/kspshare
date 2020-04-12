@@ -2,9 +2,9 @@ package cn.kspshare.controller;
 
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.domain.KspBbsSession;
-import cn.kspshare.jwt.JwtUserInfo;
 import cn.kspshare.service.BbsSessionService;
 import cn.kspshare.utils.BasePage;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -60,8 +60,6 @@ public class BbsSessionController {
     @ApiOperation("查找所有")
     @GetMapping("/bbs/session")
     public ResultBean queryAll(BasePage param) {
-        JwtUserInfo userInfo = JwtUserInfo.getUserInfo();
-        System.out.println(userInfo.getOid());
         return bbsSessionService.queryAll(param);
     }
 

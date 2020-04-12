@@ -2,64 +2,54 @@ package cn.kspshare.mapper;
 
 import java.sql.JDBCType;
 import java.time.LocalDateTime;
-import javax.annotation.Generated;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
 public final class KspPermDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     public static final KspPerm kspPerm = new KspPerm();
 
     /**
-     * Database Column Remarks:
-     *   主键
+     * 主键
+     * oid
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.oid")
     public static final SqlColumn<Long> oid = kspPerm.oid;
 
     /**
-     * Database Column Remarks:
-     *   权限名称
+     * 权限名称
+     * name
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.name")
     public static final SqlColumn<String> name = kspPerm.name;
 
     /**
-     * Database Column Remarks:
-     *   权限编码，唯一
+     * 权限编码，唯一
+     * code
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.code")
     public static final SqlColumn<String> code = kspPerm.code;
 
     /**
-     * Database Column Remarks:
-     *   资源ID
+     * 资源ID
+     * resource_id
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.resource_id")
     public static final SqlColumn<Long> resourceId = kspPerm.resourceId;
 
     /**
-     * Database Column Remarks:
-     *   创建时间
+     * 创建时间
+     * create_time
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.create_time")
     public static final SqlColumn<LocalDateTime> createTime = kspPerm.createTime;
 
     /**
-     * Database Column Remarks:
-     *   创建人ID
+     * 创建人ID
+     * create_user
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.create_user")
     public static final SqlColumn<Long> createUser = kspPerm.createUser;
 
     /**
-     * Database Column Remarks:
-     *   创建时间
+     * 创建时间
+     * update_time
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_perm.update_time")
     public static final SqlColumn<LocalDateTime> updateTime = kspPerm.updateTime;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_perm")
     public static final class KspPerm extends SqlTable {
         public final SqlColumn<Long> oid = column("oid", JDBCType.BIGINT);
 

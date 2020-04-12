@@ -28,18 +28,25 @@ public interface AdminUserService {
     ResultBean delete(Long oid);
 
     /**
-     * 组合条件查询
-     * @param dto
+     * 根据ID查找用户胡
+     * @param oid
      * @return
      */
-    ResultBean listCondition(KspAdminUserListConditionDto dto);
+    KspAdminUser queryById(Long oid);
 
     /**
      * 用户名查找
      * @param username
      * @return
      */
-    KspAdminUser findByUsername(String username);
+    KspAdminUser queryByUsername(String username);
+
+    /**
+     * 组合条件查询
+     * @param dto
+     * @return
+     */
+    ResultBean queryByCondition(KspAdminUserListConditionDto dto);
 
     /**
      * 启用/禁用
@@ -48,6 +55,4 @@ public interface AdminUserService {
      * @return
      */
     ResultBean enabled(Long oid, Byte enabled);
-
-
 }

@@ -5,10 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 @MapperScan({"cn.kspshare.mapper","cn.kspshare.dao"})
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 @SpringBootApplication
 public class BackstageApplication  extends SpringBootServletInitializer{
 

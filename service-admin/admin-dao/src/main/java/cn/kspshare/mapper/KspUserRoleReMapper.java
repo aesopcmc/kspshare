@@ -7,7 +7,6 @@ import cn.kspshare.domain.KspUserRoleRe;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import javax.annotation.Generated;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
@@ -34,31 +33,24 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface KspUserRoleReMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     BasicColumn[] selectList = BasicColumn.columnList(oid, userId, roleId, createTime, createUser, updateTime);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     long count(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     @DeleteProvider(type=SqlProviderAdapter.class, method="delete")
     int delete(DeleteStatementProvider deleteStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     @InsertProvider(type=SqlProviderAdapter.class, method="insert")
     int insert(InsertStatementProvider<KspUserRoleRe> insertStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     @InsertProvider(type=SqlProviderAdapter.class, method="insertMultiple")
     int insertMultiple(MultiRowInsertStatementProvider<KspUserRoleRe> multipleInsertStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("KspUserRoleReResult")
     Optional<KspUserRoleRe> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="KspUserRoleReResult", value = {
         @Result(column="oid", property="oid", jdbcType=JdbcType.BIGINT, id=true),
@@ -70,28 +62,23 @@ public interface KspUserRoleReMapper {
     })
     List<KspUserRoleRe> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     @UpdateProvider(type=SqlProviderAdapter.class, method="update")
     int update(UpdateStatementProvider updateStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default long count(CountDSLCompleter completer) {
         return MyBatis3Utils.countFrom(this::count, kspUserRoleRe, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int delete(DeleteDSLCompleter completer) {
         return MyBatis3Utils.deleteFrom(this::delete, kspUserRoleRe, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int deleteByPrimaryKey(Long oid_) {
         return delete(c -> 
             c.where(oid, isEqualTo(oid_))
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int insert(KspUserRoleRe record) {
         return MyBatis3Utils.insert(this::insert, record, kspUserRoleRe, c ->
             c.map(oid).toProperty("oid")
@@ -103,7 +90,6 @@ public interface KspUserRoleReMapper {
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int insertMultiple(Collection<KspUserRoleRe> records) {
         return MyBatis3Utils.insertMultiple(this::insertMultiple, records, kspUserRoleRe, c ->
             c.map(oid).toProperty("oid")
@@ -115,7 +101,6 @@ public interface KspUserRoleReMapper {
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int insertSelective(KspUserRoleRe record) {
         return MyBatis3Utils.insert(this::insert, record, kspUserRoleRe, c ->
             c.map(oid).toPropertyWhenPresent("oid", record::getOid)
@@ -127,34 +112,28 @@ public interface KspUserRoleReMapper {
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default Optional<KspUserRoleRe> selectOne(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectOne(this::selectOne, selectList, kspUserRoleRe, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default List<KspUserRoleRe> select(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectList(this::selectMany, selectList, kspUserRoleRe, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default List<KspUserRoleRe> selectDistinct(SelectDSLCompleter completer) {
         return MyBatis3Utils.selectDistinct(this::selectMany, selectList, kspUserRoleRe, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default Optional<KspUserRoleRe> selectByPrimaryKey(Long oid_) {
         return selectOne(c ->
             c.where(oid, isEqualTo(oid_))
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int update(UpdateDSLCompleter completer) {
         return MyBatis3Utils.update(this::update, kspUserRoleRe, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     static UpdateDSL<UpdateModel> updateAllColumns(KspUserRoleRe record, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(oid).equalTo(record::getOid)
                 .set(userId).equalTo(record::getUserId)
@@ -164,7 +143,6 @@ public interface KspUserRoleReMapper {
                 .set(updateTime).equalTo(record::getUpdateTime);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     static UpdateDSL<UpdateModel> updateSelectiveColumns(KspUserRoleRe record, UpdateDSL<UpdateModel> dsl) {
         return dsl.set(oid).equalToWhenPresent(record::getOid)
                 .set(userId).equalToWhenPresent(record::getUserId)
@@ -174,7 +152,6 @@ public interface KspUserRoleReMapper {
                 .set(updateTime).equalToWhenPresent(record::getUpdateTime);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int updateByPrimaryKey(KspUserRoleRe record) {
         return update(c ->
             c.set(userId).equalTo(record::getUserId)
@@ -186,7 +163,6 @@ public interface KspUserRoleReMapper {
         );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_user_role_re")
     default int updateByPrimaryKeySelective(KspUserRoleRe record) {
         return update(c ->
             c.set(userId).equalToWhenPresent(record::getUserId)

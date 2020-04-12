@@ -2,106 +2,90 @@ package cn.kspshare.mapper;
 
 import java.sql.JDBCType;
 import java.time.LocalDateTime;
-import javax.annotation.Generated;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
 public final class KspResourceDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
     public static final KspResource kspResource = new KspResource();
 
     /**
-     * Database Column Remarks:
-     *   主键
+     * 主键
+     * oid
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.oid")
     public static final SqlColumn<Long> oid = kspResource.oid;
 
     /**
-     * Database Column Remarks:
-     *   资源名称
+     * 资源名称
+     * name
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.name")
     public static final SqlColumn<String> name = kspResource.name;
 
     /**
-     * Database Column Remarks:
-     *   资源编码，唯一
+     * 资源编码，唯一
+     * code
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.code")
     public static final SqlColumn<String> code = kspResource.code;
 
     /**
-     * Database Column Remarks:
-     *   编码链，通过“-”拼接，不包含自身，最顶级为NULL
+     * 编码链，通过“-”拼接，不包含自身，最顶级为NULL
+     * code_link
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.code_link")
     public static final SqlColumn<String> codeLink = kspResource.codeLink;
 
     /**
-     * Database Column Remarks:
-     *   父资源ID
+     * 父资源ID
+     * parent_id
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.parent_id")
     public static final SqlColumn<Long> parentId = kspResource.parentId;
 
     /**
-     * Database Column Remarks:
-     *   资源类型 1菜单 2按钮 
+     * 资源类型 1菜单 2按钮 
+     * resource_type
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.resource_type")
     public static final SqlColumn<Byte> resourceType = kspResource.resourceType;
 
     /**
-     * Database Column Remarks:
-     *   资源URL
+     * 资源URL
+     * url
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.url")
     public static final SqlColumn<String> url = kspResource.url;
 
     /**
-     * Database Column Remarks:
-     *   图标
+     * 图标
+     * icon
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.icon")
     public static final SqlColumn<String> icon = kspResource.icon;
 
     /**
-     * Database Column Remarks:
-     *   vue组件名，用于路由配置
+     * vue组件名，用于路由配置
+     * component_name
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.component_name")
     public static final SqlColumn<String> componentName = kspResource.componentName;
 
     /**
-     * Database Column Remarks:
-     *   排序
+     * 排序
+     * sort
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.sort")
     public static final SqlColumn<Integer> sort = kspResource.sort;
 
     /**
-     * Database Column Remarks:
-     *   创建时间
+     * 创建时间
+     * create_time
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.create_time")
     public static final SqlColumn<LocalDateTime> createTime = kspResource.createTime;
 
     /**
-     * Database Column Remarks:
-     *   创建人ID
+     * 创建人ID
+     * create_user
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.create_user")
     public static final SqlColumn<Long> createUser = kspResource.createUser;
 
     /**
-     * Database Column Remarks:
-     *   创建时间
+     * 创建时间
+     * update_time
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_resource.update_time")
     public static final SqlColumn<LocalDateTime> updateTime = kspResource.updateTime;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_resource")
     public static final class KspResource extends SqlTable {
         public final SqlColumn<Long> oid = column("oid", JDBCType.BIGINT);
 

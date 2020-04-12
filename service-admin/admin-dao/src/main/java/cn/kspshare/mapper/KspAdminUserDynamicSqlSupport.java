@@ -2,85 +2,72 @@ package cn.kspshare.mapper;
 
 import java.sql.JDBCType;
 import java.time.LocalDateTime;
-import javax.annotation.Generated;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
 public final class KspAdminUserDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
     public static final KspAdminUser kspAdminUser = new KspAdminUser();
 
     /**
-     * Database Column Remarks:
-     *   主键
+     * 主键
+     * oid
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.oid")
     public static final SqlColumn<Long> oid = kspAdminUser.oid;
 
     /**
-     * Database Column Remarks:
-     *   用户登录名
+     * 用户登录名
+     * username
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.username")
     public static final SqlColumn<String> username = kspAdminUser.username;
 
     /**
-     * Database Column Remarks:
-     *   用户真实姓名
+     * 用户真实姓名
+     * realname
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.realname")
     public static final SqlColumn<String> realname = kspAdminUser.realname;
 
     /**
-     * Database Column Remarks:
-     *   用户登录密码
+     * 用户登录密码
+     * password
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.password")
     public static final SqlColumn<String> password = kspAdminUser.password;
 
     /**
-     * Database Column Remarks:
-     *   0保密 1男 2女，默认0
+     * 0保密 1男 2女，默认0
+     * gender
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.gender")
     public static final SqlColumn<Byte> gender = kspAdminUser.gender;
 
     /**
-     * Database Column Remarks:
-     *   邮箱
+     * 邮箱
+     * email
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.email")
     public static final SqlColumn<String> email = kspAdminUser.email;
 
     /**
-     * Database Column Remarks:
-     *   enabled	是否可以登录	 0禁止 1允许
+     * enabled	是否可以登录	 0禁止 1允许
+     * enabled
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.enabled")
     public static final SqlColumn<Byte> enabled = kspAdminUser.enabled;
 
     /**
-     * Database Column Remarks:
-     *   创建时间
+     * 创建时间
+     * create_time
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.create_time")
     public static final SqlColumn<LocalDateTime> createTime = kspAdminUser.createTime;
 
     /**
-     * Database Column Remarks:
-     *   创建人ID
+     * 创建人ID
+     * create_user
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.create_user")
     public static final SqlColumn<Long> createUser = kspAdminUser.createUser;
 
     /**
-     * Database Column Remarks:
-     *   创建时间
+     * 创建时间
+     * update_time
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_admin_user.update_time")
     public static final SqlColumn<LocalDateTime> updateTime = kspAdminUser.updateTime;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_admin_user")
     public static final class KspAdminUser extends SqlTable {
         public final SqlColumn<Long> oid = column("oid", JDBCType.BIGINT);
 

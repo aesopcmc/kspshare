@@ -9,9 +9,9 @@ import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.service.AdminUserService;
 import cn.kspshare.domain.KspAdminUser;
 import cn.kspshare.mapper.KspAdminUserMapper;
-import cn.kspshare.utils.AdminUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.mybatis.dynamic.sql.SqlBuilder;
 import org.mybatis.dynamic.sql.render.RenderingStrategies;
 import org.mybatis.dynamic.sql.select.QueryExpressionDSL;
 import org.mybatis.dynamic.sql.select.SelectModel;
@@ -24,6 +24,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
@@ -35,7 +36,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean add(KspAdminUserDto dto) {
-        KspAdminUser exist = this.findByUsername(dto.getUsername());
+        KspAdminUser exist = this.queryByUsername(dto.getUsername());
         if(exist!=null) {
             return ResultBean.FAIL("用户名已存在！");
         }
@@ -44,7 +45,7 @@ public class AdminUserServiceImpl implements AdminUserService {
         BeanUtils.copyProperties(dto, domain);
         domain.setOid(IDGenerator.id());
         //设置初始密码
-        domain.setPassword(AdminUtils.passwordEncode("123456"));
+        // domain.setPassword(AdminUtils.passwordEncode("123456")); //密码加密
         adminUserMapper.insertSelective(domain);
         return ResultBean.SUCCESS();
     }
@@ -52,7 +53,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean update(KspAdminUserDto dto) {
-        KspAdminUser exist = this.findByUsername(dto.getUsername());
+        KspAdminUser exist = this.queryByUsername(dto.getUsername());
         if(exist!=null && !exist.getOid().equals(dto.getOid())) {
             return ResultBean.FAIL("用户名已存在！");
         }
@@ -74,7 +75,19 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     @Override
-    public ResultBean listCondition(KspAdminUserListConditionDto dto) {
+    public KspAdminUser queryById(Long oid) {
+        //TOdo 处理selectOne报错问题
+
+        // Optional<KspAdminUser> kspAdminUser = adminUserMapper.selectOne(c -> c.where(KspAdminUserDynamicSqlSupport.oid, isEqualTo(oid)));
+        // Optional<KspAdminUser> kspAdminUser = adminUserMapper.selectByPrimaryKey(oid);
+
+        List<KspAdminUser> select = adminUserMapper.select(c -> c.where(KspAdminUserDynamicSqlSupport.oid, isEqualTo(oid)));
+        return select.get(0);
+        // return kspAdminUser.orElse(null);
+    }
+
+    @Override
+    public ResultBean queryByCondition(KspAdminUserListConditionDto dto) {
 
         //复杂组合条件查询
         QueryExpressionDSL<SelectModel>.QueryExpressionWhereBuilder builder = select(
@@ -111,7 +124,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     @Override
-    public KspAdminUser findByUsername(String username) {
+    public KspAdminUser queryByUsername(String username) {
         List<KspAdminUser> list = adminUserMapper.select(c -> c.where(KspAdminUserDynamicSqlSupport.username, isEqualTo(username)));
         return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }

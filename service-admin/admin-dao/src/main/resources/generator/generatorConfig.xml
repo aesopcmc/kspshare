@@ -21,8 +21,11 @@
         <!-- 格式化XML代码 -->
         <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
 
-        <!--生成数据库注释 type="cn.aesop.generator.extend.comment.MySQLCommentGenerator"-->
-        <commentGenerator >
+        <!-- 生成Lombok支持的@Getter @Setter-->
+        <plugin type="cn.aesop.generator.extend.plugin.UseLombokPlugin" />
+
+        <!--生成数据库注释、注解-->
+        <commentGenerator type="cn.aesop.generator.extend.comment.MySQLCommentGenerator">
             <property name="addRemarkComments" value="true"/>
             <property name="suppressDate" value="true"/>
         </commentGenerator>
@@ -33,7 +36,6 @@
                         userId="root"
                         password="root">
         </jdbcConnection>
-
 
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
             NUMERIC 类型解析为java.math.BigDecimal -->

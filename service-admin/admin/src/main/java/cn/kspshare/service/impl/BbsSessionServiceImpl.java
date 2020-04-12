@@ -3,7 +3,6 @@ package cn.kspshare.service.impl;
 import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.domain.KspBbsSession;
-import cn.kspshare.jwt.JwtUserInfo;
 import cn.kspshare.mapper.KspBbsSessionDynamicSqlSupport;
 import cn.kspshare.mapper.KspBbsSessionMapper;
 import cn.kspshare.service.BbsSessionService;
@@ -27,7 +26,8 @@ public class BbsSessionServiceImpl implements BbsSessionService {
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean add(KspBbsSession po) {
-        JwtUserInfo userInfo = JwtUserInfo.getUserInfo();
+
+        // JwtUserInfo userInfo = JwtUserInfo.getUserInfo();
 
         KspBbsSession exist = this.queryByName(po.getName());
         if(exist!=null) {
@@ -35,7 +35,7 @@ public class BbsSessionServiceImpl implements BbsSessionService {
         }
 
         po.setOid(IDGenerator.id());
-        po.setCreateUser(userInfo.getOid());
+        // po.setCreateUser();TODO 获取当前用户信息
         po.setCreateTime(LocalDateTime.now());
         po.setUpdateUser(null);
         po.setUpdateTime(null);
@@ -47,14 +47,13 @@ public class BbsSessionServiceImpl implements BbsSessionService {
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean update(KspBbsSession po) {
-        JwtUserInfo userInfo = JwtUserInfo.getUserInfo();
         if(po.getOid()==null) {
             return ResultBean.PRIMARY_KEY_ONT_NULL();
         }
         po.setCreateTime(null);
         po.setCreateUser(null);
         po.setUpdateTime(LocalDateTime.now());
-        po.setUpdateUser(userInfo.getOid());
+        // po.setUpdateUser(userInfo.getOid());TODO 获取当前用户信息
         int i = bbsSessionMapper.updateByPrimaryKeySelective(po);
         return ResultBean.SUCCESS(i);
     }

@@ -2,64 +2,54 @@ package cn.kspshare.mapper;
 
 import java.sql.JDBCType;
 import java.time.LocalDateTime;
-import javax.annotation.Generated;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
 public final class KspRolePermReDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_role_perm_re")
     public static final KspRolePermRe kspRolePermRe = new KspRolePermRe();
 
     /**
-     * Database Column Remarks:
-     *   主键
+     * 主键
+     * oid
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.oid")
     public static final SqlColumn<Long> oid = kspRolePermRe.oid;
 
     /**
-     * Database Column Remarks:
-     *   角色ID
+     * 角色ID
+     * role_id
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.role_id")
     public static final SqlColumn<Long> roleId = kspRolePermRe.roleId;
 
     /**
-     * Database Column Remarks:
-     *   权限ID
+     * 权限ID
+     * perm_id
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.perm_id")
     public static final SqlColumn<Long> permId = kspRolePermRe.permId;
 
     /**
-     * Database Column Remarks:
-     *   0可访问 1可授权
+     * 0可访问 1可授权
+     * perm_type
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.perm_type")
     public static final SqlColumn<Byte> permType = kspRolePermRe.permType;
 
     /**
-     * Database Column Remarks:
-     *   创建时间
+     * 创建时间
+     * create_time
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.create_time")
     public static final SqlColumn<LocalDateTime> createTime = kspRolePermRe.createTime;
 
     /**
-     * Database Column Remarks:
-     *   创建人ID
+     * 创建人ID
+     * create_user
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.create_user")
     public static final SqlColumn<Long> createUser = kspRolePermRe.createUser;
 
     /**
-     * Database Column Remarks:
-     *   创建时间
+     * 创建时间
+     * update_time
      */
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: ksp_role_perm_re.update_time")
     public static final SqlColumn<LocalDateTime> updateTime = kspRolePermRe.updateTime;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: ksp_role_perm_re")
     public static final class KspRolePermRe extends SqlTable {
         public final SqlColumn<Long> oid = column("oid", JDBCType.BIGINT);
 

@@ -3,7 +3,6 @@ package cn.kspshare.config;
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.common.restful.ResultEnum;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Slf4j
 @ControllerAdvice
-public class GlobalDefultExceptionHandler {
+public class GlobalExceptionHandler {
     /**
      * 处理参数异常，一般用于校验body参数
      *
@@ -40,18 +39,6 @@ public class GlobalDefultExceptionHandler {
     public ResultBean handleException(Exception ex) {
         log.error("捕获到全局异常", ex);
         return ResultBean.SERVER_EXCEPTION();
-    }
-
-    /**
-     * 没有访问权限
-     * @param ex
-     * @return
-     */
-    @ExceptionHandler(AccessDeniedException.class)
-    @ResponseBody
-    public ResultBean handleException(AccessDeniedException ex) {
-        log.warn("没有访问权限");
-        return ResultBean.NO_PERMISSION();
     }
 
 
