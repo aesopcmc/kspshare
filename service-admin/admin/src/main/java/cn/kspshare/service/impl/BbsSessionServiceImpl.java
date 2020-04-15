@@ -3,10 +3,10 @@ package cn.kspshare.service.impl;
 import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.domain.KspBbsSession;
+import cn.kspshare.dto.BaseSearchDto;
 import cn.kspshare.mapper.KspBbsSessionDynamicSqlSupport;
 import cn.kspshare.mapper.KspBbsSessionMapper;
 import cn.kspshare.service.BbsSessionService;
-import cn.kspshare.utils.BasePage;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.mybatis.dynamic.sql.SqlBuilder;
@@ -66,9 +66,13 @@ public class BbsSessionServiceImpl implements BbsSessionService {
     }
 
     @Override
-    public ResultBean queryAll(BasePage param) {
+    public ResultBean queryCondition(BaseSearchDto param) {
         PageHelper.startPage(param.getPageNum(), param.getPageSize());
-        List<KspBbsSession> select = bbsSessionMapper.select(c -> c);
+
+        List<KspBbsSession> select = bbsSessionMapper.select(c ->
+                c.where(KspBbsSessionDynamicSqlSupport.name, SqlBuilder.isLike("%"+param.getSearchText()+"%"))
+                .or(KspBbsSessionDynamicSqlSupport.profile, SqlBuilder.isLike("%"+param.getSearchText()+"%")));
+
         PageInfo<KspBbsSession> pageInfo = new PageInfo<>(select);
         return ResultBean.SUCCESS(pageInfo);
     }

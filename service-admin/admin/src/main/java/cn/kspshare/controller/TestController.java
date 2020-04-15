@@ -1,5 +1,6 @@
 package cn.kspshare.controller;
 
+import cn.kspshare.annotation.PassToken;
 import cn.kspshare.annotation.UserLoginToken;
 import cn.kspshare.config.RedisUtils;
 import cn.kspshare.config.userinfo.UserInfo;
@@ -177,5 +178,16 @@ public class TestController {
         UserInfo userInfo = userInfoManager.getUserInfo();
         System.out.println(userInfo);
         return "有用户信息";
+    }
+
+
+    @PassToken
+    @GetMapping("/c")
+    public String c() {
+        redisUtils.set("ccc", 998, 10);
+        // System.out.println("是否存在："+redisUtils.exists("aaa"));
+        // Object aaa = redisUtils.get("aaa");
+        // System.out.println(aaa);
+        return "特殊请求";
     }
 }

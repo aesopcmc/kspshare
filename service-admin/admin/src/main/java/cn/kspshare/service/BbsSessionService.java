@@ -2,7 +2,7 @@ package cn.kspshare.service;
 
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.domain.KspBbsSession;
-import cn.kspshare.utils.BasePage;
+import cn.kspshare.dto.BaseSearchDto;
 
 public interface BbsSessionService {
     /**
@@ -27,11 +27,11 @@ public interface BbsSessionService {
     ResultBean delete(Long oid);
 
     /**
-     * 查找所有
+     * 基本条件查询
      * @return
      * @param param
      */
-    ResultBean queryAll(BasePage param);
+    ResultBean queryCondition(BaseSearchDto param);
 
     /**
      * 根据名称查找
