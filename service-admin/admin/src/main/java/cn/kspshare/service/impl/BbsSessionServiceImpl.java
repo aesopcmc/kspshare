@@ -26,16 +26,12 @@ public class BbsSessionServiceImpl implements BbsSessionService {
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean add(KspBbsSession po) {
-
-        // JwtUserInfo userInfo = JwtUserInfo.getUserInfo();
-
         KspBbsSession exist = this.queryByName(po.getName());
         if(exist!=null) {
             return ResultBean.FAIL("模块名称已存在！");
         }
 
         po.setOid(IDGenerator.id());
-        // po.setCreateUser();TODO 获取当前用户信息
         po.setCreateTime(LocalDateTime.now());
         po.setUpdateUser(null);
         po.setUpdateTime(null);
@@ -53,7 +49,6 @@ public class BbsSessionServiceImpl implements BbsSessionService {
         po.setCreateTime(null);
         po.setCreateUser(null);
         po.setUpdateTime(LocalDateTime.now());
-        // po.setUpdateUser(userInfo.getOid());TODO 获取当前用户信息
         int i = bbsSessionMapper.updateByPrimaryKeySelective(po);
         return ResultBean.SUCCESS(i);
     }

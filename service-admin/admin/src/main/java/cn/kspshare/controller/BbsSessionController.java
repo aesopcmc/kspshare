@@ -1,6 +1,9 @@
 package cn.kspshare.controller;
 
+import cn.kspshare.annotation.UserLoginToken;
 import cn.kspshare.common.restful.ResultBean;
+import cn.kspshare.config.userinfo.UserInfo;
+import cn.kspshare.config.userinfo.UserInfoManager;
 import cn.kspshare.domain.KspBbsSession;
 import cn.kspshare.dto.BaseSearchDto;
 import cn.kspshare.service.BbsSessionService;
@@ -14,8 +17,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @ResponseBody
 @Slf4j
+@UserLoginToken
 @Api(tags = "论坛版块管理")
 public class BbsSessionController {
+    @Autowired
+    private UserInfoManager userInfoManager;
+
     @Autowired
     private BbsSessionService bbsSessionService;
 
@@ -27,6 +34,8 @@ public class BbsSessionController {
     @ApiOperation("添加")
     @PostMapping("/bbs/session")
     public ResultBean add(@RequestBody KspBbsSession po) {
+        UserInfo userInfo = userInfoManager.getUserInfo();
+        po.setCreateUser(userInfo.getOid());
         return bbsSessionService.add(po);
     }
 
@@ -38,6 +47,8 @@ public class BbsSessionController {
     @ApiOperation("更新")
     @PutMapping(value = "/bbs/session")
     public ResultBean update(@RequestBody @Validated KspBbsSession po) {
+        UserInfo userInfo = userInfoManager.getUserInfo();
+        po.setCreateUser(userInfo.getOid());
         return bbsSessionService.update(po);
     }
 

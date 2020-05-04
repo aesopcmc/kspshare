@@ -5,14 +5,14 @@ import java.time.LocalDateTime;
 import lombok.*;
 
 /**
- * 后台管理用户表
- * ksp_admin_user
+ * 论坛主题表
+ * ksp_bbs_theme
  * 
  * @author Mybatis Generator
  */
 @Getter
 @Setter
-public class KspAdminUser {
+public class KspBbsTheme {
     /**
      * 主键
      * oid
@@ -20,40 +20,41 @@ public class KspAdminUser {
     private Long oid;
 
     /**
-     * 用户登录名
-     * username
+     * 标题
+     * title
      */
-    private String username;
+    private String title;
 
     /**
-     * 用户真实姓名
-     * realname
+     * 摘要
+     * profile
      */
-    private String realname;
+    private String profile;
 
     /**
-     * 用户登录密码
-     * password
+     * 版块ID
+     * session_id
      */
-    private String password;
+    private Long sessionId;
 
     /**
-     * 0保密 1男 2女，默认0
-     * gender
+     * 回复数量，包含评论和回复
+     * reply_count
      */
-    private Byte gender;
+    private Integer replyCount;
 
     /**
-     * 邮箱
-     * email
+     * 最后回复用户ID
+     * last_reply_user
      */
-    private String email;
+    private Long lastReplyUser;
 
     /**
-     * enabled	是否可以登录	 0禁止 1允许
-     * enabled
+     * 最后回复时间
+     * last_reply_time
      */
-    private Byte enabled;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime lastReplyTime;
 
     /**
      * 创建时间
@@ -74,4 +75,10 @@ public class KspAdminUser {
      */
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updateTime;
+
+    /**
+     * 更新人ID
+     * update_user
+     */
+    private Long updateUser;
 }

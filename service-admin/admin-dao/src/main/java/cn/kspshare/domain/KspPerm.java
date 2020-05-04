@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import lombok.*;
 
 /**
- * 
+ * 权限表
  * ksp_perm
  * 
  * @author Mybatis Generator

@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
+import org.springframework.util.DigestUtils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -45,7 +46,7 @@ public class AdminUserServiceImpl implements AdminUserService {
         BeanUtils.copyProperties(dto, domain);
         domain.setOid(IDGenerator.id());
         //设置初始密码
-        // domain.setPassword(AdminUtils.passwordEncode("123456")); //密码加密
+        domain.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes())); //密码加密
         adminUserMapper.insertSelective(domain);
         return ResultBean.SUCCESS();
     }
