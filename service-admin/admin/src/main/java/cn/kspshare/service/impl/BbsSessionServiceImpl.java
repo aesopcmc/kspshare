@@ -1,11 +1,10 @@
 package cn.kspshare.service.impl;
 
 import cn.kspshare.common.id.IDGenerator;
-import cn.kspshare.common.restful.ResultBean;
-import cn.kspshare.domain.KspBbsSession;
+import cn.kspshare.domain.BbsSession;
 import cn.kspshare.dto.BaseSearchDto;
-import cn.kspshare.mapper.KspBbsSessionDynamicSqlSupport;
-import cn.kspshare.mapper.KspBbsSessionMapper;
+import cn.kspshare.mapper.BbsSessionDynamicSqlSupport;
+import cn.kspshare.mapper.BbsSessionMapper;
 import cn.kspshare.service.BbsSessionService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -21,14 +20,14 @@ import java.util.List;
 @Service
 public class BbsSessionServiceImpl implements BbsSessionService {
     @Autowired
-    private KspBbsSessionMapper bbsSessionMapper;
+    private BbsSessionMapper mapper;
 
     @Override
     @Transactional(rollbackFor = Exception.class )
-    public ResultBean add(KspBbsSession po) {
-        KspBbsSession exist = this.queryByName(po.getName());
+    public int add(BbsSession po) {
+        BbsSession exist = this.queryByName(po.getName());
         if(exist!=null) {
-            return ResultBean.FAIL("模块名称已存在！");
+            throw new RuntimeException("模块名称已存在！");
         }
 
         po.setOid(IDGenerator.id());
@@ -36,45 +35,40 @@ public class BbsSessionServiceImpl implements BbsSessionService {
         po.setUpdateUser(null);
         po.setUpdateTime(null);
 
-        int i = bbsSessionMapper.insertSelective(po);
-        return ResultBean.SUCCESS(i);
+        return mapper.insertSelective(po);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class )
-    public ResultBean update(KspBbsSession po) {
+    public int update(BbsSession po) {
         if(po.getOid()==null) {
-            return ResultBean.PRIMARY_KEY_ONT_NULL();
+            throw new RuntimeException("主键不能为空！");
         }
         po.setCreateTime(null);
         po.setCreateUser(null);
         po.setUpdateTime(LocalDateTime.now());
-        int i = bbsSessionMapper.updateByPrimaryKeySelective(po);
-        return ResultBean.SUCCESS(i);
+        return mapper.updateByPrimaryKeySelective(po);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class )
-    public ResultBean delete(Long oid) {
-        int i = bbsSessionMapper.deleteByPrimaryKey(oid);
-        return ResultBean.SUCCESS(i);
+    public int delete(Long oid) {
+        return mapper.deleteByPrimaryKey(oid);
     }
 
     @Override
-    public ResultBean queryCondition(BaseSearchDto param) {
+    public PageInfo<BbsSession> queryCondition(BaseSearchDto param) {
         PageHelper.startPage(param.getPageNum(), param.getPageSize());
 
-        List<KspBbsSession> select = bbsSessionMapper.select(c ->
-                c.where(KspBbsSessionDynamicSqlSupport.name, SqlBuilder.isLike("%"+param.getSearchText()+"%"))
-                .or(KspBbsSessionDynamicSqlSupport.profile, SqlBuilder.isLike("%"+param.getSearchText()+"%")));
-
-        PageInfo<KspBbsSession> pageInfo = new PageInfo<>(select);
-        return ResultBean.SUCCESS(pageInfo);
+        List<BbsSession> select = mapper.select(c ->
+                c.where(BbsSessionDynamicSqlSupport.name, SqlBuilder.isLike("%"+param.getSearchText()+"%"))
+                .or(BbsSessionDynamicSqlSupport.profile, SqlBuilder.isLike("%"+param.getSearchText()+"%")));
+        return new PageInfo<>(select);
     }
 
     @Override
-    public KspBbsSession queryByName(String name) {
-        List<KspBbsSession> select = bbsSessionMapper.select(c -> c.where(KspBbsSessionDynamicSqlSupport.name, SqlBuilder.isEqualTo(name)));
+    public BbsSession queryByName(String name) {
+        List<BbsSession> select = mapper.select(c -> c.where(BbsSessionDynamicSqlSupport.name, SqlBuilder.isEqualTo(name)));
         return CollectionUtils.isEmpty(select) ? null : select.get(0);
     }
 }

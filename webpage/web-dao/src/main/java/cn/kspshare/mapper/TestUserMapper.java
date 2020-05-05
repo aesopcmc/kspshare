@@ -4,8 +4,9 @@ import static cn.kspshare.mapper.TestUserDynamicSqlSupport.*;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
 import cn.kspshare.domain.TestUser;
+import java.util.Collection;
 import java.util.List;
-import javax.annotation.Generated;
+import java.util.Optional;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,41 +16,41 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
-import org.mybatis.dynamic.sql.SqlBuilder;
-import org.mybatis.dynamic.sql.delete.DeleteDSL;
-import org.mybatis.dynamic.sql.delete.MyBatis3DeleteModelAdapter;
+import org.mybatis.dynamic.sql.BasicColumn;
+import org.mybatis.dynamic.sql.delete.DeleteDSLCompleter;
 import org.mybatis.dynamic.sql.delete.render.DeleteStatementProvider;
 import org.mybatis.dynamic.sql.insert.render.InsertStatementProvider;
-import org.mybatis.dynamic.sql.render.RenderingStrategy;
-import org.mybatis.dynamic.sql.select.MyBatis3SelectModelAdapter;
-import org.mybatis.dynamic.sql.select.QueryExpressionDSL;
-import org.mybatis.dynamic.sql.select.SelectDSL;
+import org.mybatis.dynamic.sql.insert.render.MultiRowInsertStatementProvider;
+import org.mybatis.dynamic.sql.select.CountDSLCompleter;
+import org.mybatis.dynamic.sql.select.SelectDSLCompleter;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
-import org.mybatis.dynamic.sql.update.MyBatis3UpdateModelAdapter;
 import org.mybatis.dynamic.sql.update.UpdateDSL;
+import org.mybatis.dynamic.sql.update.UpdateDSLCompleter;
+import org.mybatis.dynamic.sql.update.UpdateModel;
 import org.mybatis.dynamic.sql.update.render.UpdateStatementProvider;
 import org.mybatis.dynamic.sql.util.SqlProviderAdapter;
+import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface TestUserMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
+    BasicColumn[] selectList = BasicColumn.columnList(tid, userName, age, gradeId);
+
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     long count(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
     @DeleteProvider(type=SqlProviderAdapter.class, method="delete")
     int delete(DeleteStatementProvider deleteStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
     @InsertProvider(type=SqlProviderAdapter.class, method="insert")
     int insert(InsertStatementProvider<TestUser> insertStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
+    @InsertProvider(type=SqlProviderAdapter.class, method="insertMultiple")
+    int insertMultiple(MultiRowInsertStatementProvider<TestUser> multipleInsertStatement);
+
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("TestUserResult")
-    TestUser selectOne(SelectStatementProvider selectStatement);
+    Optional<TestUser> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="TestUserResult", value = {
         @Result(column="tid", property="tid", jdbcType=JdbcType.BIGINT, id=true),
@@ -59,111 +60,101 @@ public interface TestUserMapper {
     })
     List<TestUser> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
     @UpdateProvider(type=SqlProviderAdapter.class, method="update")
     int update(UpdateStatementProvider updateStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
-    default QueryExpressionDSL<MyBatis3SelectModelAdapter<Long>> countByExample() {
-        return SelectDSL.selectWithMapper(this::count, SqlBuilder.count())
-                .from(testUser);
+    default long count(CountDSLCompleter completer) {
+        return MyBatis3Utils.countFrom(this::count, testUser, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
-    default DeleteDSL<MyBatis3DeleteModelAdapter<Integer>> deleteByExample() {
-        return DeleteDSL.deleteFromWithMapper(this::delete, testUser);
+    default int delete(DeleteDSLCompleter completer) {
+        return MyBatis3Utils.deleteFrom(this::delete, testUser, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
     default int deleteByPrimaryKey(Long tid_) {
-        return DeleteDSL.deleteFromWithMapper(this::delete, testUser)
-                .where(tid, isEqualTo(tid_))
-                .build()
-                .execute();
+        return delete(c -> 
+            c.where(tid, isEqualTo(tid_))
+        );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
     default int insert(TestUser record) {
-        return insert(SqlBuilder.insert(record)
-                .into(testUser)
-                .map(tid).toProperty("tid")
-                .map(userName).toProperty("userName")
-                .map(age).toProperty("age")
-                .map(gradeId).toProperty("gradeId")
-                .build()
-                .render(RenderingStrategy.MYBATIS3));
+        return MyBatis3Utils.insert(this::insert, record, testUser, c ->
+            c.map(tid).toProperty("tid")
+            .map(userName).toProperty("userName")
+            .map(age).toProperty("age")
+            .map(gradeId).toProperty("gradeId")
+        );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
+    default int insertMultiple(Collection<TestUser> records) {
+        return MyBatis3Utils.insertMultiple(this::insertMultiple, records, testUser, c ->
+            c.map(tid).toProperty("tid")
+            .map(userName).toProperty("userName")
+            .map(age).toProperty("age")
+            .map(gradeId).toProperty("gradeId")
+        );
+    }
+
     default int insertSelective(TestUser record) {
-        return insert(SqlBuilder.insert(record)
-                .into(testUser)
-                .map(tid).toPropertyWhenPresent("tid", record::getTid)
-                .map(userName).toPropertyWhenPresent("userName", record::getUserName)
-                .map(age).toPropertyWhenPresent("age", record::getAge)
-                .map(gradeId).toPropertyWhenPresent("gradeId", record::getGradeId)
-                .build()
-                .render(RenderingStrategy.MYBATIS3));
+        return MyBatis3Utils.insert(this::insert, record, testUser, c ->
+            c.map(tid).toPropertyWhenPresent("tid", record::getTid)
+            .map(userName).toPropertyWhenPresent("userName", record::getUserName)
+            .map(age).toPropertyWhenPresent("age", record::getAge)
+            .map(gradeId).toPropertyWhenPresent("gradeId", record::getGradeId)
+        );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
-    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<TestUser>>> selectByExample() {
-        return SelectDSL.selectWithMapper(this::selectMany, tid, userName, age, gradeId)
-                .from(testUser);
+    default Optional<TestUser> selectOne(SelectDSLCompleter completer) {
+        return MyBatis3Utils.selectOne(this::selectOne, selectList, testUser, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
-    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<TestUser>>> selectDistinctByExample() {
-        return SelectDSL.selectDistinctWithMapper(this::selectMany, tid, userName, age, gradeId)
-                .from(testUser);
+    default List<TestUser> select(SelectDSLCompleter completer) {
+        return MyBatis3Utils.selectList(this::selectMany, selectList, testUser, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
-    default TestUser selectByPrimaryKey(Long tid_) {
-        return SelectDSL.selectWithMapper(this::selectOne, tid, userName, age, gradeId)
-                .from(testUser)
-                .where(tid, isEqualTo(tid_))
-                .build()
-                .execute();
+    default List<TestUser> selectDistinct(SelectDSLCompleter completer) {
+        return MyBatis3Utils.selectDistinct(this::selectMany, selectList, testUser, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
-    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExample(TestUser record) {
-        return UpdateDSL.updateWithMapper(this::update, testUser)
-                .set(tid).equalTo(record::getTid)
+    default Optional<TestUser> selectByPrimaryKey(Long tid_) {
+        return selectOne(c ->
+            c.where(tid, isEqualTo(tid_))
+        );
+    }
+
+    default int update(UpdateDSLCompleter completer) {
+        return MyBatis3Utils.update(this::update, testUser, completer);
+    }
+
+    static UpdateDSL<UpdateModel> updateAllColumns(TestUser record, UpdateDSL<UpdateModel> dsl) {
+        return dsl.set(tid).equalTo(record::getTid)
                 .set(userName).equalTo(record::getUserName)
                 .set(age).equalTo(record::getAge)
                 .set(gradeId).equalTo(record::getGradeId);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
-    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExampleSelective(TestUser record) {
-        return UpdateDSL.updateWithMapper(this::update, testUser)
-                .set(tid).equalToWhenPresent(record::getTid)
+    static UpdateDSL<UpdateModel> updateSelectiveColumns(TestUser record, UpdateDSL<UpdateModel> dsl) {
+        return dsl.set(tid).equalToWhenPresent(record::getTid)
                 .set(userName).equalToWhenPresent(record::getUserName)
                 .set(age).equalToWhenPresent(record::getAge)
                 .set(gradeId).equalToWhenPresent(record::getGradeId);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
     default int updateByPrimaryKey(TestUser record) {
-        return UpdateDSL.updateWithMapper(this::update, testUser)
-                .set(userName).equalTo(record::getUserName)
-                .set(age).equalTo(record::getAge)
-                .set(gradeId).equalTo(record::getGradeId)
-                .where(tid, isEqualTo(record::getTid))
-                .build()
-                .execute();
+        return update(c ->
+            c.set(userName).equalTo(record::getUserName)
+            .set(age).equalTo(record::getAge)
+            .set(gradeId).equalTo(record::getGradeId)
+            .where(tid, isEqualTo(record::getTid))
+        );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_user")
     default int updateByPrimaryKeySelective(TestUser record) {
-        return UpdateDSL.updateWithMapper(this::update, testUser)
-                .set(userName).equalToWhenPresent(record::getUserName)
-                .set(age).equalToWhenPresent(record::getAge)
-                .set(gradeId).equalToWhenPresent(record::getGradeId)
-                .where(tid, isEqualTo(record::getTid))
-                .build()
-                .execute();
+        return update(c ->
+            c.set(userName).equalToWhenPresent(record::getUserName)
+            .set(age).equalToWhenPresent(record::getAge)
+            .set(gradeId).equalToWhenPresent(record::getGradeId)
+            .where(tid, isEqualTo(record::getTid))
+        );
     }
 }

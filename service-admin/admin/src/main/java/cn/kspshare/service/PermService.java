@@ -1,9 +1,8 @@
 package cn.kspshare.service;
 
 import cn.kspshare.common.restful.ResultBean;
-import cn.kspshare.domain.KspPerm;
+import cn.kspshare.domain.Perm;
 import cn.kspshare.dto.PermDto;
-import lombok.Data;
 
 import java.util.List;
 
@@ -14,7 +13,7 @@ public interface PermService {
      * @return
      */
     @Deprecated
-    List<KspPerm> listByRole(Long roleId);
+    List<Perm> listByRole(Long roleId);
 
     /**
      * 根据用户id查找权限列表 TODO 未完善

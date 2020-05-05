@@ -1,8 +1,8 @@
 package cn.kspshare.service;
 
-import cn.kspshare.common.restful.ResultBean;
-import cn.kspshare.domain.KspBbsSession;
+import cn.kspshare.domain.BbsSession;
 import cn.kspshare.dto.BaseSearchDto;
+import com.github.pagehelper.PageInfo;
 
 public interface BbsSessionService {
     /**
@@ -10,33 +10,33 @@ public interface BbsSessionService {
      * @param po
      * @return
      */
-    ResultBean add(KspBbsSession po);
+    int add(BbsSession po);
 
     /**
      * 修改
      * @param po
      * @return
      */
-    ResultBean update(KspBbsSession po);
+    int update(BbsSession po);
 
     /**
      * 删除
      * @param oid
      * @return
      */
-    ResultBean delete(Long oid);
+    int delete(Long oid);
 
     /**
      * 基本条件查询
      * @return
      * @param param
      */
-    ResultBean queryCondition(BaseSearchDto param);
+    PageInfo<BbsSession> queryCondition(BaseSearchDto param);
 
     /**
      * 根据名称查找
      * @param name
      * @return
      */
-    KspBbsSession queryByName(String name);
+    BbsSession queryByName(String name);
 }

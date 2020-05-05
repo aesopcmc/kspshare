@@ -1,6 +1,6 @@
 package cn.kspshare.event;
 
-import cn.kspshare.domain.KspMember;
+import cn.kspshare.domain.Member;
 import org.springframework.context.ApplicationEvent;
 
 import java.util.Locale;
@@ -8,9 +8,9 @@ import java.util.Locale;
 public class OnRegistrationCompleteEvent extends ApplicationEvent {
     private String appUrl;
     private Locale locale;
-    private KspMember user;
+    private Member user;
 
-    public OnRegistrationCompleteEvent(KspMember user, Locale locale, String appUrl) {
+    public OnRegistrationCompleteEvent(Member user, Locale locale, String appUrl) {
         super(user);
         this.user = user;
         this.locale = locale;
@@ -33,11 +33,11 @@ public class OnRegistrationCompleteEvent extends ApplicationEvent {
         this.locale = locale;
     }
 
-    public KspMember getUser() {
+    public Member getUser() {
         return user;
     }
 
-    public void setUser(KspMember user) {
+    public void setUser(Member user) {
         this.user = user;
     }
 }

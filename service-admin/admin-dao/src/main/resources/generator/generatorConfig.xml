@@ -8,7 +8,6 @@
 
     <!--targetRuntime: MyBatis3Simple-->
     <context id="Mysql" targetRuntime="MyBatis3DynamicSql" defaultModelType="flat">
-
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
         <!--配置是否使用通用 Mapper 自带的注释扩展，默认 true-->
@@ -24,12 +23,12 @@
         <!-- 生成Lombok支持的@Getter @Setter-->
         <plugin type="cn.aesop.generator.extend.plugin.UseLombokPlugin" />
 
-        <!--生成Service-->
-       <!-- <plugin type="cn.aesop.generator.extend.plugin.AddExtendServicePlugin">
-            <property name="baseDir" value="${basedir}"/>
-            <property name="targetProject" value="src/main/java"/>
-            <property name="targetPackage" value="cn.issuetracker.group.dao"/>
-        </plugin>-->
+        <!--生成Service、Controller-->
+        <plugin type="cn.aesop.generator.extend.plugin.AddExtendServicePlugin">
+            <property name="targetProject" value="temp_generator"/>
+            <property name="targetServicePackage" value="cn.kspshare.service"/>
+            <property name="targetControllerPackage" value="cn.kspshare.controller"/>
+        </plugin>
 
         <!--生成数据库注释、注解-->
         <commentGenerator type="cn.aesop.generator.extend.comment.MySQLCommentGenerator">
@@ -66,26 +65,29 @@
         </javaClientGenerator>
 
         <!-- 指定数据库表 -->
-        <table tableName="ksp_admin_user">
-            <!--<generatedKey column="tbId" sqlStatement="JDBC"/>-->
+        <!-- <table tableName="xxx">
+             <generatedKey column="tbId" sqlStatement="JDBC"/>
         </table>
+        -->
 
         <!--权限相关-->
-        <table tableName="ksp_perm">
+        <table tableName="admin_user">
         </table>
-        <table tableName="ksp_resource">
+        <table tableName="perm">
         </table>
-        <table tableName="ksp_role">
+        <table tableName="resource">
         </table>
-        <table tableName="ksp_role_perm_re">
+        <table tableName="role">
         </table>
-        <table tableName="ksp_user_role_re">
+        <table tableName="role_perm_re">
         </table>
-        <table tableName="ksp_user_perm_re">
+        <table tableName="user_role_re">
+        </table>
+        <table tableName="user_perm_re">
         </table>
 
         <!--论坛相关-->
-        <table tableName="ksp_bbs_%">
+        <table tableName="bbs_%">
         </table>
 
 

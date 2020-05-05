@@ -2,13 +2,13 @@ package cn.kspshare.service.impl;
 
 import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.constant.KspConstants;
-import cn.kspshare.domain.KspMember;
-import cn.kspshare.domain.KspVerificationToken;
+import cn.kspshare.domain.Member;
+import cn.kspshare.domain.VerificationToken;
 import cn.kspshare.dto.request.KspUserDto;
-import cn.kspshare.mapper.KspMemberDynamicSqlSupport;
-import cn.kspshare.mapper.KspMemberMapper;
-import cn.kspshare.mapper.KspVerificationTokenDynamicSqlSupport;
-import cn.kspshare.mapper.KspVerificationTokenMapper;
+import cn.kspshare.mapper.MemberDynamicSqlSupport;
+import cn.kspshare.mapper.MemberMapper;
+import cn.kspshare.mapper.VerificationTokenDynamicSqlSupport;
+import cn.kspshare.mapper.VerificationTokenMapper;
 import cn.kspshare.service.KspUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,41 +26,38 @@ public class KspUserServiceImpl implements KspUserService {
     @Autowired
     private KspConstants kspConstants;
     @Autowired
-    private KspMemberMapper userMapper;
+    private MemberMapper userMapper;
     @Autowired
-    private KspVerificationTokenMapper verifiMapper;
+    private VerificationTokenMapper verifiMapper;
 
     @Override
-    public KspMember getUser(Long userId) {
-        return userMapper.selectByPrimaryKey(userId);
+    public Member getUser(Long userId) {
+        return userMapper.selectByPrimaryKey(userId).get();
     }
 
     @Override
-    public KspMember findByUserName(String username) {
-        List<KspMember> list = userMapper.selectByExample().where(KspMemberDynamicSqlSupport.username, isEqualTo(username)).build().execute();
+    public Member findByUserName(String username) {
+        List<Member> list = userMapper.select(c-> c.where(MemberDynamicSqlSupport.username, isEqualTo(username)));
         return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }
 
     @Override
-    public KspMember findByEmail(String email) {
-        List<KspMember> list = userMapper.selectByExample().where(KspMemberDynamicSqlSupport.email, isEqualTo(email)).build().execute();
+    public Member findByEmail(String email) {
+        List<Member> list = userMapper.select(c-> c.where(MemberDynamicSqlSupport.email, isEqualTo(email)));
         return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }
 
     @Override
-    public KspMember findByUserNameOrEmail(String nameOrEmail) {
-        List<KspMember> list = userMapper.selectByExample()
-                .where(KspMemberDynamicSqlSupport.username, isEqualTo(nameOrEmail))
-                .or(KspMemberDynamicSqlSupport.email, isEqualTo(nameOrEmail))
-                .build()
-                .execute();
+    public Member findByUserNameOrEmail(String nameOrEmail) {
+        List<Member> list = userMapper.select(c-> c.where(MemberDynamicSqlSupport.username, isEqualTo(nameOrEmail))
+                .or(MemberDynamicSqlSupport.email, isEqualTo(nameOrEmail)));
         return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }
 
     @Override
     @Transactional
-    public KspMember doRegister(KspUserDto dto) {
-        KspMember kspUser = new KspMember();
+    public Member doRegister(KspUserDto dto) {
+        Member kspUser = new Member();
         kspUser.setOid(IDGenerator.id());
         kspUser.setUsername(dto.getUsername());
         String password = new BCryptPasswordEncoder().encode(dto.getPassword());//使用spring security密码加密
@@ -74,14 +71,14 @@ public class KspUserServiceImpl implements KspUserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int updateUser(KspMember user) {
+    public int updateUser(Member user) {
         return userMapper.updateByPrimaryKeySelective(user);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void createVerificationToken(KspMember user, String token) {
-        KspVerificationToken verToken = new KspVerificationToken();
+    public void createVerificationToken(Member user, String token) {
+        VerificationToken verToken = new VerificationToken();
         verToken.setOid(IDGenerator.id());
         verToken.setToken(token);
         verToken.setUserId(user.getOid());
@@ -90,8 +87,8 @@ public class KspUserServiceImpl implements KspUserService {
     }
 
     @Override
-    public KspVerificationToken findVerificationToken(String token) {
-        List<KspVerificationToken> list = verifiMapper.selectByExample().where(KspVerificationTokenDynamicSqlSupport.token, isEqualTo(token)).build().execute();
+    public VerificationToken findVerificationToken(String token) {
+        List<VerificationToken> list = verifiMapper.select(c-> c.where(VerificationTokenDynamicSqlSupport.token, isEqualTo(token)));
         return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }
 

@@ -1,7 +1,7 @@
 package cn.kspshare.service;
 
 import cn.kspshare.common.restful.ResultBean;
-import cn.kspshare.domain.KspRole;
+import cn.kspshare.domain.Role;
 import cn.kspshare.dto.KspRoleDto;
 
 import java.util.List;
@@ -33,12 +33,12 @@ public interface RoleService {
      * @param code
      * @return
      */
-    KspRole findByCode(String code);
+    Role findByCode(String code);
 
     /**
      * 根据用户查找角色列表
      * @param userId
      * @return
      */
-    List<KspRole> listByAdminUserId(Long userId);
+    List<Role> listByAdminUserId(Long userId);
 }

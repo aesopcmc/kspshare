@@ -23,12 +23,12 @@ public class TestUserServiceImpl implements TestUserService {
     private TestUserDao testUserDao;
 
     public TestUser findById(Long id){
-        return testUserMapper.selectByPrimaryKey(id);
+        return testUserMapper.selectByPrimaryKey(id).get();
     }
 
     @Override
     public List<TestUser> list() {
-        List<TestUser> list = testUserMapper.selectByExample().build().execute();
+        List<TestUser> list = testUserMapper.select(c->c);
         return list;
         /*
         多条件查询

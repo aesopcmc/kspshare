@@ -5,8 +5,8 @@ import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.dto.KspRoleDto;
 import cn.kspshare.mapper.*;
 import cn.kspshare.service.RoleService;
-import cn.kspshare.domain.KspRole;
-import cn.kspshare.domain.KspUserRoleRe;
+import cn.kspshare.domain.Role;
+import cn.kspshare.domain.UserRoleRe;
 import org.mybatis.dynamic.sql.SqlBuilder;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,27 +27,27 @@ import static org.mybatis.dynamic.sql.SqlBuilder.*;
 public class RoleServiceImpl implements RoleService {
 
     @Autowired
-    private KspRoleMapper kspRoleMapper;
+    private RoleMapper kspRoleMapper;
 
     @Autowired
-    private KspUserRoleReMapper userRoleReMapper;
+    private UserRoleReMapper userRoleReMapper;
 
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean add(KspRoleDto dto) {
         //验证角色编码唯一性
-        KspRole exist = this.findByCode(dto.getCode());
+        Role exist = this.findByCode(dto.getCode());
         if(exist!=null) {
             return ResultBean.FAIL("该角色编码已被使用！");
         }
 
         //获取父编码link
         Long parentId = dto.getParentId();
-        Optional<KspRole> kspRole = kspRoleMapper.selectByPrimaryKey(parentId);
+        Optional<Role> kspRole = kspRoleMapper.selectByPrimaryKey(parentId);
         AtomicReference<String> codeLink = new AtomicReference<>(null);
         kspRole.ifPresent(k-> codeLink.set(codeLink.get()+"-"+k.getCodeLink()));
 
-        KspRole domain = new KspRole();
+        Role domain = new Role();
         BeanUtils.copyProperties(dto, domain);
         domain.setOid(IDGenerator.id());
         domain.setCodeLink(codeLink.get());
@@ -60,12 +60,12 @@ public class RoleServiceImpl implements RoleService {
     @Transactional(rollbackFor = Exception.class )
     public ResultBean update(KspRoleDto dto, Long oid) {
         //验证角色编码唯一性
-        KspRole exist = this.findByCode(dto.getCode());
+        Role exist = this.findByCode(dto.getCode());
         if(exist!=null && !exist.getCode().equals(dto.getCode())) {
             return ResultBean.FAIL("该角色编码已被使用！");
         }
 
-        KspRole updateRecord = new KspRole();
+        Role updateRecord = new Role();
         BeanUtils.copyProperties(dto, updateRecord);
         updateRecord.setOid(oid);
         updateRecord.setUpdateTime(LocalDateTime.now());
@@ -77,8 +77,8 @@ public class RoleServiceImpl implements RoleService {
     @Transactional(rollbackFor = Exception.class )
     public ResultBean delete(Long oid) {
         //删除子级
-        KspRole kspRole = kspRoleMapper.selectByPrimaryKey(oid).get();
-        kspRoleMapper.delete(c->c.where(KspRoleDynamicSqlSupport.codeLink, SqlBuilder.isLike(kspRole.getCode())));
+        Role kspRole = kspRoleMapper.selectByPrimaryKey(oid).get();
+        kspRoleMapper.delete(c->c.where(RoleDynamicSqlSupport.codeLink, SqlBuilder.isLike(kspRole.getCode())));
 
         //删除自身
         kspRoleMapper.deleteByPrimaryKey(oid);
@@ -86,29 +86,29 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public KspRole findByCode(String code) {
-        Optional<KspRole> kspRole = kspRoleMapper.selectOne(c ->
-                c.where(KspRoleDynamicSqlSupport.code, SqlBuilder.isEqualTo(code)));
+    public Role findByCode(String code) {
+        Optional<Role> kspRole = kspRoleMapper.selectOne(c ->
+                c.where(RoleDynamicSqlSupport.code, SqlBuilder.isEqualTo(code)));
         return kspRole.get();
     }
 
     @Override
-    public List<KspRole> listByAdminUserId(Long userId) {
-        List<KspUserRoleRe> userRoleReList = userRoleReMapper.select(c->
-                c.where(KspUserRoleReDynamicSqlSupport.userId, isEqualTo(userId)));
+    public List<Role> listByAdminUserId(Long userId) {
+        List<UserRoleRe> userRoleReList = userRoleReMapper.select(c->
+                c.where(UserRoleReDynamicSqlSupport.userId, isEqualTo(userId)));
 
         if(CollectionUtils.isEmpty(userRoleReList)) {
             return new ArrayList<>();
         }
-        List<Long> roleIds = userRoleReList.stream().map(KspUserRoleRe::getRoleId).collect(Collectors.toList());
-        List<KspRole> roleList = kspRoleMapper.select(c ->
-                c.where(KspRoleDynamicSqlSupport.oid, isIn(roleIds)));
+        List<Long> roleIds = userRoleReList.stream().map(UserRoleRe::getRoleId).collect(Collectors.toList());
+        List<Role> roleList = kspRoleMapper.select(c ->
+                c.where(RoleDynamicSqlSupport.oid, isIn(roleIds)));
 
         return roleList;
     }
 
     // private void findByCode(Long oid, String code) {
-    //     KspRole exist = this.findByCode(code);
+    //     Role exist = this.findByCode(code);
     //     if(exist!=null && !exist.getOid().equals(oid)) {
     //         throw new KspException("该资源编码已被使用!");
     //     }

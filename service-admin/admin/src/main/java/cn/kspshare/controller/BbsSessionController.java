@@ -4,9 +4,10 @@ import cn.kspshare.annotation.UserLoginToken;
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.config.userinfo.UserInfo;
 import cn.kspshare.config.userinfo.UserInfoManager;
-import cn.kspshare.domain.KspBbsSession;
+import cn.kspshare.domain.BbsSession;
 import cn.kspshare.dto.BaseSearchDto;
 import cn.kspshare.service.BbsSessionService;
+import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -15,9 +16,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@ResponseBody
-@Slf4j
 @UserLoginToken
+@Slf4j
 @Api(tags = "论坛版块管理")
 public class BbsSessionController {
     @Autowired
@@ -33,10 +33,11 @@ public class BbsSessionController {
      */
     @ApiOperation("添加")
     @PostMapping("/bbs/session")
-    public ResultBean add(@RequestBody KspBbsSession po) {
+    public ResultBean add(@RequestBody BbsSession po) {
         UserInfo userInfo = userInfoManager.getUserInfo();
         po.setCreateUser(userInfo.getOid());
-        return bbsSessionService.add(po);
+        bbsSessionService.add(po);
+        return ResultBean.SUCCESS();
     }
 
     /**
@@ -46,10 +47,11 @@ public class BbsSessionController {
      */
     @ApiOperation("更新")
     @PutMapping(value = "/bbs/session")
-    public ResultBean update(@RequestBody @Validated KspBbsSession po) {
+    public ResultBean update(@RequestBody @Validated BbsSession po) {
         UserInfo userInfo = userInfoManager.getUserInfo();
-        po.setCreateUser(userInfo.getOid());
-        return bbsSessionService.update(po);
+        po.setUpdateUser(userInfo.getOid());
+        bbsSessionService.update(po);
+        return ResultBean.SUCCESS();
     }
 
     /**
@@ -60,7 +62,8 @@ public class BbsSessionController {
     @ApiOperation("删除")
     @DeleteMapping("/bbs/session/{oid}")
     public ResultBean delete(@PathVariable Long oid) {
-        return bbsSessionService.delete(oid);
+        bbsSessionService.delete(oid);
+        return ResultBean.SUCCESS();
     }
 
     /**
@@ -70,7 +73,7 @@ public class BbsSessionController {
     @ApiOperation("查询")
     @GetMapping("/bbs/session")
     public ResultBean queryCondition(BaseSearchDto param) {
-        return bbsSessionService.queryCondition(param);
+        PageInfo<BbsSession> pageInfo = bbsSessionService.queryCondition(param);
+        return ResultBean.SUCCESS(pageInfo);
     }
-
 }

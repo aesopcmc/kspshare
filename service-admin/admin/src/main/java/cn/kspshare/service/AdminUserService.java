@@ -1,6 +1,6 @@
 package cn.kspshare.service;
 
-import cn.kspshare.domain.KspAdminUser;
+import cn.kspshare.domain.AdminUser;
 import cn.kspshare.dto.KspAdminUserDto;
 import cn.kspshare.dto.KspAdminUserListConditionDto;
 import cn.kspshare.common.restful.ResultBean;
@@ -32,14 +32,14 @@ public interface AdminUserService {
      * @param oid
      * @return
      */
-    KspAdminUser queryById(Long oid);
+    AdminUser queryById(Long oid);
 
     /**
      * 用户名查找
      * @param username
      * @return
      */
-    KspAdminUser queryByUsername(String username);
+    AdminUser queryByUsername(String username);
 
     /**
      * 组合条件查询

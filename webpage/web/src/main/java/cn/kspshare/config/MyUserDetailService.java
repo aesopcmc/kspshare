@@ -1,6 +1,6 @@
 package cn.kspshare.config;
 
-import cn.kspshare.domain.KspMember;
+import cn.kspshare.domain.Member;
 import cn.kspshare.service.KspUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -23,7 +23,7 @@ public class MyUserDetailService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        KspMember userEntity = userService.findByUserNameOrEmail(username);
+        Member userEntity = userService.findByUserNameOrEmail(username);
         if (userEntity == null){
             throw new UsernameNotFoundException("用户不存在！");
         }

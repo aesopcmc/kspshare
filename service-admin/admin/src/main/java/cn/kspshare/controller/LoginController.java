@@ -4,10 +4,9 @@ import cn.kspshare.annotation.UserLoginToken;
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.config.userinfo.UserInfo;
 import cn.kspshare.config.userinfo.UserInfoManager;
-import cn.kspshare.domain.KspAdminUser;
+import cn.kspshare.domain.AdminUser;
 import cn.kspshare.service.AdminUserService;
 import cn.kspshare.utils.JwtTokenUtils;
-import com.alibaba.fastjson.JSON;
 import io.swagger.annotations.Api;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +39,7 @@ public class LoginController {
             return ResultBean.MISSING_PARAMETERS();
         }
 
-        KspAdminUser userForBase = adminUserService.queryByUsername(dto.getUsername());
+        AdminUser userForBase = adminUserService.queryByUsername(dto.getUsername());
         if(userForBase==null){
             return ResultBean.FAIL("登录失败,用户不存在！");
         }

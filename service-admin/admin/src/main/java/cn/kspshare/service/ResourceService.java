@@ -1,7 +1,7 @@
 package cn.kspshare.service;
 
 import cn.kspshare.common.restful.ResultBean;
-import cn.kspshare.domain.KspResource;
+import cn.kspshare.domain.Resource;
 import cn.kspshare.dto.KspResourceDto;
 
 /**
@@ -41,5 +41,5 @@ public interface ResourceService {
      * @param code 资源编码
      * @return
      */
-    KspResource findByCode(String code);
+    Resource findByCode(String code);
 }

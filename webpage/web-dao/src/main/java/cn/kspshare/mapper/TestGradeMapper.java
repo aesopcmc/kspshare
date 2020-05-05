@@ -4,8 +4,9 @@ import static cn.kspshare.mapper.TestGradeDynamicSqlSupport.*;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
 import cn.kspshare.domain.TestGrade;
+import java.util.Collection;
 import java.util.List;
-import javax.annotation.Generated;
+import java.util.Optional;
 import org.apache.ibatis.annotations.DeleteProvider;
 import org.apache.ibatis.annotations.InsertProvider;
 import org.apache.ibatis.annotations.Mapper;
@@ -15,41 +16,41 @@ import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
-import org.mybatis.dynamic.sql.SqlBuilder;
-import org.mybatis.dynamic.sql.delete.DeleteDSL;
-import org.mybatis.dynamic.sql.delete.MyBatis3DeleteModelAdapter;
+import org.mybatis.dynamic.sql.BasicColumn;
+import org.mybatis.dynamic.sql.delete.DeleteDSLCompleter;
 import org.mybatis.dynamic.sql.delete.render.DeleteStatementProvider;
 import org.mybatis.dynamic.sql.insert.render.InsertStatementProvider;
-import org.mybatis.dynamic.sql.render.RenderingStrategy;
-import org.mybatis.dynamic.sql.select.MyBatis3SelectModelAdapter;
-import org.mybatis.dynamic.sql.select.QueryExpressionDSL;
-import org.mybatis.dynamic.sql.select.SelectDSL;
+import org.mybatis.dynamic.sql.insert.render.MultiRowInsertStatementProvider;
+import org.mybatis.dynamic.sql.select.CountDSLCompleter;
+import org.mybatis.dynamic.sql.select.SelectDSLCompleter;
 import org.mybatis.dynamic.sql.select.render.SelectStatementProvider;
-import org.mybatis.dynamic.sql.update.MyBatis3UpdateModelAdapter;
 import org.mybatis.dynamic.sql.update.UpdateDSL;
+import org.mybatis.dynamic.sql.update.UpdateDSLCompleter;
+import org.mybatis.dynamic.sql.update.UpdateModel;
 import org.mybatis.dynamic.sql.update.render.UpdateStatementProvider;
 import org.mybatis.dynamic.sql.util.SqlProviderAdapter;
+import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface TestGradeMapper {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
+    BasicColumn[] selectList = BasicColumn.columnList(tid, gradeName, gradeCode, level);
+
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     long count(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
     @DeleteProvider(type=SqlProviderAdapter.class, method="delete")
     int delete(DeleteStatementProvider deleteStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
     @InsertProvider(type=SqlProviderAdapter.class, method="insert")
     int insert(InsertStatementProvider<TestGrade> insertStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
+    @InsertProvider(type=SqlProviderAdapter.class, method="insertMultiple")
+    int insertMultiple(MultiRowInsertStatementProvider<TestGrade> multipleInsertStatement);
+
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @ResultMap("TestGradeResult")
-    TestGrade selectOne(SelectStatementProvider selectStatement);
+    Optional<TestGrade> selectOne(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="TestGradeResult", value = {
         @Result(column="tid", property="tid", jdbcType=JdbcType.BIGINT, id=true),
@@ -59,111 +60,101 @@ public interface TestGradeMapper {
     })
     List<TestGrade> selectMany(SelectStatementProvider selectStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
     @UpdateProvider(type=SqlProviderAdapter.class, method="update")
     int update(UpdateStatementProvider updateStatement);
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
-    default QueryExpressionDSL<MyBatis3SelectModelAdapter<Long>> countByExample() {
-        return SelectDSL.selectWithMapper(this::count, SqlBuilder.count())
-                .from(testGrade);
+    default long count(CountDSLCompleter completer) {
+        return MyBatis3Utils.countFrom(this::count, testGrade, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
-    default DeleteDSL<MyBatis3DeleteModelAdapter<Integer>> deleteByExample() {
-        return DeleteDSL.deleteFromWithMapper(this::delete, testGrade);
+    default int delete(DeleteDSLCompleter completer) {
+        return MyBatis3Utils.deleteFrom(this::delete, testGrade, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
     default int deleteByPrimaryKey(Long tid_) {
-        return DeleteDSL.deleteFromWithMapper(this::delete, testGrade)
-                .where(tid, isEqualTo(tid_))
-                .build()
-                .execute();
+        return delete(c -> 
+            c.where(tid, isEqualTo(tid_))
+        );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
     default int insert(TestGrade record) {
-        return insert(SqlBuilder.insert(record)
-                .into(testGrade)
-                .map(tid).toProperty("tid")
-                .map(gradeName).toProperty("gradeName")
-                .map(gradeCode).toProperty("gradeCode")
-                .map(level).toProperty("level")
-                .build()
-                .render(RenderingStrategy.MYBATIS3));
+        return MyBatis3Utils.insert(this::insert, record, testGrade, c ->
+            c.map(tid).toProperty("tid")
+            .map(gradeName).toProperty("gradeName")
+            .map(gradeCode).toProperty("gradeCode")
+            .map(level).toProperty("level")
+        );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
+    default int insertMultiple(Collection<TestGrade> records) {
+        return MyBatis3Utils.insertMultiple(this::insertMultiple, records, testGrade, c ->
+            c.map(tid).toProperty("tid")
+            .map(gradeName).toProperty("gradeName")
+            .map(gradeCode).toProperty("gradeCode")
+            .map(level).toProperty("level")
+        );
+    }
+
     default int insertSelective(TestGrade record) {
-        return insert(SqlBuilder.insert(record)
-                .into(testGrade)
-                .map(tid).toPropertyWhenPresent("tid", record::getTid)
-                .map(gradeName).toPropertyWhenPresent("gradeName", record::getGradeName)
-                .map(gradeCode).toPropertyWhenPresent("gradeCode", record::getGradeCode)
-                .map(level).toPropertyWhenPresent("level", record::getLevel)
-                .build()
-                .render(RenderingStrategy.MYBATIS3));
+        return MyBatis3Utils.insert(this::insert, record, testGrade, c ->
+            c.map(tid).toPropertyWhenPresent("tid", record::getTid)
+            .map(gradeName).toPropertyWhenPresent("gradeName", record::getGradeName)
+            .map(gradeCode).toPropertyWhenPresent("gradeCode", record::getGradeCode)
+            .map(level).toPropertyWhenPresent("level", record::getLevel)
+        );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
-    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<TestGrade>>> selectByExample() {
-        return SelectDSL.selectWithMapper(this::selectMany, tid, gradeName, gradeCode, level)
-                .from(testGrade);
+    default Optional<TestGrade> selectOne(SelectDSLCompleter completer) {
+        return MyBatis3Utils.selectOne(this::selectOne, selectList, testGrade, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
-    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<TestGrade>>> selectDistinctByExample() {
-        return SelectDSL.selectDistinctWithMapper(this::selectMany, tid, gradeName, gradeCode, level)
-                .from(testGrade);
+    default List<TestGrade> select(SelectDSLCompleter completer) {
+        return MyBatis3Utils.selectList(this::selectMany, selectList, testGrade, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
-    default TestGrade selectByPrimaryKey(Long tid_) {
-        return SelectDSL.selectWithMapper(this::selectOne, tid, gradeName, gradeCode, level)
-                .from(testGrade)
-                .where(tid, isEqualTo(tid_))
-                .build()
-                .execute();
+    default List<TestGrade> selectDistinct(SelectDSLCompleter completer) {
+        return MyBatis3Utils.selectDistinct(this::selectMany, selectList, testGrade, completer);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
-    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExample(TestGrade record) {
-        return UpdateDSL.updateWithMapper(this::update, testGrade)
-                .set(tid).equalTo(record::getTid)
+    default Optional<TestGrade> selectByPrimaryKey(Long tid_) {
+        return selectOne(c ->
+            c.where(tid, isEqualTo(tid_))
+        );
+    }
+
+    default int update(UpdateDSLCompleter completer) {
+        return MyBatis3Utils.update(this::update, testGrade, completer);
+    }
+
+    static UpdateDSL<UpdateModel> updateAllColumns(TestGrade record, UpdateDSL<UpdateModel> dsl) {
+        return dsl.set(tid).equalTo(record::getTid)
                 .set(gradeName).equalTo(record::getGradeName)
                 .set(gradeCode).equalTo(record::getGradeCode)
                 .set(level).equalTo(record::getLevel);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
-    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExampleSelective(TestGrade record) {
-        return UpdateDSL.updateWithMapper(this::update, testGrade)
-                .set(tid).equalToWhenPresent(record::getTid)
+    static UpdateDSL<UpdateModel> updateSelectiveColumns(TestGrade record, UpdateDSL<UpdateModel> dsl) {
+        return dsl.set(tid).equalToWhenPresent(record::getTid)
                 .set(gradeName).equalToWhenPresent(record::getGradeName)
                 .set(gradeCode).equalToWhenPresent(record::getGradeCode)
                 .set(level).equalToWhenPresent(record::getLevel);
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
     default int updateByPrimaryKey(TestGrade record) {
-        return UpdateDSL.updateWithMapper(this::update, testGrade)
-                .set(gradeName).equalTo(record::getGradeName)
-                .set(gradeCode).equalTo(record::getGradeCode)
-                .set(level).equalTo(record::getLevel)
-                .where(tid, isEqualTo(record::getTid))
-                .build()
-                .execute();
+        return update(c ->
+            c.set(gradeName).equalTo(record::getGradeName)
+            .set(gradeCode).equalTo(record::getGradeCode)
+            .set(level).equalTo(record::getLevel)
+            .where(tid, isEqualTo(record::getTid))
+        );
     }
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
     default int updateByPrimaryKeySelective(TestGrade record) {
-        return UpdateDSL.updateWithMapper(this::update, testGrade)
-                .set(gradeName).equalToWhenPresent(record::getGradeName)
-                .set(gradeCode).equalToWhenPresent(record::getGradeCode)
-                .set(level).equalToWhenPresent(record::getLevel)
-                .where(tid, isEqualTo(record::getTid))
-                .build()
-                .execute();
+        return update(c ->
+            c.set(gradeName).equalToWhenPresent(record::getGradeName)
+            .set(gradeCode).equalToWhenPresent(record::getGradeCode)
+            .set(level).equalToWhenPresent(record::getLevel)
+            .where(tid, isEqualTo(record::getTid))
+        );
     }
 }

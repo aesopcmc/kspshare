@@ -1,7 +1,7 @@
 package cn.kspshare.controller;
 
-import cn.kspshare.domain.KspMember;
-import cn.kspshare.domain.KspVerificationToken;
+import cn.kspshare.domain.Member;
+import cn.kspshare.domain.VerificationToken;
 import cn.kspshare.dto.request.KspUserDto;
 import cn.kspshare.event.OnRegistrationCompleteEvent;
 import cn.kspshare.service.KspUserService;
@@ -74,7 +74,7 @@ public class HomeController {
             return "user_register";
         }
 
-        KspMember kspUser = userService.doRegister(user);
+        Member kspUser = userService.doRegister(user);
         if (kspUser!=null) {
             try {
                 String appUrl = request.getContextPath();
@@ -95,12 +95,12 @@ public class HomeController {
     @GetMapping(value = "/registrationConfirm")
     public String confirmRegistration(WebRequest request, Model model, @RequestParam String token) throws UnsupportedEncodingException {
 
-        KspVerificationToken verificationToken = userService.findVerificationToken(token);
+        VerificationToken verificationToken = userService.findVerificationToken(token);
         if (verificationToken == null) {
             return "redirect:/message?type=info&message="+URLEncoder.encode("邮箱验证失败", "UTF-8");
         }
 
-        KspMember user = userService.getUser(verificationToken.getUserId());
+        Member user = userService.getUser(verificationToken.getUserId());
         if (LocalDateTime.now().isAfter(verificationToken.getExpiryDate())) {
             return "redirect:/message?type=info&message="+URLEncoder.encode("邮箱验证失败，链接已失效，请重新 <a href='/register'>注册</a>", "UTF-8");
         }

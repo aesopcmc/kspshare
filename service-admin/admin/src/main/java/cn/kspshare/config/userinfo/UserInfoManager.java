@@ -1,7 +1,7 @@
 package cn.kspshare.config.userinfo;
 
 import cn.kspshare.config.RedisUtils;
-import cn.kspshare.domain.KspAdminUser;
+import cn.kspshare.domain.AdminUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class UserInfoManager {
     @Autowired
     RedisUtils redisUtils;
 
-    public void setUserInfoToRedis(String token, KspAdminUser user) {
+    public void setUserInfoToRedis(String token, AdminUser user) {
         UserInfo userInfo = new UserInfo();
         BeanUtils.copyProperties(user, userInfo);
         if(user.getOid()==1) {

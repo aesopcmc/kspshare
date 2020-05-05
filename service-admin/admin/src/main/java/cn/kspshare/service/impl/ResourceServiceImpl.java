@@ -4,10 +4,10 @@ import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.common.tree.BaseTreeNode;
 import cn.kspshare.common.tree.TreeNodeUtils;
-import cn.kspshare.domain.KspResource;
+import cn.kspshare.domain.Resource;
 import cn.kspshare.dto.KspResourceDto;
-import cn.kspshare.mapper.KspResourceDynamicSqlSupport;
-import cn.kspshare.mapper.KspResourceMapper;
+import cn.kspshare.mapper.ResourceDynamicSqlSupport;
+import cn.kspshare.mapper.ResourceMapper;
 import cn.kspshare.service.ResourceService;
 import org.mybatis.dynamic.sql.SqlBuilder;
 import org.springframework.beans.BeanUtils;
@@ -27,25 +27,25 @@ import java.util.concurrent.atomic.AtomicReference;
 @Service
 public class ResourceServiceImpl implements ResourceService {
     @Autowired
-    private KspResourceMapper kspResourceMapper;
+    private ResourceMapper kspResourceMapper;
 
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean add(KspResourceDto dto) {
         //验证资源编码唯一性
-        KspResource exist = this.findByCode(dto.getCode());
+        Resource exist = this.findByCode(dto.getCode());
         if(exist!=null){
             return ResultBean.FAIL("该资源编码已被使用！");
         }
 
         //获取父编码link
         Long parentId = dto.getParentId();
-        Optional<KspResource> kspResource = kspResourceMapper.selectByPrimaryKey(parentId);
+        Optional<Resource> kspResource = kspResourceMapper.selectByPrimaryKey(parentId);
 
         AtomicReference<String> codeLink = new AtomicReference<>(null);
         kspResource.ifPresent(k-> codeLink.set(codeLink.get()+"-"+k.getCodeLink()));
 
-        KspResource domain = new KspResource();
+        Resource domain = new Resource();
         BeanUtils.copyProperties(dto, domain);
         domain.setOid(IDGenerator.id());
         domain.setResourceType(dto.getResourceType().getCode());
@@ -58,12 +58,12 @@ public class ResourceServiceImpl implements ResourceService {
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean update(KspResourceDto dto) {
-        KspResource exist = this.findByCode(dto.getCode());
+        Resource exist = this.findByCode(dto.getCode());
         if(exist!=null && !exist.getOid().equals(dto.getOid())) {
             return ResultBean.FAIL("该资源编码已被使用！");
         }
 
-        KspResource updateRecord = new KspResource();
+        Resource updateRecord = new Resource();
         BeanUtils.copyProperties(dto, updateRecord);
         updateRecord.setUpdateTime(LocalDateTime.now());
         kspResourceMapper.updateByPrimaryKeySelective(updateRecord);
@@ -75,8 +75,8 @@ public class ResourceServiceImpl implements ResourceService {
     @Transactional(rollbackFor = Exception.class)
     public ResultBean delete(Long oid) {
         //删除子级
-        KspResource kspResource = kspResourceMapper.selectByPrimaryKey(oid).get();
-        kspResourceMapper.delete(c->c.where(KspResourceDynamicSqlSupport.codeLink, SqlBuilder.isLike(kspResource.getCode())));
+        Resource kspResource = kspResourceMapper.selectByPrimaryKey(oid).get();
+        kspResourceMapper.delete(c->c.where(ResourceDynamicSqlSupport.codeLink, SqlBuilder.isLike(kspResource.getCode())));
 
         //删除自身
         kspResourceMapper.deleteByPrimaryKey(oid);
@@ -88,16 +88,16 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public ResultBean treeList() {
-        List<KspResource> list = kspResourceMapper.select(c -> c);
-        List<BaseTreeNode<KspResource, Long>> treeList =
+        List<Resource> list = kspResourceMapper.select(c -> c);
+        List<BaseTreeNode<Resource, Long>> treeList =
                 TreeNodeUtils.getTreeList(list, po -> new BaseTreeNode<>(po, po.getOid(), po.getParentId()));
         return ResultBean.SUCCESS(treeList);
     }
 
     @Override
-    public KspResource findByCode(String code) {
-        Optional<KspResource> kspResource = kspResourceMapper.selectOne(c ->
-                c.where(KspResourceDynamicSqlSupport.code, SqlBuilder.isEqualTo(code)));
+    public Resource findByCode(String code) {
+        Optional<Resource> kspResource = kspResourceMapper.selectOne(c ->
+                c.where(ResourceDynamicSqlSupport.code, SqlBuilder.isEqualTo(code)));
         return kspResource.get();
     }
 

@@ -5,7 +5,7 @@ import cn.kspshare.annotation.PassToken;
 import cn.kspshare.annotation.UserLoginToken;
 import cn.kspshare.config.RedisUtils;
 import cn.kspshare.config.userinfo.UserInfoManager;
-import cn.kspshare.domain.KspAdminUser;
+import cn.kspshare.domain.AdminUser;
 import cn.kspshare.service.AdminUserService;
 import cn.kspshare.utils.JwtTokenUtils;
 import cn.kspshare.config.userinfo.UserInfo;
@@ -113,7 +113,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             checkToken(token, secret);
         }else {
             //用户信息不存在，从数据库读取，验证token信息，存入redis
-            KspAdminUser user = userService.queryById(Long.valueOf(userId));
+            AdminUser user = userService.queryById(Long.valueOf(userId));
             if (user == null) {
                 throw new RuntimeException("用户不存在，请重新登录");
             }

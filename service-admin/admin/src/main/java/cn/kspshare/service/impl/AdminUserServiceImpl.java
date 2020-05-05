@@ -4,11 +4,11 @@ import cn.kspshare.common.CommonUtils;
 import cn.kspshare.common.id.IDGenerator;
 import cn.kspshare.dto.KspAdminUserDto;
 import cn.kspshare.dto.KspAdminUserListConditionDto;
-import cn.kspshare.mapper.KspAdminUserDynamicSqlSupport;
+import cn.kspshare.mapper.AdminUserDynamicSqlSupport;
 import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.service.AdminUserService;
-import cn.kspshare.domain.KspAdminUser;
-import cn.kspshare.mapper.KspAdminUserMapper;
+import cn.kspshare.domain.AdminUser;
+import cn.kspshare.mapper.AdminUserMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.mybatis.dynamic.sql.SqlBuilder;
@@ -32,17 +32,17 @@ import static org.mybatis.dynamic.sql.SqlBuilder.*;
 @Service
 public class AdminUserServiceImpl implements AdminUserService {
     @Autowired
-    private KspAdminUserMapper adminUserMapper;
+    private AdminUserMapper adminUserMapper;
 
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean add(KspAdminUserDto dto) {
-        KspAdminUser exist = this.queryByUsername(dto.getUsername());
+        AdminUser exist = this.queryByUsername(dto.getUsername());
         if(exist!=null) {
             return ResultBean.FAIL("用户名已存在！");
         }
 
-        KspAdminUser domain = new KspAdminUser();
+        AdminUser domain = new AdminUser();
         BeanUtils.copyProperties(dto, domain);
         domain.setOid(IDGenerator.id());
         //设置初始密码
@@ -54,12 +54,12 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean update(KspAdminUserDto dto) {
-        KspAdminUser exist = this.queryByUsername(dto.getUsername());
+        AdminUser exist = this.queryByUsername(dto.getUsername());
         if(exist!=null && !exist.getOid().equals(dto.getOid())) {
             return ResultBean.FAIL("用户名已存在！");
         }
 
-        KspAdminUser updateRecord = new KspAdminUser();
+        AdminUser updateRecord = new AdminUser();
         BeanUtils.copyProperties(dto, updateRecord);
         updateRecord.setUpdateTime(LocalDateTime.now());
         adminUserMapper.updateByPrimaryKeySelective(updateRecord);
@@ -76,13 +76,13 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     @Override
-    public KspAdminUser queryById(Long oid) {
+    public AdminUser queryById(Long oid) {
         //TOdo 处理selectOne报错问题
 
         // Optional<KspAdminUser> kspAdminUser = adminUserMapper.selectOne(c -> c.where(KspAdminUserDynamicSqlSupport.oid, isEqualTo(oid)));
         // Optional<KspAdminUser> kspAdminUser = adminUserMapper.selectByPrimaryKey(oid);
 
-        List<KspAdminUser> select = adminUserMapper.select(c -> c.where(KspAdminUserDynamicSqlSupport.oid, isEqualTo(oid)));
+        List<AdminUser> select = adminUserMapper.select(c -> c.where(AdminUserDynamicSqlSupport.oid, isEqualTo(oid)));
         return select.get(0);
         // return kspAdminUser.orElse(null);
     }
@@ -92,41 +92,41 @@ public class AdminUserServiceImpl implements AdminUserService {
 
         //复杂组合条件查询
         QueryExpressionDSL<SelectModel>.QueryExpressionWhereBuilder builder = select(
-                KspAdminUserDynamicSqlSupport.oid,
-                KspAdminUserDynamicSqlSupport.username,
-                KspAdminUserDynamicSqlSupport.realname,
-                KspAdminUserDynamicSqlSupport.gender,
-                KspAdminUserDynamicSqlSupport.email,
-                KspAdminUserDynamicSqlSupport.enabled,
-                KspAdminUserDynamicSqlSupport.createTime,
-                KspAdminUserDynamicSqlSupport.createUser)
-                .from(KspAdminUserDynamicSqlSupport.kspAdminUser)
+                AdminUserDynamicSqlSupport.oid,
+                AdminUserDynamicSqlSupport.username,
+                AdminUserDynamicSqlSupport.realname,
+                AdminUserDynamicSqlSupport.gender,
+                AdminUserDynamicSqlSupport.email,
+                AdminUserDynamicSqlSupport.enabled,
+                AdminUserDynamicSqlSupport.createTime,
+                AdminUserDynamicSqlSupport.createUser)
+                .from(AdminUserDynamicSqlSupport.adminUser)
                 .where();
         if(!CommonUtils.isEmpty(dto.getUserNameOrRealNameOrEmail())) {
-            builder.and(KspAdminUserDynamicSqlSupport.username, isLike("%" + dto.getUserNameOrRealNameOrEmail() + "%"),
-                    or(KspAdminUserDynamicSqlSupport.realname, isLike("%" + dto.getUserNameOrRealNameOrEmail() + "%")),
-                    or(KspAdminUserDynamicSqlSupport.email, isLike("%" + dto.getUserNameOrRealNameOrEmail() + "%")));
+            builder.and(AdminUserDynamicSqlSupport.username, isLike("%" + dto.getUserNameOrRealNameOrEmail() + "%"),
+                    or(AdminUserDynamicSqlSupport.realname, isLike("%" + dto.getUserNameOrRealNameOrEmail() + "%")),
+                    or(AdminUserDynamicSqlSupport.email, isLike("%" + dto.getUserNameOrRealNameOrEmail() + "%")));
         }
         if(dto.getGender()!=null) {
-            builder.and(KspAdminUserDynamicSqlSupport.gender, isEqualTo(dto.getGender()));
+            builder.and(AdminUserDynamicSqlSupport.gender, isEqualTo(dto.getGender()));
         }
         if(dto.getEnabled()!=null) {
-            builder.and(KspAdminUserDynamicSqlSupport.enabled, isEqualTo(dto.getEnabled()));
+            builder.and(AdminUserDynamicSqlSupport.enabled, isEqualTo(dto.getEnabled()));
         }
-        builder.orderBy(KspAdminUserDynamicSqlSupport.createTime.descending());//descending()降序排序，没有这个默认升序
+        builder.orderBy(AdminUserDynamicSqlSupport.createTime.descending());//descending()降序排序，没有这个默认升序
 
         SelectStatementProvider render = builder.build().render(RenderingStrategies.MYBATIS3);
 
         PageHelper.startPage(dto.getPageNum(), dto.getPageSize());
-        List<KspAdminUser> list = adminUserMapper.selectMany(render);
-        PageInfo<KspAdminUser> pageInfo = new PageInfo<>(list);
+        List<AdminUser> list = adminUserMapper.selectMany(render);
+        PageInfo<AdminUser> pageInfo = new PageInfo<>(list);
 
         return ResultBean.SUCCESS(pageInfo);
     }
 
     @Override
-    public KspAdminUser queryByUsername(String username) {
-        List<KspAdminUser> list = adminUserMapper.select(c -> c.where(KspAdminUserDynamicSqlSupport.username, isEqualTo(username)));
+    public AdminUser queryByUsername(String username) {
+        List<AdminUser> list = adminUserMapper.select(c -> c.where(AdminUserDynamicSqlSupport.username, isEqualTo(username)));
         return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }
 

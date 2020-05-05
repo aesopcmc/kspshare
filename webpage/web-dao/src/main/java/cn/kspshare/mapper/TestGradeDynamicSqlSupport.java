@@ -1,27 +1,36 @@
 package cn.kspshare.mapper;
 
 import java.sql.JDBCType;
-import javax.annotation.Generated;
 import org.mybatis.dynamic.sql.SqlColumn;
 import org.mybatis.dynamic.sql.SqlTable;
 
 public final class TestGradeDynamicSqlSupport {
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
     public static final TestGrade testGrade = new TestGrade();
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: test_grade.tid")
+    /**
+     * 
+     * tid
+     */
     public static final SqlColumn<Long> tid = testGrade.tid;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: test_grade.grade_name")
+    /**
+     * 
+     * grade_name
+     */
     public static final SqlColumn<String> gradeName = testGrade.gradeName;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: test_grade.grade_code")
+    /**
+     * 
+     * grade_code
+     */
     public static final SqlColumn<String> gradeCode = testGrade.gradeCode;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source field: test_grade.level")
+    /**
+     * 
+     * level
+     */
     public static final SqlColumn<Integer> level = testGrade.level;
 
-    @Generated(value="org.mybatis.generator.api.MyBatisGenerator", comments="Source Table: test_grade")
     public static final class TestGrade extends SqlTable {
         public final SqlColumn<Long> tid = column("tid", JDBCType.BIGINT);
 

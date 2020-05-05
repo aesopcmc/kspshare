@@ -6,9 +6,9 @@ import cn.kspshare.dto.PermDto;
 import cn.kspshare.mapper.*;
 import cn.kspshare.service.PermService;
 import cn.kspshare.service.RoleService;
-import cn.kspshare.domain.KspPerm;
-import cn.kspshare.domain.KspRole;
-import cn.kspshare.domain.KspRolePermRe;
+import cn.kspshare.domain.Perm;
+import cn.kspshare.domain.Role;
+import cn.kspshare.domain.RolePermRe;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,22 +25,22 @@ import static org.mybatis.dynamic.sql.SqlBuilder.*;
 @Service
 public class PermServiceImpl implements PermService {
     @Autowired
-    private KspRolePermReMapper rolePermReMapper;
+    private RolePermReMapper rolePermReMapper;
     @Autowired
-    private KspPermMapper permMapper;
+    private PermMapper permMapper;
     @Autowired
     private RoleService roleService;
     @Autowired
     private PermService permService;
 
     @Override
-    public List<KspPerm> listByRole(Long roleId) {
-        List<KspRolePermRe> rolePermReList = rolePermReMapper.select( c ->
-                c.where(KspRolePermReDynamicSqlSupport.roleId, isEqualTo(roleId)));
+    public List<Perm> listByRole(Long roleId) {
+        List<RolePermRe> rolePermReList = rolePermReMapper.select( c ->
+                c.where(RolePermReDynamicSqlSupport.roleId, isEqualTo(roleId)));
 
-        List<Long> permIds = rolePermReList.stream().map(KspRolePermRe::getPermId).collect(Collectors.toList());
-        List<KspPerm> permList = permMapper.select(c ->
-                c.where(KspPermDynamicSqlSupport.oid, isIn(permIds)));
+        List<Long> permIds = rolePermReList.stream().map(RolePermRe::getPermId).collect(Collectors.toList());
+        List<Perm> permList = permMapper.select(c ->
+                c.where(PermDynamicSqlSupport.oid, isIn(permIds)));
         return permList;
     }
 
@@ -48,12 +48,12 @@ public class PermServiceImpl implements PermService {
     public List<String> listByUser(Long userId) {
         List<String> perm = new ArrayList<>();
         //查找角色
-        List<KspRole> roleList = roleService.listByAdminUserId(userId);
+        List<Role> roleList = roleService.listByAdminUserId(userId);
         //TODO 此处查询可能会有重复的权限
-        for (KspRole kspRole : roleList) {
+        for (Role kspRole : roleList) {
             //查找权限
-            List<KspPerm> permList = permService.listByRole(kspRole.getOid());
-            for (KspPerm kspPerm : permList) {
+            List<Perm> permList = permService.listByRole(kspRole.getOid());
+            for (Perm kspPerm : permList) {
                 perm.add(kspPerm.getCode());
             }
         }
@@ -63,12 +63,11 @@ public class PermServiceImpl implements PermService {
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean add(PermDto dto) {
-        KspPerm exist = this.findByPermCode(dto.getCode());
+        Perm exist = this.findByPermCode(dto.getCode());
         if(exist!=null) {
             return ResultBean.FAIL("权限编码已存在！");
         }
-
-        KspPerm domain = new KspPerm();
+        Perm domain = new Perm();
         BeanUtils.copyProperties(dto, domain);
         domain.setOid(IDGenerator.id());
         permMapper.insertSelective(domain);
@@ -78,12 +77,12 @@ public class PermServiceImpl implements PermService {
     @Override
     @Transactional(rollbackFor = Exception.class )
     public ResultBean update(PermDto dto, Long oid) {
-        KspPerm exist = this.findByPermCode(dto.getCode());
+        Perm exist = this.findByPermCode(dto.getCode());
         if(exist!=null && !exist.getOid().equals(oid)) {
             return ResultBean.FAIL("用户名已存在！");
         }
 
-        KspPerm updateRecord = new KspPerm();
+        Perm updateRecord = new Perm();
         BeanUtils.copyProperties(dto, updateRecord);
         updateRecord.setOid(oid);
         updateRecord.setUpdateTime(LocalDateTime.now());
@@ -101,7 +100,7 @@ public class PermServiceImpl implements PermService {
 
     @Override
     public ResultBean listByResource(Long resourceId) {
-        List<KspPerm> list = permMapper.select(c -> c.where(KspPermDynamicSqlSupport.resourceId, isEqualTo(resourceId)));
+        List<Perm> list = permMapper.select(c -> c.where(PermDynamicSqlSupport.resourceId, isEqualTo(resourceId)));
         return ResultBean.SUCCESS(list);
     }
 
@@ -110,8 +109,8 @@ public class PermServiceImpl implements PermService {
      * @param code 权限编码
      * @return
      */
-    private KspPerm findByPermCode(String code) {
-        List<KspPerm> list = permMapper.select(c -> c.where(KspPermDynamicSqlSupport.code, isEqualTo(code)));
+    private Perm findByPermCode(String code) {
+        List<Perm> list = permMapper.select(c -> c.where(PermDynamicSqlSupport.code, isEqualTo(code)));
         return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }
 }

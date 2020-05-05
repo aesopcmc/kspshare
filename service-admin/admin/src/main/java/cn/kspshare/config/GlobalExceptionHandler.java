@@ -38,7 +38,8 @@ public class GlobalExceptionHandler {
     @ResponseBody
     public ResultBean handleException(Exception ex) {
         log.error("捕获到全局异常", ex);
-        return ResultBean.SERVER_EXCEPTION();
+        // return ResultBean.SERVER_EXCEPTION();
+        return ResultBean.FAIL(ex.getMessage());
     }
 
 

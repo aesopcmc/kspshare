@@ -22,6 +22,13 @@
         <!-- 生成Lombok支持的@Getter @Setter-->
         <plugin type="cn.aesop.generator.extend.plugin.UseLombokPlugin" />
 
+        <!--生成Service、Controller-->
+        <plugin type="cn.aesop.generator.extend.plugin.AddExtendServicePlugin">
+            <property name="targetProject" value="temp_generator"/>
+            <property name="targetServicePackage" value="cn.kspshare.service"/>
+            <property name="targetControllerPackage" value="cn.kspshare.controller"/>
+        </plugin>
+
         <!--生成数据库注释、注解-->
         <commentGenerator type="cn.aesop.generator.extend.comment.MySQLCommentGenerator">
             <property name="addRemarkComments" value="true"/>
@@ -30,11 +37,12 @@
 
         <!--数据库连接的信息：驱动类、连接地址、用户名、密码 ，注意参数：tinyInt1isBit=false表示tinyint类型的字段会对应生成Byte-->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://mysql57.rdsmz60przasm9w.rds.bj.baidubce.com:3306/ksp?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;tinyInt1isBit=false"
-                        userId="aesop"
-                        password="aesop_123">
+                        connectionURL="jdbc:mysql://localhost:3306/ksp?useSSL=false&amp;useUnicode=true&amp;characterEncoding=utf8&amp;tinyInt1isBit=false"
+                        userId="root"
+                        password="root">
+            <!--设置为true 才能显示类注释-->
+            <property name="useInformationSchema" value="true" />
         </jdbcConnection>
-
 
         <!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer，为 true时把JDBC DECIMAL 和
             NUMERIC 类型解析为java.math.BigDecimal -->
@@ -59,8 +67,9 @@
         <table tableName="test_%">
         </table>
 
-        <table tableName="ksp_member">
-            <!--<generatedKey column="tbId" sqlStatement="JDBC"/>-->
+        <table tableName="member">
+        </table>
+        <table tableName="verification_token">
         </table>
         <!--<table tableName="test_%">-->
             <!--&lt;!&ndash;原样匹配数据库字段，不使用驼峰&ndash;&gt;-->

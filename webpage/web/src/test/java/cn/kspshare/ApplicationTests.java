@@ -1,10 +1,10 @@
 package cn.kspshare;
 
 import cn.kspshare.common.id.IDGenerator;
-import cn.kspshare.domain.KspMember;
+import cn.kspshare.domain.Member;
 import cn.kspshare.domain.TestUser;
-import cn.kspshare.mapper.KspMemberDynamicSqlSupport;
-import cn.kspshare.mapper.KspMemberMapper;
+import cn.kspshare.mapper.MemberDynamicSqlSupport;
+import cn.kspshare.mapper.MemberMapper;
 import cn.kspshare.mapper.TestUserMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,7 +30,7 @@ public class ApplicationTests {
     @Autowired
     private TestUserMapper userMapper;
     @Autowired
-    private KspMemberMapper kspUserMapper;
+    private MemberMapper kspUserMapper;
 
     @Test
     public void test(){
@@ -66,19 +66,18 @@ public class ApplicationTests {
 
     @Test
     public void test3(){
-        Long execute = kspUserMapper.countByExample().build().execute();
+        Long execute = kspUserMapper.count(c->c);
         System.out.println("总数量"+execute);
 
-        List<KspMember> allList = kspUserMapper.selectByExample().build().execute();
+        List<Member> allList = kspUserMapper.select(c->c);
         System.out.println(111);
 
         //模糊查询
-        List<KspMember> conditionList = kspUserMapper.selectByExample()
-                .where(KspMemberDynamicSqlSupport.username, isLike("%chao%"))
-                .and(KspMemberDynamicSqlSupport.nickname, isLike("超%"))
+        List<Member> conditionList = kspUserMapper.select(c->
+                c.where(MemberDynamicSqlSupport.username, isLike("%chao%"))
+                .and(MemberDynamicSqlSupport.nickname, isLike("超%"))
                 //.orderBy(KspMemberDynamicSqlSupport.email)
-                .build()
-                .execute();
+        );
         conditionList.forEach(po-> System.out.println(po.toString()));
     }
 

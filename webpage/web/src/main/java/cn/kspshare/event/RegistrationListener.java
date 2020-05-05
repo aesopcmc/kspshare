@@ -1,7 +1,7 @@
 package cn.kspshare.event;
 
 import cn.kspshare.constant.KspConstants;
-import cn.kspshare.domain.KspMember;
+import cn.kspshare.domain.Member;
 import cn.kspshare.mail.EmailService;
 import cn.kspshare.service.KspUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class RegistrationListener implements ApplicationListener<OnRegistrationC
     }
 
     private void confirmRegistration(OnRegistrationCompleteEvent event) {
-        KspMember user = event.getUser();
+        Member user = event.getUser();
         String token = UUID.randomUUID().toString();
         this.userService.createVerificationToken(user, token);
 
