@@ -71,4 +71,9 @@ public class BbsSessionServiceImpl implements BbsSessionService {
         List<BbsSession> select = mapper.select(c -> c.where(BbsSessionDynamicSqlSupport.name, SqlBuilder.isEqualTo(name)));
         return CollectionUtils.isEmpty(select) ? null : select.get(0);
     }
+
+    @Override
+    public List<BbsSession> select() {
+        return mapper.select(c -> c);
+    }
 }

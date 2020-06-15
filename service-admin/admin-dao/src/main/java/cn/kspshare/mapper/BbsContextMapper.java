@@ -33,7 +33,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface BbsContextMapper {
-    BasicColumn[] selectList = BasicColumn.columnList(oid, themeId, contextType, profile, auditStatus, createTime, createUser, updateTime, updateUser, context);
+    BasicColumn[] selectList = BasicColumn.columnList(oid, themeId, contextType, profile, auditStatus, createTime, createUser, updateTime, updateUser, publishStatus, author, context);
 
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     long count(SelectStatementProvider selectStatement);
@@ -62,6 +62,8 @@ public interface BbsContextMapper {
         @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="update_user", property="updateUser", jdbcType=JdbcType.BIGINT),
+        @Result(column="publish_status", property="publishStatus", jdbcType=JdbcType.TINYINT),
+        @Result(column="author", property="author", jdbcType=JdbcType.BIGINT),
         @Result(column="context", property="context", jdbcType=JdbcType.LONGVARCHAR)
     })
     List<BbsContext> selectMany(SelectStatementProvider selectStatement);
@@ -94,6 +96,8 @@ public interface BbsContextMapper {
             .map(createUser).toProperty("createUser")
             .map(updateTime).toProperty("updateTime")
             .map(updateUser).toProperty("updateUser")
+            .map(publishStatus).toProperty("publishStatus")
+            .map(author).toProperty("author")
             .map(context).toProperty("context")
         );
     }
@@ -109,6 +113,8 @@ public interface BbsContextMapper {
             .map(createUser).toProperty("createUser")
             .map(updateTime).toProperty("updateTime")
             .map(updateUser).toProperty("updateUser")
+            .map(publishStatus).toProperty("publishStatus")
+            .map(author).toProperty("author")
             .map(context).toProperty("context")
         );
     }
@@ -124,6 +130,8 @@ public interface BbsContextMapper {
             .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
             .map(updateTime).toPropertyWhenPresent("updateTime", record::getUpdateTime)
             .map(updateUser).toPropertyWhenPresent("updateUser", record::getUpdateUser)
+            .map(publishStatus).toPropertyWhenPresent("publishStatus", record::getPublishStatus)
+            .map(author).toPropertyWhenPresent("author", record::getAuthor)
             .map(context).toPropertyWhenPresent("context", record::getContext)
         );
     }
@@ -160,6 +168,8 @@ public interface BbsContextMapper {
                 .set(createUser).equalTo(record::getCreateUser)
                 .set(updateTime).equalTo(record::getUpdateTime)
                 .set(updateUser).equalTo(record::getUpdateUser)
+                .set(publishStatus).equalTo(record::getPublishStatus)
+                .set(author).equalTo(record::getAuthor)
                 .set(context).equalTo(record::getContext);
     }
 
@@ -173,6 +183,8 @@ public interface BbsContextMapper {
                 .set(createUser).equalToWhenPresent(record::getCreateUser)
                 .set(updateTime).equalToWhenPresent(record::getUpdateTime)
                 .set(updateUser).equalToWhenPresent(record::getUpdateUser)
+                .set(publishStatus).equalToWhenPresent(record::getPublishStatus)
+                .set(author).equalToWhenPresent(record::getAuthor)
                 .set(context).equalToWhenPresent(record::getContext);
     }
 
@@ -186,6 +198,8 @@ public interface BbsContextMapper {
             .set(createUser).equalTo(record::getCreateUser)
             .set(updateTime).equalTo(record::getUpdateTime)
             .set(updateUser).equalTo(record::getUpdateUser)
+            .set(publishStatus).equalTo(record::getPublishStatus)
+            .set(author).equalTo(record::getAuthor)
             .set(context).equalTo(record::getContext)
             .where(oid, isEqualTo(record::getOid))
         );
@@ -201,6 +215,8 @@ public interface BbsContextMapper {
             .set(createUser).equalToWhenPresent(record::getCreateUser)
             .set(updateTime).equalToWhenPresent(record::getUpdateTime)
             .set(updateUser).equalToWhenPresent(record::getUpdateUser)
+            .set(publishStatus).equalToWhenPresent(record::getPublishStatus)
+            .set(author).equalToWhenPresent(record::getAuthor)
             .set(context).equalToWhenPresent(record::getContext)
             .where(oid, isEqualTo(record::getOid))
         );

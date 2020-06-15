@@ -1,9 +1,11 @@
 package cn.kspshare.common.tree;
 
-import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
+
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -187,7 +189,7 @@ public class TreeNodeUtils {
         // 循环赋值最上面的节点数据
         // 赋值最上面节点的值
         List<T> newTreeNodes = listNodes.stream()
-                .filter(t -> StringUtils.isEmpty(t.getParentId()) || "0".equals(t.getParentId().toString()))
+                .filter(t -> StringUtils.isBlank(t.getParentId().toString()) || "0".equals(t.getParentId().toString()))
                 .collect(Collectors.toList());
         // 循环处理子节点数据
         for (T t : newTreeNodes) {

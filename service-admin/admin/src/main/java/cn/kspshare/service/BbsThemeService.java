@@ -1,6 +1,9 @@
 package cn.kspshare.service;
 
 import cn.kspshare.domain.BbsTheme;
+import cn.kspshare.dto.CreateArticleDto;
+import cn.kspshare.vo.ArticleVO;
+import cn.kspshare.vo.ListArticleVO;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -37,5 +40,19 @@ public interface BbsThemeService {
      * @param pageSize 每页显示数量
      * @return
      */
-    PageInfo<BbsTheme> queryCondition(int pageNum, int pageSize);
+    PageInfo<ListArticleVO> listArticle(int pageNum, int pageSize);
+
+    /**
+     * 创建文章
+     * @param dto
+     * @return
+     */
+    int createOrUpdateArticle(CreateArticleDto dto);
+
+    /**
+     * 查看文章详情
+     * @param articleId
+     * @return
+     */
+    ArticleVO getArticle(Long articleId);
 }

@@ -1,6 +1,7 @@
 package cn.kspshare.common;
 
-import org.springframework.util.StringUtils;
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 公共方法

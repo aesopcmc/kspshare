@@ -345,6 +345,7 @@ public class AddExtendServicePlugin extends PluginAdapter {
 
         //添加接口方法1
         Method method1 = new Method("add");
+        method1.addAnnotation("@Override");
         method1.addAnnotation("@Transactional(rollbackFor = Exception.class)");
         method1.setVisibility(JavaVisibility.PUBLIC);
         method1.setReturnType(new FullyQualifiedJavaType("int"));
@@ -363,6 +364,8 @@ public class AddExtendServicePlugin extends PluginAdapter {
 
         //添加接口方法2
         Method method2 = new Method("update");
+
+        method2.addAnnotation("@Override");
         method2.addAnnotation("@Transactional(rollbackFor = Exception.class)");
         method2.setVisibility(JavaVisibility.PUBLIC);
         method2.setReturnType(new FullyQualifiedJavaType("int"));
@@ -383,6 +386,7 @@ public class AddExtendServicePlugin extends PluginAdapter {
 
         //添加接口方法3
         Method method3 = new Method("delete");
+        method3.addAnnotation("@Override");
         method3.addAnnotation("@Transactional(rollbackFor = Exception.class)");
         method3.setVisibility(JavaVisibility.PUBLIC);
         method3.setReturnType(new FullyQualifiedJavaType("int"));
@@ -397,6 +401,7 @@ public class AddExtendServicePlugin extends PluginAdapter {
 
         //添加接口方法4
         Method method4 = new Method("queryCondition");
+        method4.addAnnotation("@Override");
         method4.setVisibility(JavaVisibility.PUBLIC);
         method4.setReturnType(new FullyQualifiedJavaType("PageInfo<"+domainObjectName+">"));
         method4.addParameter(new Parameter(new FullyQualifiedJavaType("int"), "pageNum"));

@@ -4,6 +4,8 @@ import cn.kspshare.domain.BbsSession;
 import cn.kspshare.dto.BaseSearchDto;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 public interface BbsSessionService {
     /**
      * 添加
@@ -39,4 +41,11 @@ public interface BbsSessionService {
      * @return
      */
     BbsSession queryByName(String name);
+
+    /**
+     * 查找下拉列表
+     * @return
+     */
+    List<BbsSession> select();
+
 }

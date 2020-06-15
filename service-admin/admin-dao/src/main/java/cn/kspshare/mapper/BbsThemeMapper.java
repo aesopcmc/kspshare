@@ -33,7 +33,7 @@ import org.mybatis.dynamic.sql.util.mybatis3.MyBatis3Utils;
 
 @Mapper
 public interface BbsThemeMapper {
-    BasicColumn[] selectList = BasicColumn.columnList(oid, title, profile, sessionId, replyCount, lastReplyUser, lastReplyTime, createTime, createUser, updateTime, updateUser);
+    BasicColumn[] selectList = BasicColumn.columnList(oid, title, profile, sessionId, replyCount, lastReplyUser, lastReplyTime, createTime, createUser, updateTime, updateUser, author);
 
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     long count(SelectStatementProvider selectStatement);
@@ -63,7 +63,8 @@ public interface BbsThemeMapper {
         @Result(column="create_time", property="createTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="create_user", property="createUser", jdbcType=JdbcType.BIGINT),
         @Result(column="update_time", property="updateTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="update_user", property="updateUser", jdbcType=JdbcType.BIGINT)
+        @Result(column="update_user", property="updateUser", jdbcType=JdbcType.BIGINT),
+        @Result(column="author", property="author", jdbcType=JdbcType.BIGINT)
     })
     List<BbsTheme> selectMany(SelectStatementProvider selectStatement);
 
@@ -97,6 +98,7 @@ public interface BbsThemeMapper {
             .map(createUser).toProperty("createUser")
             .map(updateTime).toProperty("updateTime")
             .map(updateUser).toProperty("updateUser")
+            .map(author).toProperty("author")
         );
     }
 
@@ -113,6 +115,7 @@ public interface BbsThemeMapper {
             .map(createUser).toProperty("createUser")
             .map(updateTime).toProperty("updateTime")
             .map(updateUser).toProperty("updateUser")
+            .map(author).toProperty("author")
         );
     }
 
@@ -129,6 +132,7 @@ public interface BbsThemeMapper {
             .map(createUser).toPropertyWhenPresent("createUser", record::getCreateUser)
             .map(updateTime).toPropertyWhenPresent("updateTime", record::getUpdateTime)
             .map(updateUser).toPropertyWhenPresent("updateUser", record::getUpdateUser)
+            .map(author).toPropertyWhenPresent("author", record::getAuthor)
         );
     }
 
@@ -165,7 +169,8 @@ public interface BbsThemeMapper {
                 .set(createTime).equalTo(record::getCreateTime)
                 .set(createUser).equalTo(record::getCreateUser)
                 .set(updateTime).equalTo(record::getUpdateTime)
-                .set(updateUser).equalTo(record::getUpdateUser);
+                .set(updateUser).equalTo(record::getUpdateUser)
+                .set(author).equalTo(record::getAuthor);
     }
 
     static UpdateDSL<UpdateModel> updateSelectiveColumns(BbsTheme record, UpdateDSL<UpdateModel> dsl) {
@@ -179,7 +184,8 @@ public interface BbsThemeMapper {
                 .set(createTime).equalToWhenPresent(record::getCreateTime)
                 .set(createUser).equalToWhenPresent(record::getCreateUser)
                 .set(updateTime).equalToWhenPresent(record::getUpdateTime)
-                .set(updateUser).equalToWhenPresent(record::getUpdateUser);
+                .set(updateUser).equalToWhenPresent(record::getUpdateUser)
+                .set(author).equalToWhenPresent(record::getAuthor);
     }
 
     default int updateByPrimaryKey(BbsTheme record) {
@@ -194,6 +200,7 @@ public interface BbsThemeMapper {
             .set(createUser).equalTo(record::getCreateUser)
             .set(updateTime).equalTo(record::getUpdateTime)
             .set(updateUser).equalTo(record::getUpdateUser)
+            .set(author).equalTo(record::getAuthor)
             .where(oid, isEqualTo(record::getOid))
         );
     }
@@ -210,6 +217,7 @@ public interface BbsThemeMapper {
             .set(createUser).equalToWhenPresent(record::getCreateUser)
             .set(updateTime).equalToWhenPresent(record::getUpdateTime)
             .set(updateUser).equalToWhenPresent(record::getUpdateUser)
+            .set(author).equalToWhenPresent(record::getAuthor)
             .where(oid, isEqualTo(record::getOid))
         );
     }

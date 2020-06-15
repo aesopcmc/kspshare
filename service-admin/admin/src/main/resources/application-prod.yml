@@ -1,1 +1,96 @@
+#端口
+server:
+  port: 8080
 
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  ## 数据源配置
+  datasource:
+    # url: jdbc:mysql://database-1.cooqisuipb9g.us-east-1.rds.amazonaws.com:3306/ksp?useSSL=false&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://mysql5.7:3306/ksp?useSSL=false&useUnicode=true&characterEncoding=utf8
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    # Druid连接池配置 配置属性详解参考官方：https://github.com/alibaba/druid/wiki/DruidDataSource%E9%85%8D%E7%BD%AE%E5%B1%9E%E6%80%A7%E5%88%97%E8%A1%A8
+    # 监控页面配置可参考：https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_StatViewServlet%E9%85%8D%E7%BD%AE
+    druid:
+      initial-size: 8
+      min-idle: 1
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runsMillis: 60000
+      min-evictable-idle-timeMillis: 300000
+      validation-query: select 'x' FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+      max-pool-prepared-statement-per-connection-size: 20
+      filters: stat
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      use-global-data-source-stat: true
+
+  #静态资源配置
+  resources:
+    static-locations: classpath:/static/
+
+  #热部署生效
+  devtools:
+    restart:
+      enabled: false #TODO 暂时关闭
+      #设置重启的目录
+      additional-paths: src/main/java
+      #classpath目录下的WEB-INF文件夹内容修改不重启
+      #exclude: WEB-INF/**
+
+  #邮件配置
+  mail:
+    host: smtp.163.com
+    username: chao_c_c@163.com
+    password: chao123
+    port: 465
+    protocol: smtp
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.ssl.enable: true
+
+  #redis配置
+  redis:
+    host: some-redis
+    port: 6379
+    password:
+    database: 0
+    # 连接超时时间（毫秒）
+    # timeout: 36000ms
+    # Redis默认情况下有16个分片，这里配置具体使用的分片，默认是0
+    # 连接池最大连接数（使用负值表示没有限制） 默认 8
+    # Lettuce 是一个可伸缩线程安全的 Redis 客户端，多个线程可以共享同一个 RedisConnection，它利用优秀 netty NIO 框架来高效地管理多个连接
+    # Lettuce 说明https://www.cnblogs.com/throwable/p/11601538.html
+#    lettuce:
+#      pool:
+#        max-active: 8
+#        # 连接池最大阻塞等待时间（使用负值表示没有限制） 默认 -1
+#        max-wait: -1ms
+#        # 连接池中的最大空闲连接 默认 8
+#        max-idle: 8
+#        # 连接池中的最小空闲连接 默认 0
+#        min-idle: 0
+
+## mybatis配置
+mybatis:
+  typeAliasesPackage: cn.kspshare.domain #实体类包路径
+  mapperLocations: classpath:mapper/*.xml
+
+#SQL打印 level下面指定mybatis对应的方法接口所在的包
+logging:
+  level:
+    cn.kspshare.dao : debug
+    cn.kspshare.mapper : debug
+
+#自定义配置
+ksp:
+  #token失效时长，单位：秒，86400表示1天
+  jwtExpiredSecend: 86400

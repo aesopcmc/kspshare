@@ -12,13 +12,6 @@
     <artifactId>web-dao</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <!--<dependencies>-->
-    <!--    <dependency>-->
-    <!--        <groupId>cn.kspshare</groupId>-->
-    <!--        <artifactId>common</artifactId>-->
-    <!--        <version>0.0.1-SNAPSHOT</version>-->
-    <!--    </dependency>-->
-    <!--</dependencies>-->
     <build>
         <resources>
             <!-- 指定xml资源文件（为了加载mybatis 自定义的xml） -->

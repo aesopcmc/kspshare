@@ -63,6 +63,18 @@ public final class BbsContextDynamicSqlSupport {
     public static final SqlColumn<Long> updateUser = bbsContext.updateUser;
 
     /**
+     * 发布状态 1已发布 0存草稿未发布
+     * publish_status
+     */
+    public static final SqlColumn<Byte> publishStatus = bbsContext.publishStatus;
+
+    /**
+     * 作者ID
+     * author
+     */
+    public static final SqlColumn<Long> author = bbsContext.author;
+
+    /**
      * 评论内容
      * context
      */
@@ -86,6 +98,10 @@ public final class BbsContextDynamicSqlSupport {
         public final SqlColumn<LocalDateTime> updateTime = column("update_time", JDBCType.TIMESTAMP);
 
         public final SqlColumn<Long> updateUser = column("update_user", JDBCType.BIGINT);
+
+        public final SqlColumn<Byte> publishStatus = column("publish_status", JDBCType.TINYINT);
+
+        public final SqlColumn<Long> author = column("author", JDBCType.BIGINT);
 
         public final SqlColumn<String> context = column("context", JDBCType.LONGVARCHAR);
 

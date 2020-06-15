@@ -1,27 +1,27 @@
 /*
  Navicat MySQL Data Transfer
 
- Source Server         : 百度智能云
+ Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 50726
- Source Host           : mysql57.rdsmz60przasm9w.rds.bj.baidubce.com:3306
+ Source Server Version : 50722
+ Source Host           : localhost:3306
  Source Schema         : ksp
 
  Target Server Type    : MySQL
- Target Server Version : 50726
+ Target Server Version : 50722
  File Encoding         : 65001
 
- Date: 15/01/2020 10:03:39
+ Date: 15/06/2020 23:26:44
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for ksp_admin_user
+-- Table structure for admin_user
 -- ----------------------------
-DROP TABLE IF EXISTS `ksp_admin_user`;
-CREATE TABLE `ksp_admin_user`  (
+DROP TABLE IF EXISTS `admin_user`;
+CREATE TABLE `admin_user`  (
   `oid` bigint(20) NOT NULL COMMENT '主键',
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '用户登录名',
   `realname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '用户真实姓名',
@@ -38,21 +38,108 @@ CREATE TABLE `ksp_admin_user`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '后台管理用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of ksp_admin_user
+-- Records of admin_user
 -- ----------------------------
-INSERT INTO `ksp_admin_user` VALUES (1, 'super', '超级管理员', '$2a$10$dw5ynSm6JDrkVDpwrWOG8OpMlSZxtLHpt2scgcyui574IxxbSodr2', 0, NULL, 1, '2019-12-18 15:53:20', 0, '2019-12-24 12:05:46');
-INSERT INTO `ksp_admin_user` VALUES (2, 'test2', '测试2', '', 1, 'chao_c_c@163.com', 1, '2019-12-18 18:14:50', NULL, '2020-01-12 22:32:09');
-INSERT INTO `ksp_admin_user` VALUES (3, 'test9', '测试3', '', 0, NULL, 1, '2019-12-18 18:15:49', NULL, '2019-12-24 17:27:15');
-INSERT INTO `ksp_admin_user` VALUES (666007671261888512, '老狗1', '灌灌灌灌', '$2a$10$OtdrhIy6cE3XgLPKcJSs/O.6lsUJXSaQwf8UffxSXXmMkLzI0m.Nu', 0, '', 1, '2020-01-12 19:56:40', NULL, '2020-01-12 22:50:31');
-INSERT INTO `ksp_admin_user` VALUES (666007804112273408, 'aesop', '本里啊', '$2a$10$se7oX77VrQG0SEbJwoHYK.maKm0u2kAhcs70fl6pAHUULo1pRjjoO', 2, 'aesopcmc@gmail.com', 1, '2020-01-12 19:57:12', NULL, '2020-01-12 23:22:40');
-INSERT INTO `ksp_admin_user` VALUES (666012500919058432, '老哥啊', '', '$2a$10$2anD/forlFYtjwddlyYWpeQgXSgvOgMDQV39CIWjiAgBSnuO3s5P2', 0, '', 1, '2020-01-12 20:15:52', NULL, '2020-01-12 23:43:25');
-INSERT INTO `ksp_admin_user` VALUES (666418826195238912, '飞飞飞', '', '$2a$10$PN7p6XwwnzJYIf2HNxQd6.9srNiZqXyq7tcIWz/Uf6WctCLx/.e8K', 0, '', 1, '2020-01-13 23:10:26', NULL, '2020-01-13 23:10:26');
+INSERT INTO `admin_user` VALUES (1, 'super', '超级管理员', 'e10adc3949ba59abbe56e057f20f883e', 0, NULL, 1, '2019-12-18 15:53:20', 0, '2019-12-24 12:05:46');
+INSERT INTO `admin_user` VALUES (666007671261888512, '老狗1', '灌灌灌灌', 'e10adc3949ba59abbe56e057f20f883e', 0, '', 1, '2020-01-12 19:56:40', NULL, '2020-01-12 22:50:31');
+INSERT INTO `admin_user` VALUES (666007804112273408, 'aesop123', '本里啊123', 'e10adc3949ba59abbe56e057f20f883e', 0, 'aesopcmc@gmail.cox', 0, '2020-01-12 19:57:12', NULL, '2020-04-15 21:38:25');
+INSERT INTO `admin_user` VALUES (666012500919058432, '老哥啊', '', 'e10adc3949ba59abbe56e057f20f883e', 0, '', 1, '2020-01-12 20:15:52', NULL, '2020-01-12 23:43:25');
+INSERT INTO `admin_user` VALUES (700085729472020480, 'test', '', 'e10adc3949ba59abbe56e057f20f883e', 0, '', 1, '2020-04-15 20:50:44', NULL, '2020-04-15 20:50:44');
 
 -- ----------------------------
--- Table structure for ksp_member
+-- Table structure for bbs_context
 -- ----------------------------
-DROP TABLE IF EXISTS `ksp_member`;
-CREATE TABLE `ksp_member`  (
+DROP TABLE IF EXISTS `bbs_context`;
+CREATE TABLE `bbs_context`  (
+  `oid` bigint(20) NOT NULL COMMENT '主键',
+  `theme_id` bigint(20) NOT NULL COMMENT '主题ID',
+  `context_type` tinyint(1) NOT NULL COMMENT '评论类型：0文章、1评论、2回复',
+  `context` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '评论内容',
+  `profile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '评论摘要，在回复时，摘取父评论的简要',
+  `audit_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '审核状态：0待审核 1审核通过 2审核拒绝',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人ID',
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人ID',
+  `publish_status` tinyint(1) NOT NULL DEFAULT 0 COMMENT '发布状态 1已发布 0存草稿未发布',
+  `author` bigint(20) NULL DEFAULT NULL COMMENT '作者ID',
+  PRIMARY KEY (`oid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '论坛评论表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of bbs_context
+-- ----------------------------
+INSERT INTO `bbs_context` VALUES (716427662041546752, 716427660808421376, 0, '<p>烦烦烦<strong>方法</strong></p>', '烦烦烦方法', 1, '2020-05-30 23:07:45', 1, '2020-06-03 21:59:11', 1, 0, NULL);
+INSERT INTO `bbs_context` VALUES (717872387860725760, 717872387604873216, 0, '<p>42343243243243243243232432432324</p>', '432423432', 1, '2020-06-03 22:48:34', 1, '2020-06-03 22:48:34', NULL, 1, NULL);
+
+-- ----------------------------
+-- Table structure for bbs_parent_child
+-- ----------------------------
+DROP TABLE IF EXISTS `bbs_parent_child`;
+CREATE TABLE `bbs_parent_child`  (
+  `oid` bigint(20) NOT NULL COMMENT '主键',
+  `parent_context_id` bigint(20) NOT NULL COMMENT '父评论ID',
+  `child_context_id` bigint(20) NOT NULL COMMENT '子评论ID',
+  PRIMARY KEY (`oid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '论坛评论关系表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for bbs_session
+-- ----------------------------
+DROP TABLE IF EXISTS `bbs_session`;
+CREATE TABLE `bbs_session`  (
+  `oid` bigint(20) NOT NULL COMMENT '主键',
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '板块名称',
+  `profile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '板块主题、简要',
+  `topic_count` int(11) NOT NULL DEFAULT 0 COMMENT '总发帖数',
+  `view_count` int(11) NOT NULL DEFAULT 0 COMMENT '总浏览量',
+  `click_rate` float NOT NULL DEFAULT 0 COMMENT '总点击率',
+  `sort` int(11) NOT NULL DEFAULT 0 COMMENT '排序',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人ID',
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人ID',
+  PRIMARY KEY (`oid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '论坛版块表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of bbs_session
+-- ----------------------------
+INSERT INTO `bbs_session` VALUES (696503208784166912, '开放共享123', '开放共享开放共享开放共享开放共享', 0, 0, 0, 2, '2020-04-05 23:35:05', NULL, '2020-05-05 13:14:09', 1);
+INSERT INTO `bbs_session` VALUES (698956025541165056, '牛逼', '', 0, 0, 0, 0, '2020-04-12 18:01:42', NULL, '2020-04-12 18:01:42', NULL);
+INSERT INTO `bbs_session` VALUES (698956376495357952, '奥德赛', '是', 0, 0, 0, 0, '2020-04-12 18:03:06', NULL, '2020-04-12 18:03:06', NULL);
+INSERT INTO `bbs_session` VALUES (706912980557627392, 'a', '', 0, 0, 0, 0, '2020-05-04 16:59:48', 1, '2020-05-04 16:59:48', NULL);
+
+-- ----------------------------
+-- Table structure for bbs_theme
+-- ----------------------------
+DROP TABLE IF EXISTS `bbs_theme`;
+CREATE TABLE `bbs_theme`  (
+  `oid` bigint(20) NOT NULL COMMENT '主键',
+  `title` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '标题',
+  `profile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '摘要',
+  `session_id` bigint(20) NOT NULL COMMENT '版块ID',
+  `reply_count` int(11) NOT NULL DEFAULT 0 COMMENT '回复数量，包含评论和回复',
+  `last_reply_user` bigint(20) NULL DEFAULT NULL COMMENT '最后回复用户ID',
+  `last_reply_time` datetime(0) NULL DEFAULT NULL COMMENT '最后回复时间',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人ID',
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_user` bigint(20) NULL DEFAULT NULL COMMENT '更新人ID',
+  `author` bigint(20) NULL DEFAULT NULL COMMENT '作者ID',
+  PRIMARY KEY (`oid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '论坛主题表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of bbs_theme
+-- ----------------------------
+INSERT INTO `bbs_theme` VALUES (716427660808421376, '超1235', '烦烦烦方法', 698956025541165056, 0, NULL, NULL, '2020-05-30 23:07:45', 1, '2020-06-03 21:59:11', 1, NULL);
+
+-- ----------------------------
+-- Table structure for member
+-- ----------------------------
+DROP TABLE IF EXISTS `member`;
+CREATE TABLE `member`  (
   `oid` bigint(20) NOT NULL COMMENT '主键',
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '账号',
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '密码',
@@ -73,18 +160,18 @@ CREATE TABLE `ksp_member`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '论坛会员表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of ksp_member
+-- Records of member
 -- ----------------------------
-INSERT INTO `ksp_member` VALUES (524019159298736128, 'chao1', '$2a$10$4Jehz./rK395rlEC7NOMbubTBcvd5ADoCy.Am75rFSs50G6reuOlm', '超1', NULL, 0, 1, NULL, 0, NULL, NULL, '2019-01-20 20:25:34', NULL, 'ROLE_USER', '2019-12-24 12:06:22');
-INSERT INTO `ksp_member` VALUES (529644340201390080, 'chao2', '$2a$10$zzxtPXGJY4b75TxegiktnO.khKSHPtT6lTJ5CGrHxEz5xsYS6rA9W', '超2', NULL, 0, 1, NULL, 0, NULL, NULL, '2019-01-20 20:25:37', NULL, 'ROLE_USER,ROLE_VIP', '2019-12-24 12:06:22');
-INSERT INTO `ksp_member` VALUES (529644340201390081, 'admin', '$2a$10$zzxtPXGJY4b75TxegiktnO.khKSHPtT6lTJ5CGrHxEz5xsYS6rA9W', '超级管理员', NULL, 0, 1, NULL, 0, NULL, NULL, '2019-01-20 20:25:39', NULL, 'ROLE_ADMIN', '2019-12-24 12:06:22');
-INSERT INTO `ksp_member` VALUES (539231828473544704, 'chao123', '$2a$10$4Jehz./rK395rlEC7NOMbubTBcvd5ADoCy.Am75rFSs50G6reuOlm', 'chao123', 'chao_c_c@163.com', 0, 1, NULL, 0, NULL, NULL, '2019-01-27 23:54:46', NULL, 'ROLE_USER', '2019-12-24 12:06:22');
+INSERT INTO `member` VALUES (524019159298736128, 'chao1', '$2a$10$GnCDh42o5ZEcrfP48ykqxuxwyu6TLfGOFj2nRMxmYzLKpQuua27d2', '超1', NULL, 1, 1, NULL, 0, NULL, NULL, '2019-01-20 20:25:34', NULL, 'ROLE_USER', '2019-12-24 12:06:22');
+INSERT INTO `member` VALUES (529644340201390080, 'chao2', '$2a$10$GnCDh42o5ZEcrfP48ykqxuxwyu6TLfGOFj2nRMxmYzLKpQuua27d2', '超2', NULL, 1, 1, NULL, 0, NULL, NULL, '2019-01-20 20:25:37', NULL, 'ROLE_USER,ROLE_VIP', '2019-12-24 12:06:22');
+INSERT INTO `member` VALUES (529644340201390081, 'admin', '$2a$10$GnCDh42o5ZEcrfP48ykqxuxwyu6TLfGOFj2nRMxmYzLKpQuua27d2', '超级管理员', NULL, 1, 1, NULL, 0, NULL, NULL, '2019-01-20 20:25:39', NULL, 'ROLE_ADMIN', '2019-12-24 12:06:22');
+INSERT INTO `member` VALUES (539231828473544704, 'chao123', '$2a$10$GnCDh42o5ZEcrfP48ykqxuxwyu6TLfGOFj2nRMxmYzLKpQuua27d2', 'chao123', 'chao_c_c@163.com', 1, 1, NULL, 0, NULL, NULL, '2019-01-27 23:54:46', NULL, 'ROLE_USER', '2019-12-24 12:06:22');
 
 -- ----------------------------
--- Table structure for ksp_perm
+-- Table structure for perm
 -- ----------------------------
-DROP TABLE IF EXISTS `ksp_perm`;
-CREATE TABLE `ksp_perm`  (
+DROP TABLE IF EXISTS `perm`;
+CREATE TABLE `perm`  (
   `oid` bigint(20) NOT NULL COMMENT '主键',
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '权限名称',
   `code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '权限编码，唯一',
@@ -96,10 +183,10 @@ CREATE TABLE `ksp_perm`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '权限表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for ksp_resource
+-- Table structure for resource
 -- ----------------------------
-DROP TABLE IF EXISTS `ksp_resource`;
-CREATE TABLE `ksp_resource`  (
+DROP TABLE IF EXISTS `resource`;
+CREATE TABLE `resource`  (
   `oid` bigint(20) NOT NULL COMMENT '主键',
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '资源名称',
   `code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '资源编码，唯一',
@@ -117,19 +204,19 @@ CREATE TABLE `ksp_resource`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '资源表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of ksp_resource
+-- Records of resource
 -- ----------------------------
-INSERT INTO `ksp_resource` VALUES (1, '首页', 'aaa', NULL, 0, 0, NULL, NULL, NULL, 0, '2019-12-26 16:00:02', NULL, '2019-12-26 16:00:02');
-INSERT INTO `ksp_resource` VALUES (2, '会员列表', 'bbbb', NULL, 1, 0, NULL, NULL, NULL, 0, '2019-12-26 16:00:40', NULL, '2019-12-26 16:00:40');
-INSERT INTO `ksp_resource` VALUES (3, '角色列表', 'ccc', NULL, 1, 0, NULL, NULL, NULL, 0, '2019-12-26 16:00:50', NULL, '2019-12-26 16:00:50');
-INSERT INTO `ksp_resource` VALUES (4, '统计', 'ddd', NULL, 0, 0, NULL, NULL, NULL, 0, '2019-12-26 16:00:58', NULL, '2019-12-26 16:00:58');
-INSERT INTO `ksp_resource` VALUES (5, '角色分配', 'cccd', NULL, 3, 0, NULL, NULL, NULL, 0, '2019-12-26 16:01:16', NULL, '2019-12-26 16:01:16');
+INSERT INTO `resource` VALUES (1, '首页', 'aaa', NULL, 0, 0, NULL, NULL, NULL, 0, '2019-12-26 16:00:02', NULL, '2019-12-26 16:00:02');
+INSERT INTO `resource` VALUES (2, '会员列表', 'bbbb', NULL, 1, 0, NULL, NULL, NULL, 0, '2019-12-26 16:00:40', NULL, '2019-12-26 16:00:40');
+INSERT INTO `resource` VALUES (3, '角色列表', 'ccc', NULL, 1, 0, NULL, NULL, NULL, 0, '2019-12-26 16:00:50', NULL, '2019-12-26 16:00:50');
+INSERT INTO `resource` VALUES (4, '统计', 'ddd', NULL, 0, 0, NULL, NULL, NULL, 0, '2019-12-26 16:00:58', NULL, '2019-12-26 16:00:58');
+INSERT INTO `resource` VALUES (5, '角色分配', 'cccd', NULL, 3, 0, NULL, NULL, NULL, 0, '2019-12-26 16:01:16', NULL, '2019-12-26 16:01:16');
 
 -- ----------------------------
--- Table structure for ksp_role
+-- Table structure for role
 -- ----------------------------
-DROP TABLE IF EXISTS `ksp_role`;
-CREATE TABLE `ksp_role`  (
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role`  (
   `oid` bigint(20) NOT NULL COMMENT '主键',
   `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色名称',
   `code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '角色编码，唯一编码',
@@ -143,10 +230,10 @@ CREATE TABLE `ksp_role`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Table structure for ksp_role_perm_re
+-- Table structure for role_perm_re
 -- ----------------------------
-DROP TABLE IF EXISTS `ksp_role_perm_re`;
-CREATE TABLE `ksp_role_perm_re`  (
+DROP TABLE IF EXISTS `role_perm_re`;
+CREATE TABLE `role_perm_re`  (
   `oid` bigint(20) NOT NULL COMMENT '主键',
   `role_id` bigint(20) NOT NULL COMMENT '角色ID',
   `perm_id` bigint(20) NOT NULL COMMENT '权限ID',
@@ -156,51 +243,6 @@ CREATE TABLE `ksp_role_perm_re`  (
   `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`oid`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '角色-权限关系表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for ksp_user_perm_re
--- ----------------------------
-DROP TABLE IF EXISTS `ksp_user_perm_re`;
-CREATE TABLE `ksp_user_perm_re`  (
-  `oid` bigint(20) NOT NULL COMMENT '主键',
-  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
-  `perm_id` bigint(20) NOT NULL COMMENT '权限ID',
-  `perm_type` tinyint(1) NOT NULL COMMENT '0可访问 1可授权',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人ID',
-  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`oid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户-权限关系表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for ksp_user_role_re
--- ----------------------------
-DROP TABLE IF EXISTS `ksp_user_role_re`;
-CREATE TABLE `ksp_user_role_re`  (
-  `oid` bigint(20) NOT NULL COMMENT '主键',
-  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
-  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
-  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人ID',
-  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`oid`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户-角色关系表' ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Table structure for ksp_verification_token
--- ----------------------------
-DROP TABLE IF EXISTS `ksp_verification_token`;
-CREATE TABLE `ksp_verification_token`  (
-  `oid` bigint(20) NOT NULL COMMENT '主键',
-  `user_id` bigint(20) NOT NULL COMMENT '用户主键',
-  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'TOKEN',
-  `expiry_date` datetime(0) NULL DEFAULT NULL COMMENT '失效日期',
-  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人ID',
-  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  PRIMARY KEY (`oid`) USING BTREE,
-  UNIQUE INDEX `token`(`token`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员邮件注册激活验证表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for test_grade
@@ -332,5 +374,50 @@ INSERT INTO `test_user` VALUES (656448025392054272, '王思聪96', -398736310, 8
 INSERT INTO `test_user` VALUES (656448025756958720, '王思聪97', -1779826403, 8);
 INSERT INTO `test_user` VALUES (656448026126057472, '王思聪98', -1456569076, 8);
 INSERT INTO `test_user` VALUES (656448026486767616, '王思聪99', 1061436847, 8);
+
+-- ----------------------------
+-- Table structure for user_perm_re
+-- ----------------------------
+DROP TABLE IF EXISTS `user_perm_re`;
+CREATE TABLE `user_perm_re`  (
+  `oid` bigint(20) NOT NULL COMMENT '主键',
+  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
+  `perm_id` bigint(20) NOT NULL COMMENT '权限ID',
+  `perm_type` tinyint(1) NOT NULL COMMENT '0可访问 1可授权',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人ID',
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`oid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户-权限关系表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for user_role_re
+-- ----------------------------
+DROP TABLE IF EXISTS `user_role_re`;
+CREATE TABLE `user_role_re`  (
+  `oid` bigint(20) NOT NULL COMMENT '主键',
+  `user_id` bigint(20) NOT NULL COMMENT '用户ID',
+  `role_id` bigint(20) NOT NULL COMMENT '角色ID',
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人ID',
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`oid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '用户-角色关系表' ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for verification_token
+-- ----------------------------
+DROP TABLE IF EXISTS `verification_token`;
+CREATE TABLE `verification_token`  (
+  `oid` bigint(20) NOT NULL COMMENT '主键',
+  `user_id` bigint(20) NOT NULL COMMENT '用户主键',
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT 'TOKEN',
+  `expiry_date` datetime(0) NULL DEFAULT NULL COMMENT '失效日期',
+  `create_time` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `create_user` bigint(20) NULL DEFAULT NULL COMMENT '创建人ID',
+  `update_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`oid`) USING BTREE,
+  UNIQUE INDEX `token`(`token`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '会员邮件注册激活验证表' ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

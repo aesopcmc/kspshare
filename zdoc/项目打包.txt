@@ -1,12 +1,24 @@
+【项目结构说明】
+ksp-common模块是独立于整个项目的存在
+mybatis-generator-extend模块是独立于整个项目的存在，需要运行安装install指令才能使用
+service-admin后台模块
+webpage前台模板页面模块
+
+
+
+
+
+
+【旧版1】
 打包maven项目指令  清理、打包、跳过测试
 -am --also-make 同时构建所列模块的依赖模块；
 -pl --projects <arg> 构建指定的模块，模块间用逗号分隔；
 
 1.打包模块成jar
 页面模块
-mvn clean package -pl web -am -Dmaven.test.skip=true
+mvn clean package -pl webpage -am -Dmaven.test.skip=true
 后台模块
-mvn clean package -pl backstage -am -Dmaven.test.skip=true
+mvn clean package -pl service-admin -am -Dmaven.test.skip=true
 
 
 2.打包镜像命令，创建成Dockerfile文件
@@ -22,3 +34,13 @@ docker build -t aesopcmc/ksp-prod:1.0 .
 4.启动容器
 docker stop ksp-web-prod && docker rm ksp-prod && docker run -d -p 8082:8080 --name ksp-web-prod aesopcmc/ksp-prod:1.0
 
+
+【新版】
+1.打包模块成jar
+cd 进入对对应的模块打包
+
+分别cd wepage 或 cd service-admin
+mvn clean package -am -Dmaven.test.skip=true
+
+2.项目启动指令
+java -jar jar名称.jar --spring.profiles.active=prod

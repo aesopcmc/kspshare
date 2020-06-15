@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @UserLoginToken
 @Slf4j
@@ -76,4 +78,16 @@ public class BbsSessionController {
         PageInfo<BbsSession> pageInfo = bbsSessionService.queryCondition(param);
         return ResultBean.SUCCESS(pageInfo);
     }
+
+    /**
+     * 查找下拉框
+     * @return
+     */
+    @ApiOperation("查询")
+    @GetMapping("/bbs/session/select")
+    public ResultBean select() {
+        List<BbsSession> list = bbsSessionService.select();
+        return ResultBean.SUCCESS(list);
+    }
+
 }

@@ -19,5 +19,16 @@
         </dependency>
 
     </dependencies>
-
+    <build>
+        <finalName>ksp-webpage-prod</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>cn.kspshare.WebApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

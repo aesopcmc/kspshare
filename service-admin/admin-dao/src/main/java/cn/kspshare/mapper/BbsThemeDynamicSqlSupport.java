@@ -74,6 +74,12 @@ public final class BbsThemeDynamicSqlSupport {
      */
     public static final SqlColumn<Long> updateUser = bbsTheme.updateUser;
 
+    /**
+     * 作者ID
+     * author
+     */
+    public static final SqlColumn<Long> author = bbsTheme.author;
+
     public static final class BbsTheme extends SqlTable {
         public final SqlColumn<Long> oid = column("oid", JDBCType.BIGINT);
 
@@ -96,6 +102,8 @@ public final class BbsThemeDynamicSqlSupport {
         public final SqlColumn<LocalDateTime> updateTime = column("update_time", JDBCType.TIMESTAMP);
 
         public final SqlColumn<Long> updateUser = column("update_user", JDBCType.BIGINT);
+
+        public final SqlColumn<Long> author = column("author", JDBCType.BIGINT);
 
         public BbsTheme() {
             super("bbs_theme");

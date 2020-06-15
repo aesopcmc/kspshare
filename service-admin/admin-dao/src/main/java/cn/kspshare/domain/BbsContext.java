@@ -70,6 +70,18 @@ public class BbsContext {
     private Long updateUser;
 
     /**
+     * 发布状态 1已发布 0存草稿未发布
+     * publish_status
+     */
+    private Byte publishStatus;
+
+    /**
+     * 作者ID
+     * author
+     */
+    private Long author;
+
+    /**
      * 评论内容
      * context
      */

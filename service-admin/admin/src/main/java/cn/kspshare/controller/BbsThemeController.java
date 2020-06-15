@@ -5,7 +5,10 @@ import cn.kspshare.common.restful.ResultBean;
 import cn.kspshare.config.userinfo.UserInfo;
 import cn.kspshare.config.userinfo.UserInfoManager;
 import cn.kspshare.domain.BbsTheme;
+import cn.kspshare.dto.CreateArticleDto;
 import cn.kspshare.service.BbsThemeService;
+import cn.kspshare.vo.ArticleVO;
+import cn.kspshare.vo.ListArticleVO;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -81,7 +84,32 @@ public class BbsThemeController {
     public ResultBean queryCondition(Integer pageNum, Integer pageSize) {
         if(pageNum==null) pageNum=1;
         if(pageSize==null) pageSize=10;
-        PageInfo<BbsTheme> pageInfo = service.queryCondition(pageNum, pageSize);
+        PageInfo<ListArticleVO> pageInfo = service.listArticle(pageNum, pageSize);
         return ResultBean.SUCCESS(pageInfo);
     }
+
+    /**
+     * 查看文章详情
+     * @return
+     */
+    @ApiOperation("查看文章详情")
+    @GetMapping("/bbs/theme/getArticle/{articleId}")
+    public ResultBean getArticle(@PathVariable Long articleId) {
+        ArticleVO vo = service.getArticle(articleId);
+        return ResultBean.SUCCESS(vo);
+    }
+
+    /**
+     * 创建文章
+     * @return
+     */
+    @ApiOperation("创建文章")
+    @PostMapping("/bbs/theme/createArticle")
+    public ResultBean createArticle(@RequestBody CreateArticleDto dto) {
+        UserInfo userInfo = userInfoManager.getUserInfo();
+        dto.setCreateUser(userInfo.getOid());
+        int i = service.createOrUpdateArticle(dto);
+        return ResultBean.SUCCESS(i);
+    }
+
 }

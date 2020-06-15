@@ -81,4 +81,10 @@ public class BbsTheme {
      * update_user
      */
     private Long updateUser;
+
+    /**
+     * 作者ID
+     * author
+     */
+    private Long author;
 }
