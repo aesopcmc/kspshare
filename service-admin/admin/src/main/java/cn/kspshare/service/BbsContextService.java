@@ -3,6 +3,8 @@ package cn.kspshare.service;
 import cn.kspshare.domain.BbsContext;
 import com.github.pagehelper.PageInfo;
 
+import java.util.Map;
+
 /**
  * 《由Mybatis Generator extend插件自动生成》
  * 
@@ -38,4 +40,6 @@ public interface BbsContextService {
      * @return
      */
     PageInfo<BbsContext> queryCondition(int pageNum, int pageSize);
+
+    Map<String, Object> showContent(Long themeId, Integer pageNum, Integer pageSize);
 }

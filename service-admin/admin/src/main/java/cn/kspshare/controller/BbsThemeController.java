@@ -89,10 +89,10 @@ public class BbsThemeController {
     }
 
     /**
-     * 查看文章详情
+     * 查看文章详情 、编辑回显
      * @return
      */
-    @ApiOperation("查看文章详情")
+    @ApiOperation("查看文章详情、编辑回显")
     @GetMapping("/bbs/theme/getArticle/{articleId}")
     public ResultBean getArticle(@PathVariable Long articleId) {
         ArticleVO vo = service.getArticle(articleId);

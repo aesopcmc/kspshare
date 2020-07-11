@@ -1,15 +1,21 @@
 package cn.kspshare.service.impl;
 
 import cn.kspshare.common.id.IDGenerator;
+import cn.kspshare.dao.BbsContextDao;
 import cn.kspshare.domain.BbsContext;
-import cn.kspshare.mapper.BbsContextDynamicSqlSupport;
+import cn.kspshare.domain.BbsTheme;
+import cn.kspshare.vo.ContentVo;
 import cn.kspshare.mapper.BbsContextMapper;
+import cn.kspshare.mapper.BbsThemeMapper;
 import cn.kspshare.service.BbsContextService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
-import org.mybatis.dynamic.sql.SqlBuilder;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,12 +30,16 @@ import org.springframework.transaction.annotation.Transactional;
 public class BbsContextServiceImpl implements BbsContextService {
     @Autowired
     private BbsContextMapper mapper;
-
+    @Autowired
+    private BbsContextDao contextDao;
+    @Autowired
+    private BbsThemeMapper bbsThemeMapper;
     /**
      * 添加
      * @param po
      * @return
      */
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public int add(BbsContext po) {
         po.setOid(IDGenerator.id());
@@ -44,6 +54,7 @@ public class BbsContextServiceImpl implements BbsContextService {
      * @param po
      * @return
      */
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public int update(BbsContext po) {
         if(po.getOid()==null) {
@@ -60,6 +71,7 @@ public class BbsContextServiceImpl implements BbsContextService {
      * @param oid
      * @return
      */
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public int delete(Long oid) {
         return mapper.deleteByPrimaryKey(oid);
@@ -71,9 +83,29 @@ public class BbsContextServiceImpl implements BbsContextService {
      * @param pageSize 每页显示数量
      * @return
      */
+    @Override
     public PageInfo<BbsContext> queryCondition(int pageNum, int pageSize) {
         PageHelper.startPage(pageNum,pageSize);
         List<BbsContext> select = mapper.select(c -> c);
         return new PageInfo<>(select);
+    }
+
+    @Override
+    public Map<String, Object> showContent(Long themeId, Integer pageNum, Integer pageSize) {
+        AtomicReference<BbsTheme> themeAtom = new AtomicReference<>();
+        bbsThemeMapper.selectByPrimaryKey(themeId).ifPresent(themeAtom::set);
+        BbsTheme theme = themeAtom.get();
+        if(theme==null){
+            throw new RuntimeException("主题为空");
+        }
+
+        PageHelper.startPage(pageNum, pageSize);
+        List<ContentVo> contentList =  contextDao.showContent(themeId);
+        PageInfo<ContentVo> pageInfo = new PageInfo<>(contentList);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("theme", theme);
+        data.put("pageInfo", pageInfo);
+        return data;
     }
 }

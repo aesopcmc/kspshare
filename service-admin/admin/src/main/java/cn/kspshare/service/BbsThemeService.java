@@ -50,7 +50,7 @@ public interface BbsThemeService {
     int createOrUpdateArticle(CreateArticleDto dto);
 
     /**
-     * 查看文章详情
+     * 查看文章详情、编辑回显
      * @param articleId
      * @return
      */

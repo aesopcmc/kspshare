@@ -13,6 +13,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * 《由Mybatis Generator extend插件自动生成》
  * 
@@ -83,5 +85,25 @@ public class BbsContextController {
         if(pageSize==null) pageSize=10;
         PageInfo<BbsContext> pageInfo = service.queryCondition(pageNum, pageSize);
         return ResultBean.SUCCESS(pageInfo);
+    }
+
+    /**
+     * 查看帖子
+     * @param themeId
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    @ApiOperation("查看帖子")
+    @GetMapping("/bbs/context/showContent/{themeId}")
+    public ResultBean showContent(@PathVariable Long themeId, Integer pageNum, Integer pageSize) {
+        if(themeId==null){
+            return ResultBean.MISSING_PARAMETERS();
+        }
+        if(pageNum==null) pageNum=1;
+        if(pageSize==null) pageSize=10;
+
+        Map<String, Object> data = service.showContent(themeId, pageNum, pageSize);
+        return ResultBean.SUCCESS(data);
     }
 }

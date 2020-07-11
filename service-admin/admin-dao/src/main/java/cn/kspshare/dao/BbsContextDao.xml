@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.kspshare.dao.BbsContextDao">
+
+
+  <resultMap id="contentVoMap" type="cn.kspshare.vo.ContentVo">
+    <id column="oid" jdbcType="INTEGER" property="oid" />
+    <result column="theme_id" jdbcType="INTEGER" property="themeId" />
+    <result column="context_type" jdbcType="BIT" property="contextType" />
+    <result column="context" jdbcType="" property="context" />
+    <result column="email" jdbcType="VARCHAR" property="email" />
+    <result column="email_confirmed" jdbcType="BIT" property="emailConfirmed" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="mobile_confirmed" jdbcType="BIT" property="mobileConfirmed" />
+    <result column="security_question" jdbcType="VARCHAR" property="securityQuestion" />
+    <result column="security_answer" jdbcType="VARCHAR" property="securityAnswer" />
+    <result column="last_ipv4" jdbcType="VARCHAR" property="lastIpv4" />
+    <result column="last_ipv6" jdbcType="VARCHAR" property="lastIpv6" />
+    <result column="login_times" jdbcType="INTEGER" property="loginTimes" />
+    <result column="create_user" jdbcType="INTEGER" property="createUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_user" jdbcType="INTEGER" property="updateUser" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+
+  <select id="showContent" resultMap="contentVoMap">
+    select
+      c.*,
+      m.nickname as authorNickname,
+      m.username as authorUsername,
+      m.avatar as authorAvatar,
+      m.gender as authorGender
+    from bbs_context c
+    left join member m on c.author=m.oid
+    where c.theme_id=#{themeId}
+    order by c.context_type asc, c.create_time desc
+  </select>
+</mapper>
