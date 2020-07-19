@@ -101,7 +101,7 @@ public class PermServiceImpl implements PermService {
     @Override
     public ResultBean listByResource(Long resourceId) {
         List<Perm> list = permMapper.select(c -> c.where(PermDynamicSqlSupport.resourceId, isEqualTo(resourceId)));
-        return ResultBean.SUCCESS(list);
+        return ResultBean.SUCCESS().setData(list);
     }
 
     /**

@@ -110,7 +110,7 @@ public class RoleServiceImpl implements RoleService {
     // private void findByCode(Long oid, String code) {
     //     Role exist = this.findByCode(code);
     //     if(exist!=null && !exist.getOid().equals(oid)) {
-    //         throw new KspException("该资源编码已被使用!");
+    //         throw new BaseException("该资源编码已被使用!");
     //     }
     // }
 }

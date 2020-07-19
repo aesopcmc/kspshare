@@ -4,7 +4,7 @@ import cn.kspshare.domain.BbsContext;
 import lombok.Data;
 
 @Data
-public class ContentVo extends BbsContext {
+public class ContentVO extends BbsContext {
     /**
      * 作者昵称
      */

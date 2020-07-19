@@ -76,7 +76,7 @@ public class BbsSessionController {
     @GetMapping("/bbs/session")
     public ResultBean queryCondition(BaseSearchDto param) {
         PageInfo<BbsSession> pageInfo = bbsSessionService.queryCondition(param);
-        return ResultBean.SUCCESS(pageInfo);
+        return ResultBean.SUCCESS().setData(pageInfo);
     }
 
     /**
@@ -87,7 +87,7 @@ public class BbsSessionController {
     @GetMapping("/bbs/session/select")
     public ResultBean select() {
         List<BbsSession> list = bbsSessionService.select();
-        return ResultBean.SUCCESS(list);
+        return ResultBean.SUCCESS().setData(list);
     }
 
 }

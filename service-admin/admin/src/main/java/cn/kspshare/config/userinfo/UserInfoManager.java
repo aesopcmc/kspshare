@@ -1,5 +1,6 @@
 package cn.kspshare.config.userinfo;
 
+import cn.kspshare.common.restful.exception.BaseExceptionFactory;
 import cn.kspshare.config.RedisUtils;
 import cn.kspshare.domain.AdminUser;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +34,7 @@ public class UserInfoManager {
 
             UserInfo userInfo = redisUtils.get(token);
             if(userInfo==null) {
-                throw new RuntimeException("用户身份认证失败，无法获取当前用户信息！");
+                throw BaseExceptionFactory.get("用户身份认证失败，无法获取当前用户信息！");
             }
             return userInfo;
         }catch (Exception e) {

@@ -30,7 +30,7 @@ import java.util.List;
  * 使用方法：
  * 在generatorConfig.xml中的Content内添加该插件 ，四个属性值必传，如：
  * <content ...>
- *  <extend type="cn.aesop.generator.extend.plugin.AddExtendDaoPlugin">
+ *  <extend type="cn.aesop.extend.plugin.AddExtendDaoPlugin">
  *      <property name="baseDir" value="${basedir}"/> POM所在目录
  *      <property name="targetProject" value="src/main/java"/> 根包位置
  *      <property name="targetProjectXml" value="src/main/resources"/> xml资源位置
@@ -195,7 +195,10 @@ public class AddExtendDaoPlugin extends PluginAdapter {
         List<IntrospectedColumn> allColumns = introspectedTable.getAllColumns();
         StringBuilder builder = new StringBuilder();
         for (IntrospectedColumn column : allColumns) {
-            builder.append(column.getActualColumnName()).append(", ");
+            if(column.isColumnNameDelimited())
+                builder.append("`").append(column.getActualColumnName()).append("`").append(", ");
+            else
+                builder.append(column.getActualColumnName()).append(", ");
         }
         String columnsText = builder.substring(0, builder.length()-2);
 
@@ -248,6 +251,11 @@ public class AddExtendDaoPlugin extends PluginAdapter {
         //导入xxxMapper类所在的包
         FullyQualifiedJavaType modelJavaType = new FullyQualifiedJavaType(mapperInterfaceType);
         dto.addImportedType(modelJavaType);
+
+        //导入注解包、并添加@Mapper注解
+        // FullyQualifiedJavaType importType = new FullyQualifiedJavaType("org.apache.ibatis.annotations.Mapper");
+        // dto.addImportedType(importType);
+        // dto.addAnnotation("@Mapper");
 
         SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
         dto.addJavaDocLine("/**\n" +

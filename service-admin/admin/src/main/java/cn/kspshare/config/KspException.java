@@ -3,6 +3,7 @@ package cn.kspshare.config;
 /**
  * KSP自定义异常
  */
+@Deprecated
 public class KspException extends RuntimeException {
     public KspException() {
         super();

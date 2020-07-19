@@ -91,7 +91,7 @@ public class ResourceServiceImpl implements ResourceService {
         List<Resource> list = kspResourceMapper.select(c -> c);
         List<BaseTreeNode<Resource, Long>> treeList =
                 TreeNodeUtils.getTreeList(list, po -> new BaseTreeNode<>(po, po.getOid(), po.getParentId()));
-        return ResultBean.SUCCESS(treeList);
+        return ResultBean.SUCCESS().setData(treeList);
     }
 
     @Override

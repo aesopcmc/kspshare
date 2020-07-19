@@ -2,6 +2,7 @@ package cn.kspshare.controller;
 
 import cn.kspshare.annotation.UserLoginToken;
 import cn.kspshare.common.restful.ResultBean;
+import cn.kspshare.common.restful.ResultCode;
 import cn.kspshare.config.userinfo.UserInfo;
 import cn.kspshare.config.userinfo.UserInfoManager;
 import cn.kspshare.domain.AdminUser;
@@ -36,7 +37,7 @@ public class LoginController {
     @PostMapping("/doLogin")
     public ResultBean doLogin(@RequestBody LoginDto dto) {
         if(StringUtils.isEmpty(dto.getUsername()) || StringUtils.isEmpty(dto.getPassword())) {
-            return ResultBean.MISSING_PARAMETERS();
+            return ResultBean.INFO(ResultCode.MISSING_PARAMETERS);
         }
 
         AdminUser userForBase = adminUserService.queryByUsername(dto.getUsername());
@@ -61,7 +62,7 @@ public class LoginController {
         Map<String, Object> resultData = new HashMap<>();
         resultData.put("token", token);
         // resultData.put("user", userForBase);
-        return ResultBean.SUCCESS(resultData);
+        return ResultBean.SUCCESS().setData(resultData);
     }
 
     /**
@@ -82,7 +83,7 @@ public class LoginController {
         resultMap.put("enabled", userInfo.getEnabled());
         // resultMap.put("expiredSecond", userInfo.getExpiredSecond());
         // resultMap.put("tokenCreateTime", userInfo.getTokenCreateTime().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
-        return ResultBean.SUCCESS(resultMap);
+        return ResultBean.SUCCESS().setData(resultMap);
     }
 
     /**

@@ -6,22 +6,17 @@ import java.io.Serializable;
  * Created on 2017/12/13.
  * restful 风格 API 返回结果固定结构
  *
- * @author DuanJiaNing
+ * @author Aesop
  */
-
-public class ResultBean<T> implements Serializable {
+public class ResultBean implements Serializable {
 
     private static final long serialVersionUID = -4101051436094606437L;
 
-    private int code = ResultEnum.SUCCESS.getCode();
+    private int code;
 
-    private String msg = ResultEnum.SUCCESS.getMsg();
+    private String msg;
 
-    private T data;
-
-    private ResultBean(T data) {
-        this.data = data;
-    }
+    private Object data;
 
     private ResultBean(int code, String msg) {
         this.code = code;
@@ -33,16 +28,16 @@ public class ResultBean<T> implements Serializable {
      * @return
      */
     public static ResultBean SUCCESS() {
-        return new ResultBean(ResultEnum.SUCCESS.getCode(), ResultEnum.SUCCESS.getMsg());
+        return new ResultBean(ResultCode.SUCCESS.getCode(), ResultCode.SUCCESS.getMsg());
     }
 
     /**
-     * 成功，返回数据
-     * @param data
+     * 成功，自定义消息
+     * @param msg
      * @return
      */
-    public static ResultBean SUCCESS(Object data) {
-        return new ResultBean<>(data);
+    public static ResultBean SUCCESS(String msg) {
+        return new ResultBean(ResultCode.SUCCESS.getCode(), msg);
     }
 
     /**
@@ -50,88 +45,56 @@ public class ResultBean<T> implements Serializable {
      * @return
      */
     public static ResultBean FAIL() {
-        return new ResultBean(ResultEnum.FAIL.getCode(), ResultEnum.FAIL.getMsg());
+        return new ResultBean(ResultCode.FAIL.getCode(), ResultCode.FAIL.getMsg());
     }
 
     /**
-     * 失败，返回自定义消息
-     * @param msg
+     * 失败，自定义消息
      * @return
      */
     public static ResultBean FAIL(String msg) {
-        return new ResultBean(ResultEnum.FAIL.getCode(), msg);
-    }
-
-    public static ResultBean FAIL(ResultEnum codeEnum) {
-        return new ResultBean(codeEnum.getCode(), codeEnum.getMsg());
-    }
-
-    public static ResultBean FAIL(ResultEnum codeEnum, String msg) {
-        return new ResultBean(codeEnum.getCode(), msg);
+        return new ResultBean(ResultCode.FAIL.getCode(), msg);
     }
 
     /**
-     * 参数不全
+     * 自定义返回参数
      * @return
      */
-    public static ResultBean MISSING_PARAMETERS() {
-        return new ResultBean(ResultEnum.MISSING_PARAMETERS.getCode(), ResultEnum.MISSING_PARAMETERS.getMsg());
+    public static ResultBean INFO(ResultCode code) {
+        return new ResultBean(code.getCode(), code.getMsg());
     }
 
     /**
-     * 服务器异常
+     * 自定义返回参数
      * @return
      */
-    public static ResultBean SERVER_EXCEPTION() {
-        return new ResultBean(ResultEnum.SERVER_EXCEPTION.getCode(), ResultEnum.SERVER_EXCEPTION.getMsg());
+    public static ResultBean INFO(ResultCode code, String msg) {
+        return new ResultBean(code.getCode(), msg);
     }
 
     /**
-     * 权限不足
+     * 获取数据
      * @return
      */
-    public static ResultBean NO_PERMISSION() {
-        return new ResultBean(ResultEnum.NO_PERMISSION.getCode(), ResultEnum.NO_PERMISSION.getMsg());
+    public Object getData() {
+        return data;
     }
 
     /**
-     * 无效的请求参数
+     * 设置数据
+     * @param data
      * @return
      */
-    public static ResultBean INVALID_REQUEST_PARAMETER() {
-        return new ResultBean(ResultEnum.INVALID_REQUEST_PARAMETER.getCode(), ResultEnum.INVALID_REQUEST_PARAMETER.getMsg());
+    public ResultBean setData(Object data) {
+        this.data = data;
+        return this;
     }
-
-    /**
-     * 主键不能为空
-     * @return
-     */
-    public static ResultBean PRIMARY_KEY_ONT_NULL() {
-        return new ResultBean(ResultEnum.PRIMARY_KEY_ONT_NULL.getCode(), ResultEnum.PRIMARY_KEY_ONT_NULL.getMsg());
-    }
-
 
     public int getCode() {
         return code;
     }
 
-    public void setCode(int code) {
-        this.code = code;
-    }
-
     public String getMsg() {
         return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public T getData() {
-        return data;
-    }
-
-    public void setData(T data) {
-        this.data = data;
     }
 }

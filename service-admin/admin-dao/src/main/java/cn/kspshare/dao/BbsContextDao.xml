@@ -3,23 +3,18 @@
 <mapper namespace="cn.kspshare.dao.BbsContextDao">
 
 
-  <resultMap id="contentVoMap" type="cn.kspshare.vo.ContentVo">
-    <id column="oid" jdbcType="INTEGER" property="oid" />
+  <resultMap id="contentVoMap" type="cn.kspshare.vo.ContentVO">
+    <id column="oid" jdbcType="BIGINT" property="oid" />
     <result column="theme_id" jdbcType="INTEGER" property="themeId" />
-    <result column="context_type" jdbcType="BIT" property="contextType" />
-    <result column="context" jdbcType="" property="context" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="email_confirmed" jdbcType="BIT" property="emailConfirmed" />
-    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="mobile_confirmed" jdbcType="BIT" property="mobileConfirmed" />
-    <result column="security_question" jdbcType="VARCHAR" property="securityQuestion" />
-    <result column="security_answer" jdbcType="VARCHAR" property="securityAnswer" />
-    <result column="last_ipv4" jdbcType="VARCHAR" property="lastIpv4" />
-    <result column="last_ipv6" jdbcType="VARCHAR" property="lastIpv6" />
-    <result column="login_times" jdbcType="INTEGER" property="loginTimes" />
-    <result column="create_user" jdbcType="INTEGER" property="createUser" />
+    <result column="context_type" jdbcType="TINYINT" property="contextType" />
+    <result column="context" jdbcType="LONGVARCHAR" property="context" />
+    <result column="profile" jdbcType="VARCHAR" property="profile" />
+    <result column="audit_status" jdbcType="TINYINT" property="auditStatus" />
+    <result column="publish_status" jdbcType="TINYINT" property="publishStatus" />
+    <result column="author" jdbcType="BIGINT" property="author" />
+    <result column="create_user" jdbcType="BIGINT" property="createUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_user" jdbcType="INTEGER" property="updateUser" />
+    <result column="update_user" jdbcType="BIGINT" property="updateUser" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
   </resultMap>
 
@@ -34,5 +29,34 @@
     left join member m on c.author=m.oid
     where c.theme_id=#{themeId}
     order by c.context_type asc, c.create_time desc
+  </select>
+
+  <select id="selectReplyList" resultType="cn.kspshare.vo.ReplyListVO">
+    select
+      t.oid as themeId,
+      t.title as themeTitle,
+      c.oid as contextId,
+      c.profile,
+      c.audit_status as auditStatus,
+      c.create_time as createTime,
+      c.publish_status as publishStatus,
+      c.author,
+      m.nickname as authorName
+    from bbs_context c
+    left join bbs_theme t on t.oid=c.theme_id
+    left join member m on m.oid=c.author
+    WHERE
+      c.context_type in (1,2)
+    order by c.create_time desc
+  </select>
+  <select id="getReply" resultType="cn.kspshare.dto.ReplyDto">
+    select
+      c.oid as contextId,
+      c.context,
+      m.nickname as authorName
+    from bbs_context c
+    left join member m on m.oid=c.author
+    where c.context_type in(1,2)
+    and c.oid=#{contextId}
   </select>
 </mapper>

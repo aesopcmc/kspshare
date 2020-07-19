@@ -85,31 +85,31 @@ public class BbsThemeController {
         if(pageNum==null) pageNum=1;
         if(pageSize==null) pageSize=10;
         PageInfo<ListArticleVO> pageInfo = service.listArticle(pageNum, pageSize);
-        return ResultBean.SUCCESS(pageInfo);
+        return ResultBean.SUCCESS().setData(pageInfo);
     }
 
     /**
-     * 查看文章详情 、编辑回显
+     * 文章编辑回显
      * @return
      */
     @ApiOperation("查看文章详情、编辑回显")
     @GetMapping("/bbs/theme/getArticle/{articleId}")
     public ResultBean getArticle(@PathVariable Long articleId) {
         ArticleVO vo = service.getArticle(articleId);
-        return ResultBean.SUCCESS(vo);
+        return ResultBean.SUCCESS().setData(vo);
     }
 
     /**
-     * 创建文章
+     * 创建、修改文章
      * @return
      */
-    @ApiOperation("创建文章")
+    @ApiOperation("创建、修改文章")
     @PostMapping("/bbs/theme/createArticle")
-    public ResultBean createArticle(@RequestBody CreateArticleDto dto) {
+    public ResultBean createOrUpdateArticle(@RequestBody CreateArticleDto dto) {
         UserInfo userInfo = userInfoManager.getUserInfo();
         dto.setCreateUser(userInfo.getOid());
         int i = service.createOrUpdateArticle(dto);
-        return ResultBean.SUCCESS(i);
+        return ResultBean.SUCCESS().setData(i);
     }
 
 }

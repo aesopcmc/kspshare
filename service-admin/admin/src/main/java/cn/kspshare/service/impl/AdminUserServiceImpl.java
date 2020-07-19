@@ -121,7 +121,7 @@ public class AdminUserServiceImpl implements AdminUserService {
         List<AdminUser> list = adminUserMapper.selectMany(render);
         PageInfo<AdminUser> pageInfo = new PageInfo<>(list);
 
-        return ResultBean.SUCCESS(pageInfo);
+        return ResultBean.SUCCESS().setData(pageInfo);
     }
 
     @Override

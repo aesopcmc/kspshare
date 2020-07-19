@@ -3,6 +3,8 @@ package cn.kspshare.interceptor;
 
 import cn.kspshare.annotation.PassToken;
 import cn.kspshare.annotation.UserLoginToken;
+import cn.kspshare.common.restful.ResultCode;
+import cn.kspshare.common.restful.exception.BaseExceptionFactory;
 import cn.kspshare.config.RedisUtils;
 import cn.kspshare.config.userinfo.UserInfoManager;
 import cn.kspshare.domain.AdminUser;
@@ -89,7 +91,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         try {
             token = httpServletRequest.getHeader("Authorization").replace("Bearer ", "");// 从 http 请求头中取出 token
         }catch (Exception e) {
-            throw new RuntimeException("没有检测到请求头包含token，请重新登录",e);
+            throw BaseExceptionFactory.get(ResultCode.FAIL, "没有检测到请求头包含token，请重新登录", e);
         }
 
         // 获取 token 中的 user id
@@ -102,7 +104,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             System.out.println(decodedJWT.getClaim("oid").asString());
             System.out.println(decodedJWT.getClaim("username").asString());
         } catch (JWTDecodeException j) {
-            throw new RuntimeException("Token解析出错，请重新登录", j);
+            throw BaseExceptionFactory.get(ResultCode.FAIL, "Token解析出错，请重新登录", j);
         }
 
 
@@ -115,7 +117,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             //用户信息不存在，从数据库读取，验证token信息，存入redis
             AdminUser user = userService.queryById(Long.valueOf(userId));
             if (user == null) {
-                throw new RuntimeException("用户不存在，请重新登录");
+                throw BaseExceptionFactory.get("用户不存在，请重新登录");
             }
             checkToken(token, user.getPassword());
             userInfoManager.setUserInfoToRedis(token, user);
@@ -132,9 +134,9 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
         try {
             JwtTokenUtils.verifyToken(token, secret);
         } catch (TokenExpiredException e) {
-            throw new RuntimeException("token过期，请重新登录", e);
+            throw BaseExceptionFactory.get(ResultCode.FAIL, "token过期，请重新登录", e);
         } catch (JWTVerificationException e) {
-            throw new RuntimeException(e.getMessage(), e);
+            throw BaseExceptionFactory.get(ResultCode.FAIL, e.getMessage(), e);
         }
     }
 

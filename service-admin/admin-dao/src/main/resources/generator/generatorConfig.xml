@@ -30,6 +30,14 @@
             <property name="targetControllerPackage" value="cn.kspshare.controller"/>
         </plugin>
 
+        <!--生成Dao，DaoXml-->
+        <!--<plugin type="cn.aesop.generator.extend.plugin.AddExtendDaoPlugin">-->
+        <!--    <property name="baseDir" value="service-admin/admin-dao"/>-->
+        <!--    <property name="targetProject" value="src/main/java"/>-->
+        <!--    <property name="targetProjectXml" value="src/main/java"/>-->
+        <!--    <property name="targetPackage" value="cn.kspshare.dao"/>-->
+        <!--</plugin>-->
+
         <!--生成数据库注释、注解-->
         <commentGenerator type="cn.aesop.generator.extend.comment.MySQLCommentGenerator">
             <property name="addRemarkComments" value="true"/>

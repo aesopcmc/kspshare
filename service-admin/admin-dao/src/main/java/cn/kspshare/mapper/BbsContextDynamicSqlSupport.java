@@ -27,7 +27,7 @@ public final class BbsContextDynamicSqlSupport {
     public static final SqlColumn<Byte> contextType = bbsContext.contextType;
 
     /**
-     * 评论摘要，在回复时，摘取父评论的简要
+     * 评论摘要，在回复时，摘取评论前100个字
      * profile
      */
     public static final SqlColumn<String> profile = bbsContext.profile;

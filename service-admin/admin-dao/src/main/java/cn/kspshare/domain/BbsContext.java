@@ -32,7 +32,7 @@ public class BbsContext {
     private Byte contextType;
 
     /**
-     * 评论摘要，在回复时，摘取父评论的简要
+     * 评论摘要，在回复时，摘取评论前100个字
      * profile
      */
     private String profile;

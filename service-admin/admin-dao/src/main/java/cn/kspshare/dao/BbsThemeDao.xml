@@ -17,7 +17,7 @@
       m.nickname as authorName,
       c.context as content
     from bbs_theme t
-    left join bbs_context c on t.oid = c.theme_id
+    left join bbs_context c on t.oid = c.theme_id and c.context_type=0
     left join member m on t.author=m.oid
     left join admin_user ad on t.create_user=ad.oid
     where t.oid=#{articleId}
@@ -26,22 +26,22 @@
   <select id="listArticle" resultType="cn.kspshare.vo.ListArticleVO">
     select
       t.oid as themeId,
-      c.oid as contextId,
+      t.session_id as sessionId,
       t.title,
       t.profile,
-      t.session_id as sessionId,
-      s.name as sessionName,
-      c.publish_status as publishStatus,
-      c.audit_status as auditStatus,
-      t.create_user as createUser,
-      ad.realname as createUserName,
-      t.author as author,
-      m.nickname as authorName,
       t.reply_count as replyCount,
       t.create_time as createTime,
-      t.update_time as updateTime
+      t.update_time as updateTime,
+      t.create_user as createUser,
+      t.author as author,
+      c.oid as contextId,
+      c.publish_status as publishStatus,
+      c.audit_status as auditStatus,
+      s.name as sessionName,
+      ad.realname as createUserName,
+      m.nickname as authorName
     from bbs_theme t
-     left join bbs_context c on t.oid = c.theme_id
+     left join bbs_context c on t.oid = c.theme_id and c.context_type=0
      left join member m on t.author=m.oid
      left join admin_user ad on t.create_user=ad.oid
      left join bbs_session s on t.session_id=s.oid
