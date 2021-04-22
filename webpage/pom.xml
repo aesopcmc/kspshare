@@ -109,7 +109,7 @@
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
             <!--注意：3.5.x 更高版本会导致日期类型datetime字段为空时会报错-->
-            <version>3.5.0</version>
+            <version>3.5.6</version>
         </dependency>
         <!-- mybatis JSR 310支持 -->
         <dependency>
